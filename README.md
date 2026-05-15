@@ -163,7 +163,7 @@ NOTIFICATION {
 }
 ```
 
-## SEQUENCE DIAGRAM — USER LOGIN
+## 1.SEQUENCE DIAGRAM — USER LOGIN
 ```mermaid
 sequenceDiagram
 
@@ -179,3 +179,45 @@ Database-->>Backend: User data / validation result
 Backend-->>Frontend: Authentication token / error
 Frontend-->>User: Login success / failure message
 ```
+
+## 2. SEQUENCE DIAGRAM — RETRIEVE ARTICLES
+```mermaid
+sequenceDiagram
+
+actor User
+participant Frontend
+participant Backend
+participant Database
+
+User->>Frontend: Open Articles page
+Frontend->>Backend: GET /articles request
+Backend->>Database: Fetch articles
+Database-->>Backend: Articles data
+Backend-->>Frontend: JSON response
+Frontend-->>User: Display articles list
+```
+
+## 3. SEQUENCE DIAGRAM — DONATION (Stripe)
+```mermaid
+sequenceDiagram
+
+actor User
+participant Frontend
+participant Backend
+participant StripeAPI
+participant Database
+
+User->>Frontend: Enter donation amount
+Frontend->>Backend: Create payment request
+Backend->>StripeAPI: Initialize payment session
+StripeAPI-->>Backend: Payment session URL
+Backend-->>Frontend: Redirect to Stripe checkout
+
+User->>StripeAPI: Complete payment
+StripeAPI-->>Backend: Payment confirmation webhook
+Backend->>Database: Save donation record
+Database-->>Backend: Confirmation saved
+Backend-->>Frontend: Success response
+Frontend-->>User: Donation success message
+```
+
