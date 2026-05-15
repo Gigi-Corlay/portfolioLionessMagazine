@@ -1,4 +1,4 @@
-# portfolio Lioness Magazine
+# Portfolio Lioness Magazine
 
 ```mermaid
 flowchart TD
