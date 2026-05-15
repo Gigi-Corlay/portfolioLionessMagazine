@@ -116,6 +116,49 @@ class EMAIL externalNode
 class DF dataflowNode
 ```
 
+## ER DIAGRAM
 
+```mermaid
+erDiagram
+
+USER ||--o{ ARTICLE : creates
+USER ||--o{ DONATION : makes
+USER ||--o{ NOTIFICATION : receives
+
+USER {
+  int id
+  string username
+  string email
+  string password
+  boolean is_active
+}
+
+ARTICLE {
+  int id
+  string title
+  string content
+  string image
+  string language
+}
+
+MAGAZINE_ISSUE {
+  int id
+  string title
+  string pdf_url
+  date published_date
+}
+
+DONATION {
+  int id
+  float amount
+  string payment_status
+  date created_at
+}
+
+NOTIFICATION {
+  int id
+  string message
+  boolean is_read
+  date created_at
+}
 ```
-
