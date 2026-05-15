@@ -3,27 +3,19 @@
 ```mermaid
 flowchart TD
 
-U[User]
-
+U[Utilisateur]
 FE[Front-end<br/>HTML / CSS / JavaScript]
-
-BE[Back-end<br/>Django (Python)]
-
-DB[(Database<br/>SQLite / PostgreSQL)]
-
-CAL[Calaméo<br/>PDF Magazine Viewer]
-
-STRIPE[Stripe<br/>Donation Payments]
-
-EMAIL[Email Service<br/>Notifications]
+BE[Back-end<br/>Django Python]
+DB[(Base de données<br/>SQLite / PostgreSQL)]
+CAL[Calaméo<br/>Magazines PDF]
+STRIPE[Stripe<br/>Paiement dons]
+EMAIL[Service Email<br/>Notifications]
 
 U --> FE
 FE -->|HTTP Requests| BE
-
 BE -->|CRUD Users & Articles| DB
 DB --> BE
 BE --> FE
-
 BE --> CAL
 BE --> STRIPE
 BE --> EMAIL
@@ -45,19 +37,27 @@ class EMAIL externalNode
 ```mermaid
 flowchart TD
 
-U[Utilisateur]
+U[User]
+
 FE[Front-end<br/>HTML / CSS / JavaScript]
-BE[Back-end<br/>Django Python]
-DB[(Base de données<br/>SQLite / PostgreSQL)]
-CAL[Calaméo<br/>Magazines PDF]
-STRIPE[Stripe<br/>Paiement dons]
-EMAIL[Service Email<br/>Notifications]
+
+BE[Back-end<br/>Django (Python)]
+
+DB[(Database<br/>SQLite / PostgreSQL)]
+
+CAL[Calaméo<br/>PDF Magazine Viewer]
+
+STRIPE[Stripe<br/>Donation Payments]
+
+EMAIL[Email Service<br/>Notifications]
 
 U --> FE
 FE -->|HTTP Requests| BE
+
 BE -->|CRUD Users & Articles| DB
 DB --> BE
 BE --> FE
+
 BE --> CAL
 BE --> STRIPE
 BE --> EMAIL
