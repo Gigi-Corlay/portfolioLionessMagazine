@@ -162,3 +162,20 @@ NOTIFICATION {
   date created_at
 }
 ```
+
+## SEQUENCE DIAGRAM — USER LOGIN
+```mermaid
+sequenceDiagram
+
+actor User
+participant Frontend
+participant Backend
+participant Database
+
+User->>Frontend: Enter login credentials
+Frontend->>Backend: Send login request (POST /login)
+Backend->>Database: Verify user credentials
+Database-->>Backend: User data / validation result
+Backend-->>Frontend: Authentication token / error
+Frontend-->>User: Login success / failure message
+```
