@@ -132,6 +132,39 @@ NOTIFICATION {
   date created_at
 }
 ```
+## 1.SEQUENCE DIAGRAM — USER LOGIN
+```mermaid
+sequenceDiagram
+
+actor User
+participant Frontend
+participant Backend
+participant Database
+
+User->>Frontend: Enter login credentials
+Frontend->>Backend: Send login request (POST /login)
+Backend->>Database: Verify user credentials
+Database-->>Backend: User data / validation result
+Backend-->>Frontend: Authentication token / error
+Frontend-->>User: Login success / failure message
+```
+
+## 2. SEQUENCE DIAGRAM — RETRIEVE ARTICLES
+```mermaid
+sequenceDiagram
+
+actor User
+participant Frontend
+participant Backend
+participant Database
+
+User->>Frontend: Open Articles page
+Frontend->>Backend: GET /articles request
+Backend->>Database: Fetch articles
+Database-->>Backend: Articles data
+Backend-->>Frontend: JSON response
+Frontend-->>User: Display articles list
+```
 
 ## 3. SEQUENCE DIAGRAM — DONATION (HelloAsso)
 
