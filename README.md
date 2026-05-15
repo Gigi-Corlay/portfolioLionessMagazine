@@ -1,5 +1,5 @@
 # portfolioLionessMagazine
-## Proje pour mon portfolio Holberton school
+### Projet pour mon portfolio Holberton school
 
 ```mermaid
 flowchart TD
