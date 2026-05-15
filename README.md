@@ -41,22 +41,18 @@ flowchart TD
 
 U[User]
 
-FE[Front-end\nHTML / CSS / JavaScript]
+FE["Front-end HTML / CSS / JavaScript"]
+BE["Back-end Django (Python)"]
+DB["Database SQLite / PostgreSQL"]
 
-BE[Back-end\nDjango (Python)]
-
-DB[(Database\nSQLite / PostgreSQL)]
-
-CAL[Calaméo\nPDF Magazine Viewer]
-
-STRIPE[Stripe\nDonation System]
-
-EMAIL[Email Service\nNotifications]
+CAL["Calaméo PDF Viewer"]
+STRIPE["Stripe Donations"]
+EMAIL["Email Service Notifications"]
 
 U --> FE
-FE -->|HTTP Requests| BE
+FE --> BE
 
-BE -->|CRUD Users & Articles| DB
+BE --> DB
 DB --> BE
 BE --> FE
 
@@ -65,8 +61,5 @@ BE --> STRIPE
 BE --> EMAIL
 ```
 
-BE --> CAL
-BE --> STRIPE
-BE --> EMAIL
 ```
 
