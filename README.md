@@ -204,4 +204,33 @@ Database-->>Backend: Confirmation saved
 Backend-->>Frontend: Success response
 Frontend-->>User: Donation success message
 ```
+sequenceDiagram
+
+actor User
+participant Frontend
+participant Backend
+participant Database
+participant Editor
+
+User->>Frontend: Write article submission
+
+Frontend->>Backend: Submit article form
+
+Backend->>Database: Save article (status: pending)
+
+Database-->>Backend: Confirmation saved
+
+Backend-->>Editor: Notify editorial team
+
+Editor->>Backend: Review and approve article
+
+Backend->>Database: Update article status
+
+Backend-->>Frontend: Publish approved article
+
+Frontend-->>User: Article submission confirmation
+## 4. SEQUENCE DIAGRAM — ARTICLE SUBMISSION
+```mermaid
+
+```
 
