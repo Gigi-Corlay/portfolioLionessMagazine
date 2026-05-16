@@ -158,6 +158,8 @@ else Invalid credentials
 end
 ```
 
+## 2. SEQUENCE DIAGRAM — RETRIEVE ARTICLES
+
 
 
 
