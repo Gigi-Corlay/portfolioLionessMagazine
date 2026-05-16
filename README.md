@@ -204,6 +204,9 @@ Database-->>Backend: Confirmation saved
 Backend-->>Frontend: Success response
 Frontend-->>User: Donation success message
 ```
+
+## 4. SEQUENCE DIAGRAM — ARTICLE SUBMISSION
+```mermaid
 sequenceDiagram
 
 actor User
@@ -229,8 +232,5 @@ Backend->>Database: Update article status
 Backend-->>Frontend: Publish approved article
 
 Frontend-->>User: Article submission confirmation
-## 4. SEQUENCE DIAGRAM — ARTICLE SUBMISSION
-```mermaid
-
 ```
 
