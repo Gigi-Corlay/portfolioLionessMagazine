@@ -177,5 +177,31 @@ Database-->>Backend: Articles data
 Backend-->>Frontend: JSON response
 Frontend-->>User: Display articles list
 ```
+## 3. SEQUENCE DIAGRAM — DONATION (HelloAsso)
+```mermaid
+sequenceDiagram
 
+actor User
+participant Frontend
+participant Backend
+participant HelloAsso
+participant Database
+
+User->>Frontend: Click "Support LIONESS"
+
+Frontend->>Backend: Request donation page
+Backend-->>Frontend: Return HelloAsso donation link
+
+Frontend->>HelloAsso: Redirect user to donation platform
+
+User->>HelloAsso: Complete donation payment
+
+HelloAsso-->>Backend: Payment confirmation
+
+Backend->>Database: Save donation information
+Database-->>Backend: Confirmation saved
+
+Backend-->>Frontend: Success response
+Frontend-->>User: Donation success message
+```
 
