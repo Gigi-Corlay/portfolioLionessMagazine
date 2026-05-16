@@ -52,7 +52,70 @@ class CAL externalNode
 class HELLOASSO externalNode
 class EMAIL externalNode
 class DF dataflowNode
+
+
 class LANG languageNode
 ```
+
+## ER DIAGRAM
+```mermaid
+erDiagram
+
+USER ||--o{ ARTICLE : writes
+USER ||--o{ DONATION : makes
+USER ||--o{ NOTIFICATION : receives
+MAGAZINE_ISSUE ||--o{ ARTICLE : contains
+
+USER {
+  int id PK
+  string username
+  string email
+  string password
+  string profile_image
+  boolean is_active
+  datetime created_at
+}
+
+ARTICLE {
+  int id PK
+  int user_id FK
+  int issue_id FK
+  string title
+  text content
+  string image
+  string language
+  string status
+  string category
+  datetime created_at
+  datetime updated_at
+}
+
+MAGAZINE_ISSUE {
+  int id PK
+  string title
+  string cover_image
+  string pdf_url
+  string language
+  date published_date
+}
+
+DONATION {
+  int id PK
+  int user_id FK
+  float amount
+  string donor_name
+  string payment_status
+  datetime created_at
+}
+
+NOTIFICATION {
+  int id PK
+  int user_id FK
+  string message
+  boolean is_read
+  datetime created_at
+}
+```
+
 
 
