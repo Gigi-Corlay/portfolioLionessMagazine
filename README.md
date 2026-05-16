@@ -159,8 +159,23 @@ end
 ```
 
 ## 2. SEQUENCE DIAGRAM — RETRIEVE ARTICLES
+```mermaid
+sequenceDiagram
 
+actor User
+participant Frontend
+participant Backend
+participant Database
 
+User->>Frontend: Open Articles page
 
+Frontend->>Backend: GET /articles request
+
+Backend->>Database: Fetch articles
+Database-->>Backend: Articles data
+
+Backend-->>Frontend: JSON response
+Frontend-->>User: Display articles list
+```
 
 
