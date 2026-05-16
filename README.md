@@ -116,6 +116,49 @@ NOTIFICATION {
   datetime created_at
 }
 ```
+## 1.SEQUENCE DIAGRAM — USER LOGIN
+```mermaid
+sequenceDiagram
+
+actor User
+
+participant Frontend
+participant Backend
+participant Database
+participant SessionManager
+
+User->>Frontend: Open login page
+
+Frontend-->>User: Display login form
+
+User->>Frontend: Enter email & password
+
+Frontend->>Backend: POST /login request
+
+Backend->>Database: Verify user credentials
+
+Database-->>Backend: User data / validation result
+
+alt Valid credentials
+
+    Backend->>SessionManager: Generate authentication session/token
+
+    SessionManager-->>Backend: Session token created
+
+    Backend-->>Frontend: Login success + user session
+
+    Frontend-->>User: Redirect to member dashboard
+
+else Invalid credentials
+
+    Backend-->>Frontend: Authentication error message
+
+    Frontend-->>User: Display login error
+
+end
+```
+
+
 
 
 
