@@ -1,0 +1,456 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-05 08:46+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: config/settings.py:99
+msgid "French"
+msgstr "Français"
+
+#: config/settings.py:100
+msgid "English"
+msgstr "Anglais"
+
+#: templates/home.html:8
+msgid "Le Magazine des Reines"
+msgstr "Le Magazine des Reines"
+
+#: templates/home.html:26
+msgid "Icon"
+msgstr "Icône"
+
+#: templates/home.html:26
+msgid "Access to Calaméo Digital Magazine"
+msgstr "Accès au Magazine Numérique Calaméo"
+
+#: templates/home.html:28
+msgid "SUPPORT LIONESS ♡"
+msgstr "SOUTENIR LIONESS ♡"
+
+#: templates/home.html:34 templates/home.html:323
+msgid "Log in"
+msgstr "Se connecter"
+
+#: templates/home.html:35 templates/home.html:324
+msgid "Become a member"
+msgstr "Devenir membre"
+
+#: templates/home.html:60 templates/home.html:311
+msgid "About"
+msgstr "À propos"
+
+#: templates/home.html:61
+msgid "Categories"
+msgstr "Catégories"
+
+#: templates/home.html:62 templates/home.html:120 templates/home.html:121
+#: templates/home.html:312
+msgid "Community"
+msgstr "Communauté"
+
+#: templates/home.html:63 templates/home.html:113 templates/home.html:114
+#: templates/home.html:313
+msgid "Magazine"
+msgstr "Magazine"
+
+#: templates/home.html:64
+msgid "Services"
+msgstr "Services"
+
+#: templates/home.html:65
+msgid "Personalities"
+msgstr "Personnalités"
+
+#: templates/home.html:80
+msgid "Lionne"
+msgstr "Lionne"
+
+#: templates/home.html:82
+msgid ""
+"We place <span class='text-gold-custom'>crowns</span> on women, <br class='d-"
+"none d-md-block'> like queens"
+msgstr ""
+"Nous plaçons des <span class='text-gold-custom'>couronnes</span> sur les femmes, <br class='d-"
+"none d-md-block'> comme des reines"
+
+#: templates/home.html:90
+msgid "LIONESS is much more than a magazine."
+msgstr "LIONESS est bien plus qu'un magazine."
+
+#: templates/home.html:91
+msgid ""
+"It's a community born in Gabon that shines a spotlight on African and Afro-"
+"descendant women, both in Africa and in the diaspora, while remaining open "
+"to women worldwide."
+msgstr ""
+"C'est une communauté née au Gabon qui met en lumière les femmes africaines et afro-"
+"pendantes, tant en Afrique que dans la diaspora, tout en restant ouverte "
+"aux femmes du monde entier."
+
+#: templates/home.html:92
+msgid ""
+"We celebrate ambitious, entrepreneurial, creative, and committed women "
+"through inspiring stories, authentic journeys, and meaningful content."
+msgstr ""
+"Nous célébrons les femmes ambitieuses, entrepreneures, créatives et engagées "
+"à travers des histoires inspirantes, des parcours authentiques et un contenu porteur de sens."
+
+#: templates/home.html:93
+msgid ""
+"Joining LIONESS, means joining a movement that celebrates women, their "
+"ambitions, and their impact on the world."
+msgstr ""
+"Rejoindre LIONESS, c'est rejoindre un mouvement qui célèbre les femmes, leurs "
+"ambitions et leur impact sur le monde."
+
+#: templates/home.html:95
+msgid "See the magazines"
+msgstr "Voir les magazines"
+
+#: templates/home.html:96 templates/home.html:152
+msgid "Join the community"
+msgstr "Rejoindre la communauté"
+
+#: templates/home.html:101
+msgid "Queens"
+msgstr "Reines"
+
+#: templates/home.html:109
+msgid "A space to inspire, connect, and impact"
+msgstr "Un espace pour inspirer, connecter et impacter"
+
+#: templates/home.html:115
+msgid ""
+"Discover inspiring content on entrepreneurship, culture, leadership, well-"
+"being and much more."
+msgstr ""
+"Découvrez du contenu inspirant sur l'entrepreneuriat, la culture, le leadership, le bien-être "
+"être et bien plus encore."
+
+#: templates/home.html:122
+msgid ""
+"Join a community of ambitious and committed women from around the world."
+msgstr ""
+"Rejoignez une communauté de femmes ambitieuses et engagées du monde entier."
+
+#: templates/home.html:127 templates/home.html:128
+msgid "Entrepreneurship"
+msgstr "Entrepreneuriat"
+
+#: templates/home.html:129
+msgid ""
+"Let's celebrate women entrepreneurs and their initiatives that are "
+"transforming our societies."
+msgstr ""
+"Célébrons les femmes entrepreneures et leurs initiatives qui "
+"transforment nos sociétés."
+
+#: templates/home.html:134 templates/home.html:135
+msgid "African Diaspora"
+msgstr "Diaspora Africaine"
+
+#: templates/home.html:136
+msgid ""
+"A bridge between Africa and its diaspora to share, learn, and collaborate."
+msgstr ""
+"Un pont entre l'Afrique et sa diaspora pour partager, apprendre et collaborer."
+
+#: templates/home.html:147
+msgid "Women collaboration illustration"
+msgstr "Illustration de collaboration entre femmes"
+
+#: templates/home.html:150
+msgid "Join a community of inspiring women"
+msgstr "Rejoignez une communauté de femmes inspirantes"
+
+#: templates/home.html:151
+msgid ""
+"Exchange ideas, share your experiences and develop your projects with women "
+"from all over the world."
+msgstr ""
+"Échangez des idées, partagez vos expériences et développez vos projets avec des femmes "
+"du monde entier."
+
+#: templates/home.html:160
+msgid ""
+"LIONESS, <span class='fst-italic fw-light'>the magazine for queens</span>"
+msgstr ""
+"LIONESS, <span class='fst-italic fw-light'>le magazine des reines</span>"
+
+#: templates/home.html:166
+msgid "Lioness N°01"
+msgstr "Lioness N°01"
+
+#: templates/home.html:172
+msgid "Lioness N°04"
+msgstr "Lioness N°04"
+
+#: templates/home.html:178
+msgid "Lioness N°05"
+msgstr "Lioness N°05"
+
+#: templates/home.html:184
+msgid "Lioness N°06"
+msgstr "Lioness N°06"
+
+#: templates/home.html:190
+msgid "Lioness N°07"
+msgstr "Lioness N°07"
+
+#: templates/home.html:196
+msgid "Lioness N°08"
+msgstr "Lioness N°08"
+
+#: templates/home.html:202
+msgid "Lioness N°09"
+msgstr "Lioness N°09"
+
+#: templates/home.html:208
+msgid "Lioness N°10"
+msgstr "Lioness N°10"
+
+#: templates/home.html:214
+msgid "Lioness N°11"
+msgstr "Lioness N°11"
+
+#: templates/home.html:220
+msgid "Lioness N°12"
+msgstr "Lioness N°12"
+
+#: templates/home.html:226
+msgid "Lioness N°13"
+msgstr "Lioness N°13"
+
+#: templates/home.html:232
+msgid "Lioness N°14"
+msgstr "Lioness N°14"
+
+#: templates/home.html:241
+msgid "Our services"
+msgstr "Nos services"
+
+#: templates/home.html:246 templates/home.html:247
+msgid "Featured"
+msgstr "Mise en avant"
+
+#: templates/home.html:248
+msgid "We highlight women and their projects through our platforms."
+msgstr "Nous mettons en lumière les femmes et leurs projets à travers nos plateformes."
+
+#: templates/home.html:253
+msgid "Interviews"
+msgstr "Interviews"
+
+#: templates/home.html:254
+msgid "Interviews & portraits"
+msgstr "Interviews & portraits"
+
+#: templates/home.html:255
+msgid ""
+"Authentic stories to inspire and motivate everyone who reads Lioness, the "
+"magazine for queens."
+msgstr ""
+"Des histoires authentiques pour inspirer et motiver quiconque lit Lioness, le magazine des reines."
+
+#: templates/home.html:260 templates/home.html:261
+msgid "Accompaniement"
+msgstr "Accompagnement"
+
+#: templates/home.html:262
+msgid ""
+"If you become a member, you will have access to resources, advice, and tools "
+"to boost your business."
+msgstr ""
+"En devenant membre, vous aurez accès à des ressources, des conseils et des outils "
+"pour booster votre activité."
+
+#: templates/home.html:267
+msgid "Media"
+msgstr "Média"
+
+#: templates/home.html:268
+msgid "Media & Content"
+msgstr "Média & Contenu"
+
+#: templates/home.html:269
+msgid ""
+"If you become a member, you'll have access to podcasts, videos, and articles "
+"to learn and grow."
+msgstr ""
+"En devenant membre, vous aurez accès à des podcasts, des vidéos et des articles "
+"pour apprendre et grandir."
+
+#: templates/home.html:278
+msgid "The Most Impactful Personalities"
+msgstr "Les Personnalités les Plus Impactantes"
+
+#: templates/home.html:279
+msgid ""
+"Every year, LIONESS celebrates the most inspiring and impactful "
+"personalities. The selected individuals also receive their own personalized "
+"cover."
+msgstr ""
+"Chaque année, LIONESS célèbre les personnalités les plus inspirantes et impactantes. "
+"Les personnes sélectionnées reçoivent également leur propre couverture personnalisée."
+
+#: templates/home.html:280
+msgid "What if you graced the LIONESS cover next year?"
+msgstr "Et si vous faisiez la couverture de LIONESS l'année prochaine ?"
+
+#: templates/home.html:282
+msgid "Access our magazine"
+msgstr "Accéder à notre magazine"
+
+#: templates/home.html:287
+msgid "Impactful Personalities Showcase"
+msgstr "Vitrine des Personnalités Impactantes"
+
+#: templates/home.html:297
+msgid "LIONESS, Le Magazine des Reines"
+msgstr "LIONESS, Le Magazine des Reines"
+
+#: templates/home.html:297
+msgid "is a publication of Layilab."
+msgstr "est une publication de Layilab."
+
+#: templates/home.html:298
+msgid "Association under the 1901 law, Caen (France)"
+msgstr "Association loi 1901, Caen (France)"
+
+#: templates/home.html:298
+msgid "Tel:"
+msgstr "Tél :"
+
+#: templates/home.html:309
+msgid "Navigation"
+msgstr "Navigation"
+
+#: templates/home.html:314
+msgid "Service"
+msgstr "Service"
+
+#: templates/home.html:319
+msgid "Stay Connected"
+msgstr "Restez Connectés"
+
+#: templates/home.html:320
+msgid ""
+"Become a member of the community that celebrates women worldwide. Together, "
+"we are breaking down patriarchal stereotypes."
+msgstr ""
+"Devenez membre de la communauté qui célèbre les femmes à travers le monde. Ensemble, "
+"nous brisons les stéréotypes patriarcaux."
+
+#: templates/home.html:321
+msgid "We are moving forward in open collaboration with men."
+msgstr "Nous avançons en collaboration ouverte avec les hommes."
+
+#: templates/home.html:332
+msgid "Legal notice"
+msgstr "Mentions légales"
+
+#: templates/home.html:333
+msgid "Confidentiality"
+msgstr "Confidentialité"
+
+#: templates/home.html:334
+msgid "Conditions of use"
+msgstr "Conditions d'utilisation"
+
+#: venv/lib/python3.8/site-packages/django/contrib/messages/apps.py:15
+msgid "Messages"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/contrib/sitemaps/apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/contrib/staticfiles/apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:30
+msgid "…"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:50
+msgid "That page number is not an integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:52
+msgid "That page number is less than 1"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:54
+msgid "That page contains no results"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:104
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:751
+msgid "Enter a valid URL."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:165
+msgid "Enter a valid integer."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:176
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: venv/lib/python3.8/site-packages/django/core/validators.py:259
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:267
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:281
+#: venv/lib/python3.8/site-packages/django/core/validators.py:289
+#: venv/lib/python3.8/site-packages/django/core/validators.py:318
+msgid "Enter a valid IPv4 address."
+msgstr "Veuillez saisir une adresse IPv4 valide."
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:298
+#: venv/lib/python3.8/site-packages/django/core/validators.py:319
+msgid "Enter a valid IPv6 address."
+msgstr "Veuillez saisir une adresse IPv6 valide."
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:310
+#: venv/lib/python3.8/site-packages/django/core/validators.py:317
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr "Veuillez saisir une adresse IPv4 ou IPv6 valide."
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:353
+msgid "Enter only digits separated by commas."
+msgstr "Saisissez uniquement des chiffres séparés par des virgules."
