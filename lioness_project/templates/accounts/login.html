@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+
+<div class="login-container">
+
+    <h1>LOG IN</h1>
+
+    <p>Fields marked with an * are required.</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Email *</label>
+            {{ form.username }}
+        </div>
+
+        <div class="field">
+            <label>Mot de passe *</label>
+            {{ form.password }}
+        </div>
+
+        <a href="#">Mot de passe oublié ?</a>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <p>
+        Pas encore de compte ?
+        <a href="{% url 'register' %}">
+            Register
+        </a>
+    </p>
+
+</div>
+
+</body>
+</html>

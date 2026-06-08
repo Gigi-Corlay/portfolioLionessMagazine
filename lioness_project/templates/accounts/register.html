@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+
+<div class="login-container">
+
+    <h1>SIGN UP</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.username }}
+        {{ form.email }}
+        {{ form.password1 }}
+        {{ form.password2 }}
+
+        <button type="submit">
+            Create an account
+        </button>
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,24 +1,16 @@
 /* ==========================================================================
-    CONFIGURATIONS DES POLICES (FONTES)
+    CONFIGURATIONS DES POLICES
    ========================================================================== */
-
-/* Si vous installez les fichiers physiques dans un sous-dossier static/fonts/ */
-@font-face {
-    font-family: 'Abril Display';
-    src: url('../fonts/AbrilDisplay-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
+body {
+    font-family: 'Brandon Grotesque', 'Montserrat', sans-serif;
 }
 
-@font-face {
-    font-family: 'Brandon Grotesque';
-    src: url('../fonts/BrandonGrotesque-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+.font-title,
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Abril Display', 'Abril Fatface', serif;
 }
-
 /* ==========================================================================
-    VARIABLES GLOBALES ET INITIALISATION
+    VARIABLES GLOBALES
    ========================================================================== */
 :root {
     --primary-green: #04757D;
@@ -27,60 +19,74 @@
     --gold: #AC7A26;
     --text-dark: #333333;
 }
-
-/* Effet Smooth Scroll natif pour la One Page */
 html {
     scroll-behavior: smooth;
 }
-
 body {
     font-family: 'Brandon Grotesque', 'Montserrat', sans-serif;
     color: var(--text-dark);
 }
-
-/* Application systématique d'Abril Display sur les titres */
 .font-title, h1, h2, h3, h4, h5, h6 {
     font-family: 'Abril Display', 'Abril Fatface', serif;
 }
-
-/* Ajustement de l'espacement pour éviter que le menu fixe ne cache le début des sections */
+/* Évite que le menu fixe cache le début des sections */
 .section-padding {
     scroll-margin-top: 110px;
 }
-#main-nav {
-    background: #04757D !important;
+/* ==========================================================================
+    HEADER
+   ========================================================================== */
+.header-mag-text {
+    font-size: 10px; /* CORRIGÉ : était "1Opx" (lettre O au lieu de zéro) */
 }
-
+/* Sur mobile, le logo passe en premier grâce à order-first */
+@media (max-width: 767px) {
+    .header-logo {
+        height: 35px;
+    }
+}
+/* ==========================================================================
+    NAVIGATION
+   ========================================================================== */
+#main-nav {
+    background: var(--primary-green) !important;
+}
 #main-nav .nav-link {
     color: white;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
 }
-
+#main-nav .nav-link:hover,
+#main-nav .nav-link.active {
+    opacity: 1 !important;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
 .search-icon {
     color: white;
-    font-size: 22px;
+    font-size: 18px;
+    cursor: pointer;
 }
 /* ==========================================================================
-    SURCHARGES ET COULEURS BOOTSTRAP (CUSTOMS)
+    COULEURS ET BOUTONS BOOTSTRAP (CUSTOMS)
    ========================================================================== */
 .bg-green-custom {
     background-color: var(--primary-green) !important;
 }
-
 .bg-cream-custom {
     background-color: var(--light-cream) !important;
 }
-
 .text-gold-custom {
     color: var(--gold) !important;
 }
-
-.text-green-dark {
-    color: var(--dark-green);
+.color-title {
+    color: var(--primary-green) !important;
 }
-
-/* Boutons Verts */
+/* Boutons verts */
 .btn-green-custom {
     background-color: var(--primary-green) !important;
     border-color: var(--primary-green) !important;
@@ -90,290 +96,296 @@ body {
     background-color: var(--dark-green) !important;
     box-shadow: 0 4px 10px rgba(0, 95, 91, 0.2);
 }
-.color-title{
-    color: var(--primary-green) !important;
-}
-
-/* Boutons Login/Gold */
+/* Bouton Login (doré) */
 .btn-login-custom {
     background-color: var(--gold) !important;
     border-color: var(--gold) !important;
+    color: #fff !important;
 }
 .btn-login-custom:hover {
-    background-color: #b3925d !important;
+    background-color: #9a6b1e !important;
 }
-
+/* Bouton action doré (section Impact) */
 .btn-gold-action {
     background-color: var(--gold);
     color: #ffffff;
     letter-spacing: 1px;
     font-size: 13px;
     transition: background 0.3s;
+    border: none;
 }
 .btn-gold-action:hover {
     background-color: var(--dark-green);
     color: #ffffff;
 }
-
+/* Bouton contour vert */
 .btn-outline-green {
     border: 1px solid var(--primary-green);
     color: var(--primary-green);
     background: #ffffff;
+    transition: all 0.3s;
 }
 .btn-outline-green:hover {
-    background-color: transparent;
-    color: var(--primary-green);
+    background: transparent;
     border: 1px solid var(--primary-green);
 }
-
+/* Bouton contour doré */
 .btn-outline-gold {
     border: 1px solid var(--gold);
     color: var(--gold);
     background: transparent;
+    transition: all 0.3s;
 }
 .btn-outline-gold:hover {
     background-color: var(--gold);
     color: #ffffff;
 }
-
+/* Bouton Support */
 .btn-support-custom {
     background-color: #e0f2f1 !important;
     color: var(--primary-green) !important;
     border: 1px solid var(--primary-green) !important;
+    font-size: 11px;
 }
-
 /* ==========================================================================
-    COMPOSANTS SPÉCIFIQUES
+    HERO / ABOUT
    ========================================================================== */
-
-/* Menu de navigation global */
-#main-nav .nav-link {
-    letter-spacing: 0.05em;
-    opacity: 0.85;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-#main-nav .nav-link:hover, 
-#main-nav .nav-link.active {  /* Géré dynamiquement par le ScrollSpy Bootstrap */
-    opacity: 1 !important;
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-.nav-top-link:hover {
-    color: var(--primary-green) !important;
-}
-
-/* Section Images & Icônes */
-.max-hero-img {
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-.value-fa-icon {
-    font-size: 3rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-}
-
-.value-fa-icon:hover {
-    color: var(--primary-green);
-    transform: scale(1.1);
-}
-
-.value-icon {
-    width: 60%;
-    height: 60%;
-}
-/*
-.custom-illustration {
-    max-width: 230px;
-}*/
-
-/* Cartes de magazines */
-.mag-link-card {
-    text-decoration: none;
-    display: block;
-}
-
-/* Ajustement flexbox global hérité à nettoyer */
-#about .container {
-    display: block; /* Modifié de 'flex' à 'block' pour que les 'rows' de Bootstrap s'empilent naturellement */
-}
-
-#about::before {
-    display: none; /* Désactive l'ancien pseudo-élément */
-}
-
-#about .row {
-    align-items: end !important;
-}
-
-/* --- Positionnement de l'image de droite tout en bas --- */
-.about-image {
-    display: flex;
-    align-items: flex-end; /* Pousse l'image au bas de sa colonne */
-    justify-content: center;
-}
-
-.about-image img {
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    display: block;
-    margin-bottom: 0; /* Élimine tout espace blanc sous l'image */
-}
-
-/* --- Ajustement de la section Hero et de son image de fond --- */
 .hero-section {
     position: relative;
-    /* On s'assure que le fond couvre 100% de la hauteur et largeur de la section */
     background-image: url('../images/fond_afrique.jpg') !important;
     background-size: cover !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
-    padding-bottom: 0 !important; /* Important pour que l'image colle au bord inférieur */
+    padding-bottom: 0 !important;
     overflow: hidden;
 }
-
 .hero-title-wrapper {
     display: flex;
     align-items: flex-start;
     gap: 20px;
     width: 100%;
 }
-
 .hero-lionne {
     width: 80px;
-    flex-shrink: 0 ;
+    flex-shrink: 0;
     margin-top: 10px;
 }
-
-/* --- Ajustement du Titre h1 pour qu'il s'étende correctement --- */
 .hero-title {
     font-family: 'Abril Display', serif;
-    font-size: clamp(2.5rem, 5vw, 5.5rem); /* Taille légèrement réduite pour éviter les retours à la ligne indésirables sur PC */
-    line-height: 1;
+    font-size: clamp(2rem, 5vw, 5.5rem);
+    line-height: 1.05;
     color: #1d2430;
-    margin: 20px 30px 0 0;
-    width: 100%; /* Force le titre à occuper toute la largeur disponible */
+    margin: 10px 0 0 0;
 }
-
 @media (max-width: 768px) {
-
     .hero-title-wrapper {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-
     .hero-lionne {
         width: 60px;
+        margin-top: 0;
     }
-
-.hero-content {
+}
+/* Image femmes hero — collée en bas */
+.about-image {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.about-image img {
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 0;
+}
+.max-hero-img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+}
+/* ==========================================================================
+    TITRES DE SECTION
+   ========================================================================== */
+/* 
+ * CORRIGÉ : anciennement "section-title-left-gold" avec left:0 alors que
+ * le titre était centré → le trait doré n'était pas aligné.
+ * Nouvelle classe "section-title-centered-gold" avec left:50% + translateX.
+ */
+.section-title-centered-gold {
+    font-size: clamp(1.6rem, 3vw, 2.4rem) !important;
     position: relative;
-    z-index: 2;
+    padding-bottom: 18px;
+    display: inline-block;
 }
-
-.hero-lion {
-    width: 75px;
-}
-
-.hero-title {
-    font-family: 'Abril Display';
-    font-size: 5rem;
-    line-height: 0.95;
-    color: #1d2430;
-    margin-bottom: 35px;
-}
-
-.hero-intro {
-    margin-bottom: 20px;
-}
-
-.hero-women {
-    max-height: 650px;
-    position: relative;
-    z-index: 2;
-}
-
-.africa-bg {
+.section-title-centered-gold::after {
+    content: "";
     position: absolute;
-    width: 650px;
-    height: 450px;
-
-    background-image:
-        url('../images/fond_afrique.jpg');
-
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    opacity: 0.18;
-
-    top: 40px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--gold);
 }
-
-.mag-hover-effect {
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
-}
-
-.mag-hover-effect:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.35) !important;
-}
-
-/* Services */
-.service-card {
-    border: 1px solid #F9F3E5 !important;
-    background-color: #ffffff;
-}
+/* Titre doré souligné (section Services) */
 .section-title-gold {
     color: var(--gold);
     text-decoration: underline;
     text-underline-offset: 8px;
+    font-size: clamp(1.4rem, 3vw, 2rem) !important;
 }
-
-/* Bannière d'impact */
+/* ==========================================================================
+    ICÔNES DE VALEURS
+   ========================================================================== */
+.value-icon {
+    width: 50%;
+    height: 0%;
+    object-fit: contain;
+}
+@media (max-width: 576px) {
+    .value-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+/* ==========================================================================
+    SECTION COMMUNAUTÉ
+   ========================================================================== */
+.custom-illustration {
+    max-height: 280px;
+    object-fit: contain;
+}
+/* ==========================================================================
+    SECTION MAGAZINE
+   ========================================================================== */
+.mag-link-card {
+    text-decoration: none;
+    display: block;
+}
+.mag-hover-effect {
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+}
+.mag-hover-effect:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35) !important;
+}
+/* ==========================================================================
+    SECTION SERVICES
+   ========================================================================== */
+.service-card {
+    border: 1px solid #F9F3E5 !important;
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease;
+}
+.service-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+}
+.service-icon {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+@media (max-width: 576px) {
+    .service-icon {
+        width: 45px;
+        height: 45px;
+    }
+}
+/* ==========================================================================
+    SECTION IMPACT / PERSONNALITÉS
+   ========================================================================== */
+.impact-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 .text-dark-banner {
     background: linear-gradient(180deg, #fbf7f0 0%, #F9F3E5 100%);
 }
-
-/* Footer et Liens */
-.social-box {
-    width: 32px;
-    height: 32px;
-    background-color: var(--primary-green);
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background 0.2s;
+/* ==========================================================================
+    FOOTER
+   ========================================================================== */
+footer p {
+    line-height: 1.6;
 }
-.social-box:hover {
-    background-color: var(--gold);
+.footer-link {
+    color: #555555 !important;
+    transition: color 0.2s ease;
 }
-
 .footer-link:hover {
     color: var(--primary-green) !important;
-    text-decoration: underline !important;
+    text-decoration: none !important;
 }
-
-/* Alignements et contraintes de tailles max */
+footer .btn-outline-gold {
+    border: 1px solid var(--gold) !important;
+    color: var(--gold) !important;
+    background-color: transparent !important;
+}
+footer .btn-outline-gold:hover {
+    background-color: var(--gold) !important;
+    color: white !important;
+}
+/* ==========================================================================
+    ICÔNES RÉSEAUX SOCIAUX
+   ========================================================================== */
+.footer-social-icons .social-icon-box {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    background-color: var(--primary-green) !important;
+    border-radius: 20% !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out !important;
+}
+.footer-social-icons .social-icon-box i {
+    color: #ffffff !important;
+    font-size: 15px !important;
+}
+.footer-social-icons .social-icon-box:hover {
+    background-color: var(--gold) !important;
+    transform: translateY(-3px) !important;
+}
+/* ==========================================================================
+    UTILITAIRES
+   ========================================================================== */
 .max-w-700 { max-width: 700px; }
 .max-w-900 { max-width: 900px; }
 .max-w-1200 { max-width: 1200px; }
-.tracking-wide { letter-spacing: 0.5px; }
-
 .small-text-p { font-size: 14px; }
-.small-legal-text { font-size: 12px; }
+.small-legal-text { font-size: 13px !important; }
+
+/* Responsive général — réduction de padding sur mobile */
+
+@media (max-width: 1000px) {
+    .btn {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .btn-sm {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        font-size: 9px;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-padding {
+        scroll-margin-top: 130px;
+    }
+    .btn {
+        font-size: 9px;
+    }
+}
