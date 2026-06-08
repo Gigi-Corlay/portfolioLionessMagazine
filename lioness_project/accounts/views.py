@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import AuthenticationForm
 
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 from .models import Profile
 
 
 def login_view(request):
-    form = AuthenticationForm(request, data=request.POST or None)
+
+    form = LoginForm(request, data=request.POST or None)
 
     if request.method == "POST":
         if form.is_valid():
@@ -30,7 +30,7 @@ def register_view(request):
             user.last_name = form.cleaned_data["last_name"]
             user.email = form.cleaned_data["email"]
 
-            # si tu veux te connecter avec l'email
+            # connection with E-mail
             user.username = form.cleaned_data["email"]
 
             user.save()
@@ -41,9 +41,10 @@ def register_view(request):
                 occupation=form.cleaned_data["occupation"]
             )
 
-            login(request, user)
+            return redirect("login")
 
-            return redirect("home")
+        else:
+            print(form.errors)
 
     return render(
         request,
