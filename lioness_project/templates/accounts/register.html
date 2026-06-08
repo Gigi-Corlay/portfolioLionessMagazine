@@ -1,32 +1,109 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="EN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inscription</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Lioness</title>
+
     <link rel="stylesheet" href="{% static 'css/auth.css' %}">
 </head>
 <body>
 
-<div class="login-container">
+    <!-- HEADER -->
+    <header class="top-header">
 
-    <h1>SIGN UP</h1>
+        <div class="header-left">
+            <a href="{% url 'home' %}" class="return-link">
+                ⟵ Return to site
+            </a>
+        </div>
 
-    <form method="post">
-        {% csrf_token %}
+        <div class="header-center">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/logo-lioness.png' %}"
+                    alt="Lioness"
+                    class="logo">
+            </a>
+        </div>
 
-        {{ form.username }}
-        {{ form.email }}
-        {{ form.password1 }}
-        {{ form.password2 }}
+        <div class="header-right">
+            EN ▾
+        </div>
 
-        <button type="submit">
-            Create an account
-        </button>
-    </form>
+    </header>
 
-</div>
+    <!-- FORMULAIRE -->
+    <main class="register-wrapper">
+
+        <div class="register-card">
+
+            <h1>REGISTER</h1>
+
+            <p class="intro">
+                Fields marked with an * are required.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label>Name*</label>
+                    {{ form.last_name }}
+                </div>
+
+                <div class="field">
+                    <label>First name*</label>
+                    {{ form.first_name }}
+                </div>
+
+                <div class="field">
+                    <label>Country*</label>
+                    {{ form.country }}
+                </div>
+
+                <div class="field">
+                    <label>Occupation*</label>
+                    {{ form.occupation }}
+                </div>
+
+                <div class="field">
+                    <label>E-mail address*</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="field">
+                    <label>Password*</label>
+                    {{ form.password1 }}
+                </div>
+
+                <button type="submit">
+                    Submit the form
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <a href="#">Contact us</a>
+        |
+        <a href="#">Legal notice</a>
+        |
+        <a href="#">Privacy</a>
+        |
+        <a href="#">Terms of use</a>
+        |
+        <a href="#">Cookie management</a>
+        |
+        <a href="#">Privacy policy</a>
+
+    </footer>
 
 </body>
 </html>

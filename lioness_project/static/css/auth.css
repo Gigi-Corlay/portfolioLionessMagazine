@@ -1,51 +1,159 @@
 body {
+    margin: 0;
     background: #ece6d8;
     font-family: Arial, sans-serif;
 }
 
-.login-container {
-    width: 500px;
-    margin: 100px auto;
+/* HEADER */
+
+.top-header {
     background: white;
-    border: 1px solid #ccc;
-    padding: 40px;
+    height: 110px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    border-bottom: 1px solid #9dc7d7;
+}
+
+.return-link {
+    color: #222;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.logo {
+    height: 80px;
+}
+
+.header-right {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* FORM */
+
+.register-wrapper {
+    display: flex;
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+.register-card {
+
+    width: 480px;
+
+    background: #f7f7f7;
+
+    border: 1px solid #999;
+
     box-shadow: 0 2px 8px rgba(0,0,0,.15);
 }
 
-.login-container h1 {
+.register-card h1 {
+
     text-align: center;
-    color: #0e7f84;
+
+    color: #0f7e84;
+
     font-size: 48px;
-    margin-bottom: 30px;
+
+    margin: 20px 0;
+
+    border-bottom: 1px solid #9dc7d7;
+
+    padding-bottom: 10px;
+}
+
+.intro {
+
+    margin: 20px;
+
+    color: #444;
+
+    font-style: italic;
 }
 
 .field {
-    margin-bottom: 20px;
+
+    margin: 18px 20px;
 }
 
-label {
+.field label {
+
     display: block;
-    margin-bottom: 5px;
+
+    margin-bottom: 6px;
+
+    font-size: 14px;
 }
 
-input {
+.field input {
+
     width: 100%;
-    padding: 15px;
+
+    box-sizing: border-box;
+
+    padding: 14px;
+
     border-radius: 10px;
-    border: 1px solid #ccc;
+
+    border: 1px solid #bdbdbd;
+
+    font-size: 14px;
 }
 
 button {
-    width: 100%;
-    background: #0e7f84;
+
+    width: calc(100% - 40px);
+
+    margin: 20px;
+
+    background: #0f7e84;
+
     color: white;
+
     border: none;
-    padding: 15px;
-    font-size: 22px;
+
     border-radius: 10px;
+
+    padding: 16px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
     cursor: pointer;
 }
 
 button:hover {
     opacity: .9;
+}
+
+/* FOOTER */
+
+footer {
+
+    background: #0f7e84;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 18px;
+
+    margin-top: 30px;
+}
+
+footer a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
 }
