@@ -7,34 +7,46 @@ import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
-# 1. BASE_DIR doit être défini en premier
+
+# Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-SECRET_KEY = 'django-insecure-pz539%3nm$$1tn#28hx!a6(t+de*6(fpwh=7z=_6nevrs4pyq&'
+
+# Security
+SECRET_KEY = 'django-insecure-pz539%3nm$$1tn#28hx!a6(t+de*6(fpwh=7z=_6nevrs4pyq&)'
+
 DEBUG = True
+
 ALLOWED_HOSTS = []
 
-# Application definition
+
+# Applications
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Vos applications :
+
+    # Project apps
     'core',
     'accounts',
+    'dashboard',
     'magazine',
     'donations',
 ]
 
-# MIDDLEWARE unique et bien ordonné pour la traduction
+
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  # <--- Placé ici, c'est parfait
+
+    # Internationalization
+    'django.middleware.locale.LocaleMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -42,8 +54,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'config.urls'
 
+
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -60,15 +75,18 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database
+
+# Database (SQLite)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -86,49 +104,43 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# --- CONFIGURATION DE LA TRADUCTION (I18N) ---
-USE_I18N = True
-USE_TZ = True
-TIME_ZONE = 'UTC'
 
-# Langue par défaut de l'application
-LANGUAGE_CODE = 'fr'  
+# Internationalization
+LANGUAGE_CODE = 'fr'
 
-# Langues disponibles pour l'utilisateur
 LANGUAGES = [
     ('fr', _('French')),
     ('en', _('English')),
 ]
 
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+USE_TZ = True
+
+
+# Translation files
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+
+# Authentication
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "home"
 
-# Emplacement des fichiers de traduction (.po)
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-]
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    'core',
-    'accounts',
-    'dashboard',
-    'magazine',
-    'donations',
-]
-# ---------------------------------------------
-
-# Static files (CSS, JavaScript, Images)
+# Static files
 STATIC_URL = 'static/'
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / 'static',
 ]
 
+# Optional for deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
