@@ -23,4 +23,5 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include('core.urls')),
     path('accounts/', include('accounts.urls')),
+    path("dashboard/", include("dashboard.urls")),
 ]

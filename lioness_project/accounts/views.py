@@ -4,21 +4,31 @@ from django.contrib.auth import login, logout
 from .forms import RegisterForm, LoginForm
 from .models import Profile
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
 
 def login_view(request):
 
     form = LoginForm(request, data=request.POST or None)
-
+    
     if request.method == "POST":
         if form.is_valid():
+
             user = form.get_user()
             login(request, user)
-            return redirect("home")
 
-    return render(request, "accounts/login.html", {"form": form})
+            return redirect("dashboard")
+
+    return render(
+        request,
+        "accounts/login.html",
+        {"form": form}
+    )
 
 
 def register_view(request):
+    
     form = RegisterForm(request.POST or None)
 
     if request.method == "POST":
@@ -29,8 +39,6 @@ def register_view(request):
             user.first_name = form.cleaned_data["first_name"]
             user.last_name = form.cleaned_data["last_name"]
             user.email = form.cleaned_data["email"]
-
-            # connection with E-mail
             user.username = form.cleaned_data["email"]
 
             user.save()
@@ -41,10 +49,9 @@ def register_view(request):
                 occupation=form.cleaned_data["occupation"]
             )
 
-            return redirect("login")
+            login(request, user)
 
-        else:
-            print(form.errors)
+            return redirect("dashboard")
 
     return render(
         request,
@@ -55,4 +62,4 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return redirect("dashboard")

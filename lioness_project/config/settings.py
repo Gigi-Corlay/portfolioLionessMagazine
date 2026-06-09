@@ -100,9 +100,28 @@ LANGUAGES = [
     ('en', _('English')),
 ]
 
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "dashboard"
+LOGOUT_REDIRECT_URL = "home"
+
 # Emplacement des fichiers de traduction (.po)
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
+]
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'core',
+    'accounts',
+    'dashboard',
+    'magazine',
+    'donations',
 ]
 # ---------------------------------------------
 

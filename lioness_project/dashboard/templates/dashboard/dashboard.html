@@ -1,0 +1,188 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Lioness</title>
+
+    <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <img src="{% static 'images/logo-lioness.png' %}" alt="Lioness">
+        </div>
+
+        <ul class="menu">
+            <li class="active">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </li>
+
+            <li>
+                <i class="fa-solid fa-newspaper"></i>
+                Articles
+            </li>
+
+            <li>
+                <i class="fa-solid fa-book-open"></i>
+                Magazine
+            </li>
+
+            <li>
+                <i class="fa-solid fa-users"></i>
+                Community
+            </li>
+
+            <li>
+                <i class="fa-solid fa-calendar"></i>
+                Events
+            </li>
+
+            <li>
+                <i class="fa-solid fa-podcast"></i>
+                Podcast
+            </li>
+
+            <li>
+                <i class="fa-solid fa-bookmark"></i>
+                Saved
+            </li>
+        </ul>
+
+        <div class="member-box">
+
+            <h3>
+                {{ user.first_name }} {{ user.last_name }}
+            </h3>
+
+            <p>Lionne Member</p>
+
+        </div>
+
+        <a href="{% url 'home' %}" class="return-link">
+            Return to site
+        </a>
+
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <input
+                type="text"
+                placeholder="Search articles, magazine, events..."
+            >
+
+            <div class="top-actions">
+                <button>Support Lioness</button>
+            </div>
+
+        </header>
+
+        <!-- WELCOME -->
+        <section class="welcome">
+
+            <h1>
+                Welcome back,
+                {{ user.first_name }}!
+            </h1>
+
+            <p>
+                Thank you for being part of the LIONESS community.
+            </p>
+
+        </section>
+
+        <!-- GRID -->
+        <div class="dashboard-grid">
+
+            <section class="card large">
+
+                <h2>Magazine category</h2>
+
+                <ul class="categories">
+                    <li>News</li>
+                    <li>Mood</li>
+                    <li>Agenda</li>
+                    <li>Business</li>
+                    <li>Guest</li>
+                    <li>Focus</li>
+                    <li>Cover</li>
+                    <li>Well-being</li>
+                </ul>
+
+            </section>
+
+            <section class="card">
+
+                <h2>Member since</h2>
+
+                <p>
+                    {{ user.date_joined|date:"F Y" }}
+                </p>
+
+                <p>Lionne Member</p>
+
+            </section>
+
+            <section class="card">
+
+                <h2>Your Activity</h2>
+
+                <ul class="activity">
+                    <li>Articles read : 24</li>
+                    <li>Magazine issues : 5</li>
+                    <li>Saved articles : 12</li>
+                    <li>Comments : 7</li>
+                </ul>
+
+            </section>
+
+            <section class="card impact">
+
+                <h2>Your Impact</h2>
+
+                <p>
+                    Thank you for supporting Women's stories.
+                </p>
+
+                <button>
+                    SUPPORT LIONESS
+                </button>
+
+            </section>
+
+            <section class="card writing">
+
+                <h2>Your writing matters</h2>
+
+                <p>
+                    Submit your article to our editorial team.
+                </p>
+
+                <button>
+                    Send your text here
+                </button>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
