@@ -173,6 +173,51 @@ button:hover {
     margin: 5px 0;
 }
 
+/* Style pour les messages d'erreurs sous les champs */
+.field-error-text {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+}
+
+/* Style pour la boîte d'alerte globale en haut du formulaire */
+.global-errors {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    color: #b71c1c;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.global-errors p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Bouton REGISTER aux couleurs de la maquette */
+.btn-submit-register {
+    width: 100%;
+    background-color: #b18237; /* Couleur or/miel de Lioness */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+}
+
+.btn-submit-register:hover {
+    background-color: #926922;
+}
+
 /* FOOTER */
 
 footer {

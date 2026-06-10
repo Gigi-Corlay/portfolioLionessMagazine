@@ -15,6 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="100" class="position-relative">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <header class="bg-white shadow-sm sticky-top">
         <!-- Barre supérieure -->
         <div class="container-fluid px-3 px-md-5 py-2 py-md-3">
