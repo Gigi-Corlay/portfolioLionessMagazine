@@ -3,12 +3,15 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import transaction
+import logging
 
 from .forms import RegisterForm, LoginForm, ProfileForm
 from .models import Profile
 
+logger = logging.getLogger(__name__)
 
-@login_required
+
+@login_required(login_url="accounts:login")
 def profile_view(request):
 
     profile, created = Profile.objects.get_or_create(
@@ -16,12 +19,15 @@ def profile_view(request):
     )
 
     if request.method == "POST":
+
         form = ProfileForm(
             request.POST,
+            request.FILES,
             instance=profile
         )
 
         if form.is_valid():
+
             form.save()
 
             messages.success(
@@ -29,9 +35,10 @@ def profile_view(request):
                 "Profile updated successfully."
             )
 
-            return redirect("profile")
+            return redirect("accounts:profile")
 
     else:
+
         form = ProfileForm(instance=profile)
 
     return render(
@@ -55,9 +62,10 @@ def login_view(request):
 
         if form.is_valid():
 
-            user = form.get_user()
-
-            login(request, user)
+            login(
+                request,
+                form.get_user()
+            )
 
             messages.success(
                 request,
@@ -66,12 +74,10 @@ def login_view(request):
 
             return redirect("dashboard")
 
-        else:
-
-            messages.error(
-                request,
-                "Invalid email or password."
-            )
+        messages.error(
+            request,
+            "Invalid email or password."
+        )
 
     return render(
         request,
@@ -85,55 +91,52 @@ def register_view(request):
     if request.user.is_authenticated:
         return redirect("dashboard")
 
-    form = RegisterForm(request.POST or None)
+    form = RegisterForm(
+        request.POST or None
+    )
 
-    if request.method == "POST":
+    if request.method == "POST" and form.is_valid():
 
-        if form.is_valid():
+        try:
 
-            try:
+            with transaction.atomic():
 
-                with transaction.atomic():
+                user = form.save(commit=False)
 
-                    user = form.save(commit=False)
+                email = form.cleaned_data["email"]
 
-                    user.username = form.cleaned_data["email"]
-                    user.email = form.cleaned_data["email"]
-                    user.first_name = form.cleaned_data["first_name"]
-                    user.last_name = form.cleaned_data["last_name"]
+                user.username = email
+                user.email = email
+                user.first_name = form.cleaned_data["first_name"]
+                user.last_name = form.cleaned_data["last_name"]
 
-                    user.save()
+                user.save()
 
-                    Profile.objects.create(
-                        user=user,
-                        country=form.cleaned_data["country"],
-                        occupation=form.cleaned_data["occupation"]
-                    )
-
-                login(request, user)
-
-                messages.success(
-                    request,
-                    "Account successfully created."
+                Profile.objects.create(
+                    user=user,
+                    country=form.cleaned_data.get("country"),
+                    occupation=form.cleaned_data.get("occupation")
                 )
 
-                return redirect("dashboard")
+            login(request, user)
 
-            except Exception as e:
+            messages.success(
+                request,
+                "Account successfully created."
+            )
 
-                print("=" * 50)
-                print("ERREUR INSCRIPTION")
-                print(e)
-                print("=" * 50)
+            return redirect("dashboard")
 
-                messages.error(
-                    request,
-                    str(e)
-                )
+        except Exception as e:
 
-        else:
+            logger.exception(
+                "Registration error"
+            )
 
-            print("FORM ERRORS :", form.errors)
+            messages.error(
+                request,
+                f"An unexpected error occurred: {e}"
+            )
 
     return render(
         request,
@@ -142,6 +145,7 @@ def register_view(request):
     )
 
 
+@login_required(login_url="accounts:login")
 def logout_view(request):
 
     logout(request)

@@ -2,134 +2,198 @@ import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
-# Base directory
+# =====================================================
+# BASE DIRECTORY
+# =====================================================
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Security
-SECRET_KEY = 'django-insecure-pz539%3nm$$1tn#28hx!a6(t+de*6(fpwh=7z=_6nevrs4pyq&)'
+# =====================================================
+# SECURITY
+# =====================================================
+
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-change-me-in-production"
+)
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Ajout des hôtes locaux pour le développement
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
 
+# =====================================================
+# APPLICATIONS
+# =====================================================
 
-# Applications
 INSTALLED_APPS = [
-    # Django apps
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # Django Apps
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 
-    # Project apps (LIONESS platform)
-    'core',
-    'accounts',
-    'dashboard',
-    'magazine',
-    'donations',
+    # Local Apps
+    "core",
+    "accounts",
+    "dashboard",
+    "magazine",
+    "donations",
+    "blog_magazine",
 ]
 
+# =====================================================
+# MIDDLEWARE
+# =====================================================
 
-# Middleware
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    
-    # Internationalization (Placé exactement ici pour éviter les bugs de session/CSRF)
-    'django.middleware.locale.LocaleMiddleware',
-
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# =====================================================
+# URLS
+# =====================================================
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
 
+# =====================================================
+# TEMPLATES
+# =====================================================
 
-# Templates
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+# =====================================================
+# WSGI
+# =====================================================
 
+WSGI_APPLICATION = "config.wsgi.application"
 
-# Database (SQLite pour le MVP)
+# =====================================================
+# DATABASE
+# =====================================================
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
+# =====================================================
+# PASSWORD VALIDATION
+# =====================================================
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
+# =====================================================
+# INTERNATIONALIZATION
+# =====================================================
 
-# Internationalization (Bilingue FR/EN)
-LANGUAGE_CODE = 'fr'
+LANGUAGE_CODE = "fr"
 
 LANGUAGES = [
-    ('fr', _('French')),
-    ('en', _('English')),
+    ("fr", _("Français")),
+    ("en", _("English")),
 ]
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
+
 USE_I18N = True
 USE_TZ = True
 
-# Sécurité accrue pour les formulaires bilingues (Évite le bug de validation CSRF)
-CSRF_USE_SESSIONS = True
-LANGUAGE_COOKIE_NAME = 'lioness_language'
+LANGUAGE_COOKIE_NAME = "lioness_language"
 
-
-# Translation files
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',
+    BASE_DIR / "locale",
 ]
 
+# =====================================================
+# AUTHENTICATION
+# =====================================================
 
-# Authentication redirects
-LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "dashboard"
-LOGOUT_REDIRECT_URL = "home"
+LOGIN_URL = "accounts:login"
 
+LOGIN_REDIRECT_URL = "/dashboard/"
 
-# Static files (CSS, JavaScript, Images du thème)
-STATIC_URL = 'static/'
+LOGOUT_REDIRECT_URL = "/"
+
+# =====================================================
+# STATIC FILES
+# =====================================================
+
+STATIC_URL = "/static/"
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / "static",
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Media files (Téléchargements, couvertures de magazines, uploads utilisateurs)
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# =====================================================
+# MEDIA FILES
+# =====================================================
 
+MEDIA_URL = "/media/"
 
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_ROOT = BASE_DIR / "media"
+
+# =====================================================
+# EMAIL
+# =====================================================
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# =====================================================
+# DEFAULT PRIMARY KEY
+# =====================================================
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# =====================================================
+# SECURITY (DEV ONLY)
+# =====================================================
+
+CSRF_USE_SESSIONS = False
+
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
