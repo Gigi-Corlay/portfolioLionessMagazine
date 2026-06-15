@@ -1,46 +1,49 @@
+{% extends 'dashboard/dashboard.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ article.title }} - Lioness</title>
-    <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
-</head>
-<body>
 
-<div class="dashboard-container" style="padding: 40px; max-width: 900px; margin: 0 auto;">
-    
-    <div class="dashboard-card" style="background: white; padding: 30px; border: 1px solid var(--border-card-gold);">
-        
-        {% if article.image %}
-            <div style="text-align: center; margin-bottom: 25px;">
-                <img src="{{ article.image.url }}" alt="{{ article.title }}" style="max-width: 100%; height: auto; border-radius: 12px; max-height: 400px; object-fit: cover;">
+{% block title %}{{ article.title }} - Lioness{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0 mb-4">
+    <div class="row justify-content-center">
+        <!-- La colonne prend toute la largeur sur mobile et se cadre proprement sur grand écran -->
+        <div class="col-12 col-xl-10">
+            <div class="dashboard-card bg-white p-4 p-md-5">
+                
+                <!-- Image de l'article -->
+                {% if article.image %}
+                    <div class="magazine-image-wrapper mb-4" style="border-radius: 12px; overflow: hidden; max-height: 500px;">
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                {% endif %}
+
+                <!-- Titre de l'article -->
+                <h1 class="mb-2" style="font-size: 2.2rem; color: #232323;">
+                    {{ article.title }}
+                </h1>
+                
+                <!-- Métadonnées (Auteur et Date) -->
+                <div class="mb-4" style="font-size: 13px; color: var(--text-muted);">
+                    {% if article.author %}Par <strong>{{ article.author }}</strong> | {% endif %}
+                    {{ article.created_at|date:"d F Y" }}
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #EFEAE0; margin-bottom: 25px;">
+
+                <!-- Corps de l'article -->
+                <div class="article-content" style="font-size: 16px; line-height: 1.7; color: #232323; white-space: pre-line;">
+                    {{ article.content }}
+                </div>
+
+                <!-- Bouton de retour vers la catégorie correspondante -->
+                <div class="mt-5 pt-4" style="border-top: 1px solid #EFEAE0;">
+                    <a href="{% url 'blog_magazine:category_articles' article.category %}" class="see-more-link d-inline-flex align-items-center gap-2" style="font-size: 14px;">
+                        <i class="fa-solid fa-arrow-left"></i> Retour à la catégorie {{ article.get_category_display }}
+                    </a>
+                </div>
+                
             </div>
-        {% endif %}
-
-        <h1 style="font-family: Georgia, serif; font-size: 32px; margin-bottom: 10px; color: var(--text-dark);">
-            {{ article.title }}
-        </h1>
-        
-        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-            {% if article.author %}Par <strong>{{ article.author }}</strong> | {% endif %}
-            {{ article.created_at|date:"d F Y" }}
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid #eae5d8; margin-bottom: 20px;">
-
-        <div class="article-content" style="font-size: 16px; line-height: 1.6; color: var(--text-dark); white-space: pre-line;">
-            {{ article.content }}
-        </div>
-
-        <div style="margin-top: 40px; border-top: 1px solid #eae5d8; padding-top: 20px;">
-            <!-- Retour automatique vers la liste des titres de la même catégorie -->
-            <a href="{% url 'blog_magazine:category_articles' article.category %}" style="color: var(--primary-teal); font-weight: bold; text-decoration: none;">
-                ← Retour à la catégorie {{ article.get_category_display }}
-            </a>
         </div>
     </div>
 </div>
-
-</body>
-</html>
+{% endblock content %}

@@ -5,276 +5,405 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'images/logo_favicon.png' %}">
-    <title>Dashboard - Lioness</title>
-    <link class="code" rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+
+    <title>{% block title %}Dashboard - Lioness{% endblock %}</title>
+    
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Fonts & FontAwesome -->
+    <link rel="stylesheet" href="https://use.typekit.net/rbm2nty.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
 </head>
 <body>
 
     {% if messages %}
-        <div class="messages-container">
+        <div class="custom-alert-container">
             {% for message in messages %}
-                <div class="alert alert-success">{{ message }}</div>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fa-solid fa-circle-check me-2"></i> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             {% endfor %}
         </div>
     {% endif %}
 
-    <!-- GLOBAL WRAPPER -->
     <div class="dashboard-container">
 
-        <!-- 1. HEADER TOPBAR -->
-        <header class="main-header">
-            <div class="header-left">
-                <img src="{% static 'images/logo-lioness.png' %}" alt="Lioness Logo" class="brand-logo">
-                <div class="language-selector">
-                    <span>EN</span> <i class="fa-solid fa-chevron-down"></i>
+        <!-- HEADER PRINCIPAL -->
+        <header class="main-header d-flex align-items-center bg-white px-4">
+            
+            <div class="header-left d-flex align-items-center gap-3">
+                <button class="btn d-lg-none p-0 border-0" id="sidebarToggle" aria-label="Open Menu">
+                    <i class="fa-solid fa-bars fs-4"></i>
+                </button>
+                <a href="{% url 'home' %}" class="d-flex align-items-center">
+                    <img src="{% static 'images/logo-lioness.png' %}" alt="Lioness Logo" class="brand-logo">
+                </a>
+                <div class="language-selector d-none d-lg-flex align-items-center">
+                    <span>EN</span>
+                    <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
+                </div>
+                <div class="search-bar position-relative d-none d-lg-block">
+                    <i class="fa-solid fa-magnifying-glass position-absolute search-icon" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); z-index: 5;"></i>
+                    <input type="text" class="form-control" placeholder="Search...">
                 </div>
             </div>
-            
-            <div class="header-center">
-                <div class="search-bar">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search articles, magazine, events...">
-                </div>
+        
+            <div class="header-center d-flex justify-content-center flex-grow-1">
                 <img src="{% static 'images/lionne.png' %}" alt="Crown Icon" class="center-icon-logo">
             </div>
-
-            <div class="header-right">
-                <button class="btn-support-top">SUPPORT LIONESS <i class="fa-regular fa-heart"></i></button>
-                <div class="notification-bell">
-                    <i class="fa-regular fa-bell"></i>
+        
+            <div class="header-right d-flex align-items-center gap-3 justify-content-end">
+                <div class="language-selector d-flex align-items-center d-lg-none">
+                    <span>EN</span>
+                    <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
+                </div>
+                <button class="btn btn-support-top rounded-pill px-3 d-none d-lg-block">
+                    SUPPORT LIONESS <i class="fa-regular fa-heart ms-1"></i>
+                </button>
+                <div class="notification-bell position-relative" role="button">
+                    <i class="fa-regular fa-bell fs-5"></i>
                     <span class="bell-dot"></span>
                 </div>
-                <div class="user-profile">
-                    {% if request.user.profile.profile_picture %}
-                        <img src="{{ request.user.profile.profile_picture.url }}" alt="Profile picture" class="avatar">
+                <div class="user-profile-wrapper">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.profile.profile_picture %}
+                            <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
+                        {% else %}
+                            <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
+                        {% endif %}
                     {% else %}
-                        <img src="{% static 'images/default-avatar.png' %}" alt="Default avatar" class="avatar">
+                        <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
                     {% endif %}
                 </div>
             </div>
         </header>
 
-        <!-- MAIN LAYOUT -->
-        <div class="dashboard-body">
+        <!-- Fond transparent d'ombrage mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-            <!-- 2. SIDEBAR -->
-            <aside class="sidebar">
-                <nav class="sidebar-nav">
-                    <ul class="menu">
-                        <li class="active">
-                            <a href="#"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <div class="dashboard-body d-flex flex-grow-1">
+
+            <!-- SIDEBAR BARRE LATÉRALE -->
+            <aside class="sidebar d-flex flex-column py-4 text-white flex-shrink-0" id="mainSidebar">
+                <!-- Bouton fermer (X) sur Mobile uniquement -->
+                <button class="sidebar-close-btn d-none" id="sidebarClose" aria-label="Close Menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                
+                <nav class="sidebar-nav flex-grow-1">
+                    <ul class="nav flex-column menu">
+                        
+                        <li class="nav-item {% block nav_dashboard %}active{% endblock %}">
+                            <a class="nav-link" href="{% url 'dashboard' %}">
+                                <div>
+                                    <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+                                </div>
+                            </a>
                         </li>
-                        <li>
-                            <!-- CORRIGÉ : Utilisation de blog_home au lieu de l'ancien pattern blog -->
-                            <a href="{% url 'blog_magazine:blog_home' %}"><i class="fa-regular fa-file-lines"></i> Articles</a>
+                        
+                        <li class="nav-item {% block nav_articles %}{% endblock %}">
+                            <a class="nav-link {% block collapse_state %}collapsed{% endblock %}" data-bs-toggle="collapse" href="#articlesDropdown" role="button" aria-expanded="{% block aria_expanded %}false{% endblock %}" aria-controls="articlesDropdown">
+                                <div>
+                                    <i class="fa-regular fa-file-lines"></i> 
+                                    <span>Articles</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right fs-7 rotate-icon"></i>
+                            </a>
+                            
+                            <!-- Menu Déroulant (Dropdown des catégories) -->
+                            <div class="collapse {% block collapse_show %}{% endblock %}" id="articlesDropdown">
+                                <ul class="submenu-list">
+                                    <li class="{% block sub_news %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'news' %}">News</a></li>
+                                    <li class="{% block sub_mood %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'mood' %}">Mood</a></li>
+                                    <li class="{% block sub_agenda %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'agenda' %}">Agenda</a></li>
+                                    <li class="{% block sub_business %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'business' %}">Business</a></li>
+                                    <li class="{% block sub_guest %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'guest' %}">Guest</a></li>
+                                    <li class="{% block sub_focus %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'focus' %}">Focus</a></li>
+                                    <li class="{% block sub_cover %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'cover' %}">Cover</a></li>
+                                    <li class="{% block sub_well_being %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'well_being' %}">Well-Being</a></li>
+                                    <li class="{% block sub_what_if %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'what_if' %}">What If?</a></li>
+                                    <li class="{% block sub_lifestyle %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">Lifestyle</a></li>
+                                    <li class="{% block sub_impactful %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'impactful' %}">Impactful</a></li>
+                                </ul>
+                            </div>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa-solid fa-book-open"></i> Magazine</a>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">
+                                <div>
+                                    <i class="fa-solid fa-book-open"></i> <span>Magazine</span>
+                                </div>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa-solid fa-users"></i> Community</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <div>
+                                    <i class="fa-solid fa-users"></i> <span>Community</span>
+                                </div>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa-regular fa-calendar"></i> Events</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <div>
+                                    <i class="fa-regular fa-calendar"></i> <span>Events</span>
+                                </div>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa-regular fa-circle-play"></i> Podcast</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <div>
+                                    <i class="fa-regular fa-circle-play"></i> <span>Podcast</span>
+                                </div>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa-regular fa-bookmark"></i> Saved</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <div>
+                                    <i class="fa-regular fa-bookmark"></i> <span>Saved</span>
+                                </div>
+                            </a>
                         </li>
+                        
                         <li class="menu-divider"></li>
-                        <li>
-                            <a href="#"><i class="fa-regular fa-heart"></i> Support LIONESS<br><span class="sub-text">Make a donation</span></a>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link support-sidebar-link" href="#">
+                                <div>
+                                    <i class="fa-regular fa-heart"></i> 
+                                    <div>
+                                        <span>Support LIONESS</span>
+                                        <span class="sub-text d-block">Make a donation</span>
+                                    </div>
+                                </div>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#" class="justify-between"><span class="flex-align"><i class="fa-regular fa-bell"></i> Notifications</span> <span class="badge">3</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <div>
+                                    <i class="fa-regular fa-bell"></i> <span>Notifications</span>
+                                </div>
+                                <span class="badge rounded-circle">3</span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa-solid fa-gear"></i> Setting</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <div>
+                                    <i class="fa-solid fa-gear"></i> <span>Settings</span>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </nav>
 
-                <!-- User identity inside sidebar -->
-                <div class="sidebar-profile-box">
+                <!-- Cadre Profil Utilisateur -->
+                <div class="sidebar-profile-box mx-3 my-4 p-3 d-flex align-items-center gap-2 position-relative rounded">
                     <img src="{% static 'images/member_lionne.png' %}" alt="Member Profile" class="profile-img">
                     <div class="profile-info">
-                        <h4>{{ user.first_name|default:"Fatimata" }} {{ user.last_name|default:"R." }}</h4>
-                        <p>Lionne Member</p>
+                        <h4 class="m-0 text-white">{{ user.first_name|default:"Fatimata" }} {{ user.last_name|default:"R." }}</h4>
+                        <p class="m-0 role-text text-uppercase" style="font-size: 10px; opacity: 0.7;">Lionne Member</p>
                     </div>
                     <i class="fa-solid fa-chevron-right arrow-profile"></i>
                 </div>
 
-                <!-- Michelle Obama Quote -->
-                <div class="sidebar-quote">
-                    <i class="fa-solid fa-quote-left quote-icon"></i>
-                    <p class="quote-text">There is no limit to what we, as Women, can accomplish.</p>
-                    <p class="quote-author">Michelle Obama</p>
+                <!-- Bloc Citation Michelle Obama -->
+                <div class="sidebar-quote ps-3 mx-3 mb-4">
+                    <i class="fa-solid fa-quote-left quote-icon d-block mb-2"></i>
+                    <p class="quote-text m-0">There is no limit to what we, as Women, can accomplish.</p>
+                    <p class="quote-author m-0 mt-2 text-uppercase" style="font-family: var(--font-menus); font-size: 11px; font-weight: 700; opacity: 0.8;">Michelle Obama</p>
                 </div>
 
-                <!-- Socials & Footer Actions -->
-                <div class="sidebar-footer">
-                    <p class="social-title">OUR SOCIAL NETWORKS</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
+                <!-- Footer réseaux sociaux de la sidebar -->
+                <div class="sidebar-footer pt-3 px-3 mt-auto">
+                    <p class="social-title mb-2">Our social networks</p>
+                    <div class="social-icons d-flex gap-2 mb-4">
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Website"><i class="fa-solid fa-link"></i></a>
                     </div>
-
                     <div class="action-links">
-                        <a href="{% url 'home' %}" class="return-site-link">
-                            <i class="fa-solid fa-arrow-right-to-bracket rotate-180"></i> Return to site
-                        </a>
-                        <a href="{% url 'accounts:login' %}" class="btn btn-login-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">
-                            Log in
+                        <a href="{% url 'home' %}" class="return-site-link text-decoration-none">
+                            <i class="fa-solid fa-arrow-right-to-bracket rotate-180 me-2"></i> Return to site
                         </a>
                     </div>
                 </div>
             </aside>
 
-            <!-- 3. MAIN CONTENT -->
-            <main class="content-area">
-
-                <!-- WELCOME BANNER -->
-                <div class="welcome-header">
-                    <h1>Welcome back, {{ user.first_name|default:"Fatimata" }}! <span class="crown-emoji">👑</span></h1>
-                    <p class="welcome-sub">Thank you for being part of the LIONESS Le Magazine des reines community.<br>Together, we amplify Women's voices.</p>
-                </div>
-
-                <!-- SECTIONS CONTAINER -->
-                <div class="main-dashboard-grid">
-                    
-                    <!-- Left Column -->
-                    <div class="grid-left-column">
-                        
-                        <!-- Magazine Category Card -->
-                        <div class="dashboard-card magazine-cat-card">
-                            <h3>Magazine category</h3>
-                            <p class="card-desc">Choose a magazine category and click on the section you would like to explore.</p>
-                            
-                            <div class="magazine-split-content">
-                                <ul class="magazine-list-links">
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'news' %}">NEWS</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'mood' %}">MOOD</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'agenda' %}">AGENDA BUSINESS</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'guest' %}">GUEST FOCUS</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'cover' %}">COVER</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'well_being' %}">WELL-BEING</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'what_if' %}">WHAT IF WE TALKED ABOUT IT ?</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">LIFESTYLE</a></li>
-                                    <li><a href="{% url 'blog_magazine:category_articles' 'impactful' %}">THE MOST IMPACTFUL PERSONALITIES</a></li>
-                                </ul>
-                                <div class="magazine-image-wrapper">
-                                    <img src="{% static 'images/lionne.png' %}" alt="Magazine Category Visual">
+            <!-- CONTENU ZONE DYNAMIQUE (DROITE) -->
+            <main class="content-area flex-grow-1 p-4 d-flex flex-column justify-content-between">
+                
+                <div class="content-dynamic-wrapper">
+                    {% block content %}
+                        <div class="container-fluid p-0 mb-4">
+                            <div class="row align-items-start g-4">
+                                <div class="col-12 col-lg-8">
+                                    <div class="welcome-header">
+                                        <h1>Welcome back, {{ user.first_name|default:"Fatimata" }}! 
+                                            <span class="crown-emoji">
+                                                <img src="{% static 'images/couronne_lionne.png' %}" alt="Lioness">
+                                            </span>
+                                        </h1>
+                                        <p class="welcome-sub mb-0">Thank you for being part of the LIONESS Le Magazine des reines community.<br>Together, we amplify Women's voices.</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <div class="dashboard-card member-since-card border-gold-strong d-flex align-items-center gap-3 h-100">
+                                        <div class="badge-gold-ribbon">
+                                            <img src="{% static 'images/lioness_member.png' %}" alt="Lioness Ribbon" style="height: 55px;">
+                                        </div>
+                                        <div class="member-date-details d-flex flex-column">
+                                            <span class="label">Member since</span>
+                                            <span class="date-value">{{ user.date_joined|date:"F Y"|default:"May 2026" }}</span>
+                                            <span class="status-tag">Lionne Member</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Impact banner -->
-                        <div class="dashboard-card impact-banner-card">
-                            <div class="impact-art">
-                                <img src="{% static 'images/women-lioness.png' %}" alt="Women illustration">
-                            </div>
-                            <div class="impact-info">
-                                <h3>Your Impact</h3>
-                                <p>Thank you for supporting Women's stories.</p>
-                                <div class="impact-actions">
-                                    <button class="btn-support-banner">SUPPORT LIONESS <i class="fa-regular fa-heart"></i></button>
-                                    <span class="powered-by">Powered by <img src="{% static 'images/logo-helloasso.png' %}" alt="HelloAsso"></span>
+                        <div class="container-fluid p-0">
+                            <div class="row g-4">
+                                <div class="col-12 col-lg-8 d-flex flex-column gap-4">
+                                    <div class="dashboard-card magazine-cat-card">
+                                        <h3>Magazine category</h3>
+                                        <p class="card-desc">Choose a magazine category and click on the section you would like to explore. You will be redirected to a dedicated page containing articles related to that topic.</p>
+                                        <div class="magazine-split-content row g-3 mt-1">
+                                            <div class="col-12 col-md-7">
+                                                <ul class="list-unstyled magazine-list-links m-0">
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'news' %}">NEWS</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'mood' %}">MOOD</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'agenda' %}">AGENDA</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'business' %}">BUSINESS</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'guest' %}">GUEST</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'focus' %}">FOCUS</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'cover' %}">COVER</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'well_being' %}">WELL-BEING</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'what_if' %}">WHAT IF WE TALKED ABOUT IT?</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">LIFESTYLE</a><span class="lines-indicator"></span></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'impactful' %}">THE MOST IMPACTFUL PERSONALITIES</a><span class="lines-indicator"></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-md-5">
+                                                <div class="magazine-image-wrapper larger-image h-100">
+                                                    <img src="{% static 'images/bussiness_women.png' %}" alt="Women working">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dashboard-card impact-banner-card d-flex align-items-center justify-content-between gap-3">
+                                        <div class="impact-art-left flex-shrink-0 align-self-end">
+                                            <img src="{% static 'images/support_lioness.png' %}" alt="Women illustration" style="height: 120px;">
+                                        </div>
+                                        <div class="impact-info text-center flex-grow-1">
+                                            <h3 class="mb-1">Your Impact</h3>
+                                            <p class="mb-2">Thank you for supporting Women's stories.</p>
+                                            <div class="impact-actions d-flex align-items-center justify-content-center gap-3">
+                                                <button class="btn btn-support-banner rounded-pill">SUPPORT LIONESS <i class="fa-regular fa-heart ms-1"></i></button>
+                                                <span class="powered-by">Powered by <img src="{% static 'images/logo-helloasso.png' %}" alt="HelloAsso" style="height: 14px;"></span>
+                                            </div>
+                                        </div>
+                                        <div class="impact-art-right flex-shrink-0 align-self-end">
+                                            <img src="{% static 'images/woman.png' %}" alt="Women illustration" style="height: 120px;">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-4 d-flex flex-column gap-4">
+                                    <div class="dashboard-card activity-card">
+                                        <div class="card-title-with-icon d-flex justify-content-between align-items-center mb-2">
+                                            <h3 class="m-0">Your Activity</h3>
+                                            <img src="{% static 'images/activity.png' %}" alt="Activity Icon" style="height: 25px;">
+                                        </div>
+                                        <ul class="list-group list-group-flush activity-list">
+                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-regular fa-file-lines me-2 text-teal"></i> Article read</span><span class="act-count">24</span></li>
+                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-solid fa-book-open me-2 text-teal"></i> Magazine issues</span><span class="act-count">5</span></li>
+                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-regular fa-bookmark me-2 text-teal"></i> Saved articles</span><span class="act-count">12</span></li>
+                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-regular fa-comment me-2 text-teal"></i> Comments</span><span class="act-count">7</span></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="dashboard-card widget-text-card">
+                                        <h3>Podcast</h3>
+                                        <p>Highlighting the voices and journeys of African entrepreneurs to inspire the next generation.</p>
+                                        <a href="#" class="see-more-link">See more</a>
+                                    </div>
+
+                                    <div class="dashboard-card widget-text-card">
+                                        <h3>Events</h3>
+                                        <p>Africa & Caribbean International Film Festival. The First edition will take place from July 28th to 31st, 2026 at Geeta University, Panipat, Delhi NCR, India.</p>
+                                        <div class="widget-bottom-links d-flex justify-content-between mt-2">
+                                            <a href="#" class="fb-page-link text-decoration-none">Facebook Pages</a>
+                                            <a href="#" class="see-more-link">See more</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div>
-
-                    <!-- Right Column -->
-                    <div class="grid-right-column">
-                        
-                        <!-- Member Card -->
-                        <div class="dashboard-card member-since-card">
-                            <div class="badge-gold-ribbon">
-                                <img src="{% static 'images/lioness_member.png' %}" alt="Lioness Ribbon">
+                        <section class="dashboard-card writing-matters-card mt-4 d-flex justify-content-between align-items-center gap-4">
+                            <div class="writing-content">
+                                <div class="writing-title-group d-flex align-items-center mb-3">
+                                    <img src="{% static 'images/icon_write.png' %}" alt="Write" style="height: 25px; margin-right: 10px;">
+                                    <h3 class="m-0">Your writing matters</h3>
+                                </div>
+                                <p class="writing-p">Make your voice heard with LIONESS, the magazine for queens. We highlight inspiring stories, authentic journeys, and empowering women from around the world. Submit your article to our editorial team.<br>Selected content may be published in the magazine and featured to our community.</p>
+                                <button class="btn btn-send-text rounded-pill px-4 py-2 text-white">Send your text here <i class="fa-regular fa-envelope ms-2"></i></button>
                             </div>
-                            <div class="member-date-details">
-                                <span class="label">Member since</span>
-                                <span class="date-value">{{ user.date_joined|date:"F Y"|default:"May 2026" }}</span>
-                                <span class="status-tag">Lionne Member</span>
+                            <div class="writing-illustration d-none d-md-block flex-shrink-0">
+                                <img src="{% static 'images/writing.png' %}" alt="Typewriter art" style="height: 120px;">
                             </div>
-                        </div>
-
-                        <!-- Activity Card -->
-                        <div class="dashboard-card activity-card">
-                            <div class="card-title-with-icon">
-                                <h3>Your Activity</h3>
-                                <img src="{% static 'images/activity.png' %}" alt="Activity Icon" style="height: 25px;">
-                            </div>
-                            <ul class="activity-list">
-                                <li>
-                                    <span class="act-name"><i class="fa-regular fa-file-lines"></i> Article read</span>
-                                    <span class="act-count">24</span>
-                                </li>
-                                <li>
-                                    <span class="act-name"><i class="fa-solid fa-book-open"></i> Magazine issues</span>
-                                    <span class="act-count">5</span>
-                                </li>
-                                <li>
-                                    <span class="act-name"><i class="fa-regular fa-bookmark"></i> Saved articles</span>
-                                    <span class="act-count">12</span>
-                                </li>
-                                <li>
-                                    <span class="act-name"><i class="fa-regular fa-comment"></i> Comments</span>
-                                    <span class="act-count">7</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Podcast Card -->
-                        <div class="dashboard-card widget-text-card">
-                            <h3>Podcast</h3>
-                            <p>Highlighting the voices and journeys of African entrepreneurs to inspire the next generation.</p>
-                            <a href="#" class="see-more-link">See more</a>
-                        </div>
-
-                        <!-- Events Card -->
-                        <div class="dashboard-card widget-text-card">
-                            <h3>Events</h3>
-                            <p>Africa & Caribbean International Film Festival. The First edition will take place from July 28th to 31st, 2026 at Geeta University, Panipat, Delhi NCR, India.</p>
-                            <div class="widget-bottom-links">
-                                <a href="#" class="fb-page-link">Facebook Pages</a>
-                                <a href="#" class="see-more-link">See more</a>
-                            </div>
-                        </div>
-
-                    </div>
-
+                        </section>
+                    {% endblock content %}
                 </div>
 
-                <!-- LOWER FULL-WIDTH CARD -->
-                <section class="dashboard-card writing-matters-card">
-                    <div class="writing-content">
-                        <div class="writing-title-group">
-                            <img src="{% static 'images/icon_write.png' %}" alt="Write" style="height: 25px; margin-right: 10px;">
-                            <h3>Your writing matters</h3>
-                        </div>
-                        <p class="writing-p">Make your voice heard with LIONESS, the magazine for queens.</p>
-                        <p class="writing-p">We highlight inspiring stories, authentic journeys, and empowering women from around the world.</p>
-                        <p class="writing-p">Submit your article to our editorial team.</p>
-                        <p class="writing-p">Selected content may be published in the magazine and featured to our community.</p>
-                        
-                        <button class="btn-send-text">Send your text here <i class="fa-regular fa-envelope"></i></button>
-                    </div>
-                    <div class="writing-illustration">
-                        <img src="{% static 'images/writing.png' %}" alt="Typewriter art">
-                    </div>
-                </section>
+                <footer class="dashboard-footer text-center pt-4 mt-5" style="border-top: 1px solid rgba(179, 131, 48, 0.2);">
+                    <p class="m-0" style="font-family: var(--font-body); font-size: 12px; color: var(--text-muted);">
+                        &copy; 2026 Lioness Magazine. All rights reserved.
+                    </p>
+                </footer>
 
             </main>
         </div>
     </div>
 
+    <!-- Scripts Bootstrap bundle & Drawer Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toggle = document.getElementById('sidebarToggle');
+        const closeBtn = document.getElementById('sidebarClose');
+        const sidebar = document.getElementById('mainSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+    
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    
+        if (toggle) toggle.addEventListener('click', openSidebar);
+        if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+        if (overlay) overlay.addEventListener('click', closeSidebar);
+    
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSidebar();
+        });
+    </script>
 </body>
 </html>

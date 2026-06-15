@@ -1,48 +1,57 @@
+{% extends 'dashboard/dashboard.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Category: {{ category_name }} - Lioness</title>
-    <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
-<body>
 
-    <div class="dashboard-container">
-        <!-- HEADER TOPBAR (reprends ici le code exact du header de ton dashboard) -->
-        
-        <div class="dashboard-body">
-            <!-- SIDEBAR GAUCHE (reprends ici le code de la sidebar de ton dashboard) -->
-            
-            <!-- CONTENU CENTRAL DE LA CATEGORIE -->
-            <main class="content-area">
-                <div class="welcome-header">
-                    <h1>Category: {{ category_name }}</h1>
-                    <p class="welcome-sub">Cliquez sur un titre ci-dessous pour lire l'article complet.</p>
-                </div>
+{% block title %}Category: {{ category_name }} - Lioness{% endblock %}
 
-                <div class="dashboard-card">
-                    <h3>Articles disponibles</h3>
-                    <ul class="activity-list" style="list-style: none;">
-                        {% for article in articles %}
-                            <li style="padding: 15px 0; border-bottom: 1px solid #eae5d8; display: flex; align-items: center;">
-                                <div class="act-name">
-                                    <i class="fa-regular fa-file-lines" style="color: var(--primary-teal); margin-right: 12px;"></i>
-                                    <!-- Clic sur le Titre ➔ Redirection vers la page de l'article -->
-                                    <a href="{% url 'blog_magazine:article_detail' article.id %}" style="color: var(--text-dark); text-decoration: none; font-size: 16px; font-weight: 500;">
-                                        {{ article.title }}
-                                    </a>
-                                </div>
-                            </li>
-                        {% empty %}
-                            <li style="padding: 15px 0; color: var(--text-muted);">Aucun article publié dans cette catégorie pour le moment.</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </main>
-        </div>
+<!-- Désactive l'onglet Dashboard en cours -->
+{% block nav_dashboard %}{% endblock %}
+
+<!-- Active et force l'affichage ouvert du menu déroulant Articles à gauche -->
+{% block nav_articles %}active{% endblock %}
+{% block collapse_state %}{% endblock %}
+{% block aria_expanded %}true{% endblock %}
+{% block collapse_show %}show{% endblock %}
+
+<!-- Surlignage de la catégorie courante dans la sidebar -->
+{% if category_name == 'news' %}{% block sub_news %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'mood' %}{% block sub_mood %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'agenda' %}{% block sub_agenda %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'business' %}{% block sub_business %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'guest' %}{% block sub_guest %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'focus' %}{% block sub_focus %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'cover' %}{% block sub_cover %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'well_being' %}{% block sub_well_being %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'what_if' %}{% block sub_what_if %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'lifestyle' %}{% block sub_lifestyle %}active-sub-link{% endblock %}{% endif %}
+{% if category_name == 'impactful' %}{% block sub_impactful %}active-sub-link{% endblock %}{% endif %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    
+    <!-- En-tête de la catégorie sélectionnée -->
+    <div class="welcome-header mb-4">
+        <h1>Category: {{ category_name|upper }}</h1>
+        <p class="welcome-sub">Découvrez l'ensemble des publications liées à cette thématique.</p>
     </div>
 
-</body>
-</html>
+    <!-- Liste épurée des articles -->
+    <div class="dashboard-card">
+        <h3>Articles disponibles</h3>
+        <ul class="activity-list" style="list-style: none; padding-left: 0; margin-bottom: 0;">
+            {% for article in articles %}
+                <li style="padding: 15px 0; border-bottom: 1px solid #eae5d8; display: flex; align-items: center;">
+                    <div class="act-name">
+                        <i class="fa-regular fa-file-lines" style="color: #b38330; margin-right: 12px; font-size: 1.1rem;"></i>
+                        <a href="{% url 'blog_magazine:article_detail' article.id %}" style="color: #232323; text-decoration: none; font-size: 16px; font-weight: 500;">
+                            {{ article.title }}
+                        </a>
+                    </div>
+                </li>
+            {% empty %}
+                <li style="padding: 15px 0; color: var(--text-muted);">Aucun article publié dans cette catégorie pour le moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+{% endblock content %}
