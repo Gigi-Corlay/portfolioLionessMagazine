@@ -1,0 +1,114 @@
+:root {
+    --lioness-color: #04757D; 
+    --lioness-gold: #AC7A26;
+    --lioness-success: #04757D;
+    --title-font: 'Abril Display', 'Abril Fatface', serif;
+    --body-font: 'Brandon Grotesque', 'Helvetica Neue', sans-serif;
+}
+
+/* --- Typographies & Structure globale --- */
+body {
+    font-family: var(--body-font);
+    background-color: #F9F3E5;
+    color: var(--lioness-color);
+}
+
+h2.mb-0 {
+    font-family: var(--title-font) !important;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+h4.mt-2 {
+    font-family: var(--title-font) !important;
+    font-weight: 600;
+    color: var(--lioness-color);
+}
+
+label.form-label {
+    font-family: var(--body-font);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: var(--lioness-color);
+    margin-bottom: 0.5rem;
+}
+
+/* --- Cartes et Conteneurs --- */
+.card {
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+}
+
+/* Remplacement de la couleur Bootstrap par le noir LIONESS */
+.card-header.bg-primary {
+    background-color: var(--lioness-color) !important;
+    border-bottom: none;
+    padding: 2rem 1.5rem;
+}
+
+/* --- Formulaires (Inputs & Bio) --- */
+.form-control {
+    font-family: var(--body-font);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--lioness-color);
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: var(--lioness-color) !important;
+    box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.15) !important;
+}
+
+/* --- Boutons d'Action --- */
+.btn-success {
+    font-family: var(--body-font);
+    background-color: var(--lioness-success) !important;
+    border-color: var(--lioness-success) !important;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    padding: 0.8rem;
+    border-radius: 5rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+
+    
+}
+
+.btn-success:hover {
+    background-color: #F9F3E5 !important;
+    color: #04757D;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    font-family: var(--body-font);
+    background-color: #AC7A26!important;
+    border-color:  #AC7A26;
+    color: #fff !important;
+    font-weight: 400;
+    padding: 0.8rem;
+    border-radius: 5rem;
+
+}
+
+.btn-secondary:hover {
+    background-color: #F9F3E5 !important;
+    color:  #AC7A26 !important;
+    border-color:  #AC7A26;
+    font-weight: 600;
+}
+
+/* --- Avatar & Placeholder --- */
+.bg-secondary.rounded-circle {
+    background-color: #AC7A26 !important;
+    font-family: var(--body-font);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
