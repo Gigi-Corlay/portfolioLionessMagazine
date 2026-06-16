@@ -1,0 +1,10 @@
+/* Titre principal en Abril Display */
+.card-header h2, h4 {
+    font-family: 'Abril Display', serif;
+    font-weight: bold;
+}
+
+/* Corps du texte et formulaires en Brandon Grotesque */
+.card-body, .form-label, .form-control {
+    font-family: 'Brandon Grotesque', sans-serif;
+}

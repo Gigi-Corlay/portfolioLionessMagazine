@@ -1,57 +1,78 @@
 {% extends 'dashboard/dashboard.html' %}
 {% load static %}
-
 {% block title %}Category: {{ category_name }} - Lioness{% endblock %}
 
-<!-- Désactive l'onglet Dashboard en cours -->
 {% block nav_dashboard %}{% endblock %}
-
-<!-- Active et force l'affichage ouvert du menu déroulant Articles à gauche -->
 {% block nav_articles %}active{% endblock %}
 {% block collapse_state %}{% endblock %}
 {% block aria_expanded %}true{% endblock %}
 {% block collapse_show %}show{% endblock %}
 
-<!-- Surlignage de la catégorie courante dans la sidebar -->
-{% if category_name == 'news' %}{% block sub_news %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'mood' %}{% block sub_mood %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'agenda' %}{% block sub_agenda %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'business' %}{% block sub_business %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'guest' %}{% block sub_guest %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'focus' %}{% block sub_focus %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'cover' %}{% block sub_cover %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'well_being' %}{% block sub_well_being %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'what_if' %}{% block sub_what_if %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'lifestyle' %}{% block sub_lifestyle %}active-sub-link{% endblock %}{% endif %}
-{% if category_name == 'impactful' %}{% block sub_impactful %}active-sub-link{% endblock %}{% endif %}
-
 {% block content %}
 <div class="container-fluid p-0">
-    
-    <!-- En-tête de la catégorie sélectionnée -->
+
     <div class="welcome-header mb-4">
-        <h1>Category: {{ category_name|upper }}</h1>
+        <h1>{{ category_name|upper }}</h1>
         <p class="welcome-sub">Découvrez l'ensemble des publications liées à cette thématique.</p>
     </div>
 
-    <!-- Liste épurée des articles -->
     <div class="dashboard-card">
-        <h3>Articles disponibles</h3>
-        <ul class="activity-list" style="list-style: none; padding-left: 0; margin-bottom: 0;">
-            {% for article in articles %}
-                <li style="padding: 15px 0; border-bottom: 1px solid #eae5d8; display: flex; align-items: center;">
-                    <div class="act-name">
-                        <i class="fa-regular fa-file-lines" style="color: #b38330; margin-right: 12px; font-size: 1.1rem;"></i>
-                        <a href="{% url 'blog_magazine:article_detail' article.id %}" style="color: #232323; text-decoration: none; font-size: 16px; font-weight: 500;">
-                            {{ article.title }}
-                        </a>
-                    </div>
-                </li>
-            {% empty %}
-                <li style="padding: 15px 0; color: var(--text-muted);">Aucun article publié dans cette catégorie pour le moment.</li>
-            {% endfor %}
-        </ul>
-    </div>
+        {% for article in articles %}
+        <div class="article-list-item d-flex gap-4 align-items-start">
+            
+            <!-- Image -->
+            {% if article.image %}
+            <div class="article-list-thumb flex-shrink-0">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            </div>
+            {% else %}
+            <div class="article-list-thumb flex-shrink-0 article-thumb-placeholder">
+                <i class="fa-regular fa-image"></i>
+            </div>
+            {% endif %}
 
+            <!-- Contenu -->
+            <div class="article-list-body flex-grow-1">
+                
+                <!-- Tags catégorie -->
+                <div class="article-list-tags mb-1">
+                    <span>{{ category_name|upper }}</span>
+                </div>
+
+                <!-- Titre -->
+                <h2 class="article-list-title">
+                    <a href="{% url 'blog_magazine:article_detail' article.id %}">
+                        {{ article.title }}
+                    </a>
+                </h2>
+
+                <!-- Auteur -->
+                {% if article.author %}
+                <p class="article-list-author">
+                    <i class="fa-solid fa-user me-1"></i> {{ article.author }}
+                </p>
+                {% endif %}
+
+                <!-- Extrait -->
+                <p class="article-list-excerpt">
+                    {{ article.content|truncatewords:30 }}
+                </p>
+
+                <!-- Bouton -->
+                <a href="{% url 'blog_magazine:article_detail' article.id %}" 
+                    class="btn btn-read-more">
+                    READ MORE
+                </a>
+            </div>
+        </div>
+
+        {% if not forloop.last %}
+        <hr class="article-list-divider">
+        {% endif %}
+
+        {% empty %}
+        <p style="color: var(--text-muted);">Aucun article publié dans cette catégorie pour le moment.</p>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}

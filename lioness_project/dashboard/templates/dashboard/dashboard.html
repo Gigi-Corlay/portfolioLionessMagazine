@@ -122,17 +122,39 @@
                             <!-- Menu Déroulant (Dropdown des catégories) -->
                             <div class="collapse {% block collapse_show %}{% endblock %}" id="articlesDropdown">
                                 <ul class="submenu-list">
-                                    <li class="{% block sub_news %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'news' %}">News</a></li>
-                                    <li class="{% block sub_mood %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'mood' %}">Mood</a></li>
-                                    <li class="{% block sub_agenda %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'agenda' %}">Agenda</a></li>
-                                    <li class="{% block sub_business %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'business' %}">Business</a></li>
-                                    <li class="{% block sub_guest %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'guest' %}">Guest</a></li>
-                                    <li class="{% block sub_focus %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'focus' %}">Focus</a></li>
-                                    <li class="{% block sub_cover %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'cover' %}">Cover</a></li>
-                                    <li class="{% block sub_well_being %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'well_being' %}">Well-Being</a></li>
-                                    <li class="{% block sub_what_if %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'what_if' %}">What If?</a></li>
-                                    <li class="{% block sub_lifestyle %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">Lifestyle</a></li>
-                                    <li class="{% block sub_impactful %}{% endblock %}"><a href="{% url 'blog_magazine:category_articles' 'impactful' %}">Impactful</a></li>
+                                    <li class="{% if active_category == 'news' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'news' %}">News</a>
+                                    </li>
+                                    <li class="{% if active_category == 'mood' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'mood' %}">Mood</a>
+                                    </li>
+                                    <li class="{% if active_category == 'agenda' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'agenda' %}">Agenda</a>
+                                    </li>
+                                    <li class="{% if active_category == 'business' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'business' %}">Business</a>
+                                    </li>
+                                    <li class="{% if active_category == 'guest' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'guest' %}">Guest</a>
+                                    </li>
+                                    <li class="{% if active_category == 'focus' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'focus' %}">Focus</a>
+                                    </li>
+                                    <li class="{% if active_category == 'cover' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'cover' %}">Cover</a>
+                                    </li>
+                                    <li class="{% if active_category == 'well_being' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'well_being' %}">Well-Being</a>
+                                    </li>
+                                    <li class="{% if active_category == 'what_if' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'what_if' %}">What If?</a>
+                                    </li>
+                                    <li class="{% if active_category == 'lifestyle' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">Lifestyle</a>
+                                    </li>
+                                    <li class="{% if active_category == 'impactful' %}active-sub-link{% endif %}">
+                                        <a href="{% url 'blog_magazine:category_articles' 'impactful' %}">Impactful</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -313,17 +335,50 @@
                                         <div class="magazine-split-content row g-3 mt-1 d-none d-md-flex">
                                             <div class="col-12 col-md-7">
                                                 <ul class="list-unstyled magazine-list-links m-0">
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'news' %}">NEWS</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'mood' %}">MOOD</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'agenda' %}">AGENDA</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'business' %}">BUSINESS</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'guest' %}">GUEST</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'focus' %}">FOCUS</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'cover' %}">COVER</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'well_being' %}">WELL-BEING</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'what_if' %}">WHAT IF WE TALKED ABOUT IT?</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">LIFESTYLE</a><span class="lines-indicator"></span></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'impactful' %}">THE MOST IMPACTFUL PERSONALITIES</a><span class="lines-indicator"></span></li>
+                                                    <li class="{% if active_category == 'news' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'news' %}">NEWS</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'mood' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'mood' %}">MOOD</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'agenda' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'agenda' %}">AGENDA</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'business' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'business' %}">BUSINESS</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'guest' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'guest' %}">GUEST</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'focus' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'focus' %}">FOCUS</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'cover' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'cover' %}">COVER</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'well_being' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'well_being' %}">WELL-BEING</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'what_if' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'what_if' %}">WHAT IF WE TALKED ABOUT IT?</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    </li><li class="{% if active_category == 'lifestyle' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">LIFESTYLE</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
+                                                    <li class="{% if active_category == 'impactful' %}active-sub{% endif %}">
+                                                        <a href="{% url 'blog_magazine:category_articles' 'newsimpactful' %}">THE MOST IMPACTFUL PERSONALITIES</a>
+                                                        <span class="lines-indicator"></span>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="col-12 col-md-5">
