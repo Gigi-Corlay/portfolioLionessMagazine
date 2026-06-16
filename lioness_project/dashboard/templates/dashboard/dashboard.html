@@ -95,7 +95,7 @@
             <!-- SIDEBAR BARRE LATÉRALE -->
             <aside class="sidebar d-flex flex-column py-4 text-white flex-shrink-0" id="mainSidebar">
                 <!-- Bouton fermer (X) sur Mobile uniquement -->
-                <button class="sidebar-close-btn d-none" id="sidebarClose" aria-label="Close Menu">
+                <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close Menu">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 
@@ -276,8 +276,41 @@
                                 <div class="col-12 col-lg-8 d-flex flex-column gap-4">
                                     <div class="dashboard-card magazine-cat-card">
                                         <h3>Magazine category</h3>
+                                        
+                                        <!-- Image visible uniquement sur mobile -->
+                                        <div class="magazine-image-mobile d-block d-md-none mb-3">
+                                            <img src="{% static 'images/bussiness_women.png' %}" alt="Women working" class="w-100 rounded-4">
+                                        </div>
+                                        
                                         <p class="card-desc">Choose a magazine category and click on the section you would like to explore. You will be redirected to a dedicated page containing articles related to that topic.</p>
-                                        <div class="magazine-split-content row g-3 mt-1">
+                                        
+                                        <!-- Bouton dropdown visible uniquement sur mobile -->
+                                        <div class="d-block d-md-none mt-3">
+                                            <button class="btn btn-category-dropdown w-100 d-flex align-items-center justify-content-between rounded-pill px-4 py-2" 
+                                                    data-bs-toggle="collapse" 
+                                                    data-bs-target="#mobileCategoryList" 
+                                                    aria-expanded="false">
+                                                <span><i class="fa-solid fa-chevron-right me-2"></i> Choose category</span>
+                                            </button>
+                                            <div class="collapse mt-2" id="mobileCategoryList">
+                                                <ul class="list-unstyled mobile-category-list">
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'news' %}">NEWS</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'mood' %}">MOOD</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'agenda' %}">AGENDA</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'business' %}">BUSINESS</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'guest' %}">GUEST</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'focus' %}">FOCUS</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'cover' %}">COVER</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'well_being' %}">WELL-BEING</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'what_if' %}">WHAT IF WE TALKED ABOUT IT?</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">LIFESTYLE</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'impactful' %}">THE MOST IMPACTFUL PERSONALITIES</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    
+                                        <!-- Liste desktop inchangée -->
+                                        <div class="magazine-split-content row g-3 mt-1 d-none d-md-flex">
                                             <div class="col-12 col-md-7">
                                                 <ul class="list-unstyled magazine-list-links m-0">
                                                     <li><a href="{% url 'blog_magazine:category_articles' 'news' %}">NEWS</a><span class="lines-indicator"></span></li>
