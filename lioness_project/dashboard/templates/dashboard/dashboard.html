@@ -75,13 +75,19 @@
                 </div>
                 <div class="user-profile-wrapper">
                     {% if request.user.is_authenticated %}
-                        {% if request.user.profile.profile_picture %}
-                            <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
-                        {% else %}
-                            <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
-                        {% endif %}
+                        <!-- Si l'utilisatrice est connectée, l'avatar est un lien cliquable vers son profil -->
+                        <a href="{% url 'accounts:profile' %}" class="user-profile-link">
+                            {% if request.user.profile.profile_picture %}
+                                <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
+                            {% else %}
+                                <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
+                            {% endif %}
+                        </a>
                     {% else %}
-                        <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
+                        <!-- Si elle n'est pas connectée, on affiche juste l'icône (ou un lien vers la page login) -->
+                        <a href="{% url 'accounts:login' %}" class="user-profile-link">
+                            <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
+                        </a>
                     {% endif %}
                 </div>
             </div>

@@ -173,4 +173,4 @@ def profile_view(request):
     else:
         form = ProfileForm(instance=profile)
 
-    return render(request, 'accounts/profile.html', {'form': form})
+    return render(request, 'profile/profile.html', {'form': form})

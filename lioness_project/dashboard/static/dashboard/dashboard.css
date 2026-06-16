@@ -168,6 +168,30 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     color: #aaa;
     display: block;
 }
+.user-profile-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Rend l'image parfaitement ronde */
+    object-fit: cover;  /* Empêche l'image de s'étirer ou de se déformer */
+    border: 2px solid #fff; /* Optionnel : ajoute une fine bordure blanche */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.05); /* Léger effet de zoom au survol */
+}
+
+.avatar-placeholder i {
+    font-size: 40px; /* Aligne la taille de l'icône Bootstrap sur celle de la photo */
+    color: #6c757d;
+}
 
 /* ==========================================================================
     2. SIDEBAR STYLES (Vert canard & Menus Open Sans Bold)
