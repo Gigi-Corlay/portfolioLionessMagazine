@@ -160,8 +160,7 @@ body {
     display: flex;
     align-items: center;
 
-    padding-bottom: 0 !important;
-    overflow: hidden;
+    padding-bottom: 0;
 
     position: relative;
 }
@@ -185,6 +184,10 @@ body {
     line-height: 1.05;
     color: #1d2430;
     margin: 10px 0 0 0;
+}
+
+.hero-content {
+    margin-top: 5rem;
 }
 
 .about-image {
@@ -241,11 +244,6 @@ body {
 /* ==========================================================================
     TITRES DE SECTION
    ========================================================================== */
-/* 
- * CORRIGÉ : anciennement "section-title-left-gold" avec left:0 alors que
- * le titre était centré → le trait doré n'était pas aligné.
- * Nouvelle classe "section-title-centered-gold" avec left:50% + translateX.
- */
 .section-title-centered-gold {
     font-size: clamp(1.6rem, 3vw, 2.4rem) !important;
     position: relative;
@@ -256,7 +254,7 @@ body {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 50%;
+    right: 87.7%;
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
@@ -266,8 +264,6 @@ body {
 .section-title-gold {
     color: var(--gold);
     text-decoration: underline;
-    text-underline-offset: 8px;
-    font-size: clamp(1.4rem, 3vw, 2rem) !important;
 }
 /* ==========================================================================
     ICÔNES DE VALEURS
