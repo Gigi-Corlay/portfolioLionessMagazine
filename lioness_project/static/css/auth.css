@@ -7,16 +7,15 @@ body {
 /* HEADER */
 
 .top-header {
-    background: white;
     height: 110px;
+    background: white;
+    border-bottom: 1px solid #9dc7d7;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
 
     padding: 0 30px;
-
-    border-bottom: 1px solid #9dc7d7;
 }
 
 .return-link {
@@ -29,7 +28,16 @@ body {
     height: 80px;
 }
 
+.header-left {
+    justify-self: start;
+}
+
+.header-center {
+    justify-self: center;
+}
+
 .header-right {
+    justify-self: end;
     font-weight: bold;
     font-size: 18px;
 }

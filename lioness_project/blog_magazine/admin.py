@@ -5,13 +5,13 @@ from .models import Article
 class ArticleAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "category",  # Affiché dans la liste
+        "category", 
         "author",
         "created_at",
         "published",
     )
     list_filter = (
-        "category",  # Permet de filtrer par catégorie dans l'admin
+        "category",
         "published",
         "created_at",
     )

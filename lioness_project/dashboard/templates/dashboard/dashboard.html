@@ -276,7 +276,7 @@
                             <div class="row align-items-start g-4">
                                 <div class="col-12 col-lg-8">
                                     <div class="welcome-header">
-                                        <h1>Welcome back, {{ user.first_name|default:"Fatimata" }}! 
+                                        <h1>Welcome back, {{ user.first_name|default:"Georgia" }}! 
                                             <span class="crown-emoji">
                                                 <img src="{% static 'images/couronne_lionne.png' %}" alt="Lioness">
                                             </span>
@@ -377,12 +377,14 @@
                                                         <a href="{% url 'blog_magazine:category_articles' 'what_if' %}">WHAT IF WE TALKED ABOUT IT?</a>
                                                         <span class="lines-indicator"></span>
                                                     </li>
-                                                    </li><li class="{% if active_category == 'lifestyle' %}active-sub{% endif %}">
+                                                    <li class="{% if active_category == 'lifestyle' %}active-sub{% endif %}">
                                                         <a href="{% url 'blog_magazine:category_articles' 'lifestyle' %}">LIFESTYLE</a>
                                                         <span class="lines-indicator"></span>
                                                     </li>
                                                     <li class="{% if active_category == 'impactful' %}active-sub{% endif %}">
-                                                        <a href="{% url 'blog_magazine:category_articles' 'newsimpactful' %}">THE MOST IMPACTFUL PERSONALITIES</a>
+                                                        <a href="{% url 'blog_magazine:category_articles' 'impactful' %}">
+                                                            THE MOST IMPACTFUL PERSONALITIES
+                                                        </a>                                                        
                                                         <span class="lines-indicator"></span>
                                                     </li>
                                                 </ul>

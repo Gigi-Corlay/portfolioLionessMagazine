@@ -18,3 +18,4 @@ def dashboard_view(request):
             "articles": articles
         }
     )
+    
