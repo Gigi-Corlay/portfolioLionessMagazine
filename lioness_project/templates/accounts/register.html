@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'images/logo_favicon.png' %}">
-    <title>Register - Lioness</title>
+<title>Inscription - Lioness</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{% static 'css/auth.css' %}">
     <link rel="stylesheet" href="https://use.typekit.net/rbm2nty.css">
@@ -19,7 +19,7 @@
 
         <div class="header-left">
             <a href="{% url 'home' %}" class="return-link">
-                ⟵ Return to site
+⟵ Retour au site
             </a>
         </div>
 
@@ -32,7 +32,7 @@
         </div>
 
         <div class="header-right">
-            EN ▾
+            <a class="text-decoration-none" href="/i18n/setlang/?language=fr">FR</a> ▾
         </div>
 
     </header>
@@ -42,9 +42,9 @@
 
         <div class="register-card">
 
-            <h1>REGISTER</h1>
+<h1>INSCRIPTION</h1>
 
-            <p class="intro">Fields marked with an * are required.</p>
+Les champs marqués d’un * sont obligatoires.
 
             {% if form.errors %}
             <div class="form-errors">
@@ -56,32 +56,32 @@
                 {% csrf_token %}
 
                 <div class="field">
-                    <label>Name*</label>
+<label>Nom*</label>
                     {{ form.last_name }}
                 </div>
 
                 <div class="field">
-                    <label>First name*</label>
+<label>Prénom*</label>
                     {{ form.first_name }}
                 </div>
 
                 <div class="field">
-                    <label>Country*</label>
+<label>Pays*</label>
                     {{ form.country }}
                 </div>
 
                 <div class="field">
-                    <label>Occupation*</label>
+<label>Profession*</label>
                     {{ form.occupation }}
                 </div>
 
                 <div class="field">
-                    <label>E-mail address*</label>
+<label>Adresse e-mail*</label>
                     {{ form.email }}
                 </div>
 
                 <div class="field">
-                    <label>Password*</label>
+<label>Mot de passe*</label>
                 
                     <div class="password-wrapper">
                         {{ form.password1 }}
@@ -93,7 +93,7 @@
                 </div>
                 
                 <div class="field">
-                    <label>Confirm password*</label>
+<label>Confirmer le mot de passe*</label>
                 
                     <div class="password-wrapper">
                         {{ form.password2 }}
@@ -104,7 +104,7 @@
                     </div>
                 </div>
 
-                <button type="submit">Submit the form</button>
+<button type="submit">Soumettre le formulaire</button>
 
             </form>
 
@@ -115,17 +115,17 @@
     <!-- FOOTER -->
     <footer>
 
-        <a href="#">Contact us</a>
+<a href="#">Nous contacter</a>
         |
-        <a href="#">Legal notice</a>
+<a href="#">Mentions légales</a>
         |
-        <a href="#">Privacy</a>
+<a href="#">Confidentialité</a>
         |
-        <a href="#">Terms of use</a>
+<a href="#">Conditions d’utilisation</a>
         |
-        <a href="#">Cookie management</a>
+<a href="#">Gestion des cookies</a>
         |
-        <a href="#">Privacy policy</a>
+<a href="#">Politique de confidentialité</a>
 
     </footer>
     <script>

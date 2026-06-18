@@ -129,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # INTERNATIONALIZATION
 # =====================================================
 
-LANGUAGE_CODE = "fr"
+LANGUAGE_CODE = "en"
 
 LANGUAGES = [
     ("fr", _("Français")),
