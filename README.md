@@ -466,10 +466,8 @@ This platform was developed as part of an academic portfolio.
 
 *All rights reserved © LIONESS*
 
-
 ---
 
-Si tu veux, je peux aussi :
-- :contentReference[oaicite:0]{index=0}
-- ou en **:contentReference[oaicite:1]{index=1}**
-- ou en **:contentReference[oaicite:2]{index=2}**
+## Auteur
+Georgia BOULNOIS
+
