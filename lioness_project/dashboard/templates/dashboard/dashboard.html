@@ -1,4 +1,4 @@
-{% load static %}
+ter de ce décoi{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -263,8 +263,14 @@
                         <a href="{% url 'home' %}" class="return-site-link text-decoration-none">
                             <i class="fa-solid fa-arrow-right-to-bracket rotate-180 me-2"></i> Return to site
                         </a>
+                        {% if request.user.is_authenticated %}
+                            <div class="mt-2">
+                                <a href="{% url 'accounts:logout' %}" class="text-decoration-none return-site-link">
+                                    <i class="fa-solid fa-right-from-bracket rotate-180 me-2"></i> Se déconnecter
+                                </a>
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
             </aside>
 
             <!-- CONTENU ZONE DYNAMIQUE (DROITE) -->
