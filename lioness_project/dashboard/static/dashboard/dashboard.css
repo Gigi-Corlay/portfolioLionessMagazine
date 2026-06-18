@@ -193,6 +193,16 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     color: #6c757d;
 }
 
+.user-email {
+    margin: 0;
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 150px;
+}
+
 /* ==========================================================================
     2. SIDEBAR STYLES (Vert canard & Menus Open Sans Bold)
    ========================================================================== */

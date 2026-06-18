@@ -91,6 +91,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
+
         fields = (
             "first_name",
             "last_name",
@@ -100,9 +101,16 @@ class RegisterForm(UserCreationForm):
         )
 
     def clean_email(self):
-        email = self.cleaned_data.get("email", "").strip().lower()
 
-        if User.objects.filter(email__iexact=email).exists():
+        email = self.cleaned_data.get(
+            "email",
+            ""
+        ).strip().lower()
+
+        if User.objects.filter(
+            email__iexact=email
+        ).exists():
+
             raise forms.ValidationError(
                 "An account with this email already exists."
             )
@@ -139,6 +147,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
+
         fields = (
             "country",
             "occupation",
@@ -153,12 +162,14 @@ class ProfileForm(forms.ModelForm):
                     "placeholder": "Country"
                 }
             ),
+
             "occupation": forms.TextInput(
                 attrs={
                     "class": "form-control",
                     "placeholder": "Occupation"
                 }
             ),
+
             "bio": forms.Textarea(
                 attrs={
                     "class": "form-control",
@@ -167,3 +178,54 @@ class ProfileForm(forms.ModelForm):
                 }
             ),
         }
+
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+
+        fields = (
+            "first_name",
+            "last_name",
+            "email",
+        )
+
+        widgets = {
+            "first_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "First Name"
+                }
+            ),
+
+            "last_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Last Name"
+                }
+            ),
+
+            "email": forms.EmailInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Email Address"
+                }
+            ),
+        }
+
+    def clean_email(self):
+
+        email = self.cleaned_data["email"].strip().lower()
+
+        if User.objects.filter(
+            email__iexact=email
+        ).exclude(
+            pk=self.instance.pk
+        ).exists():
+
+            raise forms.ValidationError(
+                "This email address is already in use."
+            )
+
+        return email

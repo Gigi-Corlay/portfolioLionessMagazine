@@ -3,10 +3,14 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import transaction
-from .forms import ProfileForm
 import logging
 
-from .forms import RegisterForm, LoginForm, ProfileForm
+from .forms import (
+    RegisterForm,
+    LoginForm,
+    ProfileForm,
+    UserUpdateForm,
+)
 from .models import Profile
 
 logger = logging.getLogger(__name__)
@@ -21,15 +25,26 @@ def profile_view(request):
 
     if request.method == "POST":
 
-        form = ProfileForm(
+        user_form = UserUpdateForm(
+            request.POST,
+            instance=request.user
+        )
+
+        profile_form = ProfileForm(
             request.POST,
             request.FILES,
             instance=profile
         )
 
-        if form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
 
-            form.save()
+            user = user_form.save(commit=False)
+
+            # L'email sert aussi d'identifiant
+            user.username = user.email.lower().strip()
+
+            user.save()
+            profile_form.save()
 
             messages.success(
                 request,
@@ -38,14 +53,28 @@ def profile_view(request):
 
             return redirect("accounts:profile")
 
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
+
     else:
 
-        form = ProfileForm(instance=profile)
+        user_form = UserUpdateForm(
+            instance=request.user
+        )
+
+        profile_form = ProfileForm(
+            instance=profile
+        )
 
     return render(
         request,
-        "accounts/profile.html",
-        {"form": form}
+        "profile/profile.html",
+        {
+            "user_form": user_form,
+            "profile_form": profile_form,
+        }
     )
 
 
@@ -73,7 +102,7 @@ def login_view(request):
                 "Welcome back!"
             )
 
-            return redirect("dashboard:dashboard")
+            return redirect("dashboard")
 
         messages.error(
             request,
@@ -113,13 +142,22 @@ def register_view(request):
 
                 user.save()
 
-                Profile.objects.create(
-                    user=user,
-                    country=form.cleaned_data.get("country"),
-                    occupation=form.cleaned_data.get("occupation")
+                profile = user.profile
+
+                profile.country = form.cleaned_data.get(
+                    "country"
                 )
 
-            login(request, user)
+                profile.occupation = form.cleaned_data.get(
+                    "occupation"
+                )
+
+                profile.save()
+
+            login(
+                request,
+                user
+            )
 
             messages.success(
                 request,
@@ -157,20 +195,3 @@ def logout_view(request):
     )
 
     return redirect("home")
-
-
-@login_required
-def profile_view(request):
-    # On récupère le profil de l'utilisateur connecté grâce à la relation OneToOne
-    profile = request.user.profile 
-
-    if request.method == 'POST':
-        # instance=profile permet de mettre à jour le profil existant au lieu d'en créer un nouveau
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:profile') # Redirige vers la page de profil pour voir les changements
-    else:
-        form = ProfileForm(instance=profile)
-
-    return render(request, 'profile/profile.html', {'form': form})
