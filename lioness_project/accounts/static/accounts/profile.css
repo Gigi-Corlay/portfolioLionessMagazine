@@ -112,3 +112,78 @@ label.form-label {
     letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+.card {
+    border-radius: 0.8em;
+}
+
+.card-header {
+    border-radius: 1em 1em 0 0 !important;
+}
+
+.form-control,
+.form-select,
+textarea {
+    border-radius: 10px;
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+img.rounded-circle {
+    border: 4px solid white;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+    }
+    
+    .profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #04757D;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+    }
+    
+    .profile-link i {
+    font-size: 1.2rem;
+    }
+    
+    .profile-link:hover {
+    color: #B38330;
+    padding-left: 8px;
+    }
+    
+    .logout-link {
+    color: #dc3545;
+    }
+    
+    .logout-link:hover {
+    color: #b02a37;
+    }
+
+    .card-header h2 {
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+        }
+        
+        .card-header p {
+        opacity: 0.9;
+        }
+        
+        .form-label {
+        margin-bottom: 0.6rem;
+        }
+        
+        .card-header img {
+        border: 3px solid white;
+        }

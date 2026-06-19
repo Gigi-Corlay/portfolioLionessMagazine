@@ -61,6 +61,14 @@
                     <i class="fa-regular fa-bell fs-5"></i>
                     <span class="bell-dot"></span>
                 </div>
+                <div>
+                        <a class="nav-link" href="{% url 'accounts:logout' %}">
+                            <div>
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </div>
+                        </a>
+                </div>
                 <div class="user-profile-wrapper">
                     {% if request.user.is_authenticated %}
                         <!-- Si l'utilisatrice est connectée, l'avatar est un lien cliquable vers son profil -->
@@ -170,20 +178,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <div>
-                                    <i class="fa-regular fa-calendar"></i> <span>Events</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <div>
-                                    <i class="fa-regular fa-circle-play"></i> <span>Podcast</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <div>
                                     <i class="fa-regular fa-bookmark"></i> <span>Saved</span>
                                 </div>
                             </a>
@@ -218,39 +212,30 @@
                             </a>
                         </li>
                     </ul>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:logout' %}">
-                            <div>
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                <span>Logout</span>
-                            </div>
-                        </a>
-                    </li>
                 </nav>
 
                 <!-- Cadre Profil Utilisateur -->
                 <div class="sidebar-profile-box mx-3 my-4 p-3 d-flex align-items-center gap-2 position-relative rounded">
-                    <img src="{% static 'images/member_lionne.png' %}" alt="Member Profile" class="profile-img">
-                    <div class="profile-info">
-                        <h4 class="m-0 text-white">
-                            {% if user.first_name %}
-                                {{ user.first_name }}
-                            {% elif user.username %}
-                                {{ user.username }}
+                    <div class="badge-gold-ribbon">
+                        {% if request.user.profile.profile_picture %}
+                        <a href="{% url 'accounts:profile' %}" class="user-profile-link">
+                            {% if request.user.profile.profile_picture %}
+                                <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
                             {% else %}
-                                {{ user.email }}
+                                <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
                             {% endif %}
-                        </h4>
-                    
-                        <p class="user-email">
-                            {{ user.email }}
-                        </p>
-                    
-                        <p class="m-0 role-text text-uppercase">
-                            Lioness Member
-                        </p>
+                        </a>
+                        {% else %}
+                            <div class="member-since-avatar member-avatar-placeholder">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                        {% endif %}
                     </div>
-                    <i class="fa-solid fa-chevron-right arrow-profile"></i>
+                    <span class="label">
+                        <p>Lionne Member<br>
+                        {{ user.first_name|default:"Georgia" }}{% if user.last_name %} {{ user.last_name|slice:":1"|upper }}.{% endif %}
+                        </p>
+                    </span>
                 </div>
 
                 <!-- Bloc Citation Michelle Obama -->
@@ -274,15 +259,6 @@
                         <a href="{% url 'home' %}" class="return-site-link text-decoration-none">
                             <i class="fa-solid fa-arrow-right-to-bracket rotate-180 me-2"></i> Return to site
                         </a>
-                        {% if request.user.is_authenticated %}
-                            <div class="mt-2">
-                                <a href="{% url 'accounts:logout' %}"
-                                    class="btn btn-outline-light rounded-pill w-100 mt-2">
-                                    <i class="fa-solid fa-right-from-bracket me-2"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        {% endif %}
                     </div>
                 </div>
             </aside>
@@ -307,12 +283,26 @@
                                 <div class="col-12 col-lg-4">
                                     <div class="dashboard-card member-since-card border-gold-strong d-flex align-items-center gap-3 h-100">
                                         <div class="badge-gold-ribbon">
-                                            <img src="{% static 'images/lioness_member.png' %}" alt="Le stiker des member of Lioness Magazine" style="height: 55px;">
+                                            {% if request.user.profile.profile_picture %}
+                                            <a href="{% url 'accounts:profile' %}" class="user-profile-link">
+                                                {% if request.user.profile.profile_picture %}
+                                                    <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
+                                                {% else %}
+                                                    <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
+                                                {% endif %}
+                                            </a>
+                                            {% else %}
+                                                <div class="member-since-avatar member-avatar-placeholder">
+                                                    <i class="bi bi-person-circle"></i>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                         <div class="member-date-details d-flex flex-column">
-                                            <span class="label">Member since</span>
-                                            <span class="date-value">{{ user.date_joined|date:"F Y"|default:"May 2026" }}</span>
-                                            <span class="status-tag">Lionne Member</span>
+                                            <span class="label">
+                                                {{ user.first_name|default:"Georgia" }}{% if user.last_name %} {{ user.last_name|slice:":1"|upper|default:"B." }}.{% endif %}
+
+                                            </span>
+                                            <span class="date-value">Member since {{ user.date_joined|date:"F Y"|default:"May 2026" }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -417,38 +407,28 @@
                                         </div>
                                     </div>
 
-                                    <div class="dashboard-card impact-banner-card d-flex align-items-center justify-content-between gap-3">
-                                        <div class="impact-art-left flex-shrink-0 align-self-end">
-                                            <img src="{% static 'images/support_lioness.png' %}" alt="Women illustration" style="height: 120px;">
-                                        </div>
-                                        <div class="impact-info text-center flex-grow-1">
-                                            <h3 class="mb-1">Your Impact</h3>
-                                            <p class="mb-2">Thank you for supporting Women's stories.</p>
-                                            <div class="impact-actions d-flex align-items-center justify-content-center gap-3">
-                                                <button class="btn btn-support-banner rounded-pill">SUPPORT LIONESS <i class="fa-regular fa-heart ms-1"></i></button>
-                                                <span class="powered-by">Powered by <img src="{% static 'images/logo-helloasso.png' %}" alt="HelloAsso" style="height: 14px;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="impact-art-right flex-shrink-0 align-self-end">
-                                            <img src="{% static 'images/woman.png' %}" alt="Women illustration" style="height: 120px;">
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 <div class="col-12 col-lg-4 d-flex flex-column gap-4">
                                     <div class="dashboard-card activity-card">
                                         <div class="card-title-with-icon d-flex justify-content-between align-items-center mb-2">
                                             <h3 class="m-0">Your Activity</h3>
-                                            <img src="{% static 'images/activity.png' %}" alt="Activity Icon" style="height: 25px;">
+                                            <img src="{% static 'images/activity.png' %}" alt="Activity Icon" ">
                                         </div>
                                         <ul class="list-group list-group-flush activity-list">
-                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-regular fa-file-lines me-2 text-teal"></i> Article read</span><span class="act-count">24</span></li>
-                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-solid fa-book-open me-2 text-teal"></i> Magazine issues</span><span class="act-count">5</span></li>
-                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-regular fa-bookmark me-2 text-teal"></i> Saved articles</span><span class="act-count">12</span></li>
-                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent"><span class="act-name"><i class="fa-regular fa-comment me-2 text-teal"></i> Comments</span><span class="act-count">7</span></li>
+                                            {% for activity in activities %}
+                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
+                                                <span class="act-name">
+                                                    <i class="{{ activity.icon }} me-2 text-teal"></i>
+                                                    {{ activity.label }}
+                                                </span>
+                                                <span class="act-count">{{ activity.count }}</span>
+                                            </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
-
+                                    <!-- for next 
                                     <div class="dashboard-card widget-text-card">
                                         <h3>Podcast</h3>
                                         <p>Highlighting the voices and journeys of African entrepreneurs to inspire the next generation.</p>
@@ -463,13 +443,29 @@
                                             <a href="#" class="see-more-link">See more</a>
                                         </div>
                                     </div>
+                                    -->
+                                    <div class="dashboard-card align-items-left">
+                                        <div class="d-flex align-items-left">
+                                            <img src="{% static 'images/support_lioness.png' %}" alt="Women illustration" style="height: 120px;" class="flex-shrink-0">
+                                            <div class="impact-text">
+                                                <h3>Your Impact</h3>
+                                                <p>Thank you for supporting Women's stories.</p>
+                                            </div>
+                                        </div>
+                                        <div class="impact-bottom">
+                                            <div class="impact-actions d-flex gap-3 flex-wrap">
+                                                <button class="btn btn-support-banner rounded-pill">SUPPORT LIONESS <i class="fa-regular fa-heart ms-1"></i></button>
+                                                <span class="powered-by">Powered by <img src="{% static 'images/logo-helloasso.png' %}" alt="HelloAsso" style="height: 14px;"></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <section class="dashboard-card writing-matters-card mt-4 d-flex justify-content-between align-items-center gap-4">
+                        <section class="dashboard-card writing-matters-card mt-4 d-flex justify-content-between align-items-left gap-4">
                             <div class="writing-content">
-                                <div class="writing-title-group d-flex align-items-center mb-3">
+                                <div class="writing-title-group d-flex align-items-left mb-3">
                                     <img src="{% static 'images/icon_write.png' %}" alt="Write" style="height: 25px; margin-right: 10px;">
                                     <h3 class="m-0">Your writing matters</h3>
                                 </div>

@@ -1,7 +1,7 @@
 /* ==========================================================================
     TABLEAU DE BORD LIONESS - CONFIGURATION DE LA CHARTE GRAPHIQUE
    ========================================================================== */
-    :root {
+   :root {
     /* Nuances de couleurs officielles */
     --bg-sand: #F9F3E5;               /* Fond Jaune pâle courant */
     --bg-card-inside: #ffffff;        /* Fond de carte blanc */
@@ -149,14 +149,6 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     right: -2px;
 }
 
-.avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #e0c060;
-}
-
 /* Icône Bootstrap profil par défaut */
 .bi-person-circle {
     font-size: 2rem;
@@ -168,18 +160,32 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     color: #aaa;
     display: block;
 }
+
+.main-header .nav-link {
+    color: var(--primary-teal) !important;
+    font-family: var(--font-menus) !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem;
+    text-decoration: none !important;
+}
+
+.main-header .nav-link:hover {
+    color: var(--primary-teal-hover) !important;
+}
+
 .user-profile-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Avatar du header (déclaration unique, fusionnée) */
 .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%; /* Rend l'image parfaitement ronde */
     object-fit: cover;  /* Empêche l'image de s'étirer ou de se déformer */
-    border: 2px solid #fff; /* Optionnel : ajoute une fine bordure blanche */
+    border: 2px solid #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
 }
@@ -201,6 +207,39 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 150px;
+}
+
+/* Avatar dans la carte Member since */
+.member-since-avatar {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-gold);
+}
+
+.member-avatar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-sand);
+    color: var(--primary-teal);
+    font-size: 1.8rem;
+}
+
+.member-name {
+    font-family: var(--font-titles) !important;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--primary-teal);
+}
+
+.main-header .nav-link span {
+    transition: all 0.2s ease;
+}
+
+.main-header .nav-link:hover span {
+    font-weight: 800 !important;
 }
 
 /* ==========================================================================
@@ -259,7 +298,7 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     gap: 12px;
     padding: 12px 20px;
     color: #e0f2f1;
-    font-size: 14px;
+    font-size: 1.1em;
 }
 
 /* Effet de découpe de l'onglet actif fusionné avec le fond jaune pâle */
@@ -322,6 +361,22 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     font-size: 13px;
 }
 
+.sidebar-profile-box {
+    justify-content: center;
+    text-align: center;
+}
+
+.sidebar-profile-box .label {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-profile-box .label p {
+    margin: 0;
+    text-align: left;
+    font-weight: 800;
+}
+
 .arrow-profile {
     position: absolute;
     right: 12px;
@@ -335,19 +390,20 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
 }
 
 .quote-icon {
-    font-size: 16px;
+    font-size: 2rem;
     opacity: 0.4;
 }
 
 .quote-text {
-    font-size: 12px;
-    font-style: italic;
-    line-height: 1.4;
+    font-size: 1.3rem;
+    line-height: 1.4em;
     color: #ffffff !important;
 }
 
 .quote-author {
-    font-size: 11px;
+    font-size: 0.8rem;
+    font-style: italic;
+
 }
 
 /* Bas de page réseaux sociaux */
@@ -437,6 +493,7 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
 
 .magazine-cat-card {
     overflow: hidden;
+    height: 100%;
 }
 
 .magazine-list-links {
@@ -588,6 +645,10 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     color: #232323;
 }
 
+.impact-text h3 {
+    text-align: left;
+}
+
 /* ==========================================================================
     4. SECTION INFÉRIEURE : YOUR WRITING MATTERS (Fond Doré Chaud)
    ========================================================================== */
@@ -598,6 +659,10 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
 
 .writing-illustration img {
     width: 100%;
+}
+
+.writing-p {
+    text-align: left;
 }
 
 .btn-send-text {
@@ -613,29 +678,45 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     background-color: #936a24 !important;
 }
 
+/* ── Carte "Your Impact" ──
+   Structure : .impact-banner-card > .impact-info (image + .impact-text) + .impact-bottom (bouton + powered-by)
+   L'alignement responsive (desktop = ligne / mobile = colonne centrée) est géré
+   par les classes Bootstrap directement sur .impact-info dans le HTML
+   (flex-column flex-md-row align-items-center text-center text-md-start).
+   Ici on ne gère que la structure générale de la carte et le cas <768px. */
 .impact-banner-card {
     overflow: visible !important;
     position: relative;
-    align-items: flex-end !important; 
+    display: flex;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px;
 }
 
-.impact-art-left img,
-.impact-art-right img {
-    display: block;
+.impact-bottom {
     width: 100%;
-    object-fit: contain;
-    margin-bottom: -16px;
 }
 
-/* Sur mobile : cacher les illustrations */
-@media (max-width: 768px) {
-    .impact-art-left,
-    .impact-art-right {
-        display: none;
+.impact-text h3,
+.impact-text p, .impact-actions {
+    text-align: left;
+}
+
+/* Sous 767.98px (juste avant le breakpoint Bootstrap "md") : tout est centré */
+@media (max-width: 767.98px) {
+    .impact-text h3, .impact-text p, .impact-actions{
+        text-align: center;
     }
     .impact-banner-card {
-        flex-direction: column;
         text-align: center;
+    }
+    .impact-text h3,
+    .impact-text p {
+        text-align: center;
+    }
+    .impact-bottom,
+    {
+        justify-content: center !important;
     }
 }
 
@@ -651,25 +732,35 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     }
 }
 
-/* ── FORMAT IPAD / TABLETTE (Entre 769px et 1024px) ── */
-@media (max-width: 1024px) {
+/* ── FORMAT IPAD / TABLETTE ── */
+@media (max-width: 1300px) {
     .sidebar {
         width: 220px; 
         min-width: 220px;
     }
+
+    .impact-action {
+        text-align: center;
+    }
     
     .sidebar-quote .quote-text {
-        font-size: 11px; 
+        font-size: 1.2rem; 
     }
 
     .menu .nav-link {
         padding: 10px 15px; 
         font-size: 13px;
     }
+
+    /* Empile toutes les colonnes Bootstrap comme en mobile */
+    .row > [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 
-/* ── FORMAT MOBILE (768px et moins) ── */
-@media (max-width: 768px) {
+/* ── FORMAT MOBILE (767.98px et moins) ── */
+@media (max-width: 767.98px) {
     /* La sidebar devient un drawer caché hors écran */
     .sidebar {
         position: fixed;
@@ -733,7 +824,6 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
         display: none;
     }
     .writing-matters-card,
-    .impact-banner-card,
     .member-since-card {
         flex-direction: column !important;
         text-align: center;
@@ -954,8 +1044,52 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     margin: 0;
 }
 
+.account-actions {
+    border-top: 1px solid rgba(179,131,48,.25);
+    padding-top: 25px;
+}
+
+.account-actions h5 {
+    color: #04757D;
+    font-weight: 700;
+}
+
+.action-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: #F9F3E5;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #04757D;
+    font-weight: 600;
+    transition: all .2s ease;
+}
+
+.action-link:hover {
+    background: #04757D;
+    color: white;
+    transform: translateX(4px);
+}
+
+.logout-link {
+    color: #c0392b;
+}
+
+.logout-link:hover {
+    background: #c0392b;
+    color: white;
+}
+
 /* Mobile */
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
     .article-list-item {
         flex-direction: column;
     }
@@ -967,10 +1101,13 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
         font-size: 1.3rem;
     }
     .article-list-excerpt {
-        font-size: 12px;!important;
+        font-size: 12px !important;
     }
     .btn-read-more {
-        font-size: 10px;!important;
+        font-size: 10px !important;
         padding: 5px 14px;
+    }
+    .impact-text h3 {
+        text-align: left;
     }
 }
