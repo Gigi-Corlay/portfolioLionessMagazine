@@ -3,15 +3,17 @@ from django.db import models
 class Article(models.Model):
     # Les 9 catégories officielles issues de la maquette Lioness
     CATEGORY_CHOICES = [
-        ('news', 'News'),
-        ('mood', 'Mood'),
-        ('agenda', 'Agenda Business'),
-        ('guest', 'Guest Focus'),
-        ('cover', 'Cover'),
-        ('well_being', 'Well-being'),
-        ('what_if', 'What if we talked about it ?'),
-        ('lifestyle', 'Lifestyle'),
-        ('impactful', 'The Most Impactful Personalities'),
+        ('ACTUS', 'ACTUS'),
+        ('MOOD', 'MOOD'),
+        ('AGENDA', 'AGENDA'),
+        ('BUSINESS', 'BUSINESS'),
+        ('INVITÉ', 'INVITÉ'),
+        ('FOCUS', 'FOCUS'),
+        ('COVER', 'COVER'),
+        ('BIEN-ÊTRE', 'BIEN-ÊTRE'),
+        ('ET SI ON EN PARLAIT ?', 'ET SI ON EN PARLAIT ?'),
+        ('LIFESTYLE', 'LIFESTYLE'),
+        ('IMPACTFUL', 'THE MOST IMPACTFUL PERSONALITIES'),
     ]
 
     title = models.CharField(max_length=255)
