@@ -53,7 +53,7 @@
 
         <div class="register-card">
             <h1>INSCRIPTION</h1>
-                <p class="ms-2">Les champs marqués d’un <span class ="text-danger"> * </span> sont obligatoires.</p>
+                <p class="ms-2">Fields marked with an a <span class ="text-danger"> * </span> are mandatory</p>
 
                 {% if form.errors %}
                 <div class="form-errors">
@@ -85,12 +85,12 @@
                 </div>
 
                 <div class="field">
-                    <label>Adresse e-mail<span class ="text-danger"> * </span></label>
+                    <label>E-mail address<span class ="text-danger"> * </span></label>
                     {{ form.email }}
                 </div>
 
                 <div class="field">
-                    <label>Mot de passe <span class ="text-danger"> * </span></label>
+                    <label>Password <span class ="text-danger"> * </span></label>
                 
                     <div class="password-wrapper">
                         {{ form.password1 }}
@@ -102,7 +102,7 @@
                 </div>
                 
                 <div class="field">
-                    <label>Confirmer le mot de passe <span class ="text-danger"> * </span></label>
+                    <label>Confirm password <span class ="text-danger"> * </span></label>
                 
                     <div class="password-wrapper">
                         {{ form.password2 }}
@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <button type="submit">Soumettre le formulaire</button>
+                <button type="submit">Submit the form</button>
 
             </form>
 
@@ -123,17 +123,17 @@
 
     <!-- FOOTER -->
     <footer>
-        <a href="#">Nous contacter</a>
+        <a href="#">Contact Us</a>
                 |
-        <a href="#">Mentions légales</a>
+        <a href="#">Legal Notice</a>
                 |
         <a href="#">Confidentialité</a>
                 |
-        <a href="#">Conditions d’utilisation</a>
+        <a href="#">Terms of Use</a>
                 |
         <a href="#">Gestion des cookies</a>
                 |
-        <a href="#">Politique de confidentialité</a>
+        <a href="#">Cookie Management</a>
     </footer>
     <script>
         function togglePassword(fieldId, element) {
