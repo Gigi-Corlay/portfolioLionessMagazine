@@ -32,9 +32,15 @@ body {
     font-family: 'Abril Display', 'Abril Fatface', serif;
 }
 /* Évite que le menu fixe cache le début des sections */
-.section-padding {
-    scroll-margin-top: 110px;
+#about,
+#values,
+#community,
+#magazine,
+#services,
+#impact {
+    scroll-margin-top: 120px;
 }
+
 /* ==========================================================================
     HEADER
    ========================================================================== */
@@ -56,7 +62,7 @@ body {
 #main-nav .nav-link {
     color: white;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.05em;
     opacity: 0.85;
     transition: opacity 0.2s ease;
@@ -68,11 +74,8 @@ body {
     text-decoration: underline;
     text-underline-offset: 4px;
 }
-.search-icon {
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-}
+
+
 /* ==========================================================================
     COULEURS ET BOUTONS BOOTSTRAP (CUSTOMS)
    ========================================================================== */
@@ -112,7 +115,7 @@ body {
     background-color: var(--gold);
     color: #ffffff;
     letter-spacing: 1px;
-    font-size: 13px;
+    font-size: 14px;
     transition: background 0.3s;
     border: none;
 }
@@ -147,7 +150,23 @@ body {
     background-color: #e0f2f1 !important;
     color: var(--primary-green) !important;
     border: 1px solid var(--primary-green) !important;
-    font-size: 11px;
+    font-size: 14px;
+}
+.nav-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+}
+
+.nav-language {
+    position: absolute;
+    left: 20px;
+}
+
+.nav-center {
+    margin: 0 auto;
 }
 /* ==========================================================================
     HERO / ABOUT
@@ -225,6 +244,19 @@ body {
     .hero-lionne {
         width: 60px;
         margin-top: 0;
+    }
+    /* Évite que le menu fixe cache le début des sections */
+    #about,
+    #values,
+    #community,
+    #magazine,
+    #services,
+    #impact {
+        scroll-margin-top: 380px;
+    }
+
+    .mobile-lang {
+        margin-left: auto;
     }
 }
 /* Image femmes hero — collée en bas */
@@ -395,6 +427,44 @@ footer .btn-outline-gold:hover {
     background-color: var(--gold) !important;
     transform: translateY(-3px) !important;
 }
+.social-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #d4af37; /* couleur or */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+.social-icon-box:hover {
+    background-color: #b8941f;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.social-icon-box i {
+    font-size: 18px;
+}
+.whatsapp-number {
+    font-size: 0.875rem; /* même taille que .small Bootstrap */
+    color: #6c757d;      /* même gris que text-muted */
+    line-height: 1.6;
+}
+.footer-whatsapp {
+    width: 36px !important;
+    height: 36px !important;
+    background-color: var(--primary-green) !important;
+    border-radius: 20% !important;
+}
+
+.footer-whatsapp i {
+    color: white !important;
+    font-size: 15px !important;
+}
 /* ==========================================================================
     UTILITAIRES
    ========================================================================== */
@@ -402,22 +472,28 @@ footer .btn-outline-gold:hover {
 .max-w-900 { max-width: 900px; }
 .max-w-1200 { max-width: 1200px; }
 .small-text-p { font-size: 14px; }
-.small-legal-text { font-size: 13px !important; }
+.small-legal-text { font-size: 12px !important; }
 
 /* Responsive général — réduction de padding sur mobile */
 
 @media (max-width: 1000px) {
+    .header-logo {
+        height: 30px;
+    }
     .btn {
         padding-left: 10px !important;
         padding-right: 10px !important;
-        font-size: 18px;
+        font-size: 14px;
         white-space: nowrap;
     }
     .btn-sm {
         padding-left: 10px !important;
         padding-right: 10px !important;
-        font-size: 9px;
+        font-size: 14px;
         white-space: nowrap;
+    }
+    .btn-support-custom {
+        font-size: 10px;
     }
     .about-image {
         position: relative;
@@ -453,6 +529,9 @@ footer .btn-outline-gold:hover {
         margin: 0;
         padding: 0;
     }
+    .size-txt li a {
+        font-size: small;
+    }
 }
 
 @media (max-width: 576px) {
@@ -460,7 +539,7 @@ footer .btn-outline-gold:hover {
         scroll-margin-top: 130px;
     }
     .btn {
-        font-size: 9px;
+        font-size: 14px;
     }
 }
 
@@ -547,4 +626,46 @@ footer .btn-outline-gold:hover {
         height: 110px;
     }
 
+}
+
+/* Pages légales */
+
+.legal-hero {
+    background: #f8f5ef;
+}
+
+.legal-title {
+    font-family: 'Abril Fatface', serif;
+    color: #8b6b2e;
+}
+
+.legal-content {
+    background: #ffffff;
+}
+
+.legal-card {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.legal-card h2 {
+    color: #5f7c4f;
+    font-size: 1.4rem;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.legal-card p,
+.legal-card li {
+    color: #555;
+    line-height: 1.8;
+}
+
+.legal-card ul {
+    padding-left: 20px;
 }

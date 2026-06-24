@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://use.typekit.net/rbm2nty.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="100" class="position-relative">
     <header class="bg-white shadow-sm sticky-top">
@@ -22,11 +23,11 @@
             <div class="row align-items-center gy-2">
                 <!-- Bloc Gauche : Magazine + Bouton Support -->
                 <div class="col-12 col-md-4 d-flex align-items-center gap-2 gap-sm-3 justify-content-center justify-content-md-start">
-                    <a href="#magazine" class="text-dark text-decoration-none d-flex align-items-center gap-2 nav-top-link lh-sm flex-shrink-0">
-                        <img src="{% static 'images/covers.jpg' %}" alt="Icon" class="flex-shrink-0" width="60">
+                    <a href="https://www.calameo.com/accounts/8059318" target="_blank" rel="noopener noreferrer" class="text-dark text-decoration-none d-flex align-items-center gap-2 nav-top-link lh-sm flex-shrink-0">
+                        <img src="{% static 'images/covers.jpg' %}" alt="Icon" class="flex-shrink-0" width="80">
                         <span class="header-mag-text">Access to Calaméo<br>Digital Magazine</span>
                     </a>
-                    <button class="btn btn-sm rounded-pill px-3 fw-bold btn-support-custom text-nowrap">SUPPORT LIONESS ♡</button>
+                    <!-- <button class="btn btn-sm rounded-pill px-3 fw-bold btn-support-custom text-nowrap">SUPPORT LIONESS ♡</button> -->
                 </div>
                 <!-- Bloc Central : Logo -->
                 <div class="col-12 col-md-4 text-center order-first order-md-0">
@@ -44,9 +45,22 @@
         <!-- Barre de navigation verte avec hamburger mobile -->
         <nav id="main-nav" class="bg-green-custom py-2">
             <div class="container-fluid px-3 px-md-5 d-flex justify-content-between align-items-center">
-<div class="text-white-50 small"><a class="text-white text-decoration-none" href="/i18n/setlang/?language=fr">FR</a> ▾</div>
+                <!-- Bouton hamburger mobile uniquement -->
+                <div class="d-flex align-items-center gap-3">
+                    <button class="navbar-toggler d-md-none border-0 p-0"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#mobileMenu">
+                        <i class="fa-solid fa-bars text-white fs-5"></i>
+                    </button>
+                </div>
+                <div class="d-flex text-white-50 small mobile-lang">
+                    <a class="text-white text-decoration-none" href="#">
+                        EN <i class="fa-solid fa-chevron-down ms-1"></i>
+                    </a>
+                </div>
                 <!-- Menu desktop -->
-                <ul class="nav justify-content-center gap-3 d-none d-md-flex text-uppercase fw-medium mb-0">
+                <ul class="nav justify-content-center gap-3 d-none d-md-flex text-uppercase fw-medium mb-0 size-txt nav-center">
                     <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#values">Categories</a></li>
                     <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#community">Community</a></li>
@@ -54,18 +68,7 @@
                     <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#impact">Personalities</a></li>
                 </ul>
-                <!-- Droite : icône recherche + hamburger mobile -->
-                <div class="d-flex align-items-center gap-3">
-                    <div class="search-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <!-- Bouton hamburger mobile uniquement -->
-                    <button class="navbar-toggler d-md-none border-0 p-0" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#mobileMenu"
-                            aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa-solid fa-bars text-white fs-5"></i>
-                    </button>
-                </div>
+
             </div>
             <!-- Menu mobile déroulant -->
             <div class="collapse d-md-none" id="mobileMenu">
@@ -101,7 +104,7 @@
                     <p class="fst-italic my-3 text-dark fw-medium">Joining LIONESS, means joining a movement that celebrates women, their ambitions, and their impact on the world.</p>
                     <div class="d-flex flex-wrap gap-3 mt-3">
                         <a href="#magazine" class="btn btn-outline-green rounded-pill px-4 color-title btn-sm fw-medium">See the magazines</a>
-                        <a href="#community" class="btn btn-green-custom rounded-pill px-4 text-white btn-sm fw-medium">Join the community</a>
+                        <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Become a member</a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 flex-end about-image">
@@ -158,7 +161,7 @@
                 <div class="col-md-7">
                     <h2 class="font-title h1 mb-3 text-dark">Join a community of inspiring women</h2>
                     <p class="text-muted mb-4">Exchange ideas, share your experiences and develop your projects with women from all over the world.</p>
-                    <a href="#" class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Join the community</a>
+                    <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Become a member</a>
                 </div>
             </div>
         </div>
@@ -168,12 +171,6 @@
         <div class="container px-3 px-md-5 py-4">
             <h2 class="display-5 mb-5 title_lioness">LIONESS<span class="title_mag">, LE MAGAZINE DES REINES</span></h2>
             <div class="row row-cols-1 row-cols-md-4 row-cols-lg-6 g-5">
-                <div class="col">
-                    <a href="https://www.calameo.com/read/0080593184ff53b428c98" target="_blank" class="mag-link-card">
-                        <img src="{% static 'images/lioness_n01.png' %}" alt="Lioness N°01" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold  text-white">Lioness N°01</p>
-                    </a>
-                </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318fc54d1a46dc0" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n04.png' %}" alt="Lioness N°04" class="img-fluid shadow mag-hover-effect">
@@ -240,6 +237,12 @@
                         <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°14</p>
                     </a>
                 </div>
+                <div class="col">
+                    <a href="https://www.calameo.com/read/008059318bda04e9f6026" target="_blank" class="mag-link-card">
+                        <img src="{% static 'images/lioness_n15.png' %}" alt="Lioness N°15" class="img-fluid shadow mag-hover-effect">
+                        <p class="small mt-2 mb-0 fw-bold  text-white">Lioness N°15</p>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -251,47 +254,55 @@
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/featured.png' %}" alt="Featured" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark">Featured</h3>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Featured</h3>
                         <p class="small text-muted mb-0">We highlight women and their projects through our platforms.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/interviews.png' %}" alt="Interviews" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark">Interviews &amp; portraits</h3>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Interviews &amp; portraits</h3>
                         <p class="small text-muted mb-0">Authentic stories to inspire and motivate everyone who reads Lioness, the magazine for queens.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/accompaniement.png' %}" alt="Accompaniement" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark">Accompaniement</h3>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Accompaniement</h3>
                         <p class="small text-muted mb-0">If you become a member, you will have access to resources, advice, and tools to boost your business.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/media.png' %}" alt="Media" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark">Media &amp; Content</h3>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Media &amp; Content</h3>
                         <p class="small text-muted mb-0">If you become a member, you'll have access to podcasts, videos, and articles to learn and grow.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ===================== IMPACT / PERSONALITÉS ===================== -->
+    <!-- ===================== THE MOST IMPACTFUL PERSONALITIES ===================== -->
     <section id="impact" class="section-padding">
         <div class="impact-banner">
-            <picture>
-                <!-- Mobile -->
-                <source media="(max-width: 768px)"
+            <a href="https://www.calameo.com/read/008059318dbbaf899c338"
+                target="_blank"
+                rel="noopener noreferrer">
+        
+                <picture>
+                    <!-- Mobile -->
+                    <source
+                        media="(max-width: 768px)"
                         srcset="{% static 'images/pub_fond_mobile.png' %}">
-    
-                <!-- Desktop / Tablette -->
-                <img src="{% static 'images/pub_impactPersonnality.png' %}"
-                    alt="Impactful Personalities Showcase"
-                    class="img-fluid w-100 d-block">
-            </picture>
+        
+                    <!-- Desktop -->
+                    <img
+                        src="{% static 'images/pub_impactPersonnality.png' %}"
+                        alt="Impactful Personalities Showcase"
+                        class="img-fluid w-100 d-block">
+                </picture>
+        
+            </a>
         </div>
     </section>
     <!-- ===================== FOOTER ===================== -->
@@ -301,19 +312,57 @@
                 <div class="col-md-4">
                     <img src="{% static 'images/logo-lioness.png' %}" alt="Lioness Logo" height="38" class="mb-3">
                     <p class="small text-muted mb-3">
-                        <strong>LIONESS, Le Magazine des Reines</strong>,<br>
-                        is a publication of Layilab.
+                        <strong>LIONESS, Le Magazine des Reines</strong>,<br>is a publication of Layilab.
                     </p>
                     <p class="small text-muted lh-sm">
                         Association under the 1901 law, Caen (France)<br>
                         Tel: +33 753 92 93 84<br>
                         lioness.lemagdesraines@gmail.com
                     </p>
-                    <div class="d-flex gap-2 mt-3 footer-social-icons">
-                        <a href="#" class="social-icon-box" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon-box" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon-box" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon-box" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <div class="d-flex flex-wrap gap-3 mt-3 align-items-center footer-social-icons">
+                        <a href="https://www.linkedin.com/in/lioness-le-magazine-des-reines-0b414538a"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon-box"
+                            aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    
+                        <a href="https://www.facebook.com/share/1BYE2yPyf1/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon-box"
+                            aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    
+                        <a href="https://www.instagram.com/leyilab"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon-box"
+                            aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    
+                        <a href="https://youtube.com/@lionesslemagazinedesreines5416"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon-box"
+                            aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center mt-3">
+                        <a href="https://wa.me/24177421547"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon-box footer-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    
+                        <span class="ms-2 small text-muted">
+                            +241 77 42 15 47
+                        </span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
@@ -323,26 +372,43 @@
                         <li><a href="#community" class="text-muted text-decoration-none footer-link">Community</a></li>
                         <li><a href="#magazine" class="text-muted text-decoration-none footer-link">Magazine</a></li>
                         <li><a href="#services" class="text-muted text-decoration-none footer-link">Service</a></li>
-                        <li><a href="#impact" class="text-muted text-decoration-none footer-link">Contact</a></li>
+                        <li><a href="#impact" class="text-muted text-decoration-none footer-link">The Most Impactful Personalities</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <h4 class="h6 fw-bold text-uppercase text-dark mb-3">Stay Connected</h4>
                     <p class="small text-muted mb-3">Become a member of the community that celebrates women worldwide. Together, we are breaking down patriarchal stereotypes.</p>
                     <p class="small text-muted mb-4 fst-italic">We are moving forward in open collaboration with men.</p>
-                    <div class="d-flex gap-2 justify-content-md-end justify-content-center">
-                        <a href="#" class="btn btn-outline-gold rounded-pill px-4 btn-sm fw-medium">Log in</a>
-                        <a href="#" class="btn btn-green-custom text-white rounded-pill px-4 btn-sm fw-medium">Become a member</a>
+                    <div class="d-flex gap-3 justify-content-md-end justify-content-center">
+                        <a href="{% url 'accounts:login' %}" class="btn btn-outline-gold rounded-pill px-2 btn-sm fw-medium">Log in</a>
+                        <a href="{% url 'accounts:register' %}" class="btn btn-green-custom text-white rounded-pill px-4 btn-sm fw-medium">Become a member</a>
                     </div>
                 </div>
             </div>
-            <div class="border-top pt-3 d-flex flex-column flex-md-row justify-content-between align-items-center text-muted">
-                <p class="mb-0 small">© 2026 LIONESS LE MAGAZINE DES REINES</p>
-                <div class="d-flex gap-3 gap-md-4 mt-2 mt-md-0 flex-wrap justify-content-center">
-                    <a href="#" class="text-muted text-decoration-none footer-link small">Legal notice</a>
-                    <a href="#" class="text-muted text-decoration-none footer-link small">Confidentiality</a>
-                    <a href="#" class="text-muted text-decoration-none footer-link small">Conditions of use</a>
-                </div>
+            <div class="d-flex gap-3 gap-md-4 mt-2 mt-md-0 flex-wrap justify-content-center">
+                <a href="{% url 'legal_notice' %}"
+                    target="_blank" rel="noopener noreferrer"
+                    class="text-muted text-decoration-none footer-link small">
+                    Legal Notice
+                </a>
+            
+                <a href="{% url 'privacy_policy' %}"
+                    target="_blank" rel="noopener noreferrer"
+                    class="text-muted text-decoration-none footer-link small">
+                    Privacy Policy
+                </a>
+            
+                <a href="{% url 'terms_of_use' %}"
+                    target="_blank" rel="noopener noreferrer"
+                    class="text-muted text-decoration-none footer-link small">
+                    Terms of Use
+                </a>
+            
+                <a href="{% url 'cookie_policy' %}"
+                    target="_blank" rel="noopener noreferrer"
+                    class="text-muted text-decoration-none footer-link small">
+                    Cookie Management
+                </a>
             </div>
         </div>
     </footer>
@@ -358,6 +424,6 @@
                 }
             });
         });
-        </script>
+    </script>
 </body>
 </html>

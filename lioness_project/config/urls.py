@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -54,6 +55,38 @@ urlpatterns = [
             template_name="accounts/password_reset_complete.html"
         ),
         name="password_reset_complete",
+    ),
+
+    path(
+        "legal-notice/",
+        TemplateView.as_view(
+            template_name="legals_notices/legal_notice.html"
+        ),
+        name="legal_notice",
+    ),
+
+    path(
+        "privacy-policy/",
+        TemplateView.as_view(
+            template_name="legals_notices/privacy_policy.html"
+        ),
+        name="privacy_policy",
+    ),
+
+    path(
+        "terms-of-use/",
+        TemplateView.as_view(
+            template_name="legals_notices/terms_of_use.html"
+        ),
+        name="terms_of_use",
+    ),
+
+    path(
+        "cookie-policy/",
+        TemplateView.as_view(
+            template_name="legals_notices/cookie_policy.html"
+        ),
+        name="cookie_policy",
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

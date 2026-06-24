@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="{% static 'images/logo_favicon.png' %}">
 
     <title>{% block title %}Dashboard - Lioness{% endblock %}</title>
+    <!-- Custom CSS -->
     
     <!-- Bootstrap 5 & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,9 +19,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    
-    <!-- Custom CSS -->
+
     <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+    
 </head>
 <body>
     <div class="dashboard-container">
@@ -39,9 +40,26 @@
                     <span>EN</span>
                     <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
                 </div>
-                <div class="search-bar position-relative d-none d-lg-block">
-                    <i class="fa-solid fa-magnifying-glass position-absolute search-icon" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); z-index: 5;"></i>
-                    <input type="text" class="form-control" placeholder="Search...">
+                
+                <div class="search-container">
+                    <button type="button" class="search-toggle" id="searchToggle">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                
+                    <form action="{% url 'dashboard_search' %}"
+                        method="GET"
+                        id="searchForm"
+                        class="search-form-hidden">
+                
+                        <div class="search-box">
+                            <input
+                                type="search"
+                                name="q"
+                                class="search-input"
+                                placeholder="Search article...">
+                
+                        </div>
+                    </form>
                 </div>
             </div>
         
@@ -54,20 +72,21 @@
                     <span>EN</span>
                     <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
                 </div>
+                <!-- 
                 <button class="btn btn-support-top rounded-pill px-3 d-none d-lg-block">
                     SUPPORT LIONESS <i class="fa-regular fa-heart ms-1"></i>
                 </button>
+                
                 <div class="notification-bell position-relative" role="button">
                     <i class="fa-regular fa-bell fs-5"></i>
                     <span class="bell-dot"></span>
-                </div>
+                </div> -->
                 <div>
-                        <a class="nav-link" href="{% url 'accounts:logout' %}">
-                            <div>
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                <span>Logout</span>
-                            </div>
-                        </a>
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">
+                        <div>
+                            <span class="logout-text"><i class="fa-solid fa-right-from-bracket"></i> Logout</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="user-profile-wrapper">
                     {% if request.user.is_authenticated %}
@@ -100,7 +119,14 @@
                 <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close Menu">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-                
+                <div class="mobile-search px-3 mb-3 d-md-none">
+                    <form action="{% url 'dashboard_search' %}" method="GET" class="mobile-search-form">
+                        <div class="mobile-search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" name="q" class="mobile-search-input" placeholder="Search article...">
+                        </div>
+                    </form>
+                </div>
                 <nav class="sidebar-nav flex-grow-1">
                     <ul class="nav flex-column menu">
                         
@@ -162,12 +188,13 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">
+                            <a href="https://www.calameo.com/accounts/8059318" target="_blank" rel="noopener noreferrer" class="nav-link text-dark text-decoration-none d-flex align-items-center gap-2 nav-top-link lh-sm flex-shrink-0">
                                 <div>
                                     <i class="fa-solid fa-book-open"></i> <span>Magazine</span>
                                 </div>
                             </a>
                         </li>
+                        <!-- 
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <div>
@@ -184,18 +211,20 @@
                         </li>
                         
                         <li class="menu-divider"></li>
-                        
+
                         <li class="nav-item">
-                            <a class="nav-link support-sidebar-link" href="#">
+                            <a class="nav-link support-sidebar-link" href="https://www.helloasso.com/associations/leyilab/adhesions/lioness" target="_blank" rel="noopener noreferrer">
                                 <div>
-                                    <i class="fa-regular fa-heart"></i> 
+                                    
                                     <div>
+                                        <i class="fa-regular fa-heart"></i> 
                                         <span>Support LIONESS</span>
                                         <span class="sub-text d-block">Make a donation</span>
                                     </div>
                                 </div>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <div>
@@ -203,9 +232,9 @@
                                 </div>
                                 <span class="badge rounded-circle">3</span>
                             </a>
-                        </li>
+                        </li>  -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'accounts:profile' %}">
                                 <div>
                                     <i class="fa-solid fa-gear"></i> <span>Settings</span>
                                 </div>
@@ -443,7 +472,7 @@
                                             <a href="#" class="see-more-link">See more</a>
                                         </div>
                                     </div>
-                                    -->
+                                    
                                     <div class="dashboard-card align-items-left">
                                         <div class="d-flex align-items-left">
                                             <img src="{% static 'images/support_lioness.png' %}" alt="Women illustration" style="height: 120px;" class="flex-shrink-0">
@@ -452,13 +481,9 @@
                                                 <p>Thank you for supporting Women's stories.</p>
                                             </div>
                                         </div>
-                                        <div class="impact-bottom">
-                                            <div class="impact-actions d-flex gap-3 flex-wrap">
-                                                <button class="btn btn-support-banner rounded-pill">SUPPORT LIONESS <i class="fa-regular fa-heart ms-1"></i></button>
-                                                <span class="powered-by">Powered by <img src="{% static 'images/logo-helloasso.png' %}" alt="HelloAsso" style="height: 14px;"></span>
-                                            </div>
-                                        </div>
+                                        <iframe id="haWidgetButton" allowtransparency="true" src="https://www.helloasso.com/associations/leyilab/adhesions/lioness/widget-bouton" style="width: 100%; height: 70px; border: none;"></iframe>
                                     </div>
+                                    -->
                                 </div>
                             </div>
                         </div>
@@ -515,6 +540,36 @@
     
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeSidebar();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const toggle = document.getElementById('searchToggle');
+            const form = document.getElementById('searchForm');
+        
+            if (!toggle || !form) return;
+        
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+        
+                form.classList.toggle('active');
+        
+                if (form.classList.contains('active')) {
+                    form.querySelector('.search-input').focus();
+                }
+            });
+        
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.search-container')) {
+                    form.classList.remove('active');
+                }
+            });
+        
+        });
+
+        toggle.addEventListener('click', function() {
+            console.log('CLICK');
+            form.classList.toggle('active');
         });
     </script>
 </body>

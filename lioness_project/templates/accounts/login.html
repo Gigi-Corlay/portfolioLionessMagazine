@@ -14,13 +14,6 @@
     <link rel="stylesheet" href="{% static 'css/auth.css' %}">
 </head>
 <body>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
     <!-- HEADER -->
     <header class="top-header">
 
@@ -42,7 +35,7 @@
         </div>
 
         <div class="header-right">
-            <a class="text-decoration-none" href="/i18n/setlang/?language=fr" style="color:#0f7e84">EN</a> 
+            <a class="text-decoration-none" href="#" style="color:#0f7e84">EN</a> 
             <i class="bi bi-chevron-compact-down"></i>
         </div>
 
@@ -104,12 +97,33 @@
 
     <!-- FOOTER -->
     <footer>
-        <a href="#">Contact Us</a>
-        <a href="#">Legal Notice</a>
-        <a href="#">Privacy Policy</a> |
-        <a href="#">Terms of Use</a> |
-        <a href="#">Cookie Management</a> |
-        <a href="#">Privacy Policy</a>
+        <div class="d-flex gap-3 gap-md-4 mt-2 mt-md-0 flex-wrap justify-content-center">
+
+            <a href="{% url 'legal_notice' %}"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none footer-link small">
+                Legal Notice |
+            </a>
+
+            <a href="{% url 'privacy_policy' %}"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none footer-link small">
+                Privacy Policy |
+            </a>
+
+            <a href="{% url 'terms_of_use' %}"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none footer-link small">
+                Terms of Use |
+            </a>
+
+            <a href="{% url 'cookie_policy' %}"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none footer-link small">
+                Cookie Management
+            </a>
+
+        </div>
     </footer>
 
     <script>
