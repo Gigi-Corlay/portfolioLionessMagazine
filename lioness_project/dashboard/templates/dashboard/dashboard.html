@@ -374,6 +374,9 @@
                                 <div class="col-12 col-lg-4">
                                     <div class="dashboard-card member-since-card border-gold-strong d-flex align-items-center gap-3 h-100">
                                         <div class="badge-gold-ribbon">
+                                            <img src="{% static 'images/lioness_member.png' %}" alt="Lioness Ribbon" style="height: 55px;">
+                                        </div>
+                                        <!--  <div class="badge-gold-ribbon">
                                             {% if request.user.profile.profile_picture %}
                                             <a href="{% url 'accounts:profile' %}" class="user-profile-link">
                                                 {% if request.user.profile.profile_picture %}
@@ -387,7 +390,7 @@
                                                     <i class="bi bi-person-circle"></i>
                                                 </div>
                                             {% endif %}
-                                        </div>
+                                        </div> -->
                                         <div class="member-date-details d-flex flex-column">
                                             <span class="label">
                                                 {{ user.first_name|default:"Georgia" }}{% if user.last_name %} {{ user.last_name|slice:":1"|upper|default:"B." }}.{% endif %}

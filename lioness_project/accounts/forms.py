@@ -6,6 +6,7 @@ from django.contrib.auth.forms import (
 from django.contrib.auth.models import User
 
 from .models import Profile
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 class RegisterForm(UserCreationForm):
@@ -144,7 +145,7 @@ class LoginForm(AuthenticationForm):
 
 
 class ProfileForm(forms.ModelForm):
-
+    
     class Meta:
         model = Profile
 
@@ -167,6 +168,14 @@ class ProfileForm(forms.ModelForm):
                 attrs={
                     "class": "form-control",
                     "placeholder": "Occupation"
+                }
+            ),
+
+            "profile_picture": forms.FileInput(
+                attrs={
+                    "class": "form-control d-none",  # caché, remplacé visuellement
+                    "id": "id_profile_picture",
+                    "accept": "image/*",
                 }
             ),
 
@@ -229,3 +238,40 @@ class UserUpdateForm(forms.ModelForm):
             )
 
         return email
+
+
+class StyledPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="Current Password",
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Current Password",
+                "autofocus": True,
+            }
+        ),
+    )
+
+    new_password1 = forms.CharField(
+        label="New Password",
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "New Password",
+            }
+        ),
+        help_text="Your password must contain at least 8 characters and can't be entirely numeric.",
+    )
+
+    new_password2 = forms.CharField(
+        label="Confirm New Password",
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Confirm New Password",
+            }
+        ),
+    )

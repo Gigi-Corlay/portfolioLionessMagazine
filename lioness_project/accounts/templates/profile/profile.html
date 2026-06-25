@@ -85,6 +85,48 @@
 
                         {% for field in profile_form %}
 
+                        {% if field.name == "profile_picture" %}
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Profile Picture
+                            </label>
+                        
+                            <div class="d-flex align-items-center gap-3">
+                        
+                                <div class="text-center">
+                        
+                                    <img
+                                        id="picture-preview"
+                                        src="{% if user.profile.profile_picture %}{{ user.profile.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}"
+                                        alt="Current photo"
+                                        class="rounded-circle"
+                                        style="width:70px;height:70px;object-fit:cover;border:2px solid var(--lioness-color);"
+                                    >
+                        
+                                    <div id="picture-filename" class="form-text">
+                                        {% if user.profile.profile_picture %}Current photo set{% else %}No photo uploaded{% endif %}
+                                    </div>
+                        
+                                </div>
+                        
+                                <label for="id_profile_picture" class="btn btn-success btn-sm mb-3">
+                                    {% if user.profile.profile_picture %}Change Photo{% else %}Upload Photo{% endif %}
+                                </label>
+                        
+                            </div>
+                        
+                            {{ field }}
+                        
+                            {% for error in field.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        
+                        </div>
+
+                        {% else %}
+
                             <div class="mb-3">
 
                                 <label class="form-label fw-bold">
@@ -94,20 +136,18 @@
                                 {{ field }}
 
                                 {% if field.help_text %}
-                                    <div class="form-text">
-                                        {{ field.help_text }}
-                                    </div>
+                                    <div class="form-text">{{ field.help_text }}</div>
                                 {% endif %}
 
                                 {% for error in field.errors %}
-                                    <div class="text-danger small">
-                                        {{ error }}
-                                    </div>
+                                    <div class="text-danger small">{{ error }}</div>
                                 {% endfor %}
 
                             </div>
 
-                        {% endfor %}
+                        {% endif %}
+
+                    {% endfor %}
 
                         <div class="d-grid mt-4">
 
@@ -160,5 +200,13 @@
 
     </div>
 
-
+<script>
+    document.getElementById("id_profile_picture").addEventListener("change", function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            document.getElementById("picture-preview").src = URL.createObjectURL(file);
+            document.getElementById("picture-filename").textContent = "New photo selected: " + file.name;
+        }
+    });
+</script>
 </div>
