@@ -1,0 +1,67 @@
+{% load static %}
+<header class="bg-white shadow-sm sticky-top">
+    <!-- Barre supérieure -->
+    <div class="container-fluid px-3 px-md-5 py-2 py-md-3">
+        <div class="row align-items-center gy-2">
+            <!-- Bloc Gauche : Magazine + Bouton Support -->
+            <div class="col-12 col-md-4 d-flex align-items-center gap-2 gap-sm-3 justify-content-center justify-content-md-start">
+                <a href="https://www.calameo.com/accounts/8059318" target="_blank" rel="noopener noreferrer" class="text-dark text-decoration-none d-flex align-items-center gap-2 nav-top-link lh-sm flex-shrink-0">
+                    <img src="{% static 'images/covers.jpg' %}" alt="Icon" class="flex-shrink-0" width="80">
+                    <span class="header-mag-text">Access to Calaméo<br>Digital Magazine</span>
+                </a>
+                <!-- <button class="btn btn-sm rounded-pill px-3 fw-bold btn-support-custom text-nowrap">SUPPORT LIONESS ♡</button> -->
+            </div>
+            <!-- Bloc Central : Logo -->
+            <div class="col-12 col-md-4 text-center order-first order-md-0">
+                <a href="#about">
+                    <img src="{% static 'images/logo-lioness.png' %}" alt="LIONESS Logo" height="40" class="header-logo">
+                </a>
+            </div>
+            <!-- Bloc Droit : Boutons connexion -->
+            <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end gap-2">
+                <a href="{% url 'accounts:login' %}" class="btn btn-login-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Log in</a>
+                <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Become a member</a>
+            </div>
+        </div>
+    </div>
+    <!-- Barre de navigation verte avec hamburger mobile -->
+    <nav id="main-nav" class="bg-green-custom py-2">
+        <div class="container-fluid px-3 px-md-5 d-flex justify-content-between align-items-center">
+            <!-- Bouton hamburger mobile uniquement -->
+            <div class="d-flex align-items-center gap-3">
+                <button class="navbar-toggler d-md-none border-0 p-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mobileMenu">
+                    <i class="fa-solid fa-bars text-white fs-5"></i>
+                </button>
+            </div>
+            <div class="d-flex text-white-50 small mobile-lang">
+                <a class="text-white text-decoration-none" href="#">
+                    EN <i class="fa-solid fa-chevron-down ms-1"></i>
+                </a>
+            </div>
+            <!-- Menu desktop -->
+            <ul class="nav justify-content-center gap-3 d-none d-md-flex text-uppercase fw-medium mb-0 size-txt nav-center">
+                <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#values">Categories</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#community">Community</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#magazine">Magazine</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#impact">Personalities</a></li>
+            </ul>
+
+        </div>
+        <!-- Menu mobile déroulant -->
+        <div class="collapse d-md-none" id="mobileMenu">
+            <ul class="nav flex-column text-uppercase fw-medium px-4 py-2 mb-0">
+                <li class="nav-item"><a class="nav-link text-white py-2" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link text-white py-2" href="#values">Categories</a></li>
+                <li class="nav-item"><a class="nav-link text-white py-2" href="#community">Community</a></li>
+                <li class="nav-item"><a class="nav-link text-white py-2" href="#magazine">Magazine</a></li>
+                <li class="nav-item"><a class="nav-link text-white py-2" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-white py-2" href="#impact">Personalities</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
