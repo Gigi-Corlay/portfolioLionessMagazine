@@ -375,6 +375,10 @@ button:not(.search-toggle) {
     text-decoration: none !important;
 }
 
+.sidebar-nav {
+    flex-grow: 0 !important;
+}
+
 .menu .nav-link {
     font-family: var(--font-menus) !important;
     font-weight: 700 !important; 
@@ -430,6 +434,7 @@ button:not(.search-toggle) {
 /* Profil Encadré Sidebar */
 .sidebar-profile-box {
     background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 0 !important;
 }
 
 .sidebar-profile-box .profile-img {
@@ -498,6 +503,9 @@ button:not(.search-toggle) {
     font-size: 10px;
     letter-spacing: 1px;
     opacity: 0.8;
+    display: flex;
+    align-items: center;
+    margin: 0;
 }
 
 .social-icons a {
@@ -915,6 +923,21 @@ button:not(.search-toggle) {
     }
     .search-bar {
         width: 120px;
+    }
+    .btn-category-dropdown {
+        font-size: 12px;
+        padding: 8px 20px !important;
+    }
+    .category-arrow {
+        transition: transform 0.3s ease;
+    }
+    
+    
+    /* Quand le bouton est ouvert */
+    .btn-category-dropdown[aria-expanded="true"] .category-arrow {
+    
+        transform: rotate(90deg);
+    
     }
 }
 

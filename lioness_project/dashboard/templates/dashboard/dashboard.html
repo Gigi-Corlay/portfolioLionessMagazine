@@ -43,7 +43,7 @@
                 
                 <div class="search-container">
                     <button type="button" class="search-toggle" id="searchToggle">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-magnifying-glass small"></i>
                     </button>
                 
                     <form action="{% url 'dashboard_search' %}"
@@ -127,7 +127,7 @@
                         </div>
                     </form>
                 </div>
-                <nav class="sidebar-nav flex-grow-1">
+                <nav class="sidebar-nav">
                     <ul class="nav flex-column menu">
                         
                         <li class="nav-item {% block nav_dashboard %}active{% endblock %}">
@@ -138,7 +138,7 @@
                             </a>
                         </li>
                         
-                        <li class="nav-item {% block nav_articles %}{% endblock %}">
+                        <li class="nav-item {% block nav_articles %}{% endblock %} mt-3">
                             <a class="nav-link {% block collapse_state %}collapsed{% endblock %}" data-bs-toggle="collapse" href="#articlesDropdown" role="button" aria-expanded="{% block aria_expanded %}false{% endblock %}" aria-controls="articlesDropdown">
                                 <div>
                                     <i class="fa-regular fa-file-lines"></i> 
@@ -244,20 +244,34 @@
                 </nav>
 
                 <!-- Cadre Profil Utilisateur -->
-                <div class="sidebar-profile-box mx-3 my-4 p-3 d-flex align-items-center gap-2 position-relative rounded">
+                <div class="sidebar-profile-box mb-4 mt-3 py-3 d-flex align-items-center gap-2 position-relative rounded">
                     <div class="badge-gold-ribbon">
+                
                         {% if request.user.profile.profile_picture %}
+                
                         <a href="{% url 'accounts:profile' %}" class="user-profile-link">
+                
                             {% if request.user.profile.profile_picture %}
+                
                                 <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
+                
                             {% else %}
-                                <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
+                
+                                <div class="avatar-placeholder">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                
                             {% endif %}
                         </a>
+
                         {% else %}
+                
                             <div class="member-since-avatar member-avatar-placeholder">
+                
                                 <i class="bi bi-person-circle"></i>
+                
                             </div>
+                
                         {% endif %}
                     </div>
                     <span class="label">
@@ -274,21 +288,69 @@
                     <p class="quote-author m-0 mt-2 text-uppercase" style="font-family: var(--font-menus); font-size: 11px; font-weight: 700; opacity: 0.8;">Michelle Obama</p>
                 </div>
 
-                <!-- Footer réseaux sociaux de la sidebar -->
-                <div class="sidebar-footer pt-3 px-3 mt-auto">
+                <!-- Footer réseaux sociaux -->
+                <div class="sidebar-footer pt-3 px-3">
+
                     <p class="social-title mb-2">Our social networks</p>
-                    <div class="social-icons d-flex gap-2 mb-4">
-                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" aria-label="Website"><i class="fa-solid fa-link"></i></a>
-                    </div>
-                    <div class="action-links">
-                        <a href="{% url 'home' %}" class="return-site-link text-decoration-none">
-                            <i class="fa-solid fa-arrow-right-to-bracket rotate-180 me-2"></i> Return to site
+
+                    <div class="social-icons d-flex gap-2 mb-3 align-items-center">
+
+                        <a href="https://www.linkedin.com/in/lioness-le-magazine-des-reines-0b414538a"
+                            class="social-icon-box"
+                            target="_blank" rel="noopener noreferrer" >
+                            <i class="fab fa-linkedin-in"></i>
                         </a>
+
+                        <a href="https://www.facebook.com/share/1BYE2yPyf1/"
+                            target="_blank" rel="noopener noreferrer"
+                            class="social-icon-box">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/leyilab"
+                            target="_blank" rel="noopener noreferrer"
+                            class="social-icon-box">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="https://youtube.com/@lionesslemagazinedesreines5416"
+                            target="_blank" rel="noopener noreferrer"
+                            class="social-icon-box">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+
                     </div>
+
+
+                    <div class="social-icons d-flex gap-2 mb-3 align-items-center">
+
+                        <a href="https://wa.me/24177421547"
+                            class="social-icon-box"
+                            target="_blank" rel="noopener noreferrer">
+
+                            <i class="fab fa-whatsapp"></i>
+
+                        </a>
+
+                        <p class="social-title mb-0">
+                            +241 77 42 15 47
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Toujours en bas -->
+                <div class="action-links mt-auto px-3 pb-4">
+
+                    <a href="{% url 'home' %}" class="return-site-link text-decoration-none">
+
+                        <i class="fa-solid fa-arrow-right-to-bracket rotate-180 me-2"></i>
+                        Return to site
+
+                    </a>
+
                 </div>
             </aside>
 
@@ -353,11 +415,15 @@
                                         
                                         <!-- Bouton dropdown visible uniquement sur mobile -->
                                         <div class="d-block d-md-none mt-3">
-                                            <button class="btn btn-category-dropdown w-100 d-flex align-items-center justify-content-between rounded-pill px-4 py-2" 
+                                            <button class="btn btn-category-dropdown d-inline-flex align-items-center justify-content-center rounded-pill px-4 py-2" 
                                                     data-bs-toggle="collapse" 
                                                     data-bs-target="#mobileCategoryList" 
-                                                    aria-expanded="false">
-                                                <span><i class="fa-solid fa-chevron-right me-2"></i> Choose category</span>
+                                                    aria-expanded="false"
+                                                    aria-controls="mobileCategoryList">
+                                                <span>
+                                                    <i class="fa-solid fa-chevron-right me-2 category-arrow"></i> 
+                                                    Choose category
+                                                </span>
                                             </button>
                                             <div class="collapse mt-2" id="mobileCategoryList">
                                                 <ul class="list-unstyled mobile-category-list">
@@ -446,15 +512,28 @@
                                             <img src="{% static 'images/activity.png' %}" alt="Activity Icon" ">
                                         </div>
                                         <ul class="list-group list-group-flush activity-list">
+
                                             {% for activity in activities %}
-                                            <li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
-                                                <span class="act-name">
-                                                    <i class="{{ activity.icon }} me-2 text-teal"></i>
-                                                    {{ activity.label }}
-                                                </span>
-                                                <span class="act-count">{{ activity.count }}</span>
-                                            </li>
+                                        
+                                                {% if activity.label != "Saved articles" and activity.label != "Comments" %}
+                                        
+                                                <li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
+                                        
+                                                    <span class="act-name">
+                                                        <i class="{{ activity.icon }} me-2 text-teal"></i>
+                                                        {{ activity.label }}
+                                                    </span>
+                                        
+                                                    <span class="act-count">
+                                                        {{ activity.count }}
+                                                    </span>
+                                        
+                                                </li>
+                                        
+                                                {% endif %}
+                                        
                                             {% endfor %}
+                                        
                                         </ul>
                                     </div>
                                     <!-- for next 
@@ -495,7 +574,13 @@
                                     <h3 class="m-0">Your writing matters</h3>
                                 </div>
                                 <p class="writing-p">Make your voice heard with LIONESS, the magazine for queens. We highlight inspiring stories, authentic journeys, and empowering women from around the world. Submit your article to our editorial team.<br>Selected content may be published in the magazine and featured to our community.</p>
-                                <button class="btn btn-send-text rounded-pill px-4 py-2 text-white">Send your text here <i class="fa-regular fa-envelope ms-2"></i></button>
+                                
+                                <a href="mailto:lioness.lemagdesreines@gmail.com"
+                                    class="btn btn-send-text rounded-pill px-3 py-1 text-white">
+                                    Send your text here 
+                                    <i class="fa-regular fa-envelope ms-2"></i>
+                                </a>
+
                             </div>
                             <div class="writing-illustration d-none d-md-block flex-shrink-0">
                                 <img src="{% static 'images/writing.png' %}" alt="Typewriter art" style="height: 120px;">
