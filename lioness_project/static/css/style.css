@@ -75,6 +75,84 @@ body {
     text-underline-offset: 4px;
 }
 
+/* ==========================================================================
+    LANGUES
+   ========================================================================== */
+.select-language {
+    position: relative;
+    display: inline-block;
+}
+
+
+.current-language {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.style-arrow {
+    color: white;
+    font-size: 12px;
+}
+
+
+.language-options {
+    display: none;
+    position: absolute;
+    top: 25px;
+    right: 0;
+
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+
+/* ouverture au survol */
+.select-language:hover .language-options {
+    display: block;
+}
+
+
+.language-options button {
+    width: 100%;
+    border: none;
+    background: white;
+
+    padding: 8px 12px;
+
+    color: #04757D;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.language-options button:hover {
+    background-color: #04757D;
+    color: white;
+}
+
+/* Flèche Font Awesome */
+.style-arrow {
+    color: white;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.select-language select:focus {
+    color: white;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Options du menu */
+.select-language select option {
+    background: white;
+    color:#04757D;
+}
 
 /* ==========================================================================
     COULEURS ET BOUTONS BOOTSTRAP (CUSTOMS)
@@ -191,9 +269,7 @@ body {
 .hero-title-wrapper {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
     width: 100%;
-    margin-top: 1rem;
 }
 
 .hero-lionne {

@@ -81,42 +81,24 @@ msgid "Lionne"
 msgstr "Lionne"
 
 #: templates/home.html:82
-msgid ""
-"We place <span class='text-gold-custom'>crowns</span> on women, <br class='d-"
-"none d-md-block'> like queens"
-msgstr ""
-"Nous plaçons des <span class='text-gold-custom'>couronnes</span> sur les femmes, <br class='d-"
-"none d-md-block'> comme des reines"
+msgid "We place <span class=\"text-gold-custom\">crowns</span> on women, like queens"
+msgstr "Nous plaçons des <span class=\"text-gold-custom\">couronnes</span> sur les femmes, comme des reines"
 
 #: templates/home.html:90
-msgid "LIONESS is much more than a magazine."
-msgstr "LIONESS est bien plus qu'un magazine."
+msgid "<b>LIONESS</b> is much more than a magazine."
+msgstr "<b>LIONESS</b> n'est pas seulement un magazine."
 
 #: templates/home.html:91
-msgid ""
-"It's a community born in Gabon that shines a spotlight on African and Afro-"
-"descendant women, both in Africa and in the diaspora, while remaining open "
-"to women worldwide."
-msgstr ""
-"C'est une communauté née au Gabon qui met en lumière les femmes africaines et afro-"
-"pendantes, tant en Afrique que dans la diaspora, tout en restant ouverte "
-"aux femmes du monde entier."
+msgid "It's a community born in Gabon that shines a spotlight on African and Afro-descendant women, both in Africa and in the diaspora, while remaining open to women worldwide."
+msgstr "C’est une communauté née au Gabon, qui met en lumière les femmes africaines et afro-descendantes, en Afrique comme dans la diaspora, tout en restant ouverte aux femmes du monde entier."
 
 #: templates/home.html:92
-msgid ""
-"We celebrate ambitious, entrepreneurial, creative, and committed women "
-"through inspiring stories, authentic journeys, and meaningful content."
-msgstr ""
-"Nous célébrons les femmes ambitieuses, entrepreneures, créatives et engagées "
-"à travers des histoires inspirantes, des parcours authentiques et un contenu porteur de sens."
+msgid "We celebrate ambitious, entrepreneurial, creative, and committed women through inspiring stories, authentic journeys, and meaningful content."
+msgstr "Nous valorisons des femmes ambitieuses, entrepreneuses, créatives et engagées, à travers des histoires inspirantes, des parcours authentiques et des contenus porteurs de sens."
 
 #: templates/home.html:93
-msgid ""
-"Joining LIONESS, means joining a movement that celebrates women, their "
-"ambitions, and their impact on the world."
-msgstr ""
-"Rejoindre LIONESS, c'est rejoindre un mouvement qui célèbre les femmes, leurs "
-"ambitions et leur impact sur le monde."
+msgid "Joining LIONESS, means joining a movement that celebrates women, their ambitions, and their impact on the world."
+msgstr "Rejoindre LIONESS, c’est rejoindre un mouvement qui célèbre les femmes, leurs ambitions et leur impact dans le monde."
 
 #: templates/home.html:95
 msgid "See the magazines"
@@ -135,40 +117,28 @@ msgid "A space to inspire, connect, and impact"
 msgstr "Un espace pour inspirer, connecter et impacter"
 
 #: templates/home.html:115
-msgid ""
-"Discover inspiring content on entrepreneurship, culture, leadership, well-"
-"being and much more."
-msgstr ""
-"Découvrez du contenu inspirant sur l'entrepreneuriat, la culture, le leadership, le bien-être "
-"être et bien plus encore."
+msgid "Discover inspiring content on entrepreneurship, culture, leadership, well-being and much more."
+msgstr "Découvrez du contenu inspirant sur l'entrepreneuriat, la culture, le leadership, le bien-être et bien plus encore."
 
 #: templates/home.html:122
-msgid ""
-"Join a community of ambitious and committed women from around the world."
-msgstr ""
-"Rejoignez une communauté de femmes ambitieuses et engagées du monde entier."
+msgid "Join a community of ambitious and committed women from around the world."
+msgstr "Rejoignez une communauté de femmes ambitieuses et engagées du monde entier."
 
 #: templates/home.html:127 templates/home.html:128
 msgid "Entrepreneurship"
 msgstr "Entrepreneuriat"
 
 #: templates/home.html:129
-msgid ""
-"Let's celebrate women entrepreneurs and their initiatives that are "
-"transforming our societies."
-msgstr ""
-"Célébrons les femmes entrepreneures et leurs initiatives qui "
-"transforment nos sociétés."
+msgid "Let's celebrate women entrepreneurs and their initiatives that are transforming our societies."
+msgstr "Célébrons les femmes entrepreneures et leurs initiatives qui transforment nos sociétés."
 
 #: templates/home.html:134 templates/home.html:135
 msgid "African Diaspora"
 msgstr "Diaspora Africaine"
 
 #: templates/home.html:136
-msgid ""
-"A bridge between Africa and its diaspora to share, learn, and collaborate."
-msgstr ""
-"Un pont entre l'Afrique et sa diaspora pour partager, apprendre et collaborer."
+msgid "A bridge between Africa and its diaspora to share, learn, and collaborate."
+msgstr "Un pont entre l'Afrique et sa diaspora pour partager, apprendre et collaborer."
 
 #: templates/home.html:147
 msgid "Women collaboration illustration"

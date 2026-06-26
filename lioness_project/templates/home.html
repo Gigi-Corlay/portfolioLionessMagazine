@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +27,7 @@
                 <div class="col-12 col-md-4 d-flex align-items-center gap-2 gap-sm-3 justify-content-center justify-content-md-start">
                     <a href="https://www.calameo.com/accounts/8059318" target="_blank" rel="noopener noreferrer" class="text-dark text-decoration-none d-flex align-items-center gap-2 nav-top-link lh-sm flex-shrink-0">
                         <img src="{% static 'images/covers.jpg' %}" alt="Icon" class="flex-shrink-0" width="80">
-                        <span class="header-mag-text">Access to Calaméo<br>Digital Magazine</span>
+                        <span class="header-mag-text">{% blocktrans trimmed %}Access to Calaméo<br>Digital Magazine{% endblocktrans %}</span>
                     </a>
                     <!-- <button class="btn btn-sm rounded-pill px-3 fw-bold btn-support-custom text-nowrap">SUPPORT LIONESS ♡</button> -->
                 </div>
@@ -37,8 +39,8 @@
                 </div>
                 <!-- Bloc Droit : Boutons connexion -->
                 <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end gap-2">
-                    <a href="{% url 'accounts:login' %}" class="btn btn-login-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Log in</a>
-                    <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Become a member</a>
+                    <a href="{% url 'accounts:login' %}" class="btn btn-login-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">{% trans "Log in" %}</a>
+                    <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">{% trans "Become a member" %}</a>
                 </div>
             </div>
         </div>
@@ -54,31 +56,47 @@
                         <i class="fa-solid fa-bars text-white fs-5"></i>
                     </button>
                 </div>
-                <div class="d-flex text-white-50 small mobile-lang">
-                    <a class="text-white text-decoration-none" href="#">
-                        EN <i class="fa-solid fa-chevron-down ms-1"></i>
-                    </a>
+                <div class="header-right">
+                    <form action="{% url 'set_language' %}" method="post" class="lang-form">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}">
+                
+                        <div class="select-language">
+                            <div class="current-language">
+                                {{ request.LANGUAGE_CODE|upper }}
+                                <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
+                            </div>
+                
+                            <div class="language-options">
+                                <button type="submit" name="language" value="fr">FR</button>
+                                <button type="submit" name="language" value="en">
+                                    EN
+                                </button>
+                            </div>
+                        </div>
+                
+                    </form>
                 </div>
                 <!-- Menu desktop -->
                 <ul class="nav justify-content-center gap-3 d-none d-md-flex text-uppercase fw-medium mb-0 size-txt nav-center">
-                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#values">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#community">Community</a></li>
-                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#magazine">Magazine</a></li>
-                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#impact">Personalities</a></li>
+                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#about">{% trans "About" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#values">{% trans "Categories" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#community">{% trans "Community" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#magazine">{% trans "Magazine" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#services">{% trans "Services" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white px-2 py-1 small" href="#impact">{% trans "Personalities" %}</a></li>
                 </ul>
 
             </div>
             <!-- Menu mobile déroulant -->
             <div class="collapse d-md-none" id="mobileMenu">
                 <ul class="nav flex-column text-uppercase fw-medium px-4 py-2 mb-0">
-                    <li class="nav-item"><a class="nav-link text-white py-2" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link text-white py-2" href="#values">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link text-white py-2" href="#community">Community</a></li>
-                    <li class="nav-item"><a class="nav-link text-white py-2" href="#magazine">Magazine</a></li>
-                    <li class="nav-item"><a class="nav-link text-white py-2" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link text-white py-2" href="#impact">Personalities</a></li>
+                    <li class="nav-item"><a class="nav-link text-white py-2" href="#about">{% trans "About" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white py-2" href="#values">{% trans "Categorie" %}s</a></li>
+                    <li class="nav-item"><a class="nav-link text-white py-2" href="#community">{% trans "Community" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white py-2" href="#magazine">{% trans "Magazine" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white py-2" href="#services">{% trans "Services" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white py-2" href="#impact">{% trans "Personalities" %}</a></li>
                 </ul>
             </div>
         </nav>
@@ -88,23 +106,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="hero-title-wrapper mb-4 mb-md-5">
+                    <div class="hero-title-wrapper gap-3 mb-1 mb-md-3 mb-lg-5 pb-lg-3 pb-xl-5">
                         <img src="{% static 'images/lionne.png' %}" alt="Lionne" class="hero-lionne">
                         <h1 class="hero-title">
-                            We place <span class="text-gold-custom">crowns</span> on women, like queens
+                            {% blocktrans trimmed %}We place <span class="text-gold-custom">crowns</span> on women, like queens{% endblocktrans %}
                         </h1>
                     </div>
                 </div>
             </div>
             <div class="row g-4 g-lg-3 hero-content">
                 <div class="col-12 col-lg-6 d-flex flex-column justify-content-center pb-4">
-                    <p class="text-muted"><b>LIONESS</b> is much more than a magazine.</p>
-                    <p class="text-muted">It's a community born in Gabon that shines a spotlight on African and Afro-descendant women, both in Africa and in the diaspora, while remaining open to women worldwide.</p>
-                    <p class="text-muted">We celebrate ambitious, entrepreneurial, creative, and committed women through inspiring stories, authentic journeys, and meaningful content.</p>
-                    <p class="fst-italic my-3 text-dark fw-medium">Joining LIONESS, means joining a movement that celebrates women, their ambitions, and their impact on the world.</p>
-                    <div class="d-flex flex-wrap gap-3 mt-3">
-                        <a href="#magazine" class="btn btn-outline-green rounded-pill px-4 color-title btn-sm fw-medium">See the magazines</a>
-                        <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Become a member</a>
+                    <p class="text-muted">{% blocktrans trimmed %}<b>LIONESS</b> is much more than a magazine.{% endblocktrans %}</p>
+
+                    <p class="text-muted">{% trans "It's a community born in Gabon that shines a spotlight on African and Afro-descendant women, both in Africa and in the diaspora, while remaining open to women worldwide." %}</p>
+
+                    <p class="text-muted">{% trans "We celebrate ambitious, entrepreneurial, creative, and committed women through inspiring stories, authentic journeys, and meaningful content." %}</p>
+
+                    <p class="fst-italic my-3 text-dark fw-medium">{% trans "Joining LIONESS, means joining a movement that celebrates women, their ambitions, and their impact on the world." %}</p>                 <div class="d-flex flex-wrap gap-3 mt-3">
+
+                        <a href="#magazine" class="btn btn-outline-green rounded-pill px-4 color-title btn-sm fw-medium">{% trans "See the magazines" %}</a>
+                        <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">{% trans "Become a member" %}</a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 flex-end about-image">
@@ -117,35 +138,35 @@
     <section id="values" class="py-5 bg-white section-padding">
         <div class="container px-3 px-md-5 py-4">
             <h2 class="font-title display-6 mb-5 section-title-centered-gold">
-                A space to inspire, connect, and impact
+                {% trans "A space to inspire, connect, and impact" %}
             </h2>
             <div class="row g-4 justify-content-center">
                 <div class="col-12 col-md-6 col-lg-3 d-flex ">
                     <div class="p-3 text-center">
                         <img src="{% static 'images/icone_magazine.png' %}" alt="Magazine" class="mb-3 value-icon text-center">
-                        <h3 class="h5 fw-bold mb-2">Magazine</h3>
-                        <p class="small text-muted">Discover inspiring content on entrepreneurship, culture, leadership, well-being and much more.</p>
+                        <h3 class="h5 fw-bold mb-2">{% trans "Magazine" %}</h3>
+                        <p class="small text-muted">{% trans "Discover inspiring content on entrepreneurship, culture, leadership, well-being and much more." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="p-3 text-center">
                         <img src="{% static 'images/icone_community.png' %}" alt="Community" class="mb-3 value-icon">
-                        <h3 class="h5 fw-bold mb-2">Community</h3>
-                        <p class="small text-muted">Join a community of ambitious and committed women from around the world.</p>
+                        <h3 class="h5 fw-bold mb-2">{% trans "Community" %}</h3>
+                        <p class="small text-muted">{% trans "Join a community of ambitious and committed women from around the world." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="p-3 text-center">
                         <img src="{% static 'images/icone_entrepreneurship.png' %}" alt="Entrepreneurship" class="mb-3 value-icon">
-                        <h3 class="h5 fw-bold mb-2">Entrepreneurship</h3>
-                        <p class="small text-muted">Let's celebrate women entrepreneurs and their initiatives that are transforming our societies.</p>
+                        <h3 class="h5 fw-bold mb-2">{% trans "Entrepreneurship" %}</h3>
+                        <p class="small text-muted">{% trans "Let's celebrate women entrepreneurs and their initiatives that are transforming our societies." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3 text-center">
                     <div class="p-3">
                         <img src="{% static 'images/icone_afrique.png' %}" alt="African Diaspora" class="mb-3 value-icon">
-                        <h3 class="h5 fw-bold mb-2">African Diaspora</h3>
-                        <p class="small text-muted">A bridge between Africa and its diaspora to share, learn, and collaborate.</p>
+                        <h3 class="h5 fw-bold mb-2">{% trans "African Diaspora" %}</h3>
+                        <p class="small text-muted">{% trans "A bridge between Africa and its diaspora to share, learn, and collaborate." %}</p>
                     </div>
                 </div>
             </div>
@@ -159,9 +180,9 @@
                     <img src="{% static 'images/joindre_community.png' %}" alt="Women collaboration illustration" class="img-fluid custom-illustration">
                 </div>
                 <div class="col-md-7">
-                    <h2 class="font-title h1 mb-3 text-dark">Join a community of inspiring women</h2>
-                    <p class="text-muted mb-4">Exchange ideas, share your experiences and develop your projects with women from all over the world.</p>
-                    <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">Become a member</a>
+                    <h2 class="font-title h1 mb-3 text-dark">{% trans "Join a community of inspiring women" %}</h2>
+                    <p class="text-muted mb-4">{% trans "Exchange ideas, share your experiences and develop your projects with women from all over the world." %}</p>
+                    <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">{% trans "Become a member" %}</a>
                 </div>
             </div>
         </div>
@@ -174,37 +195,37 @@
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318fc54d1a46dc0" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n04.png' %}" alt="Lioness N°04" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°04</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°04</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318a9a1ced2966f" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n05.png' %}" alt="Lioness N°05" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°05</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°05</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318f30b34b1fe55" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n06.png' %}" alt="Lioness N°06" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°06</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°06</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/00805931895d80932009d" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n07.png' %}" alt="Lioness N°07" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°07</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°07</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318d7e0b0a6f4f4" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n08.png' %}" alt="Lioness N°08" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°08</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°08</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318b56425c2230b" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n09.png' %}" alt="Lioness N°09" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°09</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°09</p>
                     </a>
                 </div>
                 <div class="col">
@@ -216,31 +237,31 @@
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318223bfd6bc061" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n11.png' %}" alt="Lioness N°11" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°11</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°11</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318bd2449a4bdb1" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n12.png' %}" alt="Lioness N°12" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°12</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°12</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/0080593182edf08254767" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n13.png' %}" alt="Lioness N°13" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°13</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°13</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318dbbaf899c338" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n14.png' %}" alt="Lioness N°14" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold text-white">Lioness N°14</p>
+                        <p class="small mt-2 mb-0 fw-bold text-white">LIONESS N°14</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="https://www.calameo.com/read/008059318bda04e9f6026" target="_blank" class="mag-link-card">
                         <img src="{% static 'images/lioness_n15.png' %}" alt="Lioness N°15" class="img-fluid shadow mag-hover-effect">
-                        <p class="small mt-2 mb-0 fw-bold  text-white">Lioness N°15</p>
+                        <p class="small mt-2 mb-0 fw-bold  text-white">LIONESS N°15</p>
                     </a>
                 </div>
             </div>
@@ -249,34 +270,34 @@
     <!-- ===================== SERVICES ===================== -->
     <section id="services" class="py-5 bg-cream-custom section-padding">
         <div class="container px-3 px-md-5 text-center">
-            <h2 class="section-title-gold display-6 mb-5 text-uppercase fw-bold">Our services</h2>
+            <h2 class="section-title-gold display-6 mb-5 text-uppercase fw-bold">{% trans "Our services" %}</h2>
             <div class="row g-4 max-w-1200 mx-auto">
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/featured.png' %}" alt="Featured" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Featured</h3>
-                        <p class="small text-muted mb-0">We highlight women and their projects through our platforms.</p>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Featured" %}</h3>
+                        <p class="small text-muted mb-0">{% trans "We highlight women and their projects through our platforms." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/interviews.png' %}" alt="Interviews" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Interviews &amp; portraits</h3>
-                        <p class="small text-muted mb-0">Authentic stories to inspire and motivate everyone who reads Lioness, the magazine for queens.</p>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Interviews &amp; portraits" %}</h3>
+                        <p class="small text-muted mb-0">{% trans "Authentic stories to inspire and motivate everyone who reads Lioness, the magazine for queens." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/accompaniement.png' %}" alt="Accompaniement" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Accompaniement</h3>
-                        <p class="small text-muted mb-0">If you become a member, you will have access to resources, advice, and tools to boost your business.</p>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Accompaniement" %}</h3>
+                        <p class="small text-muted mb-0">{% trans "If you become a member, you will have access to resources, advice, and tools to boost your business." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/media.png' %}" alt="Media" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark my-3">Media &amp; Content</h3>
-                        <p class="small text-muted mb-0">If you become a member, you'll have access to podcasts, videos, and articles to learn and grow.</p>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Media Conten" %}t</h3>
+                        <p class="small text-muted mb-0">{% trans "If you become a member, you'll have access to podcasts, videos, and articles to learn and grow." %}</p>
                     </div>
                 </div>
             </div>
@@ -312,7 +333,7 @@
                 <div class="col-md-4">
                     <img src="{% static 'images/logo-lioness.png' %}" alt="Lioness Logo" height="38" class="mb-3">
                     <p class="small text-muted mb-3">
-                        <strong>LIONESS, Le Magazine des Reines</strong>,<br>is a publication of Layilab.
+                        <strong>LIONESS, Le Magazine des Reines</strong>,<br>{% trans "is a publication of Layilab." %}
                     </p>
                     <p class="small text-muted lh-sm">
                         Association under the 1901 law, Caen (France)<br>
@@ -368,20 +389,20 @@
                 <div class="col-6 col-md-3">
                     <h4 class="h6 fw-bold text-uppercase text-dark mb-3">Navigation</h4>
                     <ul class="list-unstyled small d-flex flex-column gap-2">
-                        <li><a href="#about" class="text-muted text-decoration-none footer-link">About</a></li>
-                        <li><a href="#community" class="text-muted text-decoration-none footer-link">Community</a></li>
-                        <li><a href="#magazine" class="text-muted text-decoration-none footer-link">Magazine</a></li>
-                        <li><a href="#services" class="text-muted text-decoration-none footer-link">Service</a></li>
-                        <li><a href="#impact" class="text-muted text-decoration-none footer-link">The Most Impactful Personalities</a></li>
+                        <li><a href="#about" class="text-muted text-decoration-none footer-link">{% trans "About" %}</a></li>
+                        <li><a href="#community" class="text-muted text-decoration-none footer-link">{% trans "Community" %}</a></li>
+                        <li><a href="#magazine" class="text-muted text-decoration-none footer-link">{% trans "Magazine" %}</a></li>
+                        <li><a href="#services" class="text-muted text-decoration-none footer-link">{% trans "Service" %}</a></li>
+                        <li><a href="#impact" class="text-muted text-decoration-none footer-link">{% trans "The Most Impactful Personalities" %}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <h4 class="h6 fw-bold text-uppercase text-dark mb-3">Stay Connected</h4>
-                    <p class="small text-muted mb-3">Become a member of the community that celebrates women worldwide. Together, we are breaking down patriarchal stereotypes.</p>
+                    <p class="small text-muted mb-3">{% trans "Become a member of the community that celebrates women worldwide. Together, we are breaking down patriarchal stereotypes." %}</p>
                     <p class="small text-muted mb-4 fst-italic">We are moving forward in open collaboration with men.</p>
                     <div class="d-flex gap-3 justify-content-md-end justify-content-center">
-                        <a href="{% url 'accounts:login' %}" class="btn btn-outline-gold rounded-pill px-2 btn-sm fw-medium">Log in</a>
-                        <a href="{% url 'accounts:register' %}" class="btn btn-green-custom text-white rounded-pill px-4 btn-sm fw-medium">Become a member</a>
+                        <a href="{% url 'accounts:login' %}" class="btn btn-outline-gold rounded-pill px-2 btn-sm fw-medium">{% trans "Log in" %}</a>
+                        <a href="{% url 'accounts:register' %}" class="btn btn-green-custom text-white rounded-pill px-4 btn-sm fw-medium">{% trans "Become a member" %}</a>
                     </div>
                 </div>
             </div>
@@ -389,25 +410,25 @@
                 <a href="{% url 'legal_notice' %}"
                     target="_blank" rel="noopener noreferrer"
                     class="text-muted text-decoration-none footer-link small">
-                    Legal Notice
+                    {% trans "Legal Notice" %}
                 </a>
             
                 <a href="{% url 'privacy_policy' %}"
                     target="_blank" rel="noopener noreferrer"
                     class="text-muted text-decoration-none footer-link small">
-                    Privacy Policy
+                    {% trans "Privacy Policy" %}
                 </a>
             
                 <a href="{% url 'terms_of_use' %}"
                     target="_blank" rel="noopener noreferrer"
                     class="text-muted text-decoration-none footer-link small">
-                    Terms of Use
+                    {% trans "Terms of Use" %}
                 </a>
             
                 <a href="{% url 'cookie_policy' %}"
                     target="_blank" rel="noopener noreferrer"
                     class="text-muted text-decoration-none footer-link small">
-                    Cookie Management
+                    {% trans "Cookie Management" %}
                 </a>
             </div>
         </div>
