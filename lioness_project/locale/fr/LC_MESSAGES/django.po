@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-27 11:53+0000\n"
+"POT-Creation-Date: 2026-06-27 12:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,20 +85,23 @@ msgstr "Parlez-nous de vous..."
 msgid "This email address is already in use."
 msgstr ""
 
-#: accounts/forms.py:186 accounts/forms.py:188
+#: accounts/forms.py:187 accounts/forms.py:189
 msgid "Current Password"
 msgstr "Mot de passe"
 
-#: accounts/forms.py:191 accounts/forms.py:193
+#: accounts/forms.py:192 accounts/forms.py:194
 msgid "New Password"
 msgstr "Mot de passe"
 
-#: accounts/forms.py:194
+#: accounts/forms.py:195
 msgid ""
-"Your password must contain at least 8 characters and can't be entirely numeric."
-msgstr "Votre mot de passe doit comporter au moins 8 caractères et ne peut pas être entièrement numérique."
+"Your password must contain at least 8 characters and can't be entirely "
+"numeric."
+msgstr ""
+"Votre mot de passe doit comporter au moins 8 caractères et ne peut pas être "
+"entièrement numérique."
 
-#: accounts/forms.py:197 accounts/forms.py:199
+#: accounts/forms.py:198 accounts/forms.py:200
 msgid "Confirm New Password"
 msgstr "Confirmez le mot de passe"
 
@@ -137,7 +140,8 @@ msgstr "Membre Lionne"
 
 #: dashboard/templates/dashboard/dashboard.html:301
 msgid "There is no limit to what we, as Women, can accomplish."
-msgstr "Il n'y a pas de limite à ce que nous, en tant que femmes, pouvons accomplir."
+msgstr ""
+"Il n'y a pas de limite à ce que nous, en tant que femmes, pouvons accomplir."
 
 #: dashboard/templates/dashboard/dashboard.html:308
 msgid "Our social networks"
@@ -261,15 +265,15 @@ msgstr "Soumettez le formulaire"
 msgid "Legal Notice"
 msgstr "Mentions légales"
 
-#: templates/accounts/register.html:149 templates/home.html:417
+#: templates/accounts/register.html:150 templates/home.html:417
 msgid "Privacy Policy"
-msgstr "politique de confidentialité"
+msgstr "Politique de confidentialité"
 
-#: templates/accounts/register.html:155 templates/home.html:423
+#: templates/accounts/register.html:157 templates/home.html:423
 msgid "Terms of Use"
 msgstr "Conditions d'utilisation"
 
-#: templates/accounts/register.html:161 templates/home.html:429
+#: templates/accounts/register.html:164 templates/home.html:429
 msgid "Cookie Management"
 msgstr "Gestion des cookies"
 
@@ -480,3 +484,12 @@ msgid ""
 msgstr ""
 "Devenez membre de la communauté qui célèbre les femmes à travers le monde. "
 "Ensemble, nous brisons les stéréotypes patriarcaux."
+
+#~ msgid "Legal Notice | "
+#~ msgstr "Mentions légales | "
+
+#~ msgid "Privacy Policy | "
+#~ msgstr " Politique de confidentialité | "
+
+#~ msgid "Terms of Use | "
+#~ msgstr "Conditions d'utilisation | "

@@ -135,32 +135,35 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="d-flex gap-3 gap-md-4 mt-2 mt-md-0 flex-wrap justify-content-center">
-
+        <div class="d-flex gap-3 gap-md-4 mt-2 mt-md-0 flex-wrap justify-content-center align-items-center">
+    
             <a href="{% url 'legal_notice' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
-                {% trans "Legal Notice" %} |
+                {% trans "Legal Notice" %}
             </a>
-
+            <span class="text-white small">|</span>
+    
             <a href="{% url 'privacy_policy' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
-                {% trans "Privacy Policy" %} |
+                {% trans "Privacy Policy" %}
             </a>
-
+            <span class="text-white small">|</span>
+    
             <a href="{% url 'terms_of_use' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
-                {% trans "Terms of Use" %} |
+                {% trans "Terms of Use" %}
             </a>
-
+            <span class="text-white small">|</span>
+    
             <a href="{% url 'cookie_policy' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
                 {% trans "Cookie Management" %}
             </a>
-
+    
         </div>
     </footer>
     <script>

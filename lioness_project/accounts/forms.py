@@ -181,6 +181,7 @@ class UserUpdateForm(forms.ModelForm):
             raise forms.ValidationError(_("This email address is already in use."))
         return email
 
+
 class StyledPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(
         label=_("Current Password"),
