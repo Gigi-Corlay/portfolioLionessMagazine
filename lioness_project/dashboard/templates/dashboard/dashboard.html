@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'images/logo_favicon.png' %}">
 
-    <title>{% block title %}Dashboard - Lioness{% endblock %}</title>
+    <title>{% block title %}Dashboard - Lioness Le Magazine des Reines{% endblock %}</title>
     <!-- Custom CSS -->
     
     <!-- Bootstrap 5 & Icons -->
@@ -36,9 +38,24 @@
                 <a href="{% url 'home' %}" class="d-flex align-items-center">
                     <img src="{% static 'images/logo-lioness.png' %}" alt="Lioness Logo" class="brand-logo">
                 </a>
-                <div class="language-selector d-none d-lg-flex align-items-center">
-                    <span>EN</span>
-                    <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
+                <div class="header-right">
+                    <form action="{% url 'set_language' %}" method="post" class="lang-form">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}">
+                
+                        <div class="select-language">
+                            <div class="current-language">
+                                {{ request.LANGUAGE_CODE|upper }}
+                                <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
+                            </div>
+                
+                            <div class="language-options">
+                                <button class="current-language" type="submit" name="language" value="fr">FR</button>
+                                <button class="current-language" type="submit" name="language" value="en">EN</button>
+                            </div>
+                        </div>
+                
+                    </form>
                 </div>
                 
                 <div class="search-container">
@@ -56,7 +73,7 @@
                                 type="search"
                                 name="q"
                                 class="search-input"
-                                placeholder="Search article...">
+                                placeholder="{% trans "Search article..." %}">
                 
                         </div>
                     </form>
@@ -68,10 +85,7 @@
             </div>
         
             <div class="header-right d-flex align-items-center gap-3 justify-content-end">
-                <div class="language-selector d-flex align-items-center d-lg-none">
-                    <span>EN</span>
-                    <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
-                </div>
+                
                 <!-- 
                 <button class="btn btn-support-top rounded-pill px-3 d-none d-lg-block">
                     SUPPORT LIONESS <i class="fa-regular fa-heart ms-1"></i>
@@ -84,7 +98,7 @@
                 <div>
                     <a class="nav-link" href="{% url 'accounts:logout' %}">
                         <div>
-                            <span class="logout-text"><i class="fa-solid fa-right-from-bracket"></i> Logout</span>
+                            <span class="logout-text"><i class="fa-solid fa-right-from-bracket"></i>{% trans "Logout" %}</span>
                         </div>
                     </a>
                 </div>
@@ -123,7 +137,7 @@
                     <form action="{% url 'dashboard_search' %}" method="GET" class="mobile-search-form">
                         <div class="mobile-search-box">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="search" name="q" class="mobile-search-input" placeholder="Search article...">
+                            <input type="search" name="q" class="mobile-search-input" placeholder="{% trans "Search article..." %}">
                         </div>
                     </form>
                 </div>
@@ -133,7 +147,7 @@
                         <li class="nav-item {% block nav_dashboard %}active{% endblock %}">
                             <a class="nav-link" href="{% url 'dashboard' %}">
                                 <div>
-                                    <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+                                    <i class="fa-solid fa-house"></i> <span>{% trans "Dashboard" %}</span>
                                 </div>
                             </a>
                         </li>
@@ -142,7 +156,7 @@
                             <a class="nav-link {% block collapse_state %}collapsed{% endblock %}" data-bs-toggle="collapse" href="#articlesDropdown" role="button" aria-expanded="{% block aria_expanded %}false{% endblock %}" aria-controls="articlesDropdown">
                                 <div>
                                     <i class="fa-regular fa-file-lines"></i> 
-                                    <span>Articles</span>
+                                    <span>{% trans "Articles" %}</span>
                                 </div>
                                 <i class="fa-solid fa-chevron-right fs-7 rotate-icon"></i>
                             </a>
@@ -236,7 +250,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'accounts:profile' %}">
                                 <div>
-                                    <i class="fa-solid fa-gear"></i> <span>Settings</span>
+                                    <i class="fa-solid fa-gear"></i> <span>{% trans "Settings" %}</span>
                                 </div>
                             </a>
                         </li>
@@ -275,7 +289,7 @@
                         {% endif %}
                     </div>
                     <span class="label">
-                        <p>Lionne Member<br>
+                        <p>{% trans "Lionne Member" %}<br>
                         {{ user.first_name|default:"Georgia" }}{% if user.last_name %} {{ user.last_name|slice:":1"|upper }}.{% endif %}
                         </p>
                     </span>
@@ -284,14 +298,14 @@
                 <!-- Bloc Citation Michelle Obama -->
                 <div class="sidebar-quote ps-3 mx-3 mb-4">
                     <i class="fa-solid fa-quote-left quote-icon d-block mb-2"></i>
-                    <p class="quote-text m-0">There is no limit to what we, as Women, can accomplish.</p>
+                    <p class="quote-text m-0">{% trans "There is no limit to what we, as Women, can accomplish." %}</p>
                     <p class="quote-author m-0 mt-2 text-uppercase" style="font-family: var(--font-menus); font-size: 11px; font-weight: 700; opacity: 0.8;">Michelle Obama</p>
                 </div>
 
                 <!-- Footer réseaux sociaux -->
                 <div class="sidebar-footer pt-3 px-3">
 
-                    <p class="social-title mb-2">Our social networks</p>
+                    <p class="social-title mb-2">{% trans "Our social networks" %}</p>
 
                     <div class="social-icons d-flex gap-2 mb-3 align-items-center">
 
@@ -333,7 +347,7 @@
                         </a>
 
                         <p class="social-title mb-0">
-                            +241 77 42 15 47
+                           +241 77 42 15 47
                         </p>
 
                     </div>
@@ -347,7 +361,7 @@
                     <a href="{% url 'home' %}" class="return-site-link text-decoration-none">
 
                         <i class="fa-solid fa-arrow-right-to-bracket rotate-180 me-2"></i>
-                        Return to site
+                        {% trans "Return to site" %}
 
                     </a>
 
@@ -363,12 +377,12 @@
                             <div class="row align-items-start g-4">
                                 <div class="col-12 col-lg-8">
                                     <div class="welcome-header">
-                                        <h1>Welcome back, {{ user.first_name|default:"Georgia" }}! 
+                                        <h1>{% trans "Welcome back," %} {{ user.first_name|default:"Georgia" }}! 
                                             <span class="crown-emoji">
                                                 <img src="{% static 'images/couronne_lionne.png' %}" alt="Lioness">
                                             </span>
                                         </h1>
-                                        <p class="welcome-sub mb-0">Thank you for being part of the LIONESS Le Magazine des reines community.<br>Together, we amplify Women's voices.</p>
+                                        <p class="welcome-sub mb-0">{% trans "Thank you for being part of the LIONESS Le Magazine des reines community. <br> Together, we amplify Women's voices." %}</p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-4">
@@ -396,7 +410,7 @@
                                                 {{ user.first_name|default:"Georgia" }}{% if user.last_name %} {{ user.last_name|slice:":1"|upper|default:"B." }}.{% endif %}
 
                                             </span>
-                                            <span class="date-value">Member since {{ user.date_joined|date:"F Y"|default:"May 2026" }}</span>
+                                            <span class="date-value">{% trans "Member since" %} {{ user.date_joined|date:"F Y"|default:"May 2026" }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -407,14 +421,14 @@
                             <div class="row g-4">
                                 <div class="col-12 col-lg-8 d-flex flex-column gap-4">
                                     <div class="dashboard-card magazine-cat-card">
-                                        <h3>Magazine category</h3>
+                                        <h3>{% trans "Magazine section" %}</h3>
                                         
                                         <!-- Image visible uniquement sur mobile -->
                                         <div class="magazine-image-mobile d-block d-md-none mb-3">
                                             <img src="{% static 'images/bussiness_women.png' %}" alt="Women working" class="w-100 rounded-4">
                                         </div>
                                         
-                                        <p class="card-desc">Choose a magazine category and click on the section you would like to explore. You will be redirected to a dedicated page containing articles related to that topic.</p>
+                                        <p class="card-desc">{% trans "Choose a section and click on the section you would like to explore. You will be redirected to a dedicated page containing articles related to that topic." %}</p>
                                         
                                         <!-- Bouton dropdown visible uniquement sur mobile -->
                                         <div class="d-block d-md-none mt-3">
@@ -425,7 +439,7 @@
                                                     aria-controls="mobileCategoryList">
                                                 <span>
                                                     <i class="fa-solid fa-chevron-right me-2 category-arrow"></i> 
-                                                    Choose category
+                                                    {% trans "Choose category" %}
                                                 </span>
                                             </button>
                                             <div class="collapse mt-2" id="mobileCategoryList">
@@ -511,7 +525,7 @@
                                 <div class="col-12 col-lg-4 d-flex flex-column gap-4">
                                     <div class="dashboard-card activity-card">
                                         <div class="card-title-with-icon d-flex justify-content-between align-items-center mb-2">
-                                            <h3 class="m-0">Your Activity</h3>
+                                            <h3 class="m-0">{% trans "Your Activity" %}</h3>
                                             <img src="{% static 'images/activity.png' %}" alt="Activity Icon" ">
                                         </div>
                                         <ul class="list-group list-group-flush activity-list">
@@ -570,23 +584,22 @@
                             </div>
                         </div>
 
-                        <section class="dashboard-card writing-matters-card mt-4 d-flex justify-content-between align-items-left gap-4">
+                        <section class="dashboard-card writing-matters-card mt-4 d-flex justify-content-between align-items-center gap-4">
                             <div class="writing-content">
-                                <div class="writing-title-group d-flex align-items-left mb-3">
+                                <div class="writing-title-group d-flex align-items-center mb-3">
                                     <img src="{% static 'images/icon_write.png' %}" alt="Write" style="height: 25px; margin-right: 10px;">
-                                    <h3 class="m-0">Your writing matters</h3>
+                                    <h3 class="m-0">{% trans "Your writing matters" %}</h3>
                                 </div>
-                                <p class="writing-p">Make your voice heard with LIONESS, the magazine for queens. We highlight inspiring stories, authentic journeys, and empowering women from around the world. Submit your article to our editorial team.<br>Selected content may be published in the magazine and featured to our community.</p>
-                                
+                                <p class="writing-p">{% trans "Make your voice heard with LIONESS, the magazine for queens. We highlight inspiring stories, authentic journeys, and empowering women from around the world. Submit your article to our editorial team." %}</p>
+                                <p class="writing-p">{% trans "We Selected content may be published in the magazine and featured to our community." %}</p>
                                 <a href="mailto:lioness.lemagdesreines@gmail.com"
                                     class="btn btn-send-text rounded-pill px-3 py-1 text-white">
-                                    Send your text here 
+                                    {% trans "Send your text here" %}
                                     <i class="fa-regular fa-envelope ms-2"></i>
                                 </a>
-
                             </div>
                             <div class="writing-illustration d-none d-md-block flex-shrink-0">
-                                <img src="{% static 'images/writing.png' %}" alt="Typewriter art" style="height: 120px;">
+                                <img src="{% static 'images/writing.png' %}" alt="Typewriter art" class="writing-illustration-img">
                             </div>
                         </section>
                     {% endblock content %}
@@ -594,7 +607,7 @@
 
                 <footer class="dashboard-footer text-center pt-4 mt-5" style="border-top: 1px solid rgba(179, 131, 48, 0.2);">
                     <p class="m-0" style="font-family: var(--font-body); font-size: 12px; color: var(--text-muted);">
-                        &copy; 2026 Lioness Magazine. All rights reserved.
+                        {% trans "&copy; 2026 Lioness Magazine. All rights reserved." %}
                     </p>
                 </footer>
 

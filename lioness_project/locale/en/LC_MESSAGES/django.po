@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-26 12:44+0000\n"
+"POT-Creation-Date: 2026-06-27 05:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,198 +26,250 @@ msgstr ""
 msgid "English"
 msgstr ""
 
+#: dashboard/templates/dashboard/dashboard.html:76
+msgid "Search article..."
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:162
+msgid "Articles"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:304
+msgid "There is no limit to what we, as Women, can accomplish."
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:311
+msgid "Our social networks"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:367
+msgid "Return to site"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:388
+msgid ""
+"Thank you for being part of the LIONESS Le Magazine des reines community."
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:389
+msgid "Together, we amplify Women's voices.n"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:435
+msgid ""
+"Choose a magazine category and click on the section you would like to "
+"explore. You will be redirected to a dedicated page containing articles "
+"related to that topic."
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:446
+msgid "Choose category"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:532
+msgid "Your Activity"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:601
+msgid "Send your text here"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard.html:615
+msgid "&copy; 2026 Lioness Magazine. All rights reserved."
+msgstr ""
+
 #: templates/home.html:30
 msgid "Access to Calaméo<br>Digital Magazine"
 msgstr ""
 
-#: templates/home.html:42 templates/home.html:393
+#: templates/home.html:42 templates/home.html:402
 msgid "Log in"
 msgstr ""
 
-#: templates/home.html:43 templates/home.html:117 templates/home.html:174
-#: templates/home.html:394
+#: templates/home.html:43 templates/home.html:126 templates/home.html:183
+#: templates/home.html:403
 msgid "Become a member"
 msgstr ""
 
-#: templates/home.html:71 templates/home.html:83 templates/home.html:381
+#: templates/home.html:80 templates/home.html:92 templates/home.html:390
 msgid "About"
 msgstr ""
 
-#: templates/home.html:72
+#: templates/home.html:81
 msgid "Categories"
 msgstr ""
 
-#: templates/home.html:73 templates/home.html:85 templates/home.html:143
-#: templates/home.html:382
+#: templates/home.html:82 templates/home.html:94 templates/home.html:152
+#: templates/home.html:391
 msgid "Community"
 msgstr ""
 
-#: templates/home.html:74 templates/home.html:86 templates/home.html:136
-#: templates/home.html:383
+#: templates/home.html:83 templates/home.html:95 templates/home.html:145
+#: templates/home.html:392
 msgid "Magazine"
 msgstr ""
 
-#: templates/home.html:75 templates/home.html:87
+#: templates/home.html:84 templates/home.html:96
 msgid "Services"
 msgstr ""
 
-#: templates/home.html:76 templates/home.html:88
+#: templates/home.html:85 templates/home.html:97
 msgid "Personalities"
 msgstr ""
 
-#: templates/home.html:84
+#: templates/home.html:93
 msgid "Categorie"
 msgstr ""
 
-#: templates/home.html:101
+#: templates/home.html:110
 msgid ""
 "We place <span class=\"text-gold-custom\">crowns</span> on women, like queens"
 msgstr ""
 
-#: templates/home.html:108
+#: templates/home.html:117
 msgid "<b>LIONESS</b> is much more than a magazine."
 msgstr ""
 
-#: templates/home.html:110
+#: templates/home.html:119
 msgid ""
 "It's a community born in Gabon that shines a spotlight on African and Afro-"
 "descendant women, both in Africa and in the diaspora, while remaining open "
 "to women worldwide."
 msgstr ""
 
-#: templates/home.html:112
+#: templates/home.html:121
 msgid ""
 "We celebrate ambitious, entrepreneurial, creative, and committed women "
 "through inspiring stories, authentic journeys, and meaningful content."
 msgstr ""
 
-#: templates/home.html:114
+#: templates/home.html:123
 msgid ""
 "Joining LIONESS, means joining a movement that celebrates women, their "
 "ambitions, and their impact on the world."
 msgstr ""
 
-#: templates/home.html:116
+#: templates/home.html:125
 msgid "See the magazines"
 msgstr ""
 
-#: templates/home.html:130
+#: templates/home.html:139
 msgid "A space to inspire, connect, and impact"
 msgstr ""
 
-#: templates/home.html:137
+#: templates/home.html:146
 msgid ""
 "Discover inspiring content on entrepreneurship, culture, leadership, well-"
 "being and much more."
 msgstr ""
 
-#: templates/home.html:144
+#: templates/home.html:153
 msgid ""
 "Join a community of ambitious and committed women from around the world."
 msgstr ""
 
-#: templates/home.html:150
+#: templates/home.html:159
 msgid "Entrepreneurship"
 msgstr ""
 
-#: templates/home.html:151
+#: templates/home.html:160
 msgid ""
 "Let's celebrate women entrepreneurs and their initiatives that are "
 "transforming our societies."
 msgstr ""
 
-#: templates/home.html:157
+#: templates/home.html:166
 msgid "African Diaspora"
 msgstr ""
 
-#: templates/home.html:158
+#: templates/home.html:167
 msgid ""
 "A bridge between Africa and its diaspora to share, learn, and collaborate."
 msgstr ""
 
-#: templates/home.html:172
+#: templates/home.html:181
 msgid "Join a community of inspiring women"
 msgstr ""
 
-#: templates/home.html:173
+#: templates/home.html:182
 msgid ""
 "Exchange ideas, share your experiences and develop your projects with women "
 "from all over the world."
 msgstr ""
 
-#: templates/home.html:262
+#: templates/home.html:271
 msgid "Our services"
 msgstr ""
 
-#: templates/home.html:267
+#: templates/home.html:276
 msgid "Featured"
 msgstr ""
 
-#: templates/home.html:268
+#: templates/home.html:277
 msgid "We highlight women and their projects through our platforms."
 msgstr ""
 
-#: templates/home.html:274
+#: templates/home.html:283
 msgid "Interviews &amp; portraits"
 msgstr ""
 
-#: templates/home.html:275
+#: templates/home.html:284
 msgid ""
 "Authentic stories to inspire and motivate everyone who reads Lioness, the "
 "magazine for queens."
 msgstr ""
 
-#: templates/home.html:281
+#: templates/home.html:290
 msgid "Accompaniement"
 msgstr ""
 
-#: templates/home.html:282
+#: templates/home.html:291
 msgid ""
 "If you become a member, you will have access to resources, advice, and tools "
 "to boost your business."
 msgstr ""
 
-#: templates/home.html:288
+#: templates/home.html:297
 msgid "Media Conten"
 msgstr ""
 
-#: templates/home.html:289
+#: templates/home.html:298
 msgid ""
 "If you become a member, you'll have access to podcasts, videos, and articles "
 "to learn and grow."
 msgstr ""
 
-#: templates/home.html:325
+#: templates/home.html:334
 msgid "is a publication of Layilab."
 msgstr ""
 
-#: templates/home.html:384
+#: templates/home.html:393
 msgid "Service"
 msgstr ""
 
-#: templates/home.html:385
+#: templates/home.html:394
 msgid "The Most Impactful Personalities"
 msgstr ""
 
-#: templates/home.html:390
+#: templates/home.html:399
 msgid ""
 "Become a member of the community that celebrates women worldwide. Together, "
 "we are breaking down patriarchal stereotypes."
 msgstr ""
 
-#: templates/home.html:402
+#: templates/home.html:411
 msgid "Legal Notice"
 msgstr ""
 
-#: templates/home.html:408
+#: templates/home.html:417
 msgid "Privacy Policy"
 msgstr ""
 
-#: templates/home.html:414
+#: templates/home.html:423
 msgid "Terms of Use"
 msgstr ""
 
-#: templates/home.html:420
+#: templates/home.html:429
 msgid "Cookie Management"
 msgstr ""
 

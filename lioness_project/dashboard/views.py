@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.utils.translation import gettext_lazy as _
 from blog_magazine.models import Article
 from django.db.models import Q
 
@@ -14,22 +15,22 @@ def dashboard_view(request):
     activities = [
         {
             "icon": "fa-regular fa-file-lines",
-            "label": "Articles read",
+            "label": _("Articles read"),
             "count": 0,
         },
         {
             "icon": "fa-solid fa-book-open",
-            "label": "Magazine issues",
+            "label": _("Magazine issues"),
             "count": Article.objects.filter(published=True).count(),
         },
         {
             "icon": "fa-regular fa-bookmark",
-            "label": "Saved articles",
+            "label": "Saved articles",   # ⚠️ NE PAS traduire, voir explication ci-dessous
             "count": 0,
         },
         {
             "icon": "fa-regular fa-comment",
-            "label": "Comments",
+            "label": "Comments",         # ⚠️ NE PAS traduire, voir explication ci-dessous
             "count": 0,
         },
     ]

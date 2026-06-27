@@ -94,6 +94,88 @@ h1, h2, h3, h4, h5, h6, .welcome-header h1, .dashboard-card h3 {
     font-size: 0.9rem;
     white-space: nowrap;
 }
+
+
+/* ==========================================================================
+    LANGUES
+   ========================================================================== */
+.select-language {
+    position: relative;
+    display: inline-block;
+}
+
+
+.current-language {
+    color:  #04757D;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.style-arrow {
+    color:  #04757D;
+    font-size: 12px;
+}
+
+
+.language-options {
+    display: none;
+    position: absolute;
+    top: 25px;
+    right: 0;
+
+    background: #04757D;
+    border-radius: 6px;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+
+/* ouverture au survol */
+.select-language:hover .language-options {
+    display: block;
+}
+
+
+.language-options button {
+    width: 100%;
+    border: none;
+    background: #04757D;
+
+    padding: 8px 12px;
+
+    color: white;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.language-options button:hover {
+    background-color: white;
+    color: #04757D;
+}
+
+/* Flèche Font Awesome */
+.style-arrow {
+    color: #04757D;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.select-language select:focus {
+    color: #04757D;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Options du menu */
+.select-language select option {
+    background: #04757D;
+    color:white;;
+}
+
+
 /* ==========================================
 SEARCH DASHBOARD
 ========================================== */
@@ -172,11 +254,6 @@ SEARCH DASHBOARD
     margin: 20px;
 }
 
-button:not(.search-toggle) {
-    width: calc(100% - 40px);
-    margin: 20px;
-}
-
 .center-icon-logo {
     height: 55px;
 }
@@ -192,16 +269,9 @@ button:not(.search-toggle) {
     white-space: nowrap;
 }
 
-
-
 .search-toggle {
     width: auto !important;
     margin: 0 !important;
-}
-
-button:not(.search-toggle) {
-    width: calc(100% - 40px);
-    margin: 20px;
 }
 
 .btn-support-top:hover {
@@ -750,8 +820,11 @@ button:not(.search-toggle) {
     border: 1px solid var(--accent-gold) !important;
 }
 
-.writing-illustration img {
-    width: 100%;
+.writing-illustration-img {
+    height: 180px;
+    width: auto;
+    max-width: 280px;
+    object-fit: contain;
 }
 
 .writing-p {
@@ -771,12 +844,7 @@ button:not(.search-toggle) {
     background-color: #936a24 !important;
 }
 
-/* ── Carte "Your Impact" ──
-   Structure : .impact-banner-card > .impact-info (image + .impact-text) + .impact-bottom (bouton + powered-by)
-   L'alignement responsive (desktop = ligne / mobile = colonne centrée) est géré
-   par les classes Bootstrap directement sur .impact-info dans le HTML
-   (flex-column flex-md-row align-items-center text-center text-md-start).
-   Ici on ne gère que la structure générale de la carte et le cas <768px. */
+/* ── Carte "Your Impact" ── */
 .impact-banner-card {
     overflow: visible !important;
     position: relative;

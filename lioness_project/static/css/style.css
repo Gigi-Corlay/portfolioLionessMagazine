@@ -551,11 +551,16 @@ footer .btn-outline-gold:hover {
 .small-legal-text { font-size: 12px !important; }
 
 /* Responsive général — réduction de padding sur mobile */
+@media (min-width: 768px) and (max-width: 1024px) {
 
-@media (max-width: 1000px) {
-    .header-logo {
-        height: 30px;
+    #main-nav ul.nav li.nav-item a.nav-link {
+        font-size: 11px !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
     }
+
+}
+@media (max-width: 1200px) {
     .btn {
         padding-left: 10px !important;
         padding-right: 10px !important;
