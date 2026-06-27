@@ -6,20 +6,18 @@ from django.contrib.auth.forms import (
 from django.contrib.auth.models import User
 from .models import Profile
 from django.contrib.auth.forms import PasswordChangeForm
-
-# 1. AJOUT DE L'IMPORT DE TRADUCTION
 from django.utils.translation import gettext_lazy as _
 
 
 class RegisterForm(UserCreationForm):
 
     first_name = forms.CharField(
-        label=_("First Name"),  # Ajout de _()
+        label=_("First Name"),
         max_length=100,
         required=True,
         widget=forms.TextInput(
             attrs={
-                "placeholder": _("Your First Name"),  # Optionnel : traduit aussi le placeholder
+                "placeholder": _("Your First Name"),
                 "class": "form-control"
             }
         )
@@ -104,23 +102,14 @@ class RegisterForm(UserCreationForm):
         )
 
     def clean_email(self):
-
-        email = self.cleaned_data.get(
-            "email",
-            ""
-        ).strip().lower()
-
-        if User.objects.filter(
-            email__iexact=email
-        ).exists():
-            # Traduction du message d'erreur d'email existant
+        email = self.cleaned_data.get("email", "").strip().lower()
+        if User.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError(
                 _("An account with this email already exists.")
             )
-
         return email
 
-# Les autres formulaires restent identiques mais tu pourras y ajouter des _() au besoin.
+
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(
         label=_("Email"),
@@ -143,15 +132,17 @@ class LoginForm(AuthenticationForm):
         )
     )
 
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ("country", "occupation", "profile_picture", "bio")
-        # Si c'est un ModelForm, on peut passer par l'attribut labels :
+
+        # On remplace "Bio" ou "En quelques mots..." par "About you"
         labels = {
             "country": _("Country"),
             "occupation": _("Occupation"),
-            "bio": _("Bio"),
+            "bio": _("About you"), 
         }
         widgets = {
             "country": forms.TextInput(attrs={"class": "form-control", "placeholder": _("Country")}),
@@ -159,6 +150,7 @@ class ProfileForm(forms.ModelForm):
             "profile_picture": forms.FileInput(attrs={"class": "form-control d-none", "id": "id_profile_picture", "accept": "image/*"}),
             "bio": forms.Textarea(attrs={"class": "form-control", "placeholder": _("Tell us about yourself..."), "rows": 5}),
         }
+
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-27 14:01+0000\n"
+"POT-Creation-Date: 2026-06-27 16:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,83 +18,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: accounts/forms.py:17 accounts/forms.py:168 accounts/forms.py:173
+#: accounts/forms.py:15 accounts/forms.py:160 accounts/forms.py:165
 msgid "First Name"
 msgstr "Prénom"
 
-#: accounts/forms.py:22
+#: accounts/forms.py:20
 msgid "Your First Name"
 msgstr "Prénom"
 
-#: accounts/forms.py:29 accounts/forms.py:169 accounts/forms.py:174
+#: accounts/forms.py:27 accounts/forms.py:161 accounts/forms.py:166
 msgid "Last Name"
 msgstr "Nom de famille"
 
-#: accounts/forms.py:34
+#: accounts/forms.py:32
 msgid "Your Last Name"
 msgstr "Nom de famille"
 
-#: accounts/forms.py:41 accounts/forms.py:170 accounts/forms.py:175
+#: accounts/forms.py:39 accounts/forms.py:162 accounts/forms.py:167
 msgid "Email Address"
 msgstr "Adresse email"
 
-#: accounts/forms.py:52 accounts/forms.py:152 accounts/forms.py:157
-#: templates/accounts/register.html:94
+#: accounts/forms.py:50 accounts/forms.py:143 accounts/forms.py:148
+#: templates/accounts/register.html:98
 msgid "Country"
 msgstr "Pays"
 
-#: accounts/forms.py:57
+#: accounts/forms.py:55
 msgid "Your Country"
 msgstr "Pays"
 
-#: accounts/forms.py:64 accounts/forms.py:153 accounts/forms.py:158
-#: templates/accounts/register.html:99
+#: accounts/forms.py:62 accounts/forms.py:144 accounts/forms.py:149
+#: templates/accounts/register.html:103
 msgid "Occupation"
 msgstr "Profession"
 
-#: accounts/forms.py:69
+#: accounts/forms.py:67
 msgid "Your Occupation"
 msgstr "Profession"
 
-#: accounts/forms.py:76 accounts/forms.py:79 accounts/forms.py:136
-#: accounts/forms.py:140 templates/accounts/login.html:93
-#: templates/accounts/register.html:109
+#: accounts/forms.py:74 accounts/forms.py:77 accounts/forms.py:125
+#: accounts/forms.py:129 templates/accounts/login.html:93
+#: templates/accounts/register.html:113
 msgid "Password"
 msgstr "Mot de passe"
 
-#: accounts/forms.py:86 accounts/forms.py:89
+#: accounts/forms.py:84 accounts/forms.py:87
 msgid "Confirm Password"
 msgstr "Confirmez le mot de passe"
 
-#: accounts/forms.py:118
+#: accounts/forms.py:108
 msgid "An account with this email already exists."
 msgstr "Un compte associé à cette adresse e-mail existe déjà."
 
-#: accounts/forms.py:126
+#: accounts/forms.py:115
 msgid "Email"
 msgstr "E-mail"
 
-#: accounts/forms.py:154
-msgid "Bio"
-msgstr "Bio"
+#: accounts/forms.py:145
+msgid "About you"
+msgstr "À propos de vous"
 
-#: accounts/forms.py:160
+#: accounts/forms.py:151
 msgid "Tell us about yourself..."
 msgstr "Parlez-nous de vous..."
 
-#: accounts/forms.py:181
+#: accounts/forms.py:173
 msgid "This email address is already in use."
 msgstr "Cette adresse e-mail est déjà utilisée."
 
-#: accounts/forms.py:187 accounts/forms.py:189
+#: accounts/forms.py:179 accounts/forms.py:181
 msgid "Current Password"
 msgstr "Mot de passe"
 
-#: accounts/forms.py:192 accounts/forms.py:194
+#: accounts/forms.py:184 accounts/forms.py:186
 msgid "New Password"
 msgstr "Mot de passe"
 
-#: accounts/forms.py:195
+#: accounts/forms.py:187
 msgid ""
 "Your password must contain at least 8 characters and can't be entirely "
 "numeric."
@@ -102,9 +102,74 @@ msgstr ""
 "Votre mot de passe doit comporter au moins 8 caractères et ne peut pas être "
 "entièrement numérique."
 
-#: accounts/forms.py:198 accounts/forms.py:200
+#: accounts/forms.py:190 accounts/forms.py:192
 msgid "Confirm New Password"
 msgstr "Confirmez le mot de passe"
+
+#: accounts/templates/profile/profile.html:24
+msgid "No Photo"
+msgstr "Aucune photo"
+
+#: accounts/templates/profile/profile.html:30
+msgid "Profile of"
+msgstr "Profil de"
+
+#: accounts/templates/profile/profile.html:63
+msgid "User Information"
+msgstr "Informations sur l'utilisateur"
+
+#: accounts/templates/profile/profile.html:64
+msgid "Manage your profile, personal information and account settings."
+msgstr "Gérez votre profil, vos informations personnelles et les paramètres de votre compte."
+
+#: accounts/templates/profile/profile.html:78
+msgid "Profile Information"
+msgstr "Informations sur votre profil"
+
+#: accounts/templates/profile/profile.html:83
+msgid "Profile Picture"
+msgstr "Votre photo de profi"
+
+#: accounts/templates/profile/profile.html:88
+msgid "Current photo set"
+msgstr "Photo déjà configurée"
+
+#: accounts/templates/profile/profile.html:88
+msgid "No photo uploaded"
+msgstr "Aucune photo téléchargée"
+
+#: accounts/templates/profile/profile.html:92
+msgid "Change Photo"
+msgstr "Changer la photo"
+
+#: accounts/templates/profile/profile.html:92
+msgid "Upload Photo"
+msgstr "Télécharger la photo"
+
+#: accounts/templates/profile/profile.html:115
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: accounts/templates/profile/profile.html:121
+msgid "Account Actions"
+msgstr "Mon Compte"
+
+#: accounts/templates/profile/profile.html:125
+msgid "Change Password"
+msgstr "Mot de passe"
+
+#: accounts/templates/profile/profile.html:128
+#: dashboard/templates/dashboard/dashboard.html:101
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: accounts/templates/profile/profile.html:131
+msgid "Back to Dashboard"
+msgstr "Tableau de bord"
+
+#: accounts/templates/profile/profile.html:149
+msgid "New photo selected:"
+msgstr "Actions sur le compte"
 
 #: config/settings.py:135
 msgid "Français"
@@ -118,10 +183,6 @@ msgstr "Anglais"
 #: dashboard/templates/dashboard/dashboard.html:140
 msgid "Search article..."
 msgstr "Rechercher un article..."
-
-#: dashboard/templates/dashboard/dashboard.html:101
-msgid "Logout"
-msgstr "Déconnexion"
 
 #: dashboard/templates/dashboard/dashboard.html:150
 msgid "Dashboard"
@@ -149,7 +210,7 @@ msgid "Our social networks"
 msgstr "Nos réseaux sociaux"
 
 #: dashboard/templates/dashboard/dashboard.html:364
-#: templates/accounts/login.html:35 templates/accounts/register.html:34
+#: templates/accounts/login.html:35 templates/accounts/register.html:29
 msgid "Return to site"
 msgstr "Retour au site"
 
@@ -238,7 +299,7 @@ msgstr ""
 msgid "Fields marked with an * are mandatory."
 msgstr "Les champs marqués d'un * sont obligatoires."
 
-#: templates/accounts/login.html:88 templates/accounts/register.html:104
+#: templates/accounts/login.html:88 templates/accounts/register.html:108
 msgid "Email address"
 msgstr "Adresse email"
 
@@ -259,51 +320,55 @@ msgstr "Vous n'avez pas encore de compte ?"
 msgid "Register"
 msgstr "Enregistrer"
 
-#: templates/accounts/login.html:129 templates/accounts/register.html:143
+#: templates/accounts/login.html:129 templates/accounts/register.html:148
 #: templates/home.html:411
 msgid "Legal Notice"
 msgstr "Mentions légales"
 
-#: templates/accounts/login.html:136 templates/accounts/register.html:150
+#: templates/accounts/login.html:136 templates/accounts/register.html:155
 #: templates/home.html:417
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
 
-#: templates/accounts/login.html:143 templates/accounts/register.html:157
+#: templates/accounts/login.html:143 templates/accounts/register.html:162
 #: templates/home.html:423
 msgid "Terms of Use"
 msgstr "Conditions d'utilisation"
 
-#: templates/accounts/login.html:150 templates/accounts/register.html:164
+#: templates/accounts/login.html:150 templates/accounts/register.html:169
 #: templates/home.html:429
 msgid "Cookie Management"
 msgstr "Gestion des cookies"
 
-#: templates/accounts/register.html:71
+#: templates/accounts/register.html:10
+msgid "Inscription - Lioness"
+msgstr "Inscription - Lionness"
+
+#: templates/accounts/register.html:75
 msgid "REGISTRATION"
 msgstr "INSCRIPTION"
 
-#: templates/accounts/register.html:72
-msgid "Fields marked with an a "
+#: templates/accounts/register.html:76
+msgid "Fields marked with an"
 msgstr "Les champs marqués d'un "
 
-#: templates/accounts/register.html:72
+#: templates/accounts/register.html:76
 msgid "are mandatory."
 msgstr "sont obligatoires."
 
-#: templates/accounts/register.html:84
-msgid "name"
-msgstr "nom"
+#: templates/accounts/register.html:88
+msgid "Name"
+msgstr "Nom de famille"
 
-#: templates/accounts/register.html:89
+#: templates/accounts/register.html:93
 msgid "First name"
 msgstr "Prénom"
 
-#: templates/accounts/register.html:119
+#: templates/accounts/register.html:124
 msgid "Confirm password"
 msgstr "Confirmez le mot de passe"
 
-#: templates/accounts/register.html:128
+#: templates/accounts/register.html:134
 msgid "Submit the form"
 msgstr "Soumettez le formulaire"
 

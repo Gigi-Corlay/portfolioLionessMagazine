@@ -187,3 +187,74 @@ img.rounded-circle {
         .card-header img {
         border: 3px solid white;
         }
+
+/* ==========================================================================
+    LANGUES - Profil (Nettoyage Strict Complet)
+   ========================================================================== */
+.select-language {
+    position: relative;
+    display: inline-block;
+}
+
+.current-language {
+    color: white !important;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: var(--body-font);
+}
+
+.style-arrow {
+    color: white !important;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+/* Le conteneur d'options s'aligne verticalement sous le bouton principal */
+.language-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #04757D !important; /* Couleur Lioness forcée */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 4px 0 !important;
+    min-width: 70px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    z-index: 1050 !important;
+}
+
+/* Affichage au survol */
+.select-language:hover .language-options {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Annulation stricte du style par défaut "bouton gris" du navigateur */
+.language-options button.lang-btn {
+    display: block !important;
+    width: 100% !important;
+    background: transparent !important;       /* Supprime le fond gris d'origine */
+    background-color: transparent !important; 
+    color: white !important;                  /* Force le texte blanc */
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    padding: 6px 12px !important;
+    margin: 0 !important;
+    border: none !important;                  /* Supprime l'effet 3D/bordure noire */
+    outline: none !important;
+    box-shadow: none !important;              /* Supprime les ombres héritées */
+    cursor: pointer !important;
+    border-radius: 0 !important;
+    font-family: var(--body-font) !important;
+    transition: background-color 0.2s ease;
+}
+
+/* Effet au survol des options FR / EN */
+.language-options button.lang-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important; /* Léger voile blanc au survol */
+    color: white !important;
+}

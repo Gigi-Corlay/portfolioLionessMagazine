@@ -1,212 +1,154 @@
 {% load static %}
+{% load i18n %}
+
 <link rel="icon" type="image/png" href="{% static 'images/logo_favicon.png' %}">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
 
 <div class="container py-5">
-
-
     <div class="row justify-content-center">
-
         <div class="col-lg-8">
-
             <div class="card shadow border-0">
 
                 <!-- Header -->
-
-                <div class="card-header bg-primary text-white py-4">
-                    <div class="d-flex align-items-center">
+                <div class="card-header bg-primary text-white py-4 position-relative">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
                     
-                        {% if user.profile.profile_picture %}
-                            <img
-                                src="{{ user.profile.profile_picture.url }}"
-                                alt="Profile Picture"
-                                class="rounded-circle img-thumbnail me-4"
-                                style="width:120px;height:120px;object-fit:cover;"
-                            >
-                        {% else %}
-                            <div
-                                class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-4"
-                                style="width:120px;height:120px;"
-                            >
-                                <span>No Photo</span>
+                        <div class="d-flex align-items-center">
+                            {% if user.profile.profile_picture %}
+                                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="rounded-circle img-thumbnail me-4" style="width:120px;height:120px;object-fit:cover;">
+                            {% else %}
+                                <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-4" style="width:120px;height:120px;">
+                                    <span>{% trans "No Photo" %}</span>
+                                </div>
+                            {% endif %}
+                        
+                            <div>
+                                <h2 class="mb-1 text-white">
+                                    {% trans "Profile of" %} {{ user.get_full_name|default:user.username }}
+                                </h2>
                             </div>
-                        {% endif %}
-                    
-                        <div>
-                            <h2 class="mb-1">
-                                Profile of {{ user.get_full_name|default:user.username }}
-                            </h2>
+                        </div>
+
+                        <!-- Sélecteur de Langue -->
+                        <div class="header-right">
+                            <form action="{% url 'set_language' %}" method="post" class="lang-form mb-0">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ request.path }}">
+                        
+                                <div class="select-language">
+                                    <div class="current-language">
+                                        {{ request.LANGUAGE_CODE|upper }}
+                                        <i class="bi bi-chevron-down ms-1 style-arrow"></i>
+                                    </div>
+                        
+                                    <div class="language-options">
+                                        <button class="lang-btn" type="submit" name="language" value="fr">FR</button>
+                                        <button class="lang-btn" type="submit" name="language" value="en">EN</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 
                     </div>
                 </div>
-                    
 
                 <!-- Body -->
-
                 <div class="card-body p-4">
-
                     <form method="post" enctype="multipart/form-data">
-
                         {% csrf_token %}
 
-                        <h4 class="mb-4">
-                            User Information
-                        </h4>
-                        <p class="text-muted"> Manage your profile, personal information and account settings. </p>
+                        <h4 class="mb-4">{% trans "User Information" %}</h4>
+                        <p class="text-muted">{% trans "Manage your profile, personal information and account settings." %}</p>
 
                         {% for field in user_form %}
-
                             <div class="mb-3">
-
-                                <label class="form-label fw-bold">
-                                    {{ field.label }}
-                                </label>
-
+                                <label class="form-label fw-bold">{{ field.label }}</label>
                                 {{ field }}
-
                                 {% for error in field.errors %}
-                                    <div class="text-danger small">
-                                        {{ error }}
-                                    </div>
+                                    <div class="text-danger small">{{ error }}</div>
                                 {% endfor %}
-
                             </div>
-
                         {% endfor %}
 
                         <hr class="my-4">
 
-                        <h4 class="mb-4">
-                            Profile Information
-                        </h4>
+                        <h4 class="mb-4">{% trans "Profile Information" %}</h4>
 
                         {% for field in profile_form %}
-
-                        {% if field.name == "profile_picture" %}
-
-                        <div class="mb-4">
-
-                            <label class="form-label fw-bold">
-                                Profile Picture
-                            </label>
-                        
-                            <div class="d-flex align-items-center gap-3">
-                        
-                                <div class="text-center">
-                        
-                                    <img
-                                        id="picture-preview"
-                                        src="{% if user.profile.profile_picture %}{{ user.profile.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}"
-                                        alt="Current photo"
-                                        class="rounded-circle"
-                                        style="width:70px;height:70px;object-fit:cover;border:2px solid var(--lioness-color);"
-                                    >
-                        
-                                    <div id="picture-filename" class="form-text">
-                                        {% if user.profile.profile_picture %}Current photo set{% else %}No photo uploaded{% endif %}
+                            {% if field.name == "profile_picture" %}
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">{% trans "Profile Picture" %}</label>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="text-center">
+                                            <img id="picture-preview" src="{% if user.profile.profile_picture %}{{ user.profile.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="Current photo" class="rounded-circle" style="width:70px;height:70px;object-fit:cover;border:2px solid var(--lioness-color);">
+                                            <div id="picture-filename" class="form-text">
+                                                {% if user.profile.profile_picture %}{% trans "Current photo set" %}{% else %}{% trans "No photo uploaded" %}{% endif %}
+                                            </div>
+                                        </div>
+                                        <label for="id_profile_picture" class="btn btn-success btn-sm mb-3">
+                                            {% if user.profile.profile_picture %}{% trans "Change Photo" %}{% else %}{% trans "Upload Photo" %}{% endif %}
+                                        </label>
                                     </div>
-                        
+                                    <div class="d-none">{{ field }}</div>
+                                    {% for error in field.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
                                 </div>
-                        
-                                <label for="id_profile_picture" class="btn btn-success btn-sm mb-3">
-                                    {% if user.profile.profile_picture %}Change Photo{% else %}Upload Photo{% endif %}
-                                </label>
-                        
-                            </div>
-                        
-                            {{ field }}
-                        
-                            {% for error in field.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                            {% endfor %}
-                        
-                        </div>
-
-                        {% else %}
-
-                            <div class="mb-3">
-
-                                <label class="form-label fw-bold">
-                                    {{ field.label }}
-                                </label>
-
-                                {{ field }}
-
-                                {% if field.help_text %}
-                                    <div class="form-text">{{ field.help_text }}</div>
-                                {% endif %}
-
-                                {% for error in field.errors %}
-                                    <div class="text-danger small">{{ error }}</div>
-                                {% endfor %}
-
-                            </div>
-
-                        {% endif %}
-
-                    {% endfor %}
+                            {% else %}
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">{{ field.label }}</label>
+                                    {{ field }}
+                                    {% if field.help_text %}
+                                        <div class="form-text">{{ field.help_text }}</div>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
 
                         <div class="d-grid mt-4">
-
-                            <button
-                                type="submit"
-                                class="btn btn-success btn-lg"
-                            >
-                                Save Changes
-                            </button>
-
+                            <button type="submit" class="btn btn-success btn-lg">{% trans "Save Changes" %}</button>
                         </div>
-
                     </form>
 
                     <!-- Actions -->
-
                     <div class="mt-5">
-
-                        <h5 class="mb-3">
-                            Account Actions
-                        </h5>
-
+                        <h5 class="mb-3">{% trans "Account Actions" %}</h5>
                         <div class="row">
-
                             <div class="col-md-6 mb-2">
-
                                 <a href="{% url 'accounts:password_change' %}" class="profile-link"> 
-                                    <i class="bi bi-shield-lock me-2"></i> 
-                                    Change Password 
+                                    <i class="bi bi-shield-lock me-2"></i> {% trans "Change Password" %} 
                                 </a> 
                                 <a href="{% url 'accounts:logout' %}" class="profile-link logout-link"> 
-                                    <i class="bi bi-box-arrow-right me-2"></i> 
-                                    Logout 
+                                    <i class="bi bi-box-arrow-right me-2"></i> {% trans "Logout" %} 
                                 </a> 
                                 <a href="{% url 'dashboard' %}" class="profile-link"> 
-                                    <i class="bi bi-house-door me-2"></i> 
-                                    Back to Dashboard 
+                                    <i class="bi bi-house-door me-2"></i> {% trans "Back to Dashboard" %} 
                                 </a>
                             </div>
-
                         </div>
-
                     </div>
 
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-<script>
-    document.getElementById("id_profile_picture").addEventListener("change", function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            document.getElementById("picture-preview").src = URL.createObjectURL(file);
-            document.getElementById("picture-filename").textContent = "New photo selected: " + file.name;
+    <script>
+        const fileInput = document.getElementById("id_profile_picture");
+        if(fileInput) {
+            fileInput.addEventListener("change", function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    document.getElementById("picture-preview").src = URL.createObjectURL(file);
+                    document.getElementById("picture-filename").textContent = "{% trans 'New photo selected:' %} " + file.name;
+                }
+            });
         }
-    });
-</script>
+    </script>
 </div>
