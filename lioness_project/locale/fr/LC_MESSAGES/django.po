@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-27 12:21+0000\n"
+"POT-Creation-Date: 2026-06-27 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,8 @@ msgid "Your Occupation"
 msgstr "Profession"
 
 #: accounts/forms.py:76 accounts/forms.py:79 accounts/forms.py:136
-#: accounts/forms.py:140 templates/accounts/register.html:109
+#: accounts/forms.py:140 templates/accounts/login.html:93
+#: templates/accounts/register.html:109
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -83,7 +84,7 @@ msgstr "Parlez-nous de vous..."
 
 #: accounts/forms.py:181
 msgid "This email address is already in use."
-msgstr ""
+msgstr "Cette adresse e-mail est déjà utilisée."
 
 #: accounts/forms.py:187 accounts/forms.py:189
 msgid "Current Password"
@@ -148,7 +149,7 @@ msgid "Our social networks"
 msgstr "Nos réseaux sociaux"
 
 #: dashboard/templates/dashboard/dashboard.html:364
-#: templates/accounts/register.html:34
+#: templates/accounts/login.html:35 templates/accounts/register.html:34
 msgid "Return to site"
 msgstr "Retour au site"
 
@@ -229,6 +230,55 @@ msgstr "Articles lus"
 msgid "Magazine issues"
 msgstr "Numéros du magazine"
 
+#: templates/accounts/login.html:74
+msgid "LOG IN"
+msgstr ""
+
+#: templates/accounts/login.html:76
+msgid "Fields marked with an * are mandatory."
+msgstr "Les champs marqués d'un * sont obligatoires."
+
+#: templates/accounts/login.html:88 templates/accounts/register.html:104
+msgid "Email address"
+msgstr "Adresse email"
+
+#: templates/accounts/login.html:105
+msgid "Forgot your password?"
+msgstr "Mot de passe oublié ?"
+
+#: templates/accounts/login.html:109 templates/home.html:42
+#: templates/home.html:402
+msgid "Log in"
+msgstr "Se connecter"
+
+#: templates/accounts/login.html:113
+msgid "Don't have an account yet?"
+msgstr "Vous n'avez pas encore de compte ?"
+
+#: templates/accounts/login.html:115
+msgid "Register"
+msgstr "Enregistrer"
+
+#: templates/accounts/login.html:129 templates/accounts/register.html:143
+#: templates/home.html:411
+msgid "Legal Notice"
+msgstr "Mentions légales"
+
+#: templates/accounts/login.html:136 templates/accounts/register.html:150
+#: templates/home.html:417
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: templates/accounts/login.html:143 templates/accounts/register.html:157
+#: templates/home.html:423
+msgid "Terms of Use"
+msgstr "Conditions d'utilisation"
+
+#: templates/accounts/login.html:150 templates/accounts/register.html:164
+#: templates/home.html:429
+msgid "Cookie Management"
+msgstr "Gestion des cookies"
+
 #: templates/accounts/register.html:71
 msgid "REGISTRATION"
 msgstr "INSCRIPTION"
@@ -249,10 +299,6 @@ msgstr "nom"
 msgid "First name"
 msgstr "Prénom"
 
-#: templates/accounts/register.html:104
-msgid "Email address"
-msgstr "Adresse email"
-
 #: templates/accounts/register.html:119
 msgid "Confirm password"
 msgstr "Confirmez le mot de passe"
@@ -261,29 +307,9 @@ msgstr "Confirmez le mot de passe"
 msgid "Submit the form"
 msgstr "Soumettez le formulaire"
 
-#: templates/accounts/register.html:143 templates/home.html:411
-msgid "Legal Notice"
-msgstr "Mentions légales"
-
-#: templates/accounts/register.html:150 templates/home.html:417
-msgid "Privacy Policy"
-msgstr "Politique de confidentialité"
-
-#: templates/accounts/register.html:157 templates/home.html:423
-msgid "Terms of Use"
-msgstr "Conditions d'utilisation"
-
-#: templates/accounts/register.html:164 templates/home.html:429
-msgid "Cookie Management"
-msgstr "Gestion des cookies"
-
 #: templates/home.html:30
 msgid "Access to Calaméo<br>Digital Magazine"
 msgstr "Accès au Magazine Numérique Calaméo"
-
-#: templates/home.html:42 templates/home.html:402
-msgid "Log in"
-msgstr "Se connecter"
 
 #: templates/home.html:43 templates/home.html:126 templates/home.html:183
 #: templates/home.html:403
@@ -484,12 +510,3 @@ msgid ""
 msgstr ""
 "Devenez membre de la communauté qui célèbre les femmes à travers le monde. "
 "Ensemble, nous brisons les stéréotypes patriarcaux."
-
-#~ msgid "Legal Notice | "
-#~ msgstr "Mentions légales | "
-
-#~ msgid "Privacy Policy | "
-#~ msgstr " Politique de confidentialité | "
-
-#~ msgid "Terms of Use | "
-#~ msgstr "Conditions d'utilisation | "

@@ -139,8 +139,6 @@ body {
 }
 
 button {
-    width: calc(100% - 40px);
-    margin: 20px;
     background: #0f7e84;
     color: white;
     border: none;
@@ -149,6 +147,7 @@ button {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    margin: 20px;
 }
 
 button:hover {
@@ -254,8 +253,8 @@ footer a {
     font-size: 13px;
 }
 
-/* ==========================================================================
-    SECTION : Langues (Sélecteur de langue)
+//* ==========================================================================
+    SECTION : Langues
    ========================================================================== */
 
 .select-language {
@@ -272,7 +271,7 @@ footer a {
     align-items: center;
 }
 
-/* Petite flèche Font Awesome */
+/* Petite flèche Font Awesome / Bootstrap Icons */
 .style-arrow {
     color: #04757D;
     font-size: 12px;
@@ -287,40 +286,42 @@ footer a {
     right: 0;
     left: auto;
     z-index: 1050;
-    
+    font-weight: bold;
     background: #04757D;
-    border-radius: 8px;
-    padding: 6px !important;
+    border-radius: 8px;          /* Remis pour de jolis angles arrondis */
+    padding: 5px 0;
     min-width: 75px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;            /* Empêche le fond du bouton de dépasser des arrondis */
 }
 
-/* Ouverture fluide au survol */
+/* Ouverture au survol */
 .select-language:hover .language-options {
     display: block;
 }
 
 /* Style des boutons "FR" et "EN" à l'intérieur */
 .language-options button {
-    width: 100%;
-    margin: 0; 
-    border: none;
-    background: transparent;
-    
-    padding: 6px 12px;
-    text-align: center;
-    
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    
-    border-radius: 4px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;          /* Écrase les 20px de marge globale */
+    padding: 8px 0 !important;      /* Centre verticalement avec un espace propre */
+    background: transparent !important;
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-align: center !important;  /* Centre parfaitement FR et EN au milieu */
+    border: none !important;
+    border-radius: 0 !important;    /* Pas d'arrondis individuels pour les boutons */
+    cursor: pointer !important;
+    transition: background-color 0.2s ease, color 0.2s ease !important;
 }
 
 /* Effet au survol d'une option (FR ou EN) */
 .language-options button:hover {
-    background-color: white;
-    color: #04757D;
+    background-color: rgba(255, 255, 255, 0.2) !important; /* Effet de survol translucide élégant */
+    color: white !important;
 }
