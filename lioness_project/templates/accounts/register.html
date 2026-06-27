@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,7 @@
 
         <a href="{% url 'home' %}" class="return-link">
             <i class="bi bi-arrow-bar-left"></i>
-            Return to site
+            {% trans "Return to site" %}
         </a>
     
         <div class="header-center">
@@ -41,9 +42,24 @@
             </a>
         </div>
     
-        <div class="header-right">
-            <a href="#">EN</a>
-            <i class="bi bi-chevron-compact-down"></i>
+        <div class="lang-selector-wrapper">
+            <form action="{% url 'set_language' %}" method="post" class="lang-form mb-0">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.path }}">
+        
+                <!-- L'ajout de position-relative ici est crucial -->
+                <div class="select-language position-relative">
+                    <div class="current-language" style="cursor: pointer;">
+                        {{ request.LANGUAGE_CODE|upper }}
+                        <i class="fa-solid fa-chevron-down ms-1 style-arrow"></i>
+                    </div>
+        
+                    <div class="language-options">
+                        <button class="current-language" type="submit" name="language" value="fr">FR</button>
+                        <button class="current-language" type="submit" name="language" value="en">EN</button>
+                    </div>
+                </div>
+            </form>
         </div>
     
     </header>
@@ -52,8 +68,8 @@
     <main class="register-wrapper">
 
         <div class="register-card">
-            <h1>INSCRIPTION</h1>
-                <p class="ms-2">Fields marked with an a <span class ="text-danger"> * </span> are mandatory</p>
+            <h1>{% trans "REGISTRATION" %}</h1>
+                <p class="ms-2">{% trans "Fields marked with an a " %}<span class ="text-danger"> * </span> {% trans "are mandatory." %}</p>
 
                 {% if form.errors %}
                 <div class="form-errors">
@@ -65,55 +81,51 @@
                 {% csrf_token %}
 
                 <div class="field">
-                    <label>Nom <span class ="text-danger"> * </span></label>
+                    <label>{% trans "name" %}<span class ="text-danger"> * </span></label>
                     {{ form.last_name }}
                 </div>
 
                 <div class="field">
-                    <label>Prénom <span class ="text-danger"> * </span></label>
+                    <label>{% trans "First name" %} <span class ="text-danger"> * </span></label>
                     {{ form.first_name }}
                 </div>
 
                 <div class="field">
-                    <label>Pays <span class ="text-danger"> * </span></label>
+                    <label>{% trans "Country" %} <span class ="text-danger"> * </span></label>
                     {{ form.country }}
                 </div>
 
                 <div class="field">
-                    <label>Profession <span class ="text-danger"> * </span></label>
+                    <label>{% trans "Occupation" %} <span class ="text-danger"> * </span></label>
                     {{ form.occupation }}
                 </div>
 
                 <div class="field">
-                    <label>E-mail address<span class ="text-danger"> * </span></label>
+                    <label>{% trans "Email address" %}<span class ="text-danger"> * </span></label>
                     {{ form.email }}
                 </div>
 
                 <div class="field">
-                    <label>Password <span class ="text-danger"> * </span></label>
+                    <label>{% trans "Password" %} <span class ="text-danger"> * </span></label>
                 
                     <div class="password-wrapper">
                         {{ form.password1 }}
-                
                         <span class="toggle-password" onclick="togglePassword('id_password1', this)">
-                            <i class="bi bi-eye"></i>
-                        </span>
+                            <i class="bi bi-eye-slash"></i> </span>
                     </div>
                 </div>
                 
                 <div class="field">
-                    <label>Confirm password <span class ="text-danger"> * </span></label>
+                    <label>{% trans "Confirm password" %} <span class ="text-danger"> * </span></label>
                 
                     <div class="password-wrapper">
                         {{ form.password2 }}
-                
                         <span class="toggle-password" onclick="togglePassword('id_password2', this)">
-                            <i class="bi bi-eye"></i>
-                        </span>
+                            <i class="bi bi-eye-slash"></i> </span>
                     </div>
                 </div>
 
-                <button type="submit">Submit the form</button>
+                <button type="submit">{% trans "Submit the form" %}</button>
 
             </form>
 
@@ -128,48 +140,46 @@
             <a href="{% url 'legal_notice' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
-                Legal Notice |
+                {% trans "Legal Notice" %} |
             </a>
 
             <a href="{% url 'privacy_policy' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
-                Privacy Policy |
+                {% trans "Privacy Policy" %} |
             </a>
 
             <a href="{% url 'terms_of_use' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
-                Terms of Use |
+                {% trans "Terms of Use" %} |
             </a>
 
             <a href="{% url 'cookie_policy' %}"
                 target="_blank" rel="noopener noreferrer"
                 class="text-decoration-none footer-link small">
-                Cookie Management
+                {% trans "Cookie Management" %}
             </a>
 
         </div>
     </footer>
     <script>
         function togglePassword(fieldId, element) {
-        
             const field = document.getElementById(fieldId);
             const icon = element.querySelector('i');
         
             if (field.type === "password") {
                 field.type = "text";
-        
-                icon.classList.remove("bi-eye");
-                icon.classList.add("bi-eye-slash");
-        
-            } else {
-                field.type = "password";
-        
+                // Quand le texte est VISIBLE, on montre l'œil OUVERT (bi-eye)
                 icon.classList.remove("bi-eye-slash");
                 icon.classList.add("bi-eye");
+            } else {
+                field.type = "password";
+                // Quand le texte est MASQUÉ, on montre l'œil BARRÉ (bi-eye-slash)
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
             }
         }
-        </script>
+    </script>
 </body>
 </html>

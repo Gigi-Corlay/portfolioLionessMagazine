@@ -253,3 +253,74 @@ footer a {
     text-decoration: none;
     font-size: 13px;
 }
+
+/* ==========================================================================
+    SECTION : Langues (Sélecteur de langue)
+   ========================================================================== */
+
+.select-language {
+    position: relative;
+    display: inline-block;
+}
+
+/* Texte de la langue actuelle (ex: "EN") */
+.current-language {
+    color: #04757D;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Petite flèche Font Awesome */
+.style-arrow {
+    color: #04757D;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+/* Le rectangle/menu déroulant contenant les options */
+.language-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    z-index: 1050;
+    
+    background: #04757D;
+    border-radius: 8px;
+    padding: 6px !important;
+    min-width: 75px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ouverture fluide au survol */
+.select-language:hover .language-options {
+    display: block;
+}
+
+/* Style des boutons "FR" et "EN" à l'intérieur */
+.language-options button {
+    width: 100%;
+    margin: 0; 
+    border: none;
+    background: transparent;
+    
+    padding: 6px 12px;
+    text-align: center;
+    
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Effet au survol d'une option (FR ou EN) */
+.language-options button:hover {
+    background-color: white;
+    color: #04757D;
+}
