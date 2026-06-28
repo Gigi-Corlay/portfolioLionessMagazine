@@ -11,9 +11,16 @@ fi
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# ON FORCE LE SCRIPT À ENTRER DANS LE DOSSIER DU PROJET AVANT LES COMMANDES DJANGO
+# On entre dans le dossier du projet pour les commandes Django
 cd $STATIC_ROOT/../lioness_project 2>/dev/null || cd lioness_project 2>/dev/null || true
 
 # Commandes Django standard
 python manage.py collectstatic --no-input
 python manage.py migrate
+
+# CRÉATION AUTOMATIQUE DU COMPTE ADMIN (ajustez le pseudo et l'email si besoin)
+DJANGO_SUPERUSER_PASSWORD="VotreMotDePasseSecurise123!" \
+python manage.py createsuperuser \
+    --username "admin:LIONESS" \
+    --email "lioness.lemagdesreines@gmail.com" \
+    --noinput || true
