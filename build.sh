@@ -2,14 +2,17 @@
 # exit on error
 set -o errexit
 
-# On remonte d'un niveau pour activer l'environnement virtuel global de Render
+# Activation de l'environnement global de Render
 if [ -f "../.venv/bin/activate" ]; then
     source ../.venv/bin/activate
 fi
 
-# On s'assure d'installer les paquets au bon endroit
+# Installation des dépendances
 pip install --upgrade pip
 pip install -r requirements.txt
+
+# ON FORCE LE SCRIPT À ENTRER DANS LE DOSSIER DU PROJET AVANT LES COMMANDES DJANGO
+cd $STATIC_ROOT/../lioness_project 2>/dev/null || cd lioness_project 2>/dev/null || true
 
 # Commandes Django standard
 python manage.py collectstatic --no-input
