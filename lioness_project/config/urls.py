@@ -11,9 +11,6 @@ urlpatterns = [
     # Admin
     path("admin/", admin.site.urls),
 
-    # Redirection of favicon
-    path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "images/logo_favicon.png")),
-
     # Internationalisation
     path("i18n/", include("django.conf.urls.i18n")),
 
