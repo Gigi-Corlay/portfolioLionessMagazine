@@ -19,8 +19,8 @@ python manage.py collectstatic --no-input
 python manage.py migrate
 
 # CRÉATION AUTOMATIQUE DU COMPTE ADMIN (ajustez le pseudo et l'email si besoin)
-DJANGO_SUPERUSER_PASSWORD="VotreMotDePasseSecurise123!" \
+DJANGO_SUPERUSER_PASSWORD="Le Magazine des Reines 2026" \
 python manage.py createsuperuser \
-    --username "admin:LIONESS" \
+    --username "Admin: LIONESS" \
     --email "lioness.lemagdesreines@gmail.com" \
     --noinput || true
