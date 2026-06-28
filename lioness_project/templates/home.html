@@ -105,22 +105,22 @@
             <div class="row">
                 <div class="col-12">
                     <div class="hero-title-wrapper gap-3 mb-1 mb-md-3 mb-lg-5 pb-lg-3 pb-xl-5">
-                        <img src="{% static 'images/lionne.png' %}" alt="Lionne" class="hero-lionne">
+                        <!-- <img src="{% static 'images/lionne.png' %}" alt="Lionne" class="hero-lionne"> -->
                         <h1 class="hero-title">
-                            {% blocktrans trimmed %}We place <span class="text-gold-custom">crowns</span> on women, like queens{% endblocktrans %}
+                            {% blocktrans trimmed %}All women are <span class="text-gold-custom">Lionesses</span>. They are truly queens.{% endblocktrans %}
                         </h1>
                     </div>
                 </div>
             </div>
             <div class="row g-4 g-lg-3 hero-content">
                 <div class="col-12 col-lg-6 d-flex flex-column justify-content-center pb-4">
-                    <p class="text-muted">{% blocktrans trimmed %}<b>LIONESS</b> is much more than a magazine.{% endblocktrans %}</p>
+                    <p class="text-muted"><b>Lioness, Le Magazine des Reines</b>{% trans "is much more than a magazine." %}</p>
 
-                    <p class="text-muted">{% trans "It's a community born in Gabon that shines a spotlight on African and Afro-descendant women, both in Africa and in the diaspora, while remaining open to women worldwide." %}</p>
+                    <p class="text-muted">{% trans "It is an international community that spotlights influential and high-impact women from every continent." %}</p>
 
-                    <p class="text-muted">{% trans "We celebrate ambitious, entrepreneurial, creative, and committed women through inspiring stories, authentic journeys, and meaningful content." %}</p>
+                    <p class="text-muted">{% trans "We champion women who are resourceful, creative, and committed, sharing inspiring stories, authentic journeys, and meaningful content." %}</p>
 
-                    <p class="fst-italic my-3 text-dark fw-medium">{% trans "Joining LIONESS, means joining a movement that celebrates women, their ambitions, and their impact on the world." %}</p>                 <div class="d-flex flex-wrap gap-3 mt-3">
+                    <p class="fst-italic my-3 text-dark fw-medium">{% trans "Joining LIONESS, Le Magazine des Reines, means becoming part of a club that celebrates women, their ambitions, and their impact in a rapidly changing world." %}</p>                 <div class="d-flex flex-wrap gap-3 mt-3">
 
                         <a href="#magazine" class="btn btn-outline-green rounded-pill px-4 color-title btn-sm fw-medium">{% trans "See the magazines" %}</a>
                         <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">{% trans "Become a member" %}</a>
@@ -143,7 +143,7 @@
                     <div class="p-3 text-center">
                         <img src="{% static 'images/icone_magazine.png' %}" alt="Magazine" class="mb-3 value-icon text-center">
                         <h3 class="h5 fw-bold mb-2">{% trans "Magazine" %}</h3>
-                        <p class="small text-muted">{% trans "Discover inspiring content on entrepreneurship, culture, leadership, well-being and much more." %}</p>
+                        <p class="small text-muted">{% trans "Discover unique content on business, lifestyle, well-being, and much more." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
@@ -155,15 +155,15 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="p-3 text-center">
-                        <img src="{% static 'images/icone_entrepreneurship.png' %}" alt="Entrepreneurship" class="mb-3 value-icon">
-                        <h3 class="h5 fw-bold mb-2">{% trans "Entrepreneurship" %}</h3>
+                        <img src="{% static 'images/icone_entrepreneurship.png' %}" alt="Business" class="mb-3 value-icon">
+                        <h3 class="h5 fw-bold mb-2">{% trans "Business" %}</h3>
                         <p class="small text-muted">{% trans "Let's celebrate women entrepreneurs and their initiatives that are transforming our societies." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3 text-center">
                     <div class="p-3">
-                        <img src="{% static 'images/icone_afrique.png' %}" alt="African Diaspora" class="mb-3 value-icon">
-                        <h3 class="h5 fw-bold mb-2">{% trans "African Diaspora" %}</h3>
+                        <img src="{% static 'images/icone_afrique.png' %}" alt="Shall we talk about it?" class="mb-3 value-icon">
+                        <h3 class="h5 fw-bold mb-2">{% trans "Let's talk about it!" %}</h3>
                         <p class="small text-muted">{% trans "A bridge between Africa and its diaspora to share, learn, and collaborate." %}</p>
                     </div>
                 </div>
@@ -178,8 +178,8 @@
                     <img src="{% static 'images/joindre_community.png' %}" alt="Women collaboration illustration" class="img-fluid custom-illustration">
                 </div>
                 <div class="col-md-7">
-                    <h2 class="font-title h1 mb-3 text-dark">{% trans "Join a community of inspiring women" %}</h2>
-                    <p class="text-muted mb-4">{% trans "Exchange ideas, share your experiences and develop your projects with women from all over the world." %}</p>
+                    <h2 class="font-title h1 mb-3 text-dark">{% trans "Join a community of women with exponential impact." %}</h2>
+                    <p class="text-muted mb-4">{% trans "Networking, experience sharing, influence, and lobbying with influential figures from around the world." %}</p>
                     <a href="{% url 'accounts:register' %}"  class="btn btn-green-custom rounded-pill px-4 px-md-4 text-white btn-sm fw-medium">{% trans "Become a member" %}</a>
                 </div>
             </div>
@@ -274,14 +274,14 @@
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/featured.png' %}" alt="Featured" class="service-icon"></div>
                         <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Featured" %}</h3>
-                        <p class="small text-muted mb-0">{% trans "We highlight women and their projects through our platforms." %}</p>
+                        <p class="small text-muted mb-0">{% trans "Influential figures from diverse backgrounds fill the pages of our media outlet." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/interviews.png' %}" alt="Interviews" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Interviews &amp; portraits" %}</h3>
-                        <p class="small text-muted mb-0">{% trans "Authentic stories to inspire and motivate everyone who reads Lioness, the magazine for queens." %}</p>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Interviews & Profiles" %}</h3>
+                        <p class="small text-muted mb-0">{% trans "Authentic stories to inspire and motivate our readers." %}</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
@@ -294,8 +294,8 @@
                 <div class="col-12 col-lg-3">
                     <div class="card h-100 service-card border-0 p-3 p-md-4 shadow-sm">
                         <div><img src="{% static 'images/media.png' %}" alt="Media" class="service-icon"></div>
-                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Media Conten" %}t</h3>
-                        <p class="small text-muted mb-0">{% trans "If you become a member, you'll have access to podcasts, videos, and articles to learn and grow." %}</p>
+                        <h3 class="h6 fw-bold mb-2 text-dark my-3">{% trans "Media and Content" %}t</h3>
+                        <p class="small text-muted mb-0">{% trans "By becoming a member, you will gain access to podcasts, videos, and articles to help you achieve and sustain success." %}</p>
                     </div>
                 </div>
             </div>
@@ -334,7 +334,7 @@
                         <strong>LIONESS, Le Magazine des Reines</strong>,<br>{% trans "is a publication of Layilab." %}
                     </p>
                     <p class="small text-muted lh-sm">
-                        Association under the 1901 law, Caen (France)<br>
+                        Association de la loi 1901, Caen (France)<br>
                         Tel: +33 753 92 93 84<br>
                         lioness.lemagdesraines@gmail.com
                     </p>
@@ -395,9 +395,9 @@
                     </ul>
                 </div>
                 <div class="col-md-4 text-md-end">
-                    <h4 class="h6 fw-bold text-uppercase text-dark mb-3">Stay Connected</h4>
+                    <h4 class="h6 fw-bold text-uppercase text-dark mb-3">{% trans "Stay tuned" %}</h4>
                     <p class="small text-muted mb-3">{% trans "Become a member of the community that celebrates women worldwide. Together, we are breaking down patriarchal stereotypes." %}</p>
-                    <p class="small text-muted mb-4 fst-italic">We are moving forward in open collaboration with men.</p>
+                    <p class="small text-muted mb-4 fst-italic">{% trans "We are moving forward in open collaboration with men." %}</p>
                     <div class="d-flex gap-3 justify-content-md-end justify-content-center">
                         <a href="{% url 'accounts:login' %}" class="btn btn-outline-gold rounded-pill px-2 btn-sm fw-medium">{% trans "Log in" %}</a>
                         <a href="{% url 'accounts:register' %}" class="btn btn-green-custom text-white rounded-pill px-4 btn-sm fw-medium">{% trans "Become a member" %}</a>

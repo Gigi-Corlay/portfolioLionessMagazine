@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-27 16:50+0000\n"
+"POT-Creation-Date: 2026-06-28 20:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,7 +120,9 @@ msgstr "Informations sur l'utilisateur"
 
 #: accounts/templates/profile/profile.html:64
 msgid "Manage your profile, personal information and account settings."
-msgstr "Gérez votre profil, vos informations personnelles et les paramètres de votre compte."
+msgstr ""
+"Gérez votre profil, vos informations personnelles et les paramètres de votre "
+"compte."
 
 #: accounts/templates/profile/profile.html:78
 msgid "Profile Information"
@@ -171,11 +173,11 @@ msgstr "Tableau de bord"
 msgid "New photo selected:"
 msgstr "Actions sur le compte"
 
-#: config/settings.py:135
+#: config/settings.py:137
 msgid "Français"
 msgstr "Français"
 
-#: config/settings.py:136
+#: config/settings.py:138
 msgid "English"
 msgstr "Anglais"
 
@@ -412,42 +414,39 @@ msgid "Categorie"
 msgstr "Catégories"
 
 #: templates/home.html:110
-msgid ""
-"We place <span class=\"text-gold-custom\">crowns</span> on women, like queens"
-msgstr ""
-"Nous plaçons des <span class=\"text-gold-custom\">couronnes</span> sur les "
-"femmes, comme des reines"
+msgid "All women are <span class=\"text-gold-custom\">Lionesses</span>. They are truly queens."
+msgstr "Toutes les femmes sont <span class=\"text-gold-custom\">des Lionnes</span>. Elles sont vraiment des Reines."
 
 #: templates/home.html:117
-msgid "<b>LIONESS</b> is much more than a magazine."
-msgstr "<b>LIONESS</b> n'est pas seulement un magazine."
+msgid "is much more than a magazine."
+msgstr "n'est pas seulement un magazine."
 
 #: templates/home.html:119
 msgid ""
-"It's a community born in Gabon that shines a spotlight on African and Afro-"
-"descendant women, both in Africa and in the diaspora, while remaining open "
-"to women worldwide."
+"It is an international community that spotlights influential and high-impact "
+"women from every continent."
 msgstr ""
-"C’est une communauté née au Gabon, qui met en lumière les femmes africaines "
-"et afro-descendantes, en Afrique comme dans la diaspora, tout en restant "
-"ouverte aux femmes du monde entier."
+"C’est une communauté internationale, qui met en lumière les femmes "
+"influentes et exponentielles issues de tous les continents."
 
 #: templates/home.html:121
 msgid ""
-"We celebrate ambitious, entrepreneurial, creative, and committed women "
-"through inspiring stories, authentic journeys, and meaningful content."
+"We champion women who are resourceful, creative, and committed, sharing "
+"inspiring stories, authentic journeys, and meaningful content."
 msgstr ""
-"Nous valorisons des femmes ambitieuses, entrepreneuses, créatives et "
-"engagées, à travers des histoires inspirantes, des parcours authentiques et "
-"des contenus porteurs de sens."
+"Nous valorisons des femmes ingénieuses, créatives et engagées, à travers des "
+"récits inspirants, des parcours authentiques et des contenus porteurs de "
+"sens."
 
 #: templates/home.html:123
 msgid ""
-"Joining LIONESS, means joining a movement that celebrates women, their "
-"ambitions, and their impact on the world."
+"Joining LIONESS, Le Magazine des Reines, means becoming part of a club that "
+"celebrates women, their ambitions, and their impact in a rapidly changing "
+"world."
 msgstr ""
-"Rejoindre LIONESS, c’est rejoindre un mouvement qui célèbre les femmes, "
-"leurs ambitions et leur impact dans le monde."
+"Rejoindre LIONESS, Le Magazine des Reines c’est appartenir à un club qui "
+"célèbre les femmes, leurs ambitions et leur impact dans un monde en pleine "
+"mutation."
 
 #: templates/home.html:125
 msgid "See the magazines"
@@ -459,11 +458,10 @@ msgstr "Un espace pour inspirer, connecter et impacter"
 
 #: templates/home.html:146
 msgid ""
-"Discover inspiring content on entrepreneurship, culture, leadership, well-"
-"being and much more."
+"Discover unique content on business, lifestyle, well-being, and much more."
 msgstr ""
-"Découvrez du contenu inspirant sur l'entrepreneuriat, la culture, le "
-"leadership, le bien-être et bien plus encore."
+"Découvrez un contenu unique sur le business, le lifestyle, le bien-être et "
+"bien plus encore."
 
 #: templates/home.html:153
 msgid ""
@@ -472,8 +470,8 @@ msgstr ""
 "Rejoignez une communauté de femmes ambitieuses et engagées du monde entier."
 
 #: templates/home.html:159
-msgid "Entrepreneurship"
-msgstr "Entrepreneuriat"
+msgid "Business"
+msgstr "Business"
 
 #: templates/home.html:160
 msgid ""
@@ -484,8 +482,8 @@ msgstr ""
 "nos sociétés."
 
 #: templates/home.html:166
-msgid "African Diaspora"
-msgstr "Diaspora Africaine"
+msgid "Let's talk about it!"
+msgstr "Et si on en parlait ?"
 
 #: templates/home.html:167
 msgid ""
@@ -495,16 +493,16 @@ msgstr ""
 "collaborer."
 
 #: templates/home.html:181
-msgid "Join a community of inspiring women"
-msgstr "Rejoignez une communauté de femmes inspirantes"
+msgid "Join a community of women with exponential impact."
+msgstr "Rejoignez une communauté de femmes exponentielles."
 
 #: templates/home.html:182
 msgid ""
-"Exchange ideas, share your experiences and develop your projects with women "
-"from all over the world."
+"Networking, experience sharing, influence, and lobbying with influential "
+"figures from around the world."
 msgstr ""
-"Échangez des idées, partagez vos expériences et développez vos projets avec "
-"des femmes du monde entier."
+"Mises en relations, partage d'expériences, influence, lobbying auprès des "
+"personnalités influentes du monde entier."
 
 #: templates/home.html:271
 msgid "Our services"
@@ -515,22 +513,20 @@ msgid "Featured"
 msgstr "Mise en avant"
 
 #: templates/home.html:277
-msgid "We highlight women and their projects through our platforms."
+msgid ""
+"Influential figures from diverse backgrounds fill the pages of our media "
+"outlet."
 msgstr ""
-"Nous mettons en lumière les femmes et leurs projets à travers nos "
-"plateformes."
+"Des personnalités influentes aux profils divers variés inondent les pages de "
+"notre média."
 
 #: templates/home.html:283
-msgid "Interviews &amp; portraits"
+msgid "Interviews & Profiles"
 msgstr "Interviews & portraits"
 
 #: templates/home.html:284
-msgid ""
-"Authentic stories to inspire and motivate everyone who reads Lioness, the "
-"magazine for queens."
-msgstr ""
-"Des histoires authentiques pour inspirer et motiver quiconque lit Lioness, "
-"le magazine des reines."
+msgid "Authentic stories to inspire and motivate our readers."
+msgstr "Des histoires authentiques pour inspirer et motiver nos lecteurs."
 
 #: templates/home.html:290
 msgid "Accompaniement"
@@ -545,16 +541,16 @@ msgstr ""
 "outils pour booster votre activité."
 
 #: templates/home.html:297
-msgid "Media Conten"
+msgid "Media and Content"
 msgstr "Média & Contenu"
 
 #: templates/home.html:298
 msgid ""
-"If you become a member, you'll have access to podcasts, videos, and articles "
-"to learn and grow."
+"By becoming a member, you will gain access to podcasts, videos, and articles "
+"to help you achieve and sustain success."
 msgstr ""
 "En devenant membre, vous aurez accès à des podcasts, des vidéos et des "
-"articles pour apprendre et grandir."
+"articles pour entrer et demeurer dans votre succès."
 
 #: templates/home.html:334
 msgid "is a publication of Layilab."
@@ -568,6 +564,10 @@ msgstr "Service"
 msgid "The Most Impactful Personalities"
 msgstr "Les Personnalités les Plus Impactantes"
 
+#: templates/home.html:398
+msgid "Stay tuned"
+msgstr "Restez à l'écoute"
+
 #: templates/home.html:399
 msgid ""
 "Become a member of the community that celebrates women worldwide. Together, "
@@ -575,3 +575,7 @@ msgid ""
 msgstr ""
 "Devenez membre de la communauté qui célèbre les femmes à travers le monde. "
 "Ensemble, nous brisons les stéréotypes patriarcaux."
+
+#: templates/home.html:400
+msgid "We are moving forward in open collaboration with men."
+msgstr "Nous avançons en étroite collaboration avec les hommes."
