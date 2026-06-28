@@ -18,9 +18,24 @@ cd $STATIC_ROOT/../lioness_project 2>/dev/null || cd lioness_project 2>/dev/null
 python manage.py collectstatic --no-input
 python manage.py migrate
 
-# CRÉATION AUTOMATIQUE DU COMPTE ADMIN (ajustez le pseudo et l'email si besoin)
-DJANGO_SUPERUSER_PASSWORD="LeMagdesReines_2026" \
-python manage.py createsuperuser \
-    --username "Admin:LIONNE" \
-    --email "lioness.lemagdesreines@gmail.com" \
-    --noinput || true
+# CRÉATION OU MISE À JOUR FORCÉE DE L'ADMINISTRATEUR via Python
+python -c "
+import os, django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+django.setup()
+from django.contrib.auth import get_user_model
+User = get_user_model()
+username = 'admin_lionne'
+email = 'lioness.lemagdesreines@gmail.com'
+password = 'LionessSecurePass2026!!'
+
+user, created = User.objects.get_or_create(username=username, defaults={'email': email})
+user.set_password(password)
+user.is_staff = True
+user.is_superuser = True
+user.save()
+if created:
+    print('Superuser cree avec succes !')
+else:
+    print('Mot de passe du superuser mis a jour !')
+"
