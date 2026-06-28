@@ -124,15 +124,15 @@ label.form-label {
 .form-control,
 .form-select,
 textarea {
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .btn {
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 img.rounded-circle {
-    border: 4px solid white;
+    border: 1px solid white;
 }
 
 .profile-actions {
@@ -217,44 +217,122 @@ img.rounded-circle {
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: #04757D !important; /* Couleur Lioness forcée */
+    background-color: #04757D; /* Couleur Lioness forcée */
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 8px !important;
-    padding: 4px 0 !important;
+    border-radius: 8px;
+    padding: 4px 0;
     min-width: 70px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-    z-index: 1050 !important;
+    z-index: 1050;
 }
 
 /* Affichage au survol */
 .select-language:hover .language-options {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: column;
 }
 
 /* Annulation stricte du style par défaut "bouton gris" du navigateur */
 .language-options button.lang-btn {
-    display: block !important;
-    width: 100% !important;
-    background: transparent !important;       /* Supprime le fond gris d'origine */
-    background-color: transparent !important; 
-    color: white !important;                  /* Force le texte blanc */
-    font-size: 14px !important;
-    font-weight: bold !important;
-    text-align: center !important;
-    padding: 6px 12px !important;
-    margin: 0 !important;
-    border: none !important;                  /* Supprime l'effet 3D/bordure noire */
-    outline: none !important;
-    box-shadow: none !important;              /* Supprime les ombres héritées */
-    cursor: pointer !important;
-    border-radius: 0 !important;
-    font-family: var(--body-font) !important;
+    display: block;
+    width: 100%;
+    background: transparent;       /* Supprime le fond gris d'origine */
+    background-color: transparent; 
+    color: white;                  /* Force le texte blanc */
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 12px;
+    margin: 0;
+    border: none;                  /* Supprime l'effet 3D/bordure noire */
+    outline: none;
+    box-shadow: none !;              /* Supprime les ombres héritées */
+    cursor: pointer;
+    border-radius: 0;
+    font-family: var(--body-font);
     transition: background-color 0.2s ease;
 }
 
 /* Effet au survol des options FR / EN */
 .language-options button.lang-btn:hover {
     background-color: rgba(255, 255, 255, 0.15) !important; /* Léger voile blanc au survol */
-    color: white !important;
+    color: white;
+}
+.photo-circle {
+    width:120px;
+    height:120px;
+    object-fit:cover;
+}
+
+/* ==========================
+    Responsive mobile header
+   ========================== */
+@media (max-width: 776px) {
+
+    .card-header {
+        padding: 1rem !important;
+    }
+
+    .card-header > .d-flex {
+        flex-wrap: nowrap !important;
+        gap: 10px !important;
+    }
+
+    /* Bloc photo + titre */
+    .card-header .d-flex.align-items-center {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .card-header img,
+    .bg-secondary.rounded-circle {
+        width: 55px;
+        height: 55px;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Titre */
+    .card-header h2 {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* Langue */
+    .header-right {
+        flex-shrink: 0;
+    }
+
+    .current-language {
+        font-size: 0.85rem;
+    }
+
+    .style-arrow {
+        font-size: 10px;
+    }
+
+    /* Menu FR / EN horizontal */
+    .language-options {
+        min-width: auto;
+        right: 0;
+        flex-direction: row !important;
+    }
+
+    .language-options button.lang-btn {
+        width: auto;
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .photo-circle {
+        width:80px;
+        height:80px;
+        object-fit:cover;
+    }
+
 }

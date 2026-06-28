@@ -9,7 +9,7 @@
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-9 col-md-11">
             <div class="card shadow border-0">
 
                 <!-- Header -->
@@ -18,9 +18,9 @@
                     
                         <div class="d-flex align-items-center">
                             {% if user.profile.profile_picture %}
-                                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="rounded-circle img-thumbnail me-4" style="width:120px;height:120px;object-fit:cover;">
+                                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="photo-circle rounded-circle img-thumbnail me-4">
                             {% else %}
-                                <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-4" style="width:120px;height:120px;">
+                                <div class="photo-circle bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-4">
                                     <span>{% trans "No Photo" %}</span>
                                 </div>
                             {% endif %}
