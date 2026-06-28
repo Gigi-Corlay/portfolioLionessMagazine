@@ -4,10 +4,15 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
     # Admin
     path("admin/", admin.site.urls),
+
+    # Redirection of favicon
+    path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "images/logo_favicon.png")),
 
     # Internationalisation
     path("i18n/", include("django.conf.urls.i18n")),
