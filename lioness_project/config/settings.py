@@ -103,17 +103,15 @@ WSGI_APPLICATION = "config.wsgi.application"
 # =====================================================
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# Si la variable DATABASE_URL existe (c'est-à-dire qu'on est sur Render)
+
+# Si l'environnement Render fournit une base de données PostgreSQL, Django l'utilise automatiquement
 if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600,
-        ssl_require=True
-    )
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # =====================================================
 # PASSWORD VALIDATION
