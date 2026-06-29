@@ -1196,24 +1196,6 @@ SEARCH DASHBOARD
     margin-bottom: 14px;
 }
 
-.btn-read-more {
-    font-family: var(--font-menus) !important;
-    font-weight: 700 !important;
-    font-size: 12px;
-    border: 1.5px solid #232323;
-    color: #232323;
-    background: transparent;
-    padding: 6px 18px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s;
-}
-
-.btn-read-more:hover {
-    background-color: #232323;
-    color: #fff;
-}
-
 .article-list-divider {
     border: 0;
     border-top: 1px solid #EFEAE0;
@@ -1277,10 +1259,10 @@ SEARCH DASHBOARD
         font-size: 1.3rem;
     }
     .article-list-excerpt {
-        font-size: 12px !important;
+        font-size: 12px;
     }
     .btn-read-more {
-        font-size: 10px !important;
+        font-size: 10px;
         padding: 5px 14px;
     }
     .impact-text h3 {
@@ -1328,4 +1310,27 @@ RECHERCHE MOBILE (Sidebar Drawer)
 
 .mobile-search-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── BOUTON READ MORE CUSTOM ── */
+.btn-read-more {
+    font-family: var(--font-menus) !important;
+    font-weight: 700 !important;
+    background-color: var(--primary-teal) !important; /* Fond Vert canard par défaut */
+    color: #ffffff !important;                         /* Texte Blanc */
+    border: 2px solid var(--primary-teal) !important;
+    padding: 8px 18px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-radius: 4px;                                /* Coins légèrement arrondis */
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+/* Effet au survol (Hover) */
+.btn-read-more:hover {
+    background-color: var(--accent-gold) !important;   /* Devient Doré au survol */
+    border-color: var(--accent-gold) !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);                       /* Léger effet de surélévation */
 }

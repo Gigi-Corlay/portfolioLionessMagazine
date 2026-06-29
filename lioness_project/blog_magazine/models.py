@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Article(models.Model):
-    # Les 9 catégories officielles issues de la maquette Lioness
+    # Les 9 rubriques officielles issues de la maquette Lioness
     CATEGORY_CHOICES = [
         ('ACTUS', 'ACTUS'),
         ('MOOD', 'MOOD'),
@@ -18,13 +19,15 @@ class Article(models.Model):
 
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=150, blank=True)
+
+    chapo = models.TextField(blank=True, null=True, help_text="Ici vous pouvez mettre le chapô")
+
     content = models.TextField()
     image = models.ImageField(upload_to="articles/", blank=True, null=True)
 
-    # Ajout du champ catégorie
     category = models.CharField(
-        max_length=50, 
-        choices=CATEGORY_CHOICES, 
+        max_length=50,
+        choices=CATEGORY_CHOICES,
         default='news'
     )
 

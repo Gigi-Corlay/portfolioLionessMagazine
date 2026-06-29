@@ -1,5 +1,6 @@
 {% extends 'dashboard/dashboard.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}Category: {{ category_name }} - Lioness{% endblock %}
 
 {% block nav_dashboard %}{% endblock %}
@@ -53,6 +54,15 @@
                 </p>
                 {% endif %}
 
+                <!-- Chapô -->
+                <p class="article-list-excerpt" style="color: #555555; font-size: 14.5px; line-height: 1.6;">
+                    {% if article.chapo %}
+                        {{ article.chapo|truncatewords:25 }}
+                    {% else %}
+                        {{ article.content|truncatewords:25 }}
+                    {% endif %}
+                </p>
+
                 <!-- Extrait -->
                 <p class="article-list-excerpt">
                     {{ article.content|truncatewords:30 }}
@@ -61,7 +71,7 @@
                 <!-- Bouton -->
                 <a href="{% url 'blog_magazine:article_detail' article.id %}" 
                     class="btn btn-read-more">
-                    READ MORE
+                    {% trans "READ MORE" %}
                 </a>
             </div>
         </div>

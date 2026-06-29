@@ -23,4 +23,3 @@ def article_detail(request, id):
         'article': article,
         'active_category': article.category,
     })
-    

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-28 20:28+0000\n"
+"POT-Creation-Date: 2026-06-29 10:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgid "Change Password"
 msgstr "Mot de passe"
 
 #: accounts/templates/profile/profile.html:128
-#: dashboard/templates/dashboard/dashboard.html:101
+#: dashboard/templates/dashboard/dashboard.html:100
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -173,54 +173,62 @@ msgstr "Tableau de bord"
 msgid "New photo selected:"
 msgstr "Actions sur le compte"
 
-#: config/settings.py:137
+#: blog_magazine/templates/blog_magazine/article_detail.html:50
+msgid "Return to the section "
+msgstr "Retour à la rubrique"
+
+#: blog_magazine/templates/blog_magazine/category_articles.html:74
+msgid "READ MORE"
+msgstr "EN SAVOIR PLUS"
+
+#: config/settings.py:144
 msgid "Français"
 msgstr "Français"
 
-#: config/settings.py:138
+#: config/settings.py:145
 msgid "English"
 msgstr "Anglais"
 
-#: dashboard/templates/dashboard/dashboard.html:76
-#: dashboard/templates/dashboard/dashboard.html:140
+#: dashboard/templates/dashboard/dashboard.html:73
+#: dashboard/templates/dashboard/dashboard.html:139
 msgid "Search article..."
 msgstr "Rechercher un article..."
 
-#: dashboard/templates/dashboard/dashboard.html:150
+#: dashboard/templates/dashboard/dashboard.html:149
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: dashboard/templates/dashboard/dashboard.html:159
+#: dashboard/templates/dashboard/dashboard.html:158
 msgid "Articles"
 msgstr "Articles"
 
-#: dashboard/templates/dashboard/dashboard.html:253
+#: dashboard/templates/dashboard/dashboard.html:252
 msgid "Settings"
 msgstr "Paramètres"
 
-#: dashboard/templates/dashboard/dashboard.html:292
+#: dashboard/templates/dashboard/dashboard.html:291
 msgid "Lionne Member"
 msgstr "Membre Lionne"
 
-#: dashboard/templates/dashboard/dashboard.html:301
+#: dashboard/templates/dashboard/dashboard.html:300
 msgid "There is no limit to what we, as Women, can accomplish."
 msgstr ""
 "Il n'y a pas de limite à ce que nous, en tant que femmes, pouvons accomplir."
 
-#: dashboard/templates/dashboard/dashboard.html:308
+#: dashboard/templates/dashboard/dashboard.html:307
 msgid "Our social networks"
 msgstr "Nos réseaux sociaux"
 
-#: dashboard/templates/dashboard/dashboard.html:364
+#: dashboard/templates/dashboard/dashboard.html:363
 #: templates/accounts/login.html:35 templates/accounts/register.html:29
 msgid "Return to site"
 msgstr "Retour au site"
 
-#: dashboard/templates/dashboard/dashboard.html:380
+#: dashboard/templates/dashboard/dashboard.html:379
 msgid "Welcome back,"
 msgstr "Bon retour parmi nous,"
 
-#: dashboard/templates/dashboard/dashboard.html:385
+#: dashboard/templates/dashboard/dashboard.html:384
 msgid ""
 "Thank you for being part of the LIONESS Le Magazine des reines community. "
 "<br> Together, we amplify Women's voices."
@@ -228,15 +236,15 @@ msgstr ""
 "Merci de faire partie de la communauté LIONESS Le Magazine des reines. <br> "
 "Ensemble, nous amplifions la voix des femmes."
 
-#: dashboard/templates/dashboard/dashboard.html:413
+#: dashboard/templates/dashboard/dashboard.html:412
 msgid "Member since"
 msgstr "Membre depuis"
 
-#: dashboard/templates/dashboard/dashboard.html:424
+#: dashboard/templates/dashboard/dashboard.html:423
 msgid "Magazine section"
 msgstr "Rubriques du magazine"
 
-#: dashboard/templates/dashboard/dashboard.html:431
+#: dashboard/templates/dashboard/dashboard.html:430
 msgid ""
 "Choose a section and click on the section you would like to explore. You "
 "will be redirected to a dedicated page containing articles related to that "
@@ -246,19 +254,19 @@ msgstr ""
 "souhaitez explorer. Vous serez redirigé vers une page dédiée contenant des "
 "articles liés à ce sujet."
 
-#: dashboard/templates/dashboard/dashboard.html:442
+#: dashboard/templates/dashboard/dashboard.html:441
 msgid "Choose category"
 msgstr "Choisir une catégorie"
 
-#: dashboard/templates/dashboard/dashboard.html:528
+#: dashboard/templates/dashboard/dashboard.html:527
 msgid "Your Activity"
 msgstr "Votre activité"
 
-#: dashboard/templates/dashboard/dashboard.html:591
+#: dashboard/templates/dashboard/dashboard.html:590
 msgid "Your writing matters"
 msgstr "Votre écriture compte"
 
-#: dashboard/templates/dashboard/dashboard.html:593
+#: dashboard/templates/dashboard/dashboard.html:592
 msgid ""
 "Make your voice heard with LIONESS, the magazine for queens. We highlight "
 "inspiring stories, authentic journeys, and empowering women from around the "
@@ -269,7 +277,7 @@ msgstr ""
 "des femmes qui s'affirment, partout dans le monde. Soumettez votre article à "
 "notre équipe éditoriale."
 
-#: dashboard/templates/dashboard/dashboard.html:594
+#: dashboard/templates/dashboard/dashboard.html:593
 msgid ""
 "We Selected content may be published in the magazine and featured to our "
 "community."
@@ -277,11 +285,11 @@ msgstr ""
 "Certains contenus sélectionnés pourront être publiés dans le magazine et mis "
 "en avant auprès de notre communauté."
 
-#: dashboard/templates/dashboard/dashboard.html:597
+#: dashboard/templates/dashboard/dashboard.html:596
 msgid "Send your text here"
 msgstr "Envoyez votre texte ici"
 
-#: dashboard/templates/dashboard/dashboard.html:610
+#: dashboard/templates/dashboard/dashboard.html:609
 msgid "&copy; 2026 Lioness Magazine. All rights reserved."
 msgstr "© 2026 Lioness Magazine. Tous droits réservés."
 
@@ -414,8 +422,12 @@ msgid "Categorie"
 msgstr "Catégories"
 
 #: templates/home.html:110
-msgid "All women are <span class=\"text-gold-custom\">Lionesses</span>. They are truly queens."
-msgstr "Toutes les femmes sont <span class=\"text-gold-custom\">des Lionnes</span>. Elles sont vraiment des Reines."
+msgid ""
+"All women are <span class=\"text-gold-custom\">Lionesses</span>. They are "
+"truly queens."
+msgstr ""
+"Toutes les femmes sont <span class=\"text-gold-custom\">des Lionnes</span>. "
+"Elles sont vraiment des Reines."
 
 #: templates/home.html:117
 msgid "is much more than a magazine."

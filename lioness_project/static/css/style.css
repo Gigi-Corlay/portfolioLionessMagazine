@@ -230,6 +230,8 @@ body {
     border: 1px solid var(--primary-green) !important;
     font-size: 14px;
 }
+
+/* nav */
 .nav-wrapper {
     position: relative;
     display: flex;
