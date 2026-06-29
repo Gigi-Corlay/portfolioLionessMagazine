@@ -46,12 +46,14 @@ def profile_view(request):
             user.save()
             profile_form.save()
 
+            """
             messages.success(
                 request,
                 "Profile updated successfully."
             )
 
             return redirect("accounts:profile")
+            """
 
         messages.error(
             request,
@@ -159,10 +161,12 @@ def register_view(request):
                 user
             )
 
+            """
             messages.success(
                 request,
                 "Account successfully created."
             )
+            """
 
             return redirect("dashboard")
 
