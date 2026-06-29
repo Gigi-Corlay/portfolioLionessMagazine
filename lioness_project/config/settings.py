@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
@@ -107,6 +108,12 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+# Si la variable DATABASE_URL existe (c'est-à-dire qu'on est sur Render)
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True
+    )
 
 # =====================================================
 # PASSWORD VALIDATION
