@@ -1,6 +1,7 @@
 {% extends 'dashboard/dashboard.html' %}
 {% load static %}
 {% load i18n %}
+
 {% block title %}Category: {{ category_name }} - Lioness{% endblock %}
 
 {% block nav_dashboard %}{% endblock %}
@@ -14,25 +15,32 @@
 
     <div class="welcome-header mb-4">
         <h1>{{ category_name|upper }}</h1>
-        <p class="welcome-sub">Découvrez l'ensemble des publications liées à cette thématique.</p>
+        <p class="welcome-sub">
+            Découvrez l'ensemble des publications liées à cette thématique.
+        </p>
     </div>
 
     <div class="dashboard-card">
+
         {% for article in articles %}
-        <div class="article-list-item d-flex gap-4 align-items-start">
-            
+
+        <div class="article-list-item d-flex flex-column flex-md-row gap-4 align-items-start">
+
             {% if article.image %}
             <div class="article-list-thumb flex-shrink-0">
-                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                <img
+                    src="{{ article.image.url }}"
+                    alt="{{ article.title }}"
+                    class="img-fluid w-100">
             </div>
             {% else %}
-            <div class="article-list-thumb flex-shrink-0 article-thumb-placeholder">
+            <div class="article-list-thumb article-thumb-placeholder flex-shrink-0">
                 <i class="fa-regular fa-image"></i>
             </div>
             {% endif %}
 
             <div class="article-list-body flex-grow-1">
-                
+
                 <div class="article-list-tags mb-1">
                     <span>{{ category_name|upper }}</span>
                 </div>
@@ -45,12 +53,13 @@
 
                 {% if article.author %}
                 <p class="article-list-author">
-                    <i class="fa-solid fa-user me-1"></i> {{ article.author }}
+                    <i class="fa-solid fa-user me-1"></i>
+                    {{ article.author }}
                 </p>
                 {% endif %}
 
                 {% if article.chapo %}
-                <p class="article-list-excerpt" style="color: #555555; font-size: 14.5px; line-height: 1.6; font-weight: bold; font-style: italic;">
+                <p class="article-list-chapo">
                     {{ article.chapo|safe }}
                 </p>
                 {% endif %}
@@ -61,11 +70,16 @@
                 </div>
                 {% endif %}
 
-                <a href="{% url 'blog_magazine:article_detail' article.id %}" 
+                <a
+                    href="{% url 'blog_magazine:article_detail' article.id %}"
                     class="btn btn-read-more">
+
                     {% trans "READ MORE" %}
+
                 </a>
+
             </div>
+
         </div>
 
         {% if not forloop.last %}
@@ -73,8 +87,14 @@
         {% endif %}
 
         {% empty %}
-        <p style="color: var(--text-muted);">Aucun article publié dans cette catégorie pour le moment.</p>
+
+        <p class="article-empty">
+            Aucun article publié dans cette catégorie pour le moment.
+        </p>
+
         {% endfor %}
+
     </div>
+
 </div>
 {% endblock content %}
