@@ -17,10 +17,10 @@ $PYTHON_BIN manage.py collectstatic --no-input
 $PYTHON_BIN manage.py migrate
 
 # --- AJOUT ICI POUR L'IMPORTATION GRATUITE DES ARTICLES ---
-if [ -f "data.json" ]; then
-    echo "Importation des articles en cours..."
-    $PYTHON_BIN manage.py loaddata data.json
-fi
+# if [ -f "data.json" ]; then
+#     echo "Importation des articles en cours..."
+#     $PYTHON_BIN manage.py loaddata data.json
+# fi
 # -----------------------------------------------------------
 
 # 5. Création/Mise à jour de l'administrateur

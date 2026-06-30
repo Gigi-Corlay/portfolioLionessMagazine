@@ -1,8 +1,10 @@
 from django.db import models
+from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class Article(models.Model):
-    # Les 9 rubriques officielles issues de la maquette Lioness
+    # Les rubriques officielles issues de la maquette Lioness
     CATEGORY_CHOICES = [
         ('ACTUS', 'ACTUS'),
         ('MOOD', 'MOOD'),
@@ -19,16 +21,14 @@ class Article(models.Model):
 
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=150, blank=True)
-
-    chapo = models.TextField(blank=True, null=True, help_text="Ici vous pouvez mettre le chapô")
-
-    content = models.TextField()
+    chapo = RichTextField(blank=True, null=True)
+    texte = RichTextField()
     image = models.ImageField(upload_to="articles/", blank=True, null=True)
 
     category = models.CharField(
         max_length=50,
         choices=CATEGORY_CHOICES,
-        default='news'
+        default='ACTUS'
     )
 
     published = models.BooleanField(default=True)

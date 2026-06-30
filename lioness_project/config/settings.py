@@ -31,21 +31,24 @@ ALLOWED_HOSTS = [
 # =====================================================
 
 INSTALLED_APPS = [
-    # Django Apps
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+    # Les applications indispensables de Django
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 
-    # Local Apps
-    "core",
-    "accounts",
-    "dashboard",
-    "magazine",
-    "donations",
-    "blog_magazine",
+    # Les applications tierces
+    'ckeditor',
+
+    # Vos applications locales
+    'blog_magazine',
+    'accounts',
+    'dashboard',
+    'donations',
+    'magazine',
+    'core',
 ]
 
 # =====================================================
@@ -206,3 +209,44 @@ CSRF_USE_SESSIONS = False
 
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
+
+# =====================================================
+# APPS
+# =====================================================
+
+INSTALLED_APPS = [
+    # Les applications obligatoires de Django
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    # Les applications tierces
+    'ckeditor',
+
+    # Vos applications locales
+    'core',
+    'accounts',
+    'dashboard',
+    'blog_magazine',
+    'magazine',
+    'donations',
+]
+
+# simplifier la barre d'outils
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ],
+        'width': 'auto',
+    }
+}
+
+CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
