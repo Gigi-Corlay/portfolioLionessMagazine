@@ -1,7 +1,7 @@
 /* ==========================================================================
     TABLEAU DE BORD LIONESS - CONFIGURATION DE LA CHARTE GRAPHIQUE
    ========================================================================== */
-:root {
+    :root {
     /* Nuances de couleurs officielles */
     --bg-sand: #F9F3E5;               /* Fond Jaune pâle courant */
     --bg-card-inside: #ffffff;        /* Fond de carte blanc */
@@ -282,7 +282,7 @@ SEARCH DASHBOARD
 @media (max-width: 767.98px) {
 
     .search-container {
-        display: none !important;
+        display: none;
         color: white;
     }
 
@@ -466,7 +466,7 @@ SEARCH DASHBOARD
     color: var(--primary-teal) !important;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .menu .nav-link:hover:not(.menu .nav-item.active a) {
@@ -1023,7 +1023,7 @@ SEARCH DASHBOARD
     border: none !important;
     box-shadow: none !important;
     margin: 0 !important;
-    padding: 0 0 0 1rem !important; /* Aligne le sous-menu sous le texte 'Articles' */
+    padding: 0 0 0 0.2rem !important; /* Aligne le sous-menu sous le texte 'Articles' */
     text-align: left !important;    /* Force l'alignement à gauche */
 }
 
@@ -1336,7 +1336,7 @@ RECHERCHE MOBILE (Sidebar Drawer)
 }
 
 /* ===========================
-   ARTICLE DETAIL
+    ARTICLE DETAIL
 =========================== */
 
 .article-detail-card{
