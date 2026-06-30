@@ -55,9 +55,9 @@
                 </p>
                 {% endif %}
 
-                {% if article.content %}
+                {% if article.texte %}
                 <div class="article-list-excerpt mb-3">
-                    {{ article.content|safe|truncatewords_html:30 }}
+                    {{ article.texte|safe|truncatewords_html:30 }}
                 </div>
                 {% endif %}
 

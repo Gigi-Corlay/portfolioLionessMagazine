@@ -17,6 +17,6 @@ class ArticleAdmin(admin.ModelAdmin):
     )
     search_fields = (
         "title",
-        "content",
+        "texte",
         "author",
     )
