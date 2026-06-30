@@ -35,7 +35,7 @@
 
                 {% if article.chapo %}
                 <div class="article-chapo mb-4" style="font-size: 19px; font-weight: bold; line-height: 1.6; color: #333333; font-style: italic; border-left: 4px solid #232323; padding-left: 15px;">
-                    {{ article.chapo|striptags }}
+                    {{ article.chapo|safe }}
                 </div>
                 {% endif %}
 

@@ -51,7 +51,7 @@
 
                 {% if article.chapo %}
                 <p class="article-list-excerpt" style="color: #555555; font-size: 14.5px; line-height: 1.6; font-weight: bold; font-style: italic;">
-                    {{ article.chapo|striptags|truncatewords:25 }}
+                    {{ article.chapo|safe }}
                 </p>
                 {% endif %}
 
