@@ -225,6 +225,7 @@ INSTALLED_APPS = [
 
     # Les applications tierces
     'ckeditor',
+    'storages',
 
     # Vos applications locales
     'core',
@@ -251,3 +252,14 @@ CKEDITOR_CONFIGS = {
 }
 
 CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
+
+# Utilisez ces configurations uniquement en production (sur Render)
+if not DEBUG:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+    
+    # Configuration pour les fichiers médias
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
