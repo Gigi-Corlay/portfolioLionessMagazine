@@ -21,7 +21,6 @@
         {% for article in articles %}
         <div class="article-list-item d-flex gap-4 align-items-start">
             
-            <!-- Image -->
             {% if article.image %}
             <div class="article-list-thumb flex-shrink-0">
                 <img src="{{ article.image.url }}" alt="{{ article.title }}">
@@ -32,43 +31,36 @@
             </div>
             {% endif %}
 
-            <!-- Contenu -->
             <div class="article-list-body flex-grow-1">
                 
-                <!-- Tags catégorie -->
                 <div class="article-list-tags mb-1">
                     <span>{{ category_name|upper }}</span>
                 </div>
 
-                <!-- Titre -->
                 <h2 class="article-list-title">
                     <a href="{% url 'blog_magazine:article_detail' article.id %}">
                         {{ article.title }}
                     </a>
                 </h2>
 
-                <!-- Auteur -->
                 {% if article.author %}
                 <p class="article-list-author">
                     <i class="fa-solid fa-user me-1"></i> {{ article.author }}
                 </p>
                 {% endif %}
 
-                <!-- Chapô -->
-                <p class="article-list-excerpt" style="color: #555555; font-size: 14.5px; line-height: 1.6;">
-                    {% if article.chapo %}
-                        {{ article.chapo|truncatewords:25 }}
-                    {% else %}
-                        {{ article.content|truncatewords:25 }}
-                    {% endif %}
+                {% if article.chapo %}
+                <p class="article-list-excerpt" style="color: #555555; font-size: 14.5px; line-height: 1.6; font-weight: bold; font-style: italic;">
+                    {{ article.chapo|striptags|truncatewords:25 }}
                 </p>
+                {% endif %}
 
-                <!-- Extrait -->
-                <p class="article-list-excerpt">
-                    {{ article.content|truncatewords:30 }}
-                </p>
+                {% if article.content %}
+                <div class="article-list-excerpt mb-3">
+                    {{ article.content|safe|truncatewords_html:30 }}
+                </div>
+                {% endif %}
 
-                <!-- Bouton -->
                 <a href="{% url 'blog_magazine:article_detail' article.id %}" 
                     class="btn btn-read-more">
                     {% trans "READ MORE" %}
