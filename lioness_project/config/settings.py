@@ -3,10 +3,9 @@ import mimetypes
 from pathlib import Path
 
 import dj_database_url
-from django.utils.translation import gettext_lazy as _
+import cloudinary
 
-mimetypes.add_type("text/css", ".css", True)
-mimetypes.add_type("text/javascript", ".js", True)
+from django.utils.translation import gettext_lazy as _
 
 # =====================================================
 # BASE DIRECTORY
@@ -23,7 +22,6 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-me-in-production"
 )
 
-# False automatiquement sur Render
 DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = [
@@ -31,6 +29,17 @@ ALLOWED_HOSTS = [
     "localhost",
     ".onrender.com",
 ]
+
+# =====================================================
+# CLOUDINARY CONFIG
+# =====================================================
+
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
+    secure=True,
+)
 
 # =====================================================
 # APPLICATIONS
@@ -44,11 +53,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Packages
-    "imagekit",
+    # Third party
+    "cloudinary",
+    "cloudinary_storage",
     "ckeditor",
+    "imagekit",
 
-    # Applications
+    # Apps locales
     "core",
     "accounts",
     "dashboard",
@@ -83,9 +94,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR / "templates",
-        ],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -120,22 +129,14 @@ if os.environ.get("DATABASE_URL"):
     )
 
 # =====================================================
-# PASSWORDS
+# AUTH
 # =====================================================
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # =====================================================
@@ -154,11 +155,9 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-LANGUAGE_COOKIE_NAME = "lioness_language"
+LOCALE_PATHS = [BASE_DIR / "locale"]
 
-LOCALE_PATHS = [
-    BASE_DIR / "locale",
-]
+LANGUAGE_COOKIE_NAME = "lioness_language"
 
 # =====================================================
 # LOGIN
@@ -173,34 +172,23 @@ LOGOUT_REDIRECT_URL = "/"
 # =====================================================
 
 STATIC_URL = "/static/"
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
+STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_STORAGE = (
-    "whitenoise.storage.CompressedManifestStaticFilesStorage"
-)
-
-WHITENOISE_USE_FINDERS = True
-
-# =====================================================
-# MEDIA
-# =====================================================
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # =====================================================
-# IMAGEKIT
+# MEDIA (handled by Cloudinary)
 # =====================================================
 
-IMAGEKIT_URL = os.environ.get(
-    "IMAGEKIT_URL",
-    ""
-)
+# IMPORTANT: DO NOT use MEDIA_ROOT or DEFAULT_FILE_STORAGE
 
 # =====================================================
 # EMAIL
@@ -211,27 +199,18 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # =====================================================
-# SECURITY (Render)
+# SECURITY (Render production)
 # =====================================================
 
-CSRF_USE_SESSIONS = False
-
 if DEBUG:
-
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
-
 else:
-
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-
     SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-    SECURE_PROXY_SSL_HEADER = (
-        "HTTP_X_FORWARDED_PROTO",
-        "https",
-    )
 
 # =====================================================
 # CONTEXT PROCESSOR
@@ -239,6 +218,5 @@ else:
 
 def global_settings(request):
     return {
-        "IMAGEKIT_URL": IMAGEKIT_URL,
         "DEBUG": DEBUG,
     }

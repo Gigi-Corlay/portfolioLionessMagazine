@@ -28,7 +28,9 @@
         <div class="article-list-item d-flex flex-column flex-md-row gap-4 align-items-start">
 
             {% if article.image %}
-                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
+                <img src="{{ article.image.url }}"
+                    alt="{{ article.title }}"
+                    class="img-fluid">
             {% endif %}
 
             <div class="article-list-body flex-grow-1">

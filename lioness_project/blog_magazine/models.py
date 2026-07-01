@@ -1,10 +1,10 @@
 from django.db import models
-from django.db import models
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 
 
 class Article(models.Model):
-    # Les rubriques officielles issues de la maquette Lioness
+
     CATEGORY_CHOICES = [
         ('ACTUS', 'ACTUS'),
         ('MOOD', 'MOOD'),
@@ -20,9 +20,12 @@ class Article(models.Model):
     ]
 
     title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, blank=True)
+
     author = models.CharField(max_length=150, blank=True)
     chapo = RichTextField(blank=True, null=True)
     texte = RichTextField()
+
     image = models.ImageField(upload_to="articles/", blank=True, null=True)
 
     category = models.CharField(
@@ -33,6 +36,11 @@ class Article(models.Model):
 
     published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
