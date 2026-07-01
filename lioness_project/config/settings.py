@@ -251,10 +251,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# REMPLACEZ l'ancienne ligne par celle-ci (elle ne plante jamais en cas de fichier manquant)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# Vous pouvez laisser cette ligne par sécurité
-WHITENOISE_MANIFEST_STRICT = False
+# On utilise le stockage standard de Django, qui ignore royalement les fichiers manquants
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
