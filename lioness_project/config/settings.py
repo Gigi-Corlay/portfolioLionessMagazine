@@ -86,7 +86,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "django.template.context_processors.media", # Requis pour vos templates
+                "django.template.context_processors.media",
+                "config.settings.global_settings",
             ],
         },
     },
@@ -165,3 +166,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CSRF_USE_SESSIONS = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
+
+
+# Modifiez la fonction pour qu'elle pointe directement sur la variable locale
+def global_settings(request):
+    return {
+        'IMAGEKIT_URL': IMAGEKIT_URL
+    }
