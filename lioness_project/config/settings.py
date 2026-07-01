@@ -251,10 +251,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Votre ligne existante :
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# REMPLACEZ l'ancienne ligne par celle-ci (elle ne plante jamais en cas de fichier manquant)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-# AJOUTEZ CETTE LIGNE JUSTE ICI :
+# Vous pouvez laisser cette ligne par sécurité
 WHITENOISE_MANIFEST_STRICT = False
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
