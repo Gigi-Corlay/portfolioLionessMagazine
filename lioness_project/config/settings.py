@@ -234,24 +234,22 @@ CKEDITOR_CONFIGS = {
 }
 
 # =====================================================
-# PRODUCTION STORAGE (CLOUDINARY)
+# STATIC FILES (CSS, JS, FONTS)
 # =====================================================
-
-if not DEBUG:
-    # Django-cloudinary-storage détecte automatiquement la variable 'CLOUDINARY_URL' de Render !
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.backends.MediaCloudinaryStorage'
-
-# =====================================================
-# STATIC FILES
-# =====================================================
-
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Ce stockage va gérer vos fichiers CSS/JS sans planter s'il manque le favicon.ico
+# Mode simple : distribue le CSS sans chercher les fichiers manquants
 STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# =====================================================
+# MEDIA FILES (IMAGES CLOUDINARY)
+# =====================================================
+import os
+if 'RENDER' in os.environ:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.backends.MediaCloudinaryStorage'
