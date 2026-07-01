@@ -240,3 +240,21 @@ CKEDITOR_CONFIGS = {
 if not DEBUG:
     # Django-cloudinary-storage détecte automatiquement la variable 'CLOUDINARY_URL' de Render !
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.backends.MediaCloudinaryStorage'
+
+# =====================================================
+# STATIC FILES
+# =====================================================
+
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# Votre ligne existante :
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# AJOUTEZ CETTE LIGNE JUSTE ICI :
+WHITENOISE_MANIFEST_STRICT = False
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
