@@ -2,6 +2,10 @@ import os
 import dj_database_url
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+import mimetypes
+
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/javascript", ".js", True)
 
 # =====================================================
 # BASE DIRECTORY
@@ -62,7 +66,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # CORRIGÉ : Placé au tout début pour intercepter le CSS
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -173,7 +177,7 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/"
 
 # =====================================================
-# STATIC FILES
+# STATIC & MEDIA FILES (NETTOYÉ ET REGROUPÉ)
 # =====================================================
 
 STATIC_URL = "/static/"
@@ -182,17 +186,17 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# =====================================================
-# MEDIA FILES
-# =====================================================
+# Utilisation du stockage WhiteNoise non-bloquant : il livre le CSS sans planter si un fichier manque
+STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
 
 MEDIA_URL = "/media/"
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Configuration Cloudinary active uniquement en production (quand DEBUG est False)
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.backends.MediaCloudinaryStorage'
 
 # =====================================================
 # EMAIL
@@ -211,7 +215,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # =====================================================
 
 CSRF_USE_SESSIONS = False
-
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 
@@ -232,24 +235,3 @@ CKEDITOR_CONFIGS = {
         'height': '400',
     }
 }
-
-# =====================================================
-# STATIC FILES (CSS, JS, FONTS)
-# =====================================================
-STATIC_URL = "/static/"
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
-# Mode simple : distribue le CSS sans chercher les fichiers manquants
-STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
-
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# =====================================================
-# MEDIA FILES (IMAGES CLOUDINARY)
-# =====================================================
-import os
-if 'RENDER' in os.environ:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.backends.MediaCloudinaryStorage'
