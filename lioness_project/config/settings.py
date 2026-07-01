@@ -234,6 +234,10 @@ INSTALLED_APPS = [
     'blog_magazine',
     'magazine',
     'donations',
+
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
 ]
 
 # simplifier la barre d'outils
@@ -251,19 +255,11 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
-
-# Utilisez ces configurations uniquement en production (sur Render)
 if not DEBUG:
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-    AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL')
-
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-    AWS_S3_FILE_OVERWRITE = False
-    AWS_DEFAULT_ACL = None
-
-    # C'est cette ligne qui va ajouter automatiquement le morceau manquant (/storage/v1/s3/)
-    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/storage/v1/s3/"
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+        'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    }
+    # On dit à Django d'envoyer les images (Media) chez Cloudinary
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.backends.MediaCloudinaryStorage'
