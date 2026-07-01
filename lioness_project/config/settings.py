@@ -22,7 +22,7 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-me-in-production"
 )
 
-DEBUG = "RENDER" not in os.environ
+DEBUG = os.environ.get("RENDER") is None
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     "cloudinary",
     "cloudinary_storage",
     "ckeditor",
-    "imagekit",
 
     # Apps locales
     "core",
@@ -129,7 +128,7 @@ if os.environ.get("DATABASE_URL"):
     )
 
 # =====================================================
-# AUTH
+# PASSWORD VALIDATION
 # =====================================================
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -185,10 +184,10 @@ STORAGES = {
 }
 
 # =====================================================
-# MEDIA (handled by Cloudinary)
+# MEDIA (Cloudinary only)
 # =====================================================
 
-# IMPORTANT: DO NOT use MEDIA_ROOT or DEFAULT_FILE_STORAGE
+# IMPORTANT: DO NOT define MEDIA_ROOT or MEDIA_URL
 
 # =====================================================
 # EMAIL
@@ -199,8 +198,10 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # =====================================================
-# SECURITY (Render production)
+# SECURITY (Render)
 # =====================================================
+
+CSRF_USE_SESSIONS = False
 
 if DEBUG:
     SESSION_COOKIE_SECURE = False
@@ -210,7 +211,6 @@ else:
     CSRF_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
 
 # =====================================================
 # CONTEXT PROCESSOR

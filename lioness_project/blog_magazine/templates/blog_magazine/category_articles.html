@@ -27,10 +27,14 @@
 
         <div class="article-list-item d-flex flex-column flex-md-row gap-4 align-items-start">
 
+            {# ================= IMAGE ================= #}
             {% if article.image %}
-                <img src="{{ article.image.url }}"
-                    alt="{{ article.title }}"
-                    class="img-fluid">
+                <img
+                    src="{{ article.image.url }}"
+                    alt="{{ article.title|default:'article image' }}"
+                    class="img-fluid"
+                    loading="lazy"
+                >
             {% endif %}
 
             <div class="article-list-body flex-grow-1">
@@ -66,7 +70,9 @@
 
                 <a href="{% url 'blog_magazine:article_detail' article.id %}"
                    class="btn btn-read-more">
+
                     {% trans "READ MORE" %}
+
                 </a>
 
             </div>

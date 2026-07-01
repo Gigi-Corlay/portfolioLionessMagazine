@@ -17,39 +17,49 @@
 
             <div class="dashboard-card article-detail-card bg-white p-4 p-md-5">
 
+                {# ================= IMAGE ================= #}
                 {% if article.image %}
-                    <img src="{{ article.image.url }}"
-                        alt="{{ article.title }}"
-                        class="img-fluid w-100">
+                    <img
+                        src="{{ article.image.url }}"
+                        alt="{{ article.title|default:'article image' }}"
+                        class="img-fluid w-100"
+                        loading="lazy"
+                    >
                 {% endif %}
 
+                {# ================= TITLE ================= #}
                 <h1 class="article-title mb-2">
                     {{ article.title }}
                 </h1>
 
+                {# ================= META ================= #}
                 <div class="article-meta mb-4">
                     {% if article.author %}
                         {% trans "By" %}
-                        <strong class="article-author">{{ article.author }}</strong> |
+                        <strong class="article-author">{{ article.author }}</strong>
+                        |
                     {% endif %}
                     {{ article.created_at|date:"d F Y" }}
                 </div>
 
                 <hr class="article-divider">
 
+                {# ================= CHAPO ================= #}
                 {% if article.chapo %}
                 <div class="article-chapo mb-4">
                     {{ article.chapo|safe }}
                 </div>
                 {% endif %}
 
+                {# ================= CONTENT ================= #}
                 <div class="article-content">
                     {{ article.texte|safe }}
                 </div>
 
+                {# ================= FOOTER ================= #}
                 <div class="article-footer mt-5 pt-4">
                     <a href="{% url 'blog_magazine:category_articles' article.category %}"
-                        class="see-more-link d-inline-flex align-items-center gap-2">
+                       class="see-more-link d-inline-flex align-items-center gap-2">
 
                         <i class="fa-solid fa-arrow-left"></i>
 
