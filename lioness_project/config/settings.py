@@ -1,8 +1,9 @@
 import os
-import dj_database_url
-from pathlib import Path
-from django.utils.translation import gettext_lazy as _
 import mimetypes
+from pathlib import Path
+
+import dj_database_url
+from django.utils.translation import gettext_lazy as _
 
 mimetypes.add_type("text/css", ".css", True)
 mimetypes.add_type("text/javascript", ".js", True)
@@ -10,55 +11,60 @@ mimetypes.add_type("text/javascript", ".js", True)
 # =====================================================
 # BASE DIRECTORY
 # =====================================================
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # =====================================================
 # SECURITY
 # =====================================================
+
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
     "django-insecure-change-me-in-production"
 )
 
-# Reste True en local, mais passe automatiquement à False sur Render
-DEBUG = 'RENDER' not in os.environ
+# False automatiquement sur Render
+DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "portfoliolionessmagazine.onrender.com",
+    ".onrender.com",
 ]
 
 # =====================================================
-# APPLICATIONS (Nettoyé : Cloudinary supprimé, ImageKit conservé)
+# APPLICATIONS
 # =====================================================
+
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 
-    # Les applications tierces
-    'imagekit',  
-    'ckeditor',
+    # Packages
+    "imagekit",
+    "ckeditor",
 
-    # Vos applications locales
-    'core',
-    'accounts',
-    'dashboard',
-    'blog_magazine',
-    'magazine',
-    'donations',
+    # Applications
+    "core",
+    "accounts",
+    "dashboard",
+    "blog_magazine",
+    "magazine",
+    "donations",
 ]
 
 # =====================================================
 # MIDDLEWARE
 # =====================================================
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -71,8 +77,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 
 # =====================================================
-# TEMPLATES (Intégré avec le context_processor de débogage)
+# TEMPLATES
 # =====================================================
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -96,80 +103,142 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # =====================================================
-# DATABASE (PostgreSQL pour Render, SQLite pour le local)
+# DATABASE
 # =====================================================
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+if os.environ.get("DATABASE_URL"):
+    DATABASES["default"] = dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True,
+    )
 
 # =====================================================
-# PASSWORD VALIDATION
+# PASSWORDS
 # =====================================================
+
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 # =====================================================
 # INTERNATIONALIZATION
 # =====================================================
+
 LANGUAGE_CODE = "en"
+
 LANGUAGES = [
     ("fr", _("Français")),
     ("en", _("English")),
 ]
+
 TIME_ZONE = "UTC"
+
 USE_I18N = True
 USE_TZ = True
 
 LANGUAGE_COOKIE_NAME = "lioness_language"
-LOCALE_PATHS = [BASE_DIR / "locale"]
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
 
 # =====================================================
-# AUTHENTICATION
+# LOGIN
 # =====================================================
+
 LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/"
 
 # =====================================================
-# STATIC & MEDIA FILES (Sans doublons)
+# STATIC FILES
 # =====================================================
+
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
+
+WHITENOISE_USE_FINDERS = True
+
+# =====================================================
+# MEDIA
+# =====================================================
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# Configuration ImageKit pour la production
-if not DEBUG:
-    IMAGEKIT_URL = os.environ.get("IMAGEKIT_URL", "https://ik.imagekit.io/vw8mxnzu6")
-else:
-    IMAGEKIT_URL = ""
+MEDIA_ROOT = BASE_DIR / "media"
 
 # =====================================================
-# EMAIL & SECURITY
+# IMAGEKIT
 # =====================================================
+
+IMAGEKIT_URL = os.environ.get(
+    "IMAGEKIT_URL",
+    ""
+)
+
+# =====================================================
+# EMAIL
+# =====================================================
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# =====================================================
+# SECURITY (Render)
+# =====================================================
+
 CSRF_USE_SESSIONS = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
 
+if DEBUG:
 
-# Modifiez la fonction pour qu'elle pointe directement sur la variable locale
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+
+else:
+
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    SECURE_SSL_REDIRECT = True
+
+    SECURE_PROXY_SSL_HEADER = (
+        "HTTP_X_FORWARDED_PROTO",
+        "https",
+    )
+
+# =====================================================
+# CONTEXT PROCESSOR
+# =====================================================
+
 def global_settings(request):
     return {
-        'IMAGEKIT_URL': IMAGEKIT_URL
+        "IMAGEKIT_URL": IMAGEKIT_URL,
+        "DEBUG": DEBUG,
     }

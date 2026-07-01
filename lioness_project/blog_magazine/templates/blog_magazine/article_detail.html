@@ -19,13 +19,9 @@
 
                 {% if article.image %}
                 <div class="article-cover mb-4 flex-shrink-0">
-                    {% if not debug %}
-                        {# En production, on préfixe avec l'URL ImageKit #}
-                        <img src="https://ik.imagekit.io/vw8mxnzu6{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
-                    {% else %}
-                        {# En local, on utilise le stockage classique #}
-                        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
-                    {% endif %}
+                    <img src="{{ IMAGEKIT_URL }}{{ article.image.url }}"
+                        alt="{{ article.title }}"
+                        class="img-fluid w-100">
                 </div>
                 {% endif %}
 
@@ -35,7 +31,8 @@
 
                 <div class="article-meta mb-4">
                     {% if article.author %}
-                        Par <strong class="article-author">{{ article.author }}</strong> |
+                        {% trans "By" %}
+                        <strong class="article-author">{{ article.author }}</strong> |
                     {% endif %}
                     {{ article.created_at|date:"d F Y" }}
                 </div>
@@ -53,13 +50,12 @@
                 </div>
 
                 <div class="article-footer mt-5 pt-4">
-                    <a
-                        href="{% url 'blog_magazine:category_articles' article.category %}"
+                    <a href="{% url 'blog_magazine:category_articles' article.category %}"
                         class="see-more-link d-inline-flex align-items-center gap-2">
 
                         <i class="fa-solid fa-arrow-left"></i>
 
-                        {% trans "Return to the section " %}
+                        {% trans "Return to the section" %}
                         {{ article.get_category_display }}
 
                     </a>

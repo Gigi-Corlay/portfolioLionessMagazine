@@ -11,12 +11,13 @@
 {% block collapse_show %}show{% endblock %}
 
 {% block content %}
+
 <div class="container-fluid p-0">
 
     <div class="welcome-header mb-4">
         <h1>{{ category_name|upper }}</h1>
         <p class="welcome-sub">
-            Découvrez l'ensemble des publications liées à cette thématique.
+            {% trans "Discover all publications related to this topic." %}
         </p>
     </div>
 
@@ -28,13 +29,9 @@
 
             {% if article.image %}
             <div class="article-list-thumb flex-shrink-0">
-                {% if IMAGEKIT_URL %}
-                    {# En production sur Render : Utilisation d'ImageKit #}
-                    <img src="{{ IMAGEKIT_URL }}{| article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
-                {% else %}
-                    {# En local : Utilisation du stockage classique #}
-                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
-                {% endif %}
+                <img src="{{ IMAGEKIT_URL }}{{ article.image.url }}"
+                     alt="{{ article.title }}"
+                     class="img-fluid w-100">
             </div>
             {% else %}
             <div class="article-list-thumb article-thumb-placeholder flex-shrink-0">
@@ -62,9 +59,9 @@
                 {% endif %}
 
                 {% if article.chapo %}
-                <p class="article-list-chapo">
+                <div class="article-list-chapo">
                     {{ article.chapo|safe }}
-                </p>
+                </div>
                 {% endif %}
 
                 {% if article.texte %}
@@ -73,12 +70,9 @@
                 </div>
                 {% endif %}
 
-                <a
-                    href="{% url 'blog_magazine:article_detail' article.id %}"
-                    class="btn btn-read-more">
-
+                <a href="{% url 'blog_magazine:article_detail' article.id %}"
+                   class="btn btn-read-more">
                     {% trans "READ MORE" %}
-
                 </a>
 
             </div>
@@ -92,7 +86,7 @@
         {% empty %}
 
         <p class="article-empty">
-            Aucun article publié dans cette catégorie pour le moment.
+            {% trans "No articles have been published in this category yet." %}
         </p>
 
         {% endfor %}
@@ -100,4 +94,5 @@
     </div>
 
 </div>
+
 {% endblock content %}
