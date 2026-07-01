@@ -251,7 +251,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# On utilise le stockage standard de Django, qui ignore royalement les fichiers manquants
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# Cette ligne active WhiteNoise pour retrouver vos styles, 
+# MAIS désactive la compression et le Manifest pour éviter TOUT plantage (comme favicon ou CKEditor)
+STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
