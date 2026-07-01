@@ -19,10 +19,13 @@
 
                 {% if article.image %}
                 <div class="article-cover mb-4 flex-shrink-0">
-                    <img
-                        src="{{ article.image.url }}"
-                        alt="{{ article.title }}"
-                        class="img-fluid w-100">
+                    {% if not debug %}
+                        {# En production, on préfixe avec l'URL ImageKit #}
+                        <img src="https://ik.imagekit.io/vw8mxnzu6{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
+                    {% else %}
+                        {# En local, on utilise le stockage classique #}
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
+                    {% endif %}
                 </div>
                 {% endif %}
 

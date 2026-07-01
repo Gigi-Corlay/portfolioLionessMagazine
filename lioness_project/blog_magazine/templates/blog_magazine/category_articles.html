@@ -28,10 +28,13 @@
 
             {% if article.image %}
             <div class="article-list-thumb flex-shrink-0">
-                <img
-                    src="{{ article.image.url }}"
-                    alt="{{ article.title }}"
-                    class="img-fluid w-100">
+                {% if IMAGEKIT_URL %}
+                    {# En production sur Render : Utilisation d'ImageKit #}
+                    <img src="{{ IMAGEKIT_URL }}{| article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
+                {% else %}
+                    {# En local : Utilisation du stockage classique #}
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
+                {% endif %}
             </div>
             {% else %}
             <div class="article-list-thumb article-thumb-placeholder flex-shrink-0">
