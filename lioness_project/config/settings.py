@@ -1,8 +1,12 @@
 import os
 from pathlib import Path
 import dj_database_url
-
+import cloudinary
 from django.utils.translation import gettext_lazy as _
+
+# =====================================================
+# BASE
+# =====================================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,16 +14,31 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # =====================================================
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-change-me"
+)
 
-DEBUG = not os.environ.get("RENDER")
+# DEV (local) = True
+# PROD (Render) = False si variable RENDER existe
+DEBUG = "RENDER" not in os.environ
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    ".onrender.com",
-    "portfoliolionessmagazine.onrender.com",
-]
+ALLOWED_HOSTS = os.environ.get(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost,.onrender.com"
+).split(",")
+
+# =====================================================
+# CLOUDINARY
+# =====================================================
+
+if os.environ.get("CLOUDINARY_CLOUD_NAME"):
+    cloudinary.config(
+        cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+        api_key=os.environ.get("CLOUDINARY_API_KEY"),
+        api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
+        secure=True,
+    )
 
 # =====================================================
 # APPS
@@ -33,10 +52,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    # Third party
     "cloudinary",
     "cloudinary_storage",
     "ckeditor",
 
+    # Apps
     "core",
     "accounts",
     "dashboard",
@@ -79,7 +100,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "config.settings.global_settings",
             ],
         },
     },
@@ -98,44 +118,28 @@ DATABASES = {
     }
 }
 
-if os.environ.get("DATABASE_URL"):
-    DATABASES["default"] = dj_database_url.config(conn_max_age=600)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASES["default"] = dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+        ssl_require=True,
+    )
 
 # =====================================================
-# STATIC + STORAGE
+# PASSWORD VALIDATION
 # =====================================================
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
 
 # =====================================================
-# SECURITY HEADERS
-# =====================================================
-
-if not DEBUG:
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = "DENY"
-else:
-    SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
-
-# =====================================================
-# I18N
+# INTERNATIONALIZATION
 # =====================================================
 
 LANGUAGE_CODE = "en"
@@ -160,9 +164,38 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/"
 
 # =====================================================
+# STATIC FILES
+# =====================================================
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"] if (BASE_DIR / "static").exists() else []
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# =====================================================
+# STORAGE
+# =====================================================
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# =====================================================
 # EMAIL
 # =====================================================
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# =====================================================
+# SECURITY HEADERS (PRODUCTION ONLY)
+# =====================================================
+
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

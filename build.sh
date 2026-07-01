@@ -1,42 +1,52 @@
 #!/usr/bin/env bash
-# exit on error
 set -o errexit
 
-# 1. On met à jour pip et on installe les dépendances
+echo "📦 Upgrade pip"
 pip install --upgrade pip
+
+echo "📦 Install dependencies"
 pip install -r requirements.txt
 
-# 2. On se déplace dans le dossier du projet Django si nécessaire
-cd $STATIC_ROOT/../lioness_project 2>/dev/null || cd lioness_project 2>/dev/null || true
+echo "📁 Django build start"
 
-# 3. Chemin vers le bon exécutable Python
-PYTHON_BIN="/opt/render/project/src/.venv/bin/python"
+# (optionnel mais propre) vérifier qu'on est bien au bon dossier
+if [ -f "manage.py" ]; then
+    echo "📍 manage.py found"
+else
+    echo "❌ manage.py not found — check working directory"
+    exit 1
+fi
 
-# 4. Commandes Django standard
-$PYTHON_BIN manage.py collectstatic --no-input
-$PYTHON_BIN manage.py migrate
+# IMPORTANT : migrations avant collectstatic
+echo "🗄️ Running migrations"
+python manage.py migrate --no-input
 
-# --- AJOUT ICI POUR L'IMPORTATION GRATUITE DES ARTICLES ---
-# if [ -f "data.json" ]; then
-#     echo "Importation des articles en cours..."
-#     $PYTHON_BIN manage.py loaddata data.json
-# fi
-# -----------------------------------------------------------
+echo "🎨 Collect static files"
+python manage.py collectstatic --no-input
 
-# 5. Création/Mise à jour de l'administrateur
-$PYTHON_BIN -c "
-import os, django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-django.setup()
+# (optionnel) création admin sécurisé via variables d'env
+echo "👤 Creating admin user (if env provided)"
+
+python manage.py shell << 'EOF'
+import os
 from django.contrib.auth import get_user_model
-User = get_user_model()
-username = 'admin_lionne'
-email = 'lioness.lemagdesreines@gmail.com'
-password = 'LionessSecurePass2026!!'
 
-user, created = User.objects.get_or_create(username=username, defaults={'email': email})
-user.set_password(password)
-user.is_staff = True
-user.is_superuser = True
-user.save()
-"
+User = get_user_model()
+
+username = os.environ.get("DJANGO_ADMIN_USERNAME")
+email = os.environ.get("DJANGO_ADMIN_EMAIL")
+password = os.environ.get("DJANGO_ADMIN_PASSWORD")
+
+if username and email and password:
+    user, created = User.objects.get_or_create(username=username, defaults={"email": email})
+    user.email = email
+    user.set_password(password)
+    user.is_staff = True
+    user.is_superuser = True
+    user.save()
+    print("✅ Admin ready")
+else:
+    print("⚠️ Admin env vars not set — skipping")
+EOF
+
+echo "🚀 Build finished successfully"
