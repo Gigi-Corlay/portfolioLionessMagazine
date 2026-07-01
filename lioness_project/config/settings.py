@@ -251,8 +251,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Cette ligne active WhiteNoise pour retrouver vos styles, 
-# MAIS désactive la compression et le Manifest pour éviter TOUT plantage (comme favicon ou CKEditor)
+# Ce stockage va gérer vos fichiers CSS/JS sans planter s'il manque le favicon.ico
 STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
