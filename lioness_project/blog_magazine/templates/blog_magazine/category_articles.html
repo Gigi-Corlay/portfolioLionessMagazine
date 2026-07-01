@@ -28,15 +28,7 @@
         <div class="article-list-item d-flex flex-column flex-md-row gap-4 align-items-start">
 
             {% if article.image %}
-            <div class="article-list-thumb flex-shrink-0">
-                <img src="{{ IMAGEKIT_URL }}{{ article.image.url }}"
-                     alt="{{ article.title }}"
-                     class="img-fluid w-100">
-            </div>
-            {% else %}
-            <div class="article-list-thumb article-thumb-placeholder flex-shrink-0">
-                <i class="fa-regular fa-image"></i>
-            </div>
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
             {% endif %}
 
             <div class="article-list-body flex-grow-1">

@@ -18,11 +18,7 @@
             <div class="dashboard-card article-detail-card bg-white p-4 p-md-5">
 
                 {% if article.image %}
-                <div class="article-cover mb-4 flex-shrink-0">
-                    <img src="{{ IMAGEKIT_URL }}{{ article.image.url }}"
-                        alt="{{ article.title }}"
-                        class="img-fluid w-100">
-                </div>
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
                 {% endif %}
 
                 <h1 class="article-title mb-2">
