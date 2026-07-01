@@ -18,7 +18,8 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-me-in-production"
 )
 
-DEBUG = True
+# Reste True en local, mais passe automatiquement à False sur Render
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -31,6 +32,9 @@ ALLOWED_HOSTS = [
 # =====================================================
 
 INSTALLED_APPS = [
+    # Applications requises pour le stockage Cloudinary (DOIVENT ÊTRE EN HAUT)
+    'cloudinary_storage',
+    
     # Les applications indispensables de Django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,15 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Les applications tierces
+    'cloudinary',
     'ckeditor',
 
     # Vos applications locales
-    'blog_magazine',
+    'core',
     'accounts',
     'dashboard',
-    'donations',
+    'blog_magazine',
     'magazine',
-    'core',
+    'donations',
 ]
 
 # =====================================================
@@ -211,36 +216,9 @@ SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 
 # =====================================================
-# APPS
+# CKEDITOR CONFIG
 # =====================================================
 
-INSTALLED_APPS = [
-    # Les applications obligatoires de Django
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    # Les applications tierces
-    'ckeditor',
-    'storages',
-
-    # Vos applications locales
-    'core',
-    'accounts',
-    'dashboard',
-    'blog_magazine',
-    'magazine',
-    'donations',
-
-    'cloudinary_storage',
-    'django.contrib.staticfiles',
-    'cloudinary',
-]
-
-# simplifier la barre d'outils
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
@@ -254,6 +232,10 @@ CKEDITOR_CONFIGS = {
         'height': '400',
     }
 }
+
+# =====================================================
+# PRODUCTION STORAGE (CLOUDINARY)
+# =====================================================
 
 if not DEBUG:
     # Django-cloudinary-storage détecte automatiquement la variable 'CLOUDINARY_URL' de Render !
