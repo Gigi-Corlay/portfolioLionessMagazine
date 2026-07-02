@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-me"
 )
 
-# DEBUG
+# FORCE LE DEBUG À TRUE POUR VOIR LES ERREURS SUR LA PAGE JAUNE
 DEBUG = True
 
 if not DEBUG:
@@ -179,24 +179,15 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-    },
-}
 
 # =====================================================
-# STORAGE
+# STORAGE (VERSION PROPRE ET ULTRA-TOLÉRANTE)
 # =====================================================
 
 STORAGES = {
-    # Vos images et médias envoyés par les utilisateurs vont sur Cloudinary
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-    # Tous vos fichiers statiques (Admin CSS, JS, CKEditor) sont gérés proprement par Whitenoise
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
