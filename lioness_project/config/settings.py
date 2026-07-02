@@ -14,37 +14,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # =====================================================
 
-SECRET_KEY = os.environ.get(
-    "SECRET_KEY",
-    "django-insecure-change-me"
-)
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-change-me")
 
-# Debug
 DEBUG = "RENDER" not in os.environ
-
-if not DEBUG:
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    CSRF_TRUSTED_ORIGINS = ["https://portfoliolionessmagazine.onrender.com"]
 
 ALLOWED_HOSTS = os.environ.get(
     "ALLOWED_HOSTS",
     "127.0.0.1,localhost,.onrender.com"
 ).split(",")
 
-# =====================================================
-# CLOUDINARY
-# =====================================================
-
-if os.environ.get("CLOUDINARY_CLOUD_NAME"):
-    cloudinary.config(
-        cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
-        api_key=os.environ.get("CLOUDINARY_API_KEY"),
-        api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
-        secure=True,
-    )
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    CSRF_TRUSTED_ORIGINS = [
+        "https://portfoliolionessmagazine.onrender.com"
+    ]
 
 # =====================================================
 # APPS
@@ -116,20 +102,38 @@ WSGI_APPLICATION = "config.wsgi.application"
 # DATABASE
 # =====================================================
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
-    DATABASES["default"] = dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600,
-        ssl_require=True,
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True,
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+
+# =====================================================
+# CLOUDINARY CONFIG
+# =====================================================
+
+if (
+    os.environ.get("CLOUDINARY_CLOUD_NAME")
+    and os.environ.get("CLOUDINARY_API_KEY")
+    and os.environ.get("CLOUDINARY_API_SECRET")
+):
+    cloudinary.config(
+        cloud_name=os.environ["CLOUDINARY_CLOUD_NAME"],
+        api_key=os.environ["CLOUDINARY_API_KEY"],
+        api_secret=os.environ["CLOUDINARY_API_SECRET"],
+        secure=True,
     )
 
 # =====================================================
@@ -161,6 +165,35 @@ USE_TZ = True
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 # =====================================================
+# STATIC FILES (IMPORTANT FIX ADMIN + FAVICON)
+# =====================================================
+
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = (
+    [BASE_DIR / "static"]
+    if (BASE_DIR / "static").exists()
+    else []
+)
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# =====================================================
+# MEDIA (CLOUDINARY + LOCAL FALLBACK)
+# =====================================================
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# =====================================================
 # LOGIN
 # =====================================================
 
@@ -169,29 +202,18 @@ LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/"
 
 # =====================================================
-# STATIC FILES & CKEDITOR
+# CKEDITOR
 # =====================================================
-
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"] if (BASE_DIR / "static").exists() else []
-STATIC_ROOT = BASE_DIR / "staticfiles"
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
 # =====================================================
-# STORAGE (VERSION PROPRE ET ULTRA-TOLÉRANTE)
+# AUTO FIELD
 # =====================================================
 
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-    },
-}
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # =====================================================
 # EMAIL

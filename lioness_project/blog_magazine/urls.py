@@ -1,9 +1,18 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 app_name = "blog_magazine"
 
 urlpatterns = [
+    # Favicon (IMPORTANT : doit être dans la liste principale)
+    path(
+        "favicon.ico",
+        RedirectView.as_view(url="/static/images/logo_favicon.png"),
+    ),
+
     # Home blog (catégorie par défaut)
     path(
         "",
@@ -26,3 +35,7 @@ urlpatterns = [
         name="article_detail"
     ),
 ]
+
+# MEDIA (OK)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

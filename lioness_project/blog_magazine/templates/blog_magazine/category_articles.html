@@ -25,14 +25,14 @@
 
         {% for article in articles %}
 
-        <div class="article-list-item d-flex flex-column flex-md-row gap-4 align-items-start">
+        <div class="d-flex flex-column flex-md-row gap-4 align-items-start">
 
             {# ================= IMAGE ================= #}
             {% if article.image %}
                 <img
                     src="{{ article.image.url }}"
                     alt="{{ article.title|default:'article image' }}"
-                    class="img-fluid"
+                    class="img-thumb img-fluid"
                     loading="lazy"
                 >
             {% endif %}
