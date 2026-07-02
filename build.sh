@@ -4,22 +4,29 @@ set -o errexit
 cd lioness_project
 
 echo "Upgrade pip"
-pip install --upgrade pip
+python -m pip install --upgrade pip
 
 echo "Install dependencies"
 pip install -r requirements.txt
 
-# CORRECTION ICI : On génère la migration manquante AVANT d'exécuter les migrations
-echo "Generating missing migrations for blog_magazine"
-python manage.py makemigrations blog_magazine
-
-echo "Running migrations"
+echo "Apply database migrations"
 python manage.py migrate --noinput
 
-echo "Creating superuser if not exists"
-python manage.py shell -c "from django.contrib.auth.models import User; User.objects.filter(username='admin_lionne').exists() or User.objects.create_superuser('admin_lionne', 'adminlionne@lioness.com', 'LionessSecurePass2026!!')"
+echo "Create superuser if it does not exist"
+python manage.py shell <<EOF
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+if not User.objects.filter(username="admin_lionne").exists():
+    User.objects.create_superuser(
+        "admin_lionne",
+        "adminlionne@lioness.com",
+        "LionessSecurePass2026!!"
+    )
+EOF
 
 echo "Collect static files"
-python manage.py collectstatic --noinput --clear
+python manage.py collectstatic --noinput
 
 echo "Build finished successfully"
