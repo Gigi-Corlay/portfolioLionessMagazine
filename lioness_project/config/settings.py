@@ -170,13 +170,25 @@ LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/"
 
-# =====================================================
+=====================================================
 # STATIC FILES
 # =====================================================
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] if (BASE_DIR / "static").exists() else []
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Ajout des configurations explicites pour CKEditor
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+}
 
 # =====================================================
 # STORAGE
@@ -187,7 +199,9 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        # Remplacement temporaire par le stockage standard pour forcer 
+        # Django à ignorer les fichiers manifest manquants de CKEditor
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
@@ -196,7 +210,6 @@ STORAGES = {
 # =====================================================
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 # =====================================================
 # SECURITY HEADERS (PRODUCTION ONLY)
 # =====================================================
