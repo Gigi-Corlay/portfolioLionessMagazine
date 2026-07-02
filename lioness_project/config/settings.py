@@ -19,8 +19,8 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-me"
 )
 
-# DEV (local) = True | PROD (Render) = False
-DEBUG = "RENDER" not in os.environ
+# DEBUG
+DEBUG = True
 
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
