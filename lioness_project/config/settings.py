@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-me"
 )
 
-# DEV (local) = True
+# DEV (local) = True | PROD (Render) = False
 DEBUG = "RENDER" not in os.environ
 
 if not DEBUG:
@@ -27,8 +27,6 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-    # AJOUTER CETTE LIGNE ICI :
     CSRF_TRUSTED_ORIGINS = ["https://portfoliolionessmagazine.onrender.com"]
 
 ALLOWED_HOSTS = os.environ.get(
@@ -170,15 +168,14 @@ LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "/dashboard/"
 LOGOUT_REDIRECT_URL = "/"
 
-=====================================================
-# STATIC FILES
+# =====================================================
+# STATIC FILES & CKEDITOR
 # =====================================================
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] if (BASE_DIR / "static").exists() else []
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Ajout des configurations explicites pour CKEditor
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
@@ -199,8 +196,6 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        # Remplacement temporaire par le stockage standard pour forcer 
-        # Django à ignorer les fichiers manifest manquants de CKEditor
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
@@ -210,12 +205,3 @@ STORAGES = {
 # =====================================================
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-# =====================================================
-# SECURITY HEADERS (PRODUCTION ONLY)
-# =====================================================
-
-if not DEBUG:
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
