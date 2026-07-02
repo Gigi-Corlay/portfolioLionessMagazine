@@ -23,6 +23,15 @@ SECRET_KEY = os.environ.get(
 # PROD (Render) = False si variable RENDER existe
 DEBUG = "RENDER" not in os.environ
 
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+    # AJOUTER CETTE LIGNE ICI :
+    CSRF_TRUSTED_ORIGINS = ["https://portfoliolionessmagazine.onrender.com"]
+
 ALLOWED_HOSTS = os.environ.get(
     "ALLOWED_HOSTS",
     "127.0.0.1,localhost,.onrender.com"
@@ -45,6 +54,8 @@ if os.environ.get("CLOUDINARY_CLOUD_NAME"):
 # =====================================================
 
 INSTALLED_APPS = [
+    "cloudinary_storage",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -52,12 +63,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Third party
     "cloudinary",
-    "cloudinary_storage",
     "ckeditor",
 
-    # Apps
     "core",
     "accounts",
     "dashboard",
