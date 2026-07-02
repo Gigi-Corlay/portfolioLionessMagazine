@@ -192,11 +192,13 @@ CKEDITOR_CONFIGS = {
 # =====================================================
 
 STORAGES = {
+    # Vos images et médias envoyés par les utilisateurs vont sur Cloudinary
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
+    # Tous vos fichiers statiques (Admin CSS, JS, CKEditor) sont gérés proprement par Whitenoise
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
