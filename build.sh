@@ -16,3 +16,9 @@ echo "Collect static files"
 python manage.py collectstatic --noinput --clear
 
 echo "Build finished successfully"
+
+python manage.py shell -c 
+    "from django.contrib.auth.models import User; 
+    User.objects.filter(username='admin_lionne').exists() or 
+    User.objects.create_superuser('admin_lionne'', 
+    'adminlionne@lioness.com', 'LionessSecurePass2026!!')"
