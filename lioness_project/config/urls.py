@@ -6,20 +6,25 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # favicon
+    # Favicon
     path(
         "favicon.ico",
-        RedirectView.as_view(url="/static/images/logo_favicon.png", permanent=True),
+        RedirectView.as_view(
+            url="/static/images/logo_favicon.png",
+            permanent=True,
+        ),
     ),
 
+    # Administration
     path("admin/", admin.site.urls),
 
+    # Applications
     path("", include("core.urls")),
     path("", include("blog_magazine.urls")),
-    path("blog/", include("blog_magazine.urls")),
     path("accounts/", include("accounts.urls")),
     path("dashboard/", include("dashboard.urls")),
 
+    # Internationalisation
     path("i18n/", include("django.conf.urls.i18n")),
 
     # Password reset
@@ -52,7 +57,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
 
-    # Legal
+    # Pages légales
     path(
         "legal-notice/",
         TemplateView.as_view(
