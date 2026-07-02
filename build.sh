@@ -12,6 +12,9 @@ pip install -r requirements.txt
 echo "Running migrations"
 python manage.py migrate --noinput
 
+python lioness_project/manage.py makemigrations blog_magazine
+python lioness_project/manage.py migrate
+
 echo "Creating superuser if not exists"
 python manage.py shell -c "from django.contrib.auth.models import User; User.objects.filter(username='admin_lionne').exists() or User.objects.create_superuser('admin_lionne', 'adminlionne@lioness.com', 'LionessSecurePass2026!!')"
 
