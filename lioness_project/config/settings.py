@@ -19,8 +19,8 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-me"
 )
 
-# FORCE LE DEBUG À TRUE POUR VOIR LES ERREURS SUR LA PAGE JAUNE
-DEBUG = True
+# Debug
+DEBUG = "RENDER" not in os.environ
 
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
