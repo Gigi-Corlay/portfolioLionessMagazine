@@ -20,8 +20,7 @@ SECRET_KEY = os.environ.get(
 )
 
 # DEV (local) = True
-# PROD (Render) = False si variable RENDER existe
-DEBUG = "RENDER" not in os.environ
+DEBUG = True
 
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
