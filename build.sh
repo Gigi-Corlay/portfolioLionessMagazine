@@ -18,11 +18,13 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-if not User.objects.filter(username="admin_lionne").exists():
+username = "admin_lionne"
+
+if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(
-        "admin_lionne",
-        "adminlionne@lioness.com",
-        "LionessSecurePass2026!!"
+        username=username,
+        email="adminlionne@lioness.com",
+        password="LionessSecurePass2026!!"
     )
 EOF
 

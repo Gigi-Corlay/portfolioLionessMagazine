@@ -2,27 +2,27 @@ from django.shortcuts import render, get_object_or_404
 from .models import Article
 
 
-def articles_by_category(request, category_slug):
-    articles = (
-        Article.objects
-        .filter(category=category_slug, published=True)
-        .order_by("-created_at")
-    )
+def articles_by_category(request, category):
+    articles = Article.objects.filter(
+        category=category,
+        published=True,
+    ).order_by("-created_at")
 
     category_name = dict(Article.CATEGORY_CHOICES).get(
-        category_slug,
-        category_slug.upper()
+        category,
+        category,
     )
+
+    context = {
+        "articles": articles,
+        "category_name": category_name,
+        "active_category": category,
+    }
 
     return render(
         request,
         "blog_magazine/category_articles.html",
-        {
-            "articles": articles,
-            "category_name": category_name,
-            "category_slug": category_slug,
-            "active_category": category_slug,
-        }
+        context,
     )
 
 
@@ -30,7 +30,7 @@ def article_detail(request, id):
     article = get_object_or_404(
         Article,
         id=id,
-        published=True
+        published=True,
     )
 
     return render(
@@ -39,5 +39,5 @@ def article_detail(request, id):
         {
             "article": article,
             "active_category": article.category,
-        }
+        },
     )

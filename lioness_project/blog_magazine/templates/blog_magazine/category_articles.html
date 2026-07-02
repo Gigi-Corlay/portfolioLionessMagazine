@@ -2,13 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}Category: {{ category_name }} - Lioness{% endblock %}
+{% block title %}{{ category_name }} - Lioness{% endblock %}
 
 {% block nav_dashboard %}{% endblock %}
 {% block nav_articles %}active{% endblock %}
 {% block collapse_state %}{% endblock %}
-{% block aria_expanded %}true{% endblock %}
 {% block collapse_show %}show{% endblock %}
+{% block aria_expanded %}true{% endblock %}
 
 {% block content %}
 
@@ -25,21 +25,23 @@
 
         {% for article in articles %}
 
-        <div class="d-flex flex-column flex-md-row gap-4 align-items-start">
+        <div class="row g-4 align-items-start">
 
-            {# ================= IMAGE ================= #}
+            <!-- Image -->
             {% if article.image %}
+            <div class="col-md-3 col-lg-2 text-center">
                 <img
                     src="{{ article.image.url }}"
-                    alt="{{ article.title|default:'article image' }}"
-                    class="img-thumb img-fluid"
-                    loading="lazy"
-                >
+                    alt="{{ article.title }}"
+                    class="img-fluid img-thumbnail article-thumbnail"
+                    loading="lazy">
+            </div>
             {% endif %}
 
-            <div class="article-list-body flex-grow-1">
+            <!-- Texte -->
+            <div class="{% if article.image %}col-md-9 col-lg-10{% else %}col-12{% endif %}">
 
-                <div class="article-list-tags mb-1">
+                <div class="article-list-tags mb-2">
                     <span>{{ category_name|upper }}</span>
                 </div>
 
@@ -50,29 +52,25 @@
                 </h2>
 
                 {% if article.author %}
-                <p class="article-list-author">
+                <p class="article-list-author text-muted mb-2">
                     <i class="fa-solid fa-user me-1"></i>
                     {{ article.author }}
                 </p>
                 {% endif %}
 
                 {% if article.chapo %}
-                <div class="article-list-chapo">
+                <div class="article-list-chapo mb-3">
                     {{ article.chapo|safe }}
                 </div>
                 {% endif %}
 
-                {% if article.texte %}
                 <div class="article-list-excerpt mb-3">
-                    {{ article.texte|truncatewords_html:25|safe }}
+                    {{ article.texte|truncatewords_html:30|safe }}
                 </div>
-                {% endif %}
 
                 <a href="{% url 'blog_magazine:article_detail' article.id %}"
                    class="btn btn-read-more">
-
-                    {% trans "READ MORE" %}
-
+                    {% trans "Read more" %}
                 </a>
 
             </div>
@@ -80,14 +78,16 @@
         </div>
 
         {% if not forloop.last %}
-        <hr class="article-list-divider">
+            <hr class="article-list-divider my-4">
         {% endif %}
 
         {% empty %}
 
-        <p class="article-empty">
-            {% trans "No articles have been published in this category yet." %}
-        </p>
+        <div class="text-center py-5">
+            <p class="article-empty mb-0">
+                {% trans "No articles have been published in this category yet." %}
+            </p>
+        </div>
 
         {% endfor %}
 
@@ -95,4 +95,4 @@
 
 </div>
 
-{% endblock content %}
+{% endblock %}
