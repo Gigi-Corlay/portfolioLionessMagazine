@@ -2,7 +2,7 @@
 
 LIONESS is a bilingual (French/English) digital platform designed to promote, celebrate, and empower African and Afro-descendant women through inspiring content, entrepreneurship, community engagement, and digital publications.
 
-The platform provides comprehensive access to the LIONESS digital magazine, member registration, a secure personalized dashboard, and direct organizational support through integrated donation workflows.
+The platform provides comprehensive access to the LIONESS digital magazine, member registration, and a secure personalized dashboard.
 
 ---
 
@@ -13,10 +13,11 @@ The platform provides comprehensive access to the LIONESS digital magazine, memb
 - [MVP Scope](#-mvp-scope)
 - [Technologies Used](#-technologies-used)
 - [Application Architecture](#-application-architecture)
-- [Database Design & ERD](#-database-design)
+- [Database Design & ERD](#-database-design--erd)
 - [Project Structure](#-project-structure)
 - [Installation Guide](#-installation-guide)
 - [Environment Configuration](#-environment-configuration)
+- [Production & Deployment (Render & Cloudinary)](#-production--deployment-render--cloudinary)
 - [Running the Project](#-running-the-project)
 - [Authentication System](#-authentication-system)
 - [Internationalization (i18n)](#-internationalization-i18n)
@@ -24,74 +25,61 @@ The platform provides comprehensive access to the LIONESS digital magazine, memb
 - [Testing Strategy](#-testing-strategy)
 - [Git Workflow](#-git-workflow)
 - [Technical Decisions](#-technical-decisions)
-- [Screenshots](#-screenshots)
 - [Team Collaboration](#-team-collaboration)
 - [License](#-license)
 
 ---
 
-# Portfolio Lioness Magazine
-
-## System Architecture
+## 🏗️ Application Architecture
 
 ```mermaid
 flowchart TD
+    U[User]
+    FE[Front-end HTML / CSS / JavaScript]
+    LANG[Language Selection FR / EN]
+    BE[Back-end Django Python]
+    DB[(Database PostgreSQL Render)]
+    CLOUDINARY[(Cloudinary Media Storage)]
+    CAL[Calaméo PDF Magazines]
+    EMAIL[Email Service Notifications]
+    DF[Data Flow Layer HTTP Requests + JSON Responses]
 
-U[User]
+    U --> FE
+    FE --> LANG
+    LANG --> FE
+    FE --> DF
+    DF --> BE
+    BE -->|CRUD Users & Articles| DB
+    DB --> BE
+    BE -->|Upload & Stream Images| CLOUDINARY
+    CLOUDINARY --> FE
+    BE --> FE
+    BE --> CAL
+    BE --> EMAIL
 
-FE[Front-end HTML / CSS / JavaScript]
-LANG[Language Selection FR / EN]
+    classDef userNode stroke:#fb7185,fill:#fff1f2
+    classDef frontendNode stroke:#38bdf8,fill:#f0f9ff
+    classDef backendNode stroke:#a78bfa,fill:#f5f3ff
+    classDef databaseNode stroke:#4ade80,fill:#f0fdf4
+    classDef externalNode stroke:#facc15,fill:#fefce8
+    classDef dataflowNode stroke:#f97316,fill:#fff7ed
+    classDef languageNode stroke:#60a5fa,fill:#eff6ff
 
-BE[Back-end Django Python]
-DB[(Database SQLite / PostgreSQL)]
-
-CAL[Calaméo PDF Magazines]
-HELLOASSO[HelloAsso Donation Platform]
-EMAIL[Email Service Notifications]
-
-DF[Data Flow Layer HTTP Requests + JSON Responses]
-
-U --> FE
-
-FE --> LANG
-LANG --> FE
-
-FE --> DF
-DF --> BE
-
-BE -->|CRUD Users & Articles| DB
-DB --> BE
-
-BE --> FE
-
-BE --> CAL
-BE --> HELLOASSO
-BE --> EMAIL
-
-classDef userNode stroke:#fb7185,fill:#fff1f2
-classDef frontendNode stroke:#38bdf8,fill:#f0f9ff
-classDef backendNode stroke:#a78bfa,fill:#f5f3ff
-classDef databaseNode stroke:#4ade80,fill:#f0fdf4
-classDef externalNode stroke:#facc15,fill:#fefce8
-classDef dataflowNode stroke:#f97316,fill:#fff7ed
-classDef languageNode stroke:#60a5fa,fill:#eff6ff
-
-class U userNode
-class FE frontendNode
-class BE backendNode
-class DB databaseNode
-class CAL externalNode
-class HELLOASSO externalNode
-class EMAIL externalNode
-class DF dataflowNode
-class LANG languageNode
+    class U userNode
+    class FE frontendNode
+    class BE backendNode
+    class DB databaseNode
+    class CLOUDINARY databaseNode
+    class CAL externalNode
+    class EMAIL externalNode
+    class DF dataflowNode
+    class LANG languageNode
 ```
 
-## ER DIAGRAM
+## Database Design & ERD
 ```mermaid
 erDiagram
     USER ||--o{ PROFILE : has
-    USER ||--o{ DONATION : makes
     USER ||--o{ NOTIFICATION : receives
     
     USER {
@@ -110,7 +98,7 @@ erDiagram
         int user_id FK
         string country
         string occupation
-        string profile_picture
+        string profile_picture_url
         text bio
         datetime created_at
         datetime updated_at
@@ -121,7 +109,7 @@ erDiagram
         string title
         string author
         text content
-        string image
+        string image_url
         string category
         boolean published
         datetime created_at
@@ -129,7 +117,8 @@ erDiagram
 ```
     ----
 
-## 1. Sequence Diagram — User Login
+## 🔄 System Workflows & Sequence Diagrams
+### 1. Sequence Diagram — User Login
 
 ```mermaid
 sequenceDiagram
@@ -159,72 +148,54 @@ sequenceDiagram
 
 ---
 
-## 2. SEQUENCE DIAGRAM — RETRIEVE ARTICLES BY CATEGORY
+### 2. Sequence Diagram — Retrieve Articles by Category
 ```mermaid
     sequenceDiagram
     actor User
     participant Frontend
     participant Backend
     participant Database
+    participant Cloudinary
 
     User->>Frontend: Click on Category Tab (e.g., News)
     Frontend->>Backend: GET /blog/category/news/
     Backend->>Database: Filter Articles (category='news', published=True)
-    Database-->>Backend: Return Article List
+    Database-->>Backend: Return Article Metadata & Image URLs
     Backend-->>Frontend: Render category_articles.html with Context
+    Frontend->>Cloudinary: Fetch hosted images asset directly
+    Cloudinary-->>Frontend: Stream images fluidly
     Frontend-->>User: Display categorized items grid
-```
-
----
-
- ## 3. SEQUENCE DIAGRAM — DONATION (HelloAsso)
-```mermaid
-    sequenceDiagram
-    actor User
-    participant Frontend
-    participant Backend
-    participant HelloAsso
-    participant Database
-
-    User->>Frontend: Click "Support LIONESS"
-    Frontend->>Backend: Request donation page
-    Backend-->>Frontend: Return HelloAsso donation link
-    Frontend->>HelloAsso: Redirect user to donation platform
-    User->>HelloAsso: Complete donation payment
-    HelloAsso-->>Backend: Payment confirmation (Webhook / Callback)
-    Backend->>Database: Save donation information
-    Database-->>Backend: Confirmation saved
-    Backend-->>Frontend: Success response
-    Frontend-->>User: Donation success message
 ```
 
 ---
 
 ## 🎯 Project Overview
 ### LIONESS was built to structure a complete digital ecosystem where members can:
-- Browse an editorial catalog of inspiring publications and opinion pieces.  
-- Discover successful women entrepreneurs through targeted showcases.  
-- Join an empowered community through a secure, authenticated members-only space.
-- Actively support the organization's initiatives via a seamless donation portal.
+- Browse an editorial catalog of inspiring publications and opinion pieces.
 
-The project adheres to Agile development methodologies and is delivered as a fully functioning MVP built on top of the Django framework.  
+- Discover successful women entrepreneurs through targeted showcases.
+
+- Join an empowered community through a secure, authenticated members-only space.
+
+The project adheres to Agile development methodologies and is delivered as a fully functioning MVP built on top of the Django framework.
 
 ---
 
 ## 🚀 Features
 ### Public & Core Editorial Features
-- Dynamic Magazine Engine: Features a structured article publication system automatically sorting content into 9 official thematic categories mapped from the original design mockups 
-*(News, Mood, Agenda Business, Guest Focus, Cover, Well-being, What if we talked about it ?, Lifestyle, The Most Impactful Personalities)*.  
-- Contextual Filtering: Users seamlessly navigate editorial channels via specialized controllers 
-*(views.articles_by_category), displaying dynamic publication feeds.*  
-- Calaméo Integration: Smooth embedding of professional, interactive PDF magazine players directly inside the responsive user interface.Donation Gateway (HelloAsso) : Secure external redirection processing to capture philanthropic contributions smoothly.
+- **Dynamic Magazine Engine:** Features a structured article publication system automatically sorting content into 9 official thematic categories mapped from the original design mockups: *News, Mood, Agenda Business, Guest Focus, Cover, Well-being, What if we talked about it ?, Lifestyle, The Most Impactful Personalities*.
+
+- **Contextual Filtering:** Users seamlessly navigate editorial channels via specialized controllers (```views.articles_by_category```), displaying dynamic publication feeds.
+
+- **Calaméo Integration:** Smooth embedding of professional, interactive PDF magazine players directly inside the responsive user interface.
 
 ---
 
-## Authentication & Member Space
+### Authentication & Member Space
 
 * **Registration & Extended Profiles**: Standard account registration handled as atomic transactions, automatically coupled with an extended `Profile` model that hooks into important context data (*Country of Residence*, *Occupation*, *Biography*).
-* **Secure Dashboard Layout**: Tailored member panel (`dashboard.html`) equipped with a persistent multi-tiered sidebar drawer, fluid accessibility toggles for mobile viewpoints (`#sidebarToggle`), and automated dynamic state handlers to apply active link styles visual feedback.  
+
+* **Secure Dashboard Layout**: Tailored member panel (```dashboard.html```) equipped with a persistent multi-tiered sidebar drawer, fluid accessibility toggles for mobile viewpoints (```#sidebarToggle```), and automated dynamic state handlers to apply active link styles visual feedback.  
 
 ---
 
@@ -243,16 +214,26 @@ The project adheres to Agile development methodologies and is delivered as a ful
 
 ### Could Have / Future Steps
 * Direct user submission portal enabling members to draft and propose draft posts for administrative approval.
+
+* Integrated donation workflow via secure external platform gateway (e.g., HelloAsso setup).
+
 * Centralized podcast player layout structures.
 
 ---
 
 ## 🛠 Technologies Used
 
-* **Backend**: Python 3.12+ | Django 4.2+ (Template Processing Engine, Object-Relational Mapper, Native Authentication Suite).  
-* **Database**: SQLite3 (Local file-based development database layer).
-* **Frontend**: HTML5 | CSS3 (Native custom properties `:root` declaration tracking a strict typography and palette design system) | Bootstrap 5 | JavaScript (ES6 targeting layout drawers and credential visibility interactions).  
-* **i18n Layer**: Django `LocaleMiddleware` combined with granular block compilation tags (`{% blocktrans %}`) and structural `gettext_lazy` markers.  
+* **Backend**: Python 3.1O+ | Django 4.2+ (Template Processing Engine, Object-Relational Mapper, Native Authentication Suite).  
+
+- **Textual Databases**: PostgreSQL (Production text & relational storage managed on Render) | SQLite3 (Optional local file-based testing layer).
+
+- **Media Cloud Storage**: Cloudinary (Production asset storage serving images, avatars, and visual media banners seamlessly).
+
+- **Hosting & DevOps**: Render Platform (WSGI Server Management via Gunicorn/WhiteNoise).
+
+- **Frontend**: HTML5 | CSS3 (Native custom properties `:root` declaration tracking a strict typography and palette design system) | Bootstrap 5 | JavaScript (ES6 targeting layout drawers and credential visibility interactions).
+
+- **i18n Layer**: Django `LocaleMiddleware` combined with granular block compilation tags (`{% blocktrans %}`) and structural `gettext_lazy` markers. 
 
 ---
 
@@ -268,7 +249,7 @@ The application utilizes Django's built-in object-relational mapping to manage s
 | `title` | CharField(255) | The headline or title of the publication. |
 | `author` | CharField(150) | Optional author credit or pen name. |
 | `content` | TextField | Main body layout supporting clean carriage returns using `pre-line` filters. |
-| `image` | ImageField | Main media attachment directory path mapping files directly to `articles/`. |
+| `image` | CloudinaryField | Image attachment reference routed and securely hosted directly inside Cloudinary. |
 | `category` | CharField(50) | String token field mapped tightly to the 9 default choices (Default: `'news'`). |
 | `published` | BooleanField | Public visibility control flag (Default: `True`). |
 | `created_at` | DateTimeField | Automatic registration tracking timestamp (`auto_now_add`). |
@@ -281,7 +262,7 @@ The application utilizes Django's built-in object-relational mapping to manage s
 | `user` | OneToOneField | Strict 1:1 relational map binding direct record context to Django's native `User` entity. |
 | `country` | CharField(100) | Location data captured during member signup flows. |
 | `occupation` | CharField(100) | Member professional specialization field. |
-| `profile_picture`| ImageField | Optional portrait upload targeting the local `profiles/` media storage block. |
+| `profile_picture` | CloudinaryField | Avatar profile portrait file hosted dynamically in Cloudinary buckets. |
 | `bio` | TextField | Plain-text descriptive user profile background summary. |
 
 ---
@@ -289,7 +270,7 @@ The application utilizes Django's built-in object-relational mapping to manage s
 ## 📂 Project Structure
 
 ```plaintext
-lioness/
+portfolioLionessMagazine/
 │
 ├── accounts/               # Account workflows and extended user attributes
 │   ├── forms.py            # Overrides (RegisterForm, LoginForm, ProfileForm)
@@ -308,11 +289,12 @@ lioness/
 │   ├── views.py            # Landing workspace index feeding recent active magazine updates
 │   └── urls.py
 │
-├── config/                 # Root Django deployment and orchestration settings
-│   ├── settings.py         # Global parameters detailing i18n middleware and custom cookie keys
+├── lioness_project/        # Root Django deployment and orchestration settings
+│   ├── settings.py         # Global parameters detailing i18n middleware and Cloudinary storage backend
 │   └── urls.py             # Root collection mapping system-wide endpoints and i18n_patterns
 │
 ├── templates/              # Visual view layout repository
+│   ├── base.html           # Main master boilerplate layout framework
 │   ├── accounts/           # Presentation layer templates login.html and register.html
 │   ├── dashboard/
 │   │   └── dashboard.html  # Global master interface wrapper framework for signed-in members
@@ -326,21 +308,26 @@ lioness/
 │   │   └── dashboard.css   # Global application theme declarations tracking core CSS variables
 │   └── js/
 │
+├── .gitignore              # Project exclusion rules (venv, db.sqlite3)
+├── requirements.txt        # Frozen dependencies manifest (including cloudinary & dj-database-url)
 └── db.sqlite3
 ```
 ## ⚙️ Installation Guide
 ```bash
-git clone https://github.com/yourusername/lioness.git
-cd lioness
+g# Clone the repository
+git clone [https://github.com/Gigi-Corlay/portfolioLionessMagazine.git](https://github.com/Gigi-Corlay/portfolioLionessMagazine.git)
+cd portfolioLionessMagazine
 
+# Instantiate virtual environment
 python -m venv venv
 
-# Linux / Mac
+# Linux / Mac activation
 source venv/bin/activate
 
-# Windows
+# Windows activation
 venv\Scripts\activate
 
+# Dependency deployment
 pip install -r requirements.txt
 ```
 ---
@@ -354,7 +341,49 @@ DEBUG=True
 SECRET_KEY=your_secure_django_cryptographic_key_goes_here
 ALLOWED_HOSTS=127.0.0.1,localhost
 
+# Database Connection (Render PostgreSQL in prod, falls back to SQLite locally)
+DATABASE_URL=postgres://user:password@host:port/dbname
+
+# Cloudinary Integration API Keys
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
 ```
+---
+
+## 🚀 Production & Deployment (Render & Cloudinary)
+
+The platform is deployed live on **Render** using a two-tier backend separation for robust modern state management:
+
+- **Textual/Relational Data:** Managed via a secure PostgreSQL instance on Render.
+
+- **Media/Static Files Data:** Uploaded and served globally via a Cloudinary CDN storage bucket.
+
+## Build and Deployment Settings on Render
+
+- **Environment:** `Python 3`
+
+- **Build Command:** `pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate`
+
+- **Start Command:** `gunicorn lioness_project.wsgi:application`
+
+Production Environment Variables Panel
+
+- `DEBUG: False`
+
+- `SECRET_KEY: [Encrypted Token Key]`
+
+- `DATABASE_URL: [Render PostgreSQL External Connection String]`
+
+- `CLOUDINARY_CLOUD_NAME: [Cloudinary Cloud Identity]`
+
+- `CLOUDINARY_API_KEY: [Cloudinary Credential Key]`
+
+- `CLOUDINARY_API_SECRET: [Cloudinary Private Access Secret]`
+
+- `ALLOWED_HOSTS: https://portfoliolionessmagazine.onrender.com`
+
 ---
 
 ## ▶️ Running the Project
@@ -413,6 +442,31 @@ python manage.py runserver
   @login_required
   ```
   - Unauthorized users are redirected automatically
+
+---
+
+##  🧪 Testing Strategy
+
+To maintain continuous stability and system health, unit tests are bundled within the modules ensuring authorization contexts and publishing dataflows execute successfully.
+
+```bash
+
+# Run test suite
+python manage.py test
+
+# Measure test statement coverage
+coverage run --source='.' manage.py test
+coverage report -m
+```
+---
+
+## 🐙 Git Workflow
+
+The engineering lifecycle relies on a clean, scalable Git strategy:
+
+- `main / master`: Represents the stable, production-ready release pipeline automatically monitored and deployed by Render hooks.
+
+ Feature Branches: Isolated iterations are constructed using specific branch namings (`feature/accounts-auth`, `feature/cloudinary-media`) to isolate development cycles before peer integration review.
 
 ---
 
