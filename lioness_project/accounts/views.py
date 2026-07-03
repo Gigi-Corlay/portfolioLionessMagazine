@@ -18,67 +18,40 @@ logger = logging.getLogger(__name__)
 
 @login_required(login_url="accounts:login")
 def profile_view(request):
+    try:
+        profile, created = Profile.objects.get_or_create(user=request.user)
 
-    profile, created = Profile.objects.get_or_create(
-        user=request.user
-    )
-
-    if request.method == "POST":
-
-        user_form = UserUpdateForm(
-            request.POST,
-            instance=request.user
-        )
-
-        profile_form = ProfileForm(
-            request.POST,
-            request.FILES,
-            instance=profile
-        )
-
-        if user_form.is_valid() and profile_form.is_valid():
-
-            user = user_form.save(commit=False)
-
-            # L'email sert aussi d'identifiant
-            user.username = user.email.lower().strip()
-
-            user.save()
-            profile_form.save()
-
-            """
-            messages.success(
-                request,
-                "Profile updated successfully."
+        if request.method == "POST":
+            user_form = UserUpdateForm(request.POST, instance=request.user)
+            profile_form = ProfileForm(
+                request.POST,
+                request.FILES,
+                instance=profile,
             )
 
-            return redirect("accounts:profile")
-            """
+            if user_form.is_valid() and profile_form.is_valid():
+                user = user_form.save(commit=False)
+                user.username = user.email.lower().strip()
+                user.save()
+                profile_form.save()
+                return redirect("accounts:profile")
+        else:
+            user_form = UserUpdateForm(instance=request.user)
+            profile_form = ProfileForm(instance=profile)
 
-        messages.error(
+        return render(
             request,
-            "Please correct the errors below."
+            "profile/profile.html",
+            {
+                "profile": profile,
+                "user_form": user_form,
+                "profile_form": profile_form,
+            },
         )
 
-    else:
-
-        user_form = UserUpdateForm(
-            instance=request.user
-        )
-
-        profile_form = ProfileForm(
-            instance=profile
-        )
-
-    return render(
-        request,
-        "profile/profile.html",
-        {
-            "profile": profile,
-            "user_form": user_form,
-            "profile_form": profile_form,
-        }
-    )
+    except Exception:
+        logger.exception("Erreur dans profile_view")
+        raise
 
 
 def login_view(request):
