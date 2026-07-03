@@ -212,8 +212,7 @@ msgstr "Membre Lionne"
 
 #: dashboard/templates/dashboard/dashboard.html:300
 msgid "There is no limit to what we, as Women, can accomplish."
-msgstr ""
-"Il n'y a pas de limite à ce que nous, en tant que femmes, pouvons accomplir."
+msgstr "Il n'y a pas de limite à ce que nous, en tant que femmes, pouvons accomplir."
 
 #: dashboard/templates/dashboard/dashboard.html:307
 msgid "Our social networks"

@@ -103,15 +103,17 @@
                 </div>
                 <div class="user-profile-wrapper">
                     {% if request.user.is_authenticated %}
-                        {% if request.user.profile and request.user.profile.profile_picture %}
-                            <img src="{{ request.user.profile.profile_picture.url }}"
-                                alt="Avatar"
-                                class="avatar">
-                        {% else %}
-                            <div class="avatar-placeholder">
-                                <i class="bi bi-person-circle"></i>
-                            </div>
-                        {% endif %}
+                        <a href="{% url 'accounts:profile' %}" class="user-profile-link">
+                            {% if request.user.profile and request.user.profile.profile_picture %}
+                                <img src="{{ request.user.profile.profile_picture.url }}"
+                                    alt="Avatar"
+                                    class="avatar">
+                            {% else %}
+                                <div class="avatar-placeholder">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                            {% endif %}
+                        </a>
                     {% endif %}
                 </div>
             </div>
@@ -255,33 +257,22 @@
                 <!-- Cadre Profil Utilisateur -->
                 <div class="sidebar-profile-box mb-4 mt-3 py-3 d-flex align-items-center gap-2 position-relative rounded">
                     <div class="badge-gold-ribbon">
-                
-                        {% if request.user.profile.profile_picture %}
-                
+
                         <a href="{% url 'accounts:profile' %}" class="user-profile-link">
-                
+
                             {% if request.user.profile.profile_picture %}
-                
+
                                 <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
-                
+
                             {% else %}
-                
-                                <div class="avatar-placeholder">
+
+                                <div class="member-since-avatar member-avatar-placeholder">
                                     <i class="bi bi-person-circle"></i>
                                 </div>
-                
+
                             {% endif %}
                         </a>
 
-                        {% else %}
-                
-                            <div class="member-since-avatar member-avatar-placeholder">
-                
-                                <i class="bi bi-person-circle"></i>
-                
-                            </div>
-                
-                        {% endif %}
                     </div>
                     <span class="label">
                         <p>{% trans "Lionne Member" %}<br>
@@ -377,7 +368,7 @@
                                                 <img src="{% static 'images/couronne_lionne.png' %}" alt="Lioness">
                                             </span>
                                         </h1>
-                                        <p class="welcome-sub mb-0">{% trans "Thank you for being part of the LIONESS Le Magazine des reines community." %}<br>{% trans "Together, we amplify Women's voices." %}</p>
+                                        <p class="welcome-sub mb-0">{% autoescape off %}{% trans "Thank you for being part of the LIONESS Le Magazine des reines community. <br> Together, we amplify Women's voices." %}{% endautoescape %}</p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-4">
