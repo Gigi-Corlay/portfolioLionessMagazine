@@ -17,12 +17,17 @@
                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
                     
                         <div class="d-flex align-items-center">
-                            {% if user.profile.profile_picture %}
-                                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="photo-circle rounded-circle img-thumbnail me-4">
+
+                            {% if profile.profile_picture %}
+                                <img
+                                    src="{{ profile.profile_picture.url }}"
+                                    alt="Profile Picture"
+                                    class="photo-circle rounded-circle img-thumbnail me-4">
                             {% else %}
-                                <div class="photo-circle bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-4">
-                                    <span>{% trans "No Photo" %}</span>
-                                </div>
+                                <img
+                                    src="{% static 'images/default_avatar.png' %}"
+                                    alt="Default Profile Picture"
+                                    class="photo-circle rounded-circle img-thumbnail me-4">
                             {% endif %}
                         
                             <div>
@@ -30,6 +35,7 @@
                                     {% trans "Profile of" %} {{ user.get_full_name|default:user.username }}
                                 </h2>
                             </div>
+                        
                         </div>
 
                         <!-- Sélecteur de Langue -->
@@ -76,20 +82,24 @@
                         <hr class="my-4">
 
                         <h4 class="mb-4">{% trans "Profile Information" %}</h4>
-
+                        
                         {% for field in profile_form %}
                             {% if field.name == "profile_picture" %}
                                 <div class="mb-4">
                                     <label class="form-label fw-bold">{% trans "Profile Picture" %}</label>
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="text-center">
-                                            <img id="picture-preview" src="{% if user.profile.profile_picture %}{{ user.profile.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="Current photo" class="rounded-circle" style="width:70px;height:70px;object-fit:cover;border:2px solid var(--lioness-color);">
+                                            <img id="picture-preview" src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="Current photo" class="rounded-circle" style="width:70px;height:70px;object-fit:cover;border:2px solid var(--lioness-color);">
                                             <div id="picture-filename" class="form-text">
-                                                {% if user.profile.profile_picture %}{% trans "Current photo set" %}{% else %}{% trans "No photo uploaded" %}{% endif %}
+                                                {% if profile.profile_picture %}{% trans "Current photo set" %}{% else %}{% trans "No photo uploaded" %}{% endif %}
                                             </div>
                                         </div>
                                         <label for="id_profile_picture" class="btn btn-success btn-sm mb-3">
-                                            {% if user.profile.profile_picture %}{% trans "Change Photo" %}{% else %}{% trans "Upload Photo" %}{% endif %}
+                                            {% if profile.profile_picture %}
+                                                {% trans "Change Photo" %}
+                                            {% else %}
+                                                {% trans "Upload Photo" %}
+                                            {% endif %}
                                         </label>
                                     </div>
                                     <div class="d-none">{{ field }}</div>

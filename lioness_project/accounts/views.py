@@ -74,6 +74,7 @@ def profile_view(request):
         request,
         "profile/profile.html",
         {
+            "profile": profile,
             "user_form": user_form,
             "profile_form": profile_form,
         }

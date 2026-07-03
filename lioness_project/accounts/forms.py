@@ -136,7 +136,11 @@ class LoginForm(AuthenticationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("country", "occupation", "profile_picture", "bio")
+        fields = [
+            "profile_picture",
+            "country",
+            "occupation",
+        ]
 
         # On remplace "Bio" ou "En quelques mots..." par "About you"
         labels = {

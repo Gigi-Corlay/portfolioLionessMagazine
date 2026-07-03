@@ -103,19 +103,15 @@
                 </div>
                 <div class="user-profile-wrapper">
                     {% if request.user.is_authenticated %}
-                        <!-- Si l'utilisatrice est connectée, l'avatar est un lien cliquable vers son profil -->
-                        <a href="{% url 'accounts:profile' %}" class="user-profile-link">
-                            {% if request.user.profile.profile_picture %}
-                                <img src="{{ request.user.profile.profile_picture.url }}" alt="Avatar" class="avatar">
-                            {% else %}
-                                <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
-                            {% endif %}
-                        </a>
-                    {% else %}
-                        <!-- Si elle n'est pas connectée, on affiche juste l'icône (ou un lien vers la page login) -->
-                        <a href="{% url 'accounts:login' %}" class="user-profile-link">
-                            <div class="avatar-placeholder"><i class="bi bi-person-circle"></i></div>
-                        </a>
+                        {% if request.user.profile and request.user.profile.profile_picture %}
+                            <img src="{{ request.user.profile.profile_picture.url }}"
+                                alt="Avatar"
+                                class="avatar">
+                        {% else %}
+                            <div class="avatar-placeholder">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -452,7 +448,7 @@
                                                     <li><a href="{% url 'blog_magazine:category_articles' 'COVER' %}">COVER</a></li>
                                                     <li><a href="{% url 'blog_magazine:category_articles' 'BIEN-ÊTRE' %}">BIEN-ÊTRE</a></li>
                                                     <li><a href="{% url 'blog_magazine:category_articles' 'ET SI ON EN PARLAIT ?' %}">ET SI ON EN PARLAIT ?</a></li>
-                                                    <li><a href="{% url 'blog_magazine:category_articles' 'lLIFESTYLE' %}">LIFESTYLE</a></li>
+                                                    <li><a href="{% url 'blog_magazine:category_articles' 'LIFESTYLE' %}">LIFESTYLE</a></li>
                                                     <li><a href="{% url 'blog_magazine:category_articles' 'IMPACTFUL' %}">THE MOST IMPACTFUL PERSONALITIES</a></li>
                                                 </ul>
                                             </div>
@@ -606,7 +602,7 @@
 
                 <footer class="dashboard-footer text-center pt-4 mt-5" style="border-top: 1px solid rgba(179, 131, 48, 0.2);">
                     <p class="m-0" style="font-family: var(--font-body); font-size: 12px; color: var(--text-muted);">
-                        {% trans "&copy; 2026 Lioness Magazine. All rights reserved." %}
+                        {% trans " 2026 Lioness Magazine. All rights reserved." %}
                     </p>
                 </footer>
 
@@ -665,11 +661,6 @@
                 }
             });
         
-        });
-
-        toggle.addEventListener('click', function() {
-            console.log('CLICK');
-            form.classList.toggle('active');
         });
     </script>
 </body>
