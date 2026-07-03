@@ -140,6 +140,7 @@ class ProfileForm(forms.ModelForm):
             "profile_picture",
             "country",
             "occupation",
+            "bio",
         ]
 
         # On remplace "Bio" ou "En quelques mots..." par "About you"
