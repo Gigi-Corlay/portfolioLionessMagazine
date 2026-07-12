@@ -1,7 +1,7 @@
 /* ==========================================================================
     VARIABLES GLOBALES
    ========================================================================== */
-   :root {
+:root {
     --primary-green: #04757D;
     --dark-green: #004643;
     --light-cream: #F9F3E5;
@@ -9,6 +9,13 @@
     --text-dark: #333333;
     --header-height: 70px;
     --nav-height: 50px;
+
+    --bg-sand: var(--light-cream);
+    --accent-gold: var(--gold);
+    --primary-teal: var(--primary-green);
+    --font-titles: 'Abril Display', 'Abril Fatface', serif;
+    --font-menus: 'Brandon Grotesque', 'Montserrat', sans-serif;
+    --font-body: 'Brandon Grotesque', 'Montserrat', sans-serif;
 }
 
 /* ==========================================================================
@@ -18,11 +25,11 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    font-family: 'Brandon Grotesque', 'Montserrat', sans-serif;
+    font-family: var(--font-body);
     color: var(--text-dark);
 }
 .font-title, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Abril Display', 'Abril Fatface', serif;
+    font-family: var(--font-titles);
 }
 
 /* Évite que le menu fixe cache le début des sections (desktop) */
@@ -46,6 +53,7 @@ body {
         height: 35px;
     }
 }
+
 /* ==========================================================================
     NAVIGATION
    ========================================================================== */
@@ -66,6 +74,21 @@ body {
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 4px;
+}
+
+.nav-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+}
+.nav-language {
+    position: absolute;
+    left: 20px;
+}
+.nav-center {
+    margin: 0 auto;
 }
 
 /* ==========================================================================
@@ -95,7 +118,7 @@ body {
     overflow: hidden;
     min-width: 60px;
 }
-/* ouverture au survol */
+/* Ouverture au survol */
 .select-language:hover .language-options {
     display: block;
 }
@@ -104,22 +127,13 @@ body {
     border: none;
     background: white;
     padding: 8px 12px;
-    color: #04757D;
+    color: var(--primary-green);
     font-weight: bold;
     cursor: pointer;
 }
 .language-options button:hover {
-    background-color: #04757D;
+    background-color: var(--primary-green);
     color: white;
-}
-.select-language select:focus {
-    color: white;
-    border-radius: 5px;
-    outline: none;
-}
-.select-language select option {
-    background: white;
-    color: #04757D;
 }
 
 /* ==========================================================================
@@ -137,25 +151,31 @@ body {
 .color-title {
     color: var(--primary-green) !important;
 }
+
 /* Boutons verts */
 .btn-green-custom {
     background-color: var(--primary-green) !important;
     border-color: var(--primary-green) !important;
-    transition: all 0.3s ease;
-}
-.btn-green-custom:hover {
-    background-color: var(--dark-green) !important;
-    box-shadow: 0 4px 10px rgba(0, 95, 91, 0.2);
-}
-/* Bouton Login (doré) */
-.btn-login-custom {
-    background-color: var(--gold) !important;
-    border-color: var(--gold) !important;
     color: #fff !important;
+
+    transition: background-color .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease,
+                transform .2s ease;
 }
-.btn-login-custom:hover {
-    background-color: #9a6b1e !important;
+
+.btn-green-custom:hover,
+.btn-green-custom:focus,
+.btn-green-custom:active {
+    background-color: var(--dark-green) !important;
+    border-color: var(--dark-green) !important;
+    color: #fff !important;
+
+    box-shadow: 0 4px 12px rgba(0, 70, 67, 0.3);
+    transform: translateY(-2px);
 }
+}
+
 /* Bouton action doré (section Impact) */
 .btn-gold-action {
     background-color: var(--gold);
@@ -169,6 +189,7 @@ body {
     background-color: var(--dark-green);
     color: #ffffff;
 }
+
 /* Bouton contour vert */
 .btn-outline-green {
     border: 1px solid var(--primary-green);
@@ -180,6 +201,7 @@ body {
     background: transparent;
     border: 1px solid var(--primary-green);
 }
+
 /* Bouton contour doré */
 .btn-outline-gold {
     border: 1px solid var(--gold);
@@ -191,28 +213,13 @@ body {
     background-color: var(--gold);
     color: #ffffff;
 }
+
 /* Bouton Support */
 .btn-support-custom {
     background-color: #e0f2f1 !important;
     color: var(--primary-green) !important;
     border: 1px solid var(--primary-green) !important;
     font-size: 14px;
-}
-
-/* nav */
-.nav-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50px;
-}
-.nav-language {
-    position: absolute;
-    left: 20px;
-}
-.nav-center {
-    margin: 0 auto;
 }
 
 /* ==========================================================================
@@ -240,7 +247,7 @@ body {
     margin-top: 10px;
 }
 .hero-title {
-    font-family: 'Abril Display', serif;
+    font-family: var(--font-titles);
     font-size: clamp(2rem, 5vw, 5.5rem);
     line-height: 1.05;
     color: #1d2430;
@@ -288,7 +295,7 @@ body {
     content: "";
     position: absolute;
     bottom: 0;
-    right: 87.7%;
+    left: 10%;
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
@@ -340,7 +347,7 @@ body {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35) !important;
 }
 .title_lioness, .title_mag {
-    font-family: 'Brandon Grotesque', 'Montserrat', sans-serif;
+    font-family: var(--font-body);
 }
 .title_lioness {
     font-weight: 700;
@@ -353,7 +360,7 @@ body {
     SECTION SERVICES
    ========================================================================== */
 .service-card {
-    border: 1px solid #F9F3E5 !important;
+    border: 1px solid var(--light-cream) !important;
     background-color: #ffffff;
     transition: box-shadow 0.3s ease;
 }
@@ -380,7 +387,7 @@ body {
     height: auto;
     display: block;
 }
-.text-dark-banner {
+.text-dark-banner, #project {
     background: linear-gradient(180deg, #fbf7f0 0%, #F9F3E5 100%);
 }
 
@@ -487,9 +494,6 @@ footer .btn-outline-gold:hover {
     }
 }
 
-/* Tablette et mobile : la même mise en page s'applique en dessous de 1200px,
-   donc les règles ci-dessous couvrent aussi les écrans ≤768px sans qu'il soit
-   nécessaire de les répéter dans une media query séparée. */
 @media (max-width: 1200px) {
     .btn,
     .btn-sm {
@@ -558,18 +562,15 @@ footer .btn-outline-gold:hover {
     .mobile-lang {
         margin-left: auto;
     }
-
     .hero-content {
         flex-direction: column;
     }
-
     #values,
     #community,
     #magazine,
     #services {
         text-align: center;
     }
-
     .service-icon {
         display: block;
         margin: 0 auto 1rem;
@@ -607,7 +608,9 @@ footer .btn-outline-gold:hover {
     }
 }
 
-/* ===== TERMS / LEGAL PAGES ===== */
+/* ==========================================================================
+    TERMS / LEGAL PAGES
+   ========================================================================== */
 .terms-page {
     background: var(--bg-sand);
     min-height: 100vh;
@@ -692,20 +695,23 @@ footer .btn-outline-gold:hover {
     font-weight: 700;
     color: var(--accent-gold) !important;
 }
+
+/* Titres directement dans .terms-card (hors .terms-content) */
 .terms-card h1 {
     font-size: 28px;
 }
 .terms-card h2 {
     font-size: 20px;
     margin-top: 2rem;
-    color: #04757D;
-    font-family: 'Brandon Grotesque', 'Montserrat', sans-serif;
+    color: var(--primary-green);
+    font-family: var(--font-body);
 }
 .terms-card h3 {
     font-size: 15px;
-    font-family: 'Brandon Grotesque', 'Montserrat', sans-serif;
+    font-family: var(--font-body);
     font-weight: 700;
 }
+
 @media (max-width: 768px) {
     .terms-card {
         padding: 28px;
