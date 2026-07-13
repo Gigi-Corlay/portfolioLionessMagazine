@@ -1,5 +1,6 @@
 const translations = {
     en: {
+        calameo_access: "Access to Calaméo<br>Digital Magazine",
         about: "About",
         features: "Features",
         story: "Our Story",
@@ -29,6 +30,7 @@ const translations = {
         portfolio_desc: "Developed as part of the Holberton School Portfolio Project."
     },
     fr: {
+        calameo_access: "Accéder au magazine<br>numérique Calaméo",
         about: "À propos",
         features: "Fonctionnalités",
         story: "Notre histoire",
