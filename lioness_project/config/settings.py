@@ -1,9 +1,32 @@
 import os
 from pathlib import Path
-
 import dj_database_url
 import cloudinary
 from django.utils.translation import gettext_lazy as _
+from whitenoise.storage import CompressedManifestStaticFilesStorage
+
+# ======================================================
+# STOCKAGE PERSONNALISÉ (Pour éviter les crashs WhiteNoise sur Render)
+# ======================================================
+
+class SafeCompressedManifestStaticFilesStorage(CompressedManifestStaticFilesStorage):
+    """
+    Surcharge de WhiteNoise pour empêcher le build de planter si un fichier CSS
+    fait référence à une ressource manquante (ex: les polices ou images de l'admin Django).
+    """
+    manifest_strict = False
+
+    def _post_process(self, *args, **kwargs):
+        generator = super()._post_process(*args, **kwargs)
+        while True:
+            try:
+                yield next(generator)
+            except StopIteration:
+                break
+            except Exception as e:
+                # On log l'erreur gentiment sur Render sans bloquer le déploiement
+                print(f"[WhiteNoise Warning] Fichier ignoré lors du post-processing: {e}")
+                continue
 
 # ======================================================
 # APPLICATIONS
@@ -71,11 +94,8 @@ if not DEBUG:
 # ======================================================
 
 MIDDLEWARE = [
-
     "django.middleware.security.SecurityMiddleware",
-
     "whitenoise.middleware.WhiteNoiseMiddleware",
-
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -83,7 +103,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -95,26 +114,18 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-
         "DIRS": [
             BASE_DIR / "templates",
         ],
-
         "APP_DIRS": True,
-
         "OPTIONS": {
-
             "context_processors": [
-
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-
             ],
-
         },
-
     },
 ]
 
@@ -127,28 +138,19 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL:
-
     DATABASES = {
-
         "default": dj_database_url.parse(
             DATABASE_URL,
             conn_max_age=600,
             ssl_require=True,
         )
-
     }
-
 else:
-
     DATABASES = {
-
         "default": {
-
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
-
         }
-
     }
 
 # ======================================================
@@ -156,23 +158,18 @@ else:
 # ======================================================
 
 AUTH_PASSWORD_VALIDATORS = [
-
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
-
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
-
     {
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
-
 ]
 
 # ======================================================
@@ -182,10 +179,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en"
 
 LANGUAGES = [
-
     ("fr", _("Français")),
     ("en", _("English")),
-
 ]
 
 TIME_ZONE = "UTC"
@@ -204,22 +199,23 @@ LOCALE_PATHS = [
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# Répertoire où collectstatic va rassembler tous les fichiers
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# On garde ce dossier s'il contient tes designs personnalisés locaux
+# Répertoires sources additionnels (Ne doit PAS contenir 'staticfiles' !)
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static'), 
 ]
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder", # <--- Indispensable pour CKEditor 5 !
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder", # Indispensable pour CKEditor 5 !
 ]
 
 # WhiteNoise & Stockage des fichiers
 STORAGES = {
     "staticfiles": {
-        # On utilise notre classe personnalisée qui tolère les fichiers manquants
+        # On cible le fichier custom_storage.py que tu viens de créer
         "BACKEND": "config.custom_storage.SafeCompressedManifestStaticFilesStorage",
     },
     "default": {
@@ -233,28 +229,25 @@ STORAGES = {
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # ======================================================
 # CLOUDINARY
 # ======================================================
 
-# On remplace tout l'ancien code par cette configuration simple :
 CLOUDINARY_STORAGE = {
     'URL': os.getenv('CLOUDINARY_URL')
 }
 
 # ======================================================
-# CKEDITOR
+# CKEDITOR 5
 # ======================================================
 
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-
-CKEDITOR_UPLOAD_PATH = "uploads/"
-
-CKEDITOR_IMAGE_BACKEND = "pillow"
-
-CKEDITOR_5_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+CKEDITOR_5_FILE_STORAGE = (
+    "cloudinary_storage.storage.MediaCloudinaryStorage" 
+    if os.getenv("RENDER") 
+    else "django.core.files.storage.FileSystemStorage"
+)
 
 CKEDITOR_5_CONFIGS = {
     "default": {
