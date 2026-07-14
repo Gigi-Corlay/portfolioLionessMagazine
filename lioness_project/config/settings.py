@@ -214,8 +214,6 @@ STATICFILES_FINDERS = [
 
 # WhiteNoise & Stockage des fichiers
 STORAGES = {
-# WhiteNoise & Stockage des fichiers
-STORAGES = {
     "staticfiles": {
         # Ce backend compresse les fichiers sans exiger la présence stricte de toutes les ressources référencées
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
@@ -281,7 +279,6 @@ CKEDITOR_5_CONFIGS = {
         },
     },
 }
-
 # ======================================================
 # LOGIN
 # ======================================================
