@@ -395,8 +395,8 @@ msgid "About"
 msgstr "À propos"
 
 #: templates/home.html:81
-msgid "Categories"
-msgstr "Catégories"
+msgid "Explore"
+msgstr "Découvrir"
 
 #: templates/home.html:82 templates/home.html:94 templates/home.html:152
 #: templates/home.html:391
