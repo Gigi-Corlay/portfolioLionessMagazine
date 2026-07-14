@@ -202,7 +202,7 @@ STATIC_URL = "/static/"
 # Répertoire où collectstatic va rassembler tous les fichiers
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Répertoires sources additionnels (Ne doit PAS contenir 'staticfiles' !)
+# Répertoires sources additionnels
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'), 
 ]
@@ -212,18 +212,20 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder", # Indispensable pour CKEditor 5 !
 ]
 
-# WhiteNoise & Stockage des fichiers
+# Configuration moderne des stockages (Django 4.2+)
 STORAGES = {
-    "staticfiles": {
-        # Ce backend compresse les fichiers sans exiger la présence stricte de toutes les ressources référencées
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-    },
     "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage" if os.getenv("RENDER") else "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        # Utilisation de notre classe personnalisée non-stricte ou Manifest standard sans compression
+        "BACKEND": "whitenoise.storage.ManifestStaticFilesStorage",
     },
 }
 
 WHITENOISE_MANIFEST_STRICT = False
+
+
 # ======================================================
 # MEDIA
 # ======================================================
