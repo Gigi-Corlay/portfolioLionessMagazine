@@ -219,8 +219,8 @@ STATICFILES_FINDERS = [
 # WhiteNoise & Stockage des fichiers
 STORAGES = {
     "staticfiles": {
-        # WhiteNoise s'occupera de distribuer tes fichiers statiques en production
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        # On utilise notre classe personnalisée qui tolère les fichiers manquants
+        "BACKEND": "config.custom_storage.SafeCompressedManifestStaticFilesStorage",
     },
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage" if os.getenv("RENDER") else "django.core.files.storage.FileSystemStorage",
