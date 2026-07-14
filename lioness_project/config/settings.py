@@ -6,6 +6,35 @@ import cloudinary
 from django.utils.translation import gettext_lazy as _
 
 # ======================================================
+# APPLICATIONS
+# ======================================================
+
+INSTALLED_APPS = [
+    # 1. EN PREMIER : Cloudinary Storage
+    "cloudinary_storage",
+    "cloudinary",
+
+    # 2. EN DEUXIÈME : Les applications par défaut de Django
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",  # Cloudinary_storage DOIT être avant celle-ci
+
+    # 3. Le reste de tes packages
+    "django_ckeditor_5",
+
+    # 4. Tes applications locales
+    "core",
+    "accounts",
+    "dashboard",
+    "blog_magazine",
+    "magazine",
+    "donations",
+]
+
+# ======================================================
 # BASE
 # ======================================================
 
@@ -36,32 +65,6 @@ if not DEBUG:
     CSRF_TRUSTED_ORIGINS = [
         "https://portfoliolionessmagazine.onrender.com",
     ]
-
-# ======================================================
-# APPLICATIONS
-# ======================================================
-
-INSTALLED_APPS = [
-
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-
-    "cloudinary",
-    "cloudinary_storage",
-
-    "django_ckeditor_5",
-
-    "core",
-    "accounts",
-    "dashboard",
-    "blog_magazine",
-    "magazine",
-    "donations",
-]
 
 # ======================================================
 # MIDDLEWARE
