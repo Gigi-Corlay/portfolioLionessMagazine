@@ -215,14 +215,14 @@ STATICFILES_FINDERS = [
 # WhiteNoise & Stockage des fichiers
 STORAGES = {
     "staticfiles": {
-        # On cible le fichier custom_storage.py que tu viens de créer
-        "BACKEND": "config.custom_storage.SafeCompressedManifestStaticFilesStorage",
+        # Ce backend compresse les fichiers (gzip/brotli) mais n'analyse pas l'intérieur des CSS
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage" if os.getenv("RENDER") else "django.core.files.storage.FileSystemStorage",
     },
 }
-
+WHITENOISE_MANIFEST_STRICT = False
 # ======================================================
 # MEDIA
 # ======================================================
