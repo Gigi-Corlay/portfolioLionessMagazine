@@ -2,15 +2,17 @@
 # exit on error
 set -o errexit
 
+echo "Verification du dossier..."
+if [ -d "lioness_project" ]; then
+    echo "Navigation vers lioness_project..."
+    cd lioness_project
+fi
+
 echo "Upgrade pip"
 python -m pip install --upgrade pip
 
 echo "Install dependencies"
-
-pip install -r lioness_project/requirements.txt
-
-
-cd lioness_project
+pip install -r requirements.txt
 
 echo "Apply database migrations"
 python manage.py migrate --noinput
@@ -27,13 +29,9 @@ if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(
         username=username,
         email="adminlionne@lioness.com",
-        password=os.environ["DJANGO_SUPERUSER_PASSWORD"]
+        password=os.environ.get("DJANGO_SUPERUSER_PASSWORD", "DefaultPassword123!")
     )
 EOF
-
-Et définir DJANGO_SUPERUSER_PASSWORD dans les variables d'environnement de ton dashboard Render (pas dans le code).
-
-Essaie python manage.py createsuperuser en local et dis-moi si ça débloque la connexion à /admin/.
 
 echo "Collect static files"
 python manage.py collectstatic --noinput
