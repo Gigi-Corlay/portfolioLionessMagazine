@@ -204,15 +204,23 @@ LOCALE_PATHS = [
 
 STATIC_URL = "/static/"
 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder", # INDISPENSABLE pour trouver CKEditor 5 !
+]
+
 # WhiteNoise & Stockage des fichiers
 STORAGES = {
     "staticfiles": {
+        # Standard sans compression pour éviter les conflits de builds
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
     "default": {
