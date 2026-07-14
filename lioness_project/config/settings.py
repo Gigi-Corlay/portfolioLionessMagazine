@@ -210,19 +210,12 @@ STATICFILES_DIRS = [
 # WhiteNoise
 
 STORAGES = {
-
     "staticfiles": {
-
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-
     },
-
     "default": {
-
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage" if os.getenv("RENDER") else "django.core.files.storage.FileSystemStorage",
     },
-
 }
 
 # ======================================================
@@ -237,24 +230,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 # CLOUDINARY
 # ======================================================
 
-CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
-API_KEY = os.getenv("CLOUDINARY_API_KEY")
-API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
-
-if CLOUD_NAME and API_KEY and API_SECRET:
-
-    cloudinary.config(
-
-        cloud_name=CLOUD_NAME,
-        api_key=API_KEY,
-        api_secret=API_SECRET,
-        secure=True,
-
-    )
-
-    STORAGES["default"] = {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    }
+# On remplace tout l'ancien code par cette configuration simple :
+CLOUDINARY_STORAGE = {
+    'URL': os.getenv('CLOUDINARY_URL')
+}
 
 # ======================================================
 # CKEDITOR
