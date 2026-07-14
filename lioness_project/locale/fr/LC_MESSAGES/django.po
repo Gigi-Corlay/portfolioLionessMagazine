@@ -394,9 +394,9 @@ msgstr "Devenir membre"
 msgid "About"
 msgstr "À propos"
 
-#: templates/home.html:81
-msgid "Categories"
-msgstr "Catégories"
+#: templates/home.html:81 templates/home.html:93
+msgid "Explore"
+msgstr "Découvrir"
 
 #: templates/home.html:82 templates/home.html:94 templates/home.html:152
 #: templates/home.html:391
@@ -415,10 +415,6 @@ msgstr "Services"
 #: templates/home.html:85 templates/home.html:97
 msgid "Personalities"
 msgstr "Personnalités"
-
-#: templates/home.html:93
-msgid "Categorie"
-msgstr "Catégories"
 
 #: templates/home.html:110
 msgid ""

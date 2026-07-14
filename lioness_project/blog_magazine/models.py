@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Article(models.Model):
@@ -41,14 +41,14 @@ class Article(models.Model):
         default="ACTUS",
     )
 
-    chapo = RichTextField(
+    chapo = CKEditor5Field(
+        "Introduction",
         blank=True,
         null=True,
-        verbose_name="Introduction",
     )
 
-    texte = RichTextField(
-        verbose_name="Article",
+    texte = CKEditor5Field(
+        "Article",
     )
 
     published = models.BooleanField(

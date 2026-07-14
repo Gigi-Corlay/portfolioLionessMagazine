@@ -96,7 +96,7 @@ msgid "About"
 msgstr ""
 
 #: templates/home.html:81
-msgid "Categories"
+msgid "Explore"
 msgstr ""
 
 #: templates/home.html:82 templates/home.html:94 templates/home.html:152
