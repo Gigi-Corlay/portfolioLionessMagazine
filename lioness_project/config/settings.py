@@ -213,12 +213,9 @@ STATICFILES_DIRS = [
 # WhiteNoise & Stockage des fichiers
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-        # AJOUTE CETTE LIGNE CI-DESSOUS pour ignorer l'erreur du fichier .map manquant :
-        "manifest_strict": False,
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
     "default": {
-        # Si on est sur Render, on utilise Cloudinary pour les photos de profil, sinon le stockage local
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage" if os.getenv("RENDER") else "django.core.files.storage.FileSystemStorage",
     },
 }
