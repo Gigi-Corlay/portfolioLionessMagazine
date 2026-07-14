@@ -394,7 +394,11 @@ msgstr "Devenir membre"
 msgid "About"
 msgstr "À propos"
 
+<<<<<<< HEAD
 #: templates/home.html:81 templates/home.html:93
+=======
+#: templates/home.html:81
+>>>>>>> 723ebf94c239d5b1c41d70b66e275b2b6a7acc6c
 msgid "Explore"
 msgstr "Découvrir"
 
