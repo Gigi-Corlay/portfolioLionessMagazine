@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     "cloudinary",
     "cloudinary_storage",
     "ckeditor",
-    "django_ckeditor_5",  # Assure-toi que cette app est installée
+    "django_ckeditor_5",
     "core",
     "accounts",
     "dashboard",
@@ -94,10 +94,12 @@ CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
 API_KEY = os.getenv("CLOUDINARY_API_KEY")
 API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
 
+# Valeur par défaut : écrasée juste en dessous si Cloudinary est bien configuré
+CKEDITOR_5_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+
 if CLOUD_NAME and API_KEY and API_SECRET:
     cloudinary.config(cloud_name=CLOUD_NAME, api_key=API_KEY, api_secret=API_SECRET, secure=True)
     STORAGES["default"] = {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"}
-    # Config pour CKEditor 5
     CKEDITOR_5_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # ======================================================
