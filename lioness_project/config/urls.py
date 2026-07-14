@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView, RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from blog_magazine.ckeditor_views import custom_upload_file
 
 urlpatterns = [
     # Favicon
@@ -17,7 +18,8 @@ urlpatterns = [
 
     # Administration
     path("admin/", admin.site.urls),
-    path('ckeditor5/', include('django_ckeditor_5.urls')),
+    path('ckeditor5/image_upload/', custom_upload_file),
+    path('ckeditor5/', include('django_ckeditor_5.urls')), 
     # Applications
     path("", include("core.urls")),
     path("", include("blog_magazine.urls")),
