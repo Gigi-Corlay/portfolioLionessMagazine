@@ -1,58 +1,35 @@
 import os
 from pathlib import Path
 import dj_database_url
-import cloudinary
 from django.utils.translation import gettext_lazy as _
-from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 # ======================================================
-# STOCKAGE PERSONNALISÉ (Pour éviter les crashs WhiteNoise sur Render)
+# CONFIGURATION DE BASE
 # ======================================================
+BASE_DIR = Path(__file__).resolve().parent.parent
 
+# DEBUG est True en local, False sur Render (via variable d'environnement)
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me")
 
-class SafeCompressedManifestStaticFilesStorage(CompressedManifestStaticFilesStorage):
-    """
-    Surcharge de WhiteNoise pour empêcher le build de planter si un fichier CSS
-    fait référence à une ressource manquante (ex: les polices ou images de l'admin Django).
-    """
-    manifest_strict = False
-
-    def _post_process(self, *args, **kwargs):
-        generator = super()._post_process(*args, **kwargs)
-        while True:
-            try:
-                yield next(generator)
-            except StopIteration:
-                break
-            except Exception as e:
-                # On log l'erreur gentiment sur Render sans bloquer le déploiement
-                print(f"[WhiteNoise Warning] Fichier ignoré lors du post-processing: {e}")
-                continue
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['portfoliolionessmagazine.onrender.com']
 
 # ======================================================
-# APPLICATIONS
+# APPLICATIONS & MIDDLEWARE
 # ======================================================
-
-
 INSTALLED_APPS = [
-    # 1. EN PREMIER : Les outils système indispensables
-    "django.contrib.staticfiles",  # <-- ON LE PLACE TOUT EN HAUT !
-
-    # 2. EN DEUXIÈME : Cloudinary Storage
+    "django.contrib.staticfiles",
     "cloudinary_storage",
     "cloudinary",
-
-    # 3. Les applications par défaut de Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-
-    # 4. Le reste de tes packages
     "django_ckeditor_5",
-
-    # 5. Tes applications locales
     "core",
     "accounts",
     "dashboard",
@@ -60,42 +37,6 @@ INSTALLED_APPS = [
     "magazine",
     "donations",
 ]
-
-# ======================================================
-# BASE
-# ======================================================
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# ======================================================
-# SECURITY
-# ======================================================
-
-SECRET_KEY = os.getenv(
-    "SECRET_KEY",
-    "django-insecure-change-me"
-)
-
-DEBUG = os.getenv("RENDER") is None
-
-ALLOWED_HOSTS = os.getenv(
-    "ALLOWED_HOSTS",
-    "127.0.0.1,localhost,.onrender.com"
-).split(",")
-
-if not DEBUG:
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-    CSRF_TRUSTED_ORIGINS = [
-        "https://portfoliolionessmagazine.onrender.com",
-    ]
-
-# ======================================================
-# MIDDLEWARE
-# ======================================================
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -109,8 +50,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
-
 # ======================================================
 # TEMPLATES
 # ======================================================
@@ -118,9 +57,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR / "templates",
-        ],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -133,189 +70,72 @@ TEMPLATES = [
     },
 ]
 
+ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 
 # ======================================================
 # DATABASE
 # ======================================================
-
 DATABASE_URL = os.getenv("DATABASE_URL")
-
 if DATABASE_URL:
-    DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=True,
-        )
-    }
+    DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)}
 else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+    DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+
+# ======================================================
+# STOCKAGE, MEDIA & STATIC (Logique unique)
+# ======================================================
+if DEBUG:
+    STORAGES = {
+        "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+        "staticfiles": {"BACKEND": "whitenoise.storage.ManifestStaticFilesStorage"},
     }
-
-# ======================================================
-# PASSWORDS
-# ======================================================
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
-]
-
-# ======================================================
-# INTERNATIONALISATION
-# ======================================================
-
-LANGUAGE_CODE = "en"
-
-LANGUAGES = [
-    ("fr", _("Français")),
-    ("en", _("English")),
-]
-
-TIME_ZONE = "UTC"
-
-USE_I18N = True
-
-USE_TZ = True
-
-LOCALE_PATHS = [
-    BASE_DIR / "locale",
-]
-
-# ======================================================
-# STATIC
-# ======================================================
+    CLOUDINARY_STORAGE = {} 
+    CKEDITOR_5_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+else:
+    STORAGES = {
+        "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
+        "staticfiles": {"BACKEND": "whitenoise.storage.ManifestStaticFilesStorage"},
+    }
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+        'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+    }
+    CKEDITOR_5_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 STATIC_URL = "/static/"
-
-# Répertoire où collectstatic va rassembler tous les fichiers
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Répertoires sources additionnels
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), 
-]
-
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder", # Indispensable pour CKEditor 5 !
-]
-
-# Configuration moderne des stockages (Django 4.2+)
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.ManifestStaticFilesStorage",
-    },
-}
-
-WHITENOISE_MANIFEST_STRICT = False
-
-
-# ======================================================
-# MEDIA
-# ======================================================
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = "/media/"
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# ======================================================
-# CLOUDINARY
-# ======================================================
-
-CLOUDINARY_STORAGE = {
-    'URL': os.getenv('CLOUDINARY_URL')
-}
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # ======================================================
-# CKEDITOR 5
+# AUTH, I18N, ETC.
 # ======================================================
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
 
-CKEDITOR_5_FILE_STORAGE = (
-    "cloudinary_storage.storage.MediaCloudinaryStorage" 
-    if os.getenv("RENDER") 
-    else "django.core.files.storage.FileSystemStorage"
-)
-
-CKEDITOR_5_CONFIGS = {
-    "default": {
-        "toolbar": [
-            "heading",
-            "|",
-            "bold",
-            "italic",
-            "underline",
-            "|",
-            "bulletedList",
-            "numberedList",
-            "|",
-            "link",
-            "blockQuote",
-            "imageUpload",
-            "|",
-            "undo",
-            "redo",
-        ],
-        "heading": {
-            "options": [
-                {"model": "paragraph", "title": "Paragraph", "class": "ck-heading_paragraph"},
-                {"model": "heading1", "view": "h1", "title": "Heading 1", "class": "ck-heading_heading1"},
-                {"model": "heading2", "view": "h2", "title": "Heading 2", "class": "ck-heading_heading2"},
-                {"model": "heading3", "view": "h3", "title": "Heading 3", "class": "ck-heading_heading3"},
-            ]
-        },
-    },
-}
-# ======================================================
-# LOGIN
-# ======================================================
+LANGUAGE_CODE = "en"
+LANGUAGES = [("fr", _("Français")), ("en", _("English"))]
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_TZ = True
+LOCALE_PATHS = [BASE_DIR / "locale"]
 
 LOGIN_URL = "accounts:login"
-
 LOGIN_REDIRECT_URL = "/dashboard/"
-
 LOGOUT_REDIRECT_URL = "/"
-
-# ======================================================
-# EMAIL
-# ======================================================
-
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-# ======================================================
-# DEFAULT FIELD
-# ======================================================
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "ERROR",
-    },
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "root": {"handlers": ["console"], "level": "ERROR"},
 }
