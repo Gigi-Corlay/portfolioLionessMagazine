@@ -9,6 +9,7 @@ from whitenoise.storage import CompressedManifestStaticFilesStorage
 # STOCKAGE PERSONNALISÉ (Pour éviter les crashs WhiteNoise sur Render)
 # ======================================================
 
+
 class SafeCompressedManifestStaticFilesStorage(CompressedManifestStaticFilesStorage):
     """
     Surcharge de WhiteNoise pour empêcher le build de planter si un fichier CSS
@@ -32,23 +33,26 @@ class SafeCompressedManifestStaticFilesStorage(CompressedManifestStaticFilesStor
 # APPLICATIONS
 # ======================================================
 
+
 INSTALLED_APPS = [
-    # 1. EN PREMIER : Cloudinary Storage
+    # 1. EN PREMIER : Les outils système indispensables
+    "django.contrib.staticfiles",  # <-- ON LE PLACE TOUT EN HAUT !
+
+    # 2. EN DEUXIÈME : Cloudinary Storage
     "cloudinary_storage",
     "cloudinary",
 
-    # 2. EN DEUXIÈME : Les applications par défaut de Django
+    # 3. Les applications par défaut de Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",  # Cloudinary_storage DOIT être avant celle-ci
 
-    # 3. Le reste de tes packages
+    # 4. Le reste de tes packages
     "django_ckeditor_5",
 
-    # 4. Tes applications locales
+    # 5. Tes applications locales
     "core",
     "accounts",
     "dashboard",
@@ -218,7 +222,6 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        # Utilisation de notre classe personnalisée non-stricte ou Manifest standard sans compression
         "BACKEND": "whitenoise.storage.ManifestStaticFilesStorage",
     },
 }
