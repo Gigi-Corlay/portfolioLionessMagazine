@@ -110,6 +110,14 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'uploadImage', 'blockQuote'],
+        'image': {
+            'toolbar': [
+                'imageTextAlternative',
+                'imageStyle:inline',
+                'imageStyle:wrapText',
+                'imageStyle:breakText',
+            ],
+        },
     },
 }
 
@@ -160,15 +168,16 @@ LOGGING = {
             'class': 'logging.StreamHandler',
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'WARNING',
-    },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
         },
     },
 }
