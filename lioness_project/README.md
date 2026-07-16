@@ -115,37 +115,6 @@ erDiagram
         datetime created_at
     }
 ```
-    ----
-
-## 🔄 System Workflows & Sequence Diagrams
-### 1. Sequence Diagram — User Login
-
-```mermaid
-sequenceDiagram
-    actor User
-    participant Frontend
-    participant Backend
-    participant Database
-    participant SessionManager
-
-    User->>Frontend: Open login page
-    Frontend-->>User: Display login form
-    User->>Frontend: Enter email and password
-    Frontend->>Backend: POST /login request
-    Backend->>Database: Verify user credentials
-    Database-->>Backend: Validation result
-
-    alt Valid credentials
-        Backend->>SessionManager: Generate authentication session
-        SessionManager-->>Backend: Session token created
-        Backend-->>Frontend: Login success
-        Frontend-->>User: Redirect to member dashboard
-    else Invalid credentials
-        Backend-->>Frontend: Authentication error message
-        Frontend-->>User: Display login error
-    end
-```
-
 ```mermaid
 erDiagram
 
@@ -211,25 +180,36 @@ erDiagram
 
     DONATION ||--o| DONATION_V2 : extends
     NOTIFICATION ||--o| NOTIFICATION_V2 : extends
----
+```
+    ----
 
-### 2. Sequence Diagram — Retrieve Articles by Category
+## 🔄 System Workflows & Sequence Diagrams
+### 1. Sequence Diagram — User Login
+
 ```mermaid
-    sequenceDiagram
+sequenceDiagram
     actor User
     participant Frontend
     participant Backend
     participant Database
-    participant Cloudinary
+    participant SessionManager
 
-    User->>Frontend: Click on Category Tab (e.g., News)
-    Frontend->>Backend: GET /blog/category/news/
-    Backend->>Database: Filter Articles (category='news', published=True)
-    Database-->>Backend: Return Article Metadata & Image URLs
-    Backend-->>Frontend: Render category_articles.html with Context
-    Frontend->>Cloudinary: Fetch hosted images asset directly
-    Cloudinary-->>Frontend: Stream images fluidly
-    Frontend-->>User: Display categorized items grid
+    User->>Frontend: Open login page
+    Frontend-->>User: Display login form
+    User->>Frontend: Enter email and password
+    Frontend->>Backend: POST /login request
+    Backend->>Database: Verify user credentials
+    Database-->>Backend: Validation result
+
+    alt Valid credentials
+        Backend->>SessionManager: Generate authentication session
+        SessionManager-->>Backend: Session token created
+        Backend-->>Frontend: Login success
+        Frontend-->>User: Redirect to member dashboard
+    else Invalid credentials
+        Backend-->>Frontend: Authentication error message
+        Frontend-->>User: Display login error
+    end
 ```
 
 ---
