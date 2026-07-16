@@ -118,68 +118,51 @@ erDiagram
 ```mermaid
 erDiagram
 
+    SUPER_USER {
+        int id PK
+        string username
+        string email
+        string password
+        string role
+        boolean is_active
+        datetime created_at
+    }
+
     USER {
         int id PK
         string username
         string email
         string password
+        boolean is_member
+        datetime member_since
         string profile_image
         boolean is_active
         datetime created_at
     }
 
-    MAGAZINE_ISSUE {
+    RUBRIC {
         int id PK
-        string title
-        string cover_image
-        string pdf_url
-        string language
-        date published_date
+        string name
+        string description
+        int display_order
     }
 
     ARTICLE {
         int id PK
-        int user_id FK
-        int issue_id FK
+        int author_id FK
+        int rubric_id FK
         string title
         text content
         string image
         string language
         string status
-        string category
+        datetime published_at
         datetime created_at
         datetime updated_at
     }
 
-    %% Future Version 2
-    DONATION_V2 {
-        int id PK
-        int donation_id FK
-        string payment_method
-        string transaction_id
-        string currency
-        string provider
-        datetime paid_at
-    }
-
-
-    %% Future Version 2
-    NOTIFICATION_V2 {
-        int id PK
-        int notification_id FK
-        string title
-        string type
-        string action_url
-        datetime read_at
-    }
-
-    USER ||--o{ ARTICLE : writes
-    MAGAZINE_ISSUE ||--o{ ARTICLE : contains
-    USER ||--o{ DONATION : makes
-    USER ||--o{ NOTIFICATION : receives
-
-    DONATION ||--o| DONATION_V2 : extends
-    NOTIFICATION ||--o| NOTIFICATION_V2 : extends
+    SUPER_USER ||--o{ ARTICLE : creates
+    RUBRIC ||--o{ ARTICLE : classifies
 ```
     ----
 
