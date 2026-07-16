@@ -146,6 +146,71 @@ sequenceDiagram
     end
 ```
 
+```mermaid
+erDiagram
+
+    USER {
+        int id PK
+        string username
+        string email
+        string password
+        string profile_image
+        boolean is_active
+        datetime created_at
+    }
+
+    MAGAZINE_ISSUE {
+        int id PK
+        string title
+        string cover_image
+        string pdf_url
+        string language
+        date published_date
+    }
+
+    ARTICLE {
+        int id PK
+        int user_id FK
+        int issue_id FK
+        string title
+        text content
+        string image
+        string language
+        string status
+        string category
+        datetime created_at
+        datetime updated_at
+    }
+
+    %% Future Version 2
+    DONATION_V2 {
+        int id PK
+        int donation_id FK
+        string payment_method
+        string transaction_id
+        string currency
+        string provider
+        datetime paid_at
+    }
+
+
+    %% Future Version 2
+    NOTIFICATION_V2 {
+        int id PK
+        int notification_id FK
+        string title
+        string type
+        string action_url
+        datetime read_at
+    }
+
+    USER ||--o{ ARTICLE : writes
+    MAGAZINE_ISSUE ||--o{ ARTICLE : contains
+    USER ||--o{ DONATION : makes
+    USER ||--o{ NOTIFICATION : receives
+
+    DONATION ||--o| DONATION_V2 : extends
+    NOTIFICATION ||--o| NOTIFICATION_V2 : extends
 ---
 
 ### 2. Sequence Diagram — Retrieve Articles by Category
