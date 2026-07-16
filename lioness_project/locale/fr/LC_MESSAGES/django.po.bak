@@ -8,251 +8,253 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 17:40+0000\n"
+"POT-Creation-Date: 2026-07-15 13:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: accounts/forms.py:15 accounts/forms.py:165 accounts/forms.py:170
-#: templates/legals_notices/privacy_policy.html:34
 msgid "First Name"
-msgstr ""
+msgstr "Prénom"
 
 #: accounts/forms.py:20
 msgid "Your First Name"
-msgstr ""
+msgstr "Prénom"
 
 #: accounts/forms.py:27 accounts/forms.py:166 accounts/forms.py:171
-#: templates/legals_notices/privacy_policy.html:35
 msgid "Last Name"
-msgstr ""
+msgstr "Nom de famille"
 
 #: accounts/forms.py:32
 msgid "Your Last Name"
-msgstr ""
+msgstr "Nom de famille"
 
 #: accounts/forms.py:39 accounts/forms.py:167 accounts/forms.py:172
-#: templates/legals_notices/privacy_policy.html:36
 msgid "Email Address"
-msgstr ""
+msgstr "Adresse email"
 
 #: accounts/forms.py:50 accounts/forms.py:148 accounts/forms.py:153
 #: templates/accounts/register.html:98
-#: templates/legals_notices/privacy_policy.html:37
 msgid "Country"
-msgstr ""
+msgstr "Pays"
 
 #: accounts/forms.py:55
 msgid "Your Country"
-msgstr ""
+msgstr "Pays"
 
 #: accounts/forms.py:62 accounts/forms.py:149 accounts/forms.py:154
 #: templates/accounts/register.html:103
-#: templates/legals_notices/privacy_policy.html:38
 msgid "Occupation"
-msgstr ""
+msgstr "Profession"
 
 #: accounts/forms.py:67
 msgid "Your Occupation"
-msgstr ""
+msgstr "Profession"
 
 #: accounts/forms.py:74 accounts/forms.py:77 accounts/forms.py:125
 #: accounts/forms.py:129 templates/accounts/login.html:93
 #: templates/accounts/register.html:113
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: accounts/forms.py:84 accounts/forms.py:87
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirmez le mot de passe"
 
 #: accounts/forms.py:108
 msgid "An account with this email already exists."
-msgstr ""
+msgstr "Un compte associé à cette adresse e-mail existe déjà."
 
 #: accounts/forms.py:115
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: accounts/forms.py:150
 msgid "About you"
-msgstr ""
+msgstr "À propos de vous"
 
 #: accounts/forms.py:156
 msgid "Tell us about yourself..."
-msgstr ""
+msgstr "Parlez-nous de vous..."
 
 #: accounts/forms.py:178
 msgid "This email address is already in use."
-msgstr ""
+msgstr "Cette adresse e-mail est déjà utilisée."
 
 #: accounts/forms.py:184 accounts/forms.py:186
 msgid "Current Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: accounts/forms.py:189 accounts/forms.py:191
 msgid "New Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: accounts/forms.py:192
 msgid ""
 "Your password must contain at least 8 characters and can't be entirely "
 "numeric."
 msgstr ""
+"Votre mot de passe doit comporter au moins 8 caractères et ne peut pas être "
+"entièrement numérique."
 
 #: accounts/forms.py:195 accounts/forms.py:197
 msgid "Confirm New Password"
-msgstr ""
+msgstr "Confirmez le mot de passe"
 
 #: accounts/templates/profile/profile.html:24
 msgid "No Photo"
-msgstr ""
+msgstr "Aucune photo"
 
 #: accounts/templates/profile/profile.html:30
 msgid "Profile of"
-msgstr ""
+msgstr "Profil de"
 
 #: accounts/templates/profile/profile.html:63
 msgid "User Information"
-msgstr ""
+msgstr "Informations sur l'utilisateur"
 
 #: accounts/templates/profile/profile.html:64
 msgid "Manage your profile, personal information and account settings."
 msgstr ""
+"Gérez votre profil, vos informations personnelles et les paramètres de votre "
+"compte."
 
 #: accounts/templates/profile/profile.html:78
 msgid "Profile Information"
-msgstr ""
+msgstr "Informations sur votre profil"
 
 #: accounts/templates/profile/profile.html:83
 msgid "Profile Picture"
-msgstr ""
+msgstr "Votre photo de profi"
 
 #: accounts/templates/profile/profile.html:88
 msgid "Current photo set"
-msgstr ""
+msgstr "Photo déjà configurée"
 
 #: accounts/templates/profile/profile.html:88
 msgid "No photo uploaded"
-msgstr ""
+msgstr "Aucune photo téléchargée"
 
 #: accounts/templates/profile/profile.html:92
 msgid "Change Photo"
-msgstr ""
+msgstr "Changer la photo"
 
 #: accounts/templates/profile/profile.html:92
 msgid "Upload Photo"
-msgstr ""
+msgstr "Télécharger la photo"
 
 #: accounts/templates/profile/profile.html:115
 msgid "Save Changes"
-msgstr ""
+msgstr "Enregistrer les modifications"
 
 #: accounts/templates/profile/profile.html:121
 msgid "Account Actions"
-msgstr ""
+msgstr "Mon Compte"
 
 #: accounts/templates/profile/profile.html:125
 msgid "Change Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: accounts/templates/profile/profile.html:128
 #: dashboard/templates/dashboard/dashboard.html:100
 msgid "Logout"
-msgstr ""
+msgstr "Déconnexion"
 
 #: accounts/templates/profile/profile.html:131
 msgid "Back to Dashboard"
-msgstr ""
+msgstr "Tableau de bord"
 
 #: accounts/templates/profile/profile.html:149
 msgid "New photo selected:"
-msgstr ""
+msgstr "Actions sur le compte"
 
 #: blog_magazine/templates/blog_magazine/article_detail.html:43
 msgid "By"
-msgstr ""
+msgstr "Par"
 
 #: blog_magazine/templates/blog_magazine/article_detail.html:75
 msgid "Back to"
-msgstr ""
+msgstr "Retour à"
 
 #: blog_magazine/templates/blog_magazine/category_articles.html:20
 msgid "Discover all publications related to this topic."
-msgstr ""
+msgstr "Découvrez toutes les publications relatives à ce sujet."
 
 #: blog_magazine/templates/blog_magazine/category_articles.html:73
 msgid "Read more"
-msgstr ""
+msgstr "En savoir plus"
 
 #: blog_magazine/templates/blog_magazine/category_articles.html:88
 msgid "No articles have been published in this category yet."
-msgstr ""
+msgstr "Aucun article n'a encore été publié dans cette catégorie."
 
-#: config/settings.py:139
+#: config/settings.py:136
 msgid "Français"
-msgstr ""
+msgstr "Français"
 
-#: config/settings.py:139
+#: config/settings.py:136
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: dashboard/templates/dashboard/dashboard.html:73
 #: dashboard/templates/dashboard/dashboard.html:137
 msgid "Search article..."
-msgstr ""
+msgstr "Rechercher un article..."
 
 #: dashboard/templates/dashboard/dashboard.html:147
 msgid "Dashboard"
-msgstr ""
+msgstr "Tableau de bord"
 
 #: dashboard/templates/dashboard/dashboard.html:156
 msgid "Articles"
-msgstr ""
+msgstr "Articles"
 
 #: dashboard/templates/dashboard/dashboard.html:250
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: dashboard/templates/dashboard/dashboard.html:278
 msgid "Lionne Member"
-msgstr ""
+msgstr "Membre Lionne"
 
 #: dashboard/templates/dashboard/dashboard.html:287
 msgid "There is no limit to what we, as Women, can accomplish."
 msgstr ""
+"Il n'y a pas de limite à ce que nous, en tant que femmes, pouvons accomplir."
 
 #: dashboard/templates/dashboard/dashboard.html:294
 msgid "Our social networks"
-msgstr ""
+msgstr "Nos réseaux sociaux"
 
 #: dashboard/templates/dashboard/dashboard.html:350
 #: templates/accounts/login.html:35 templates/accounts/register.html:29
 msgid "Return to site"
-msgstr ""
+msgstr "Retour au site"
 
 #: dashboard/templates/dashboard/dashboard.html:366
 msgid "Welcome back,"
-msgstr ""
+msgstr "Bon retour parmi nous,"
 
 #: dashboard/templates/dashboard/dashboard.html:371
 msgid ""
 "Thank you for being part of the LIONESS Le Magazine des reines community. "
 "<br> Together, we amplify Women's voices."
 msgstr ""
+"Merci de faire partie de la communauté LIONESS Le Magazine des reines. <br> "
+"Ensemble, nous amplifions la voix des femmes."
 
 #: dashboard/templates/dashboard/dashboard.html:399
 msgid "Member since"
-msgstr ""
+msgstr "Membre depuis"
 
 #: dashboard/templates/dashboard/dashboard.html:410
 msgid "Magazine section"
-msgstr ""
+msgstr "Rubriques du magazine"
 
 #: dashboard/templates/dashboard/dashboard.html:417
 msgid ""
@@ -260,18 +262,21 @@ msgid ""
 "will be redirected to a dedicated page containing articles related to that "
 "topic."
 msgstr ""
+"Choisir une rubrique de magazine et cliquez sur la section que vous "
+"souhaitez explorer. Vous serez redirigé vers une page dédiée contenant des "
+"articles liés à ce sujet."
 
 #: dashboard/templates/dashboard/dashboard.html:428
 msgid "Choose category"
-msgstr ""
+msgstr "Choisir une catégorie"
 
 #: dashboard/templates/dashboard/dashboard.html:514
 msgid "Your Activity"
-msgstr ""
+msgstr "Votre activité"
 
 #: dashboard/templates/dashboard/dashboard.html:577
 msgid "Your writing matters"
-msgstr ""
+msgstr "Votre écriture compte"
 
 #: dashboard/templates/dashboard/dashboard.html:579
 msgid ""
@@ -279,182 +284,192 @@ msgid ""
 "inspiring stories, authentic journeys, and empowering women from around the "
 "world. Submit your article to our editorial team."
 msgstr ""
+"Faites entendre votre voix avec LIONESS, le magazine des reines. Nous "
+"mettons en lumière des histoires inspirantes, des parcours authentiques et "
+"des femmes qui s'affirment, partout dans le monde. Soumettez votre article à "
+"notre équipe éditoriale."
 
 #: dashboard/templates/dashboard/dashboard.html:580
 msgid ""
 "We Selected content may be published in the magazine and featured to our "
 "community."
 msgstr ""
+"Certains contenus sélectionnés pourront être publiés dans le magazine et mis "
+"en avant auprès de notre communauté."
 
 #: dashboard/templates/dashboard/dashboard.html:583
 msgid "Send your text here"
-msgstr ""
+msgstr "Envoyez votre texte ici"
 
 #: dashboard/templates/dashboard/dashboard.html:596
 msgid " 2026 Lioness Magazine. All rights reserved."
-msgstr ""
+msgstr "2026 Lioness Magazine. Tous droits réservés."
 
 #: dashboard/views.py:18
 msgid "Articles read"
-msgstr ""
+msgstr "Articles lus"
 
 #: dashboard/views.py:23
 msgid "Magazine issues"
-msgstr ""
+msgstr "Numéros du magazine"
 
 #: templates/accounts/login.html:74
 msgid "LOG IN"
-msgstr ""
+msgstr "SE CONNECTER"
 
 #: templates/accounts/login.html:76
 msgid "Fields marked with an * are mandatory."
-msgstr ""
+msgstr "Les champs marqués d'un * sont obligatoires."
 
 #: templates/accounts/login.html:88 templates/accounts/register.html:108
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1845
 msgid "Email address"
-msgstr ""
+msgstr "Adresse email"
 
 #: templates/accounts/login.html:105
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Mot de passe oublié ?"
 
 #: templates/accounts/login.html:109 templates/home.html:42
 #: templates/home.html:402 templates/includes/header.html:52
 msgid "Log in"
-msgstr ""
+msgstr "Se connecter"
 
 #: templates/accounts/login.html:113
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Vous n'avez pas encore de compte ?"
 
 #: templates/accounts/login.html:115
 msgid "Register"
-msgstr ""
+msgstr "Enregistrer"
 
 #: templates/accounts/login.html:129 templates/accounts/register.html:148
 #: templates/home.html:411 templates/includes/footer.html:86
 #: templates/legals_notices/legal_notice.html:6
-#: templates/legals_notices/legal_notice.html:16
 msgid "Legal Notice"
-msgstr ""
+msgstr "Mentions légales"
 
 #: templates/accounts/login.html:136 templates/accounts/register.html:155
 #: templates/home.html:417 templates/includes/footer.html:92
 #: templates/legals_notices/privacy_policy.html:6
-#: templates/legals_notices/privacy_policy.html:19
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politique de confidentialité"
 
 #: templates/accounts/login.html:143 templates/accounts/register.html:162
 #: templates/home.html:423 templates/includes/footer.html:98
 #: templates/legals_notices/terms_of_use.html:6
-#: templates/legals_notices/terms_of_use.html:22
 msgid "Terms of Use"
-msgstr ""
+msgstr "Conditions d'utilisation"
 
 #: templates/accounts/login.html:150 templates/accounts/register.html:169
 #: templates/home.html:429 templates/includes/footer.html:104
 msgid "Cookie Management"
-msgstr ""
+msgstr "Gestion des cookies"
 
 #: templates/accounts/register.html:10
 msgid "Inscription - Lioness"
-msgstr ""
+msgstr "Inscription - Lionness"
 
 #: templates/accounts/register.html:75
 msgid "REGISTRATION"
-msgstr ""
+msgstr "INSCRIPTION"
 
 #: templates/accounts/register.html:76
 msgid "Fields marked with an"
-msgstr ""
+msgstr "Les champs marqués d'un "
 
 #: templates/accounts/register.html:76
 msgid "are mandatory."
-msgstr ""
+msgstr "sont obligatoires."
 
 #: templates/accounts/register.html:88
 msgid "Name"
-msgstr ""
+msgstr "Nom de famille"
 
 #: templates/accounts/register.html:93
 msgid "First name"
-msgstr ""
+msgstr "Prénom"
 
 #: templates/accounts/register.html:124
 msgid "Confirm password"
-msgstr ""
+msgstr "Confirmez le mot de passe"
 
 #: templates/accounts/register.html:134
 msgid "Submit the form"
-msgstr ""
+msgstr "Soumettez le formulaire"
 
 #: templates/home.html:30
 msgid "Access to Calaméo<br>Digital Magazine"
-msgstr ""
+msgstr "Accès au Magazine Numérique Calaméo"
 
 #: templates/home.html:43 templates/home.html:126 templates/home.html:183
 #: templates/home.html:403 templates/includes/header.html:59
 msgid "Become a member"
-msgstr ""
+msgstr "Devenir membre"
 
 #: templates/home.html:80 templates/home.html:92 templates/home.html:390
 #: templates/includes/footer.html:65 templates/includes/header.html:99
 #: templates/includes/header.html:144
 msgid "About"
-msgstr ""
+msgstr "À propos"
 
 #: templates/home.html:81 templates/home.html:93 templates/home.html:391
 #: templates/includes/footer.html:66 templates/includes/header.html:105
 #: templates/includes/header.html:150
 msgid "Explore"
-msgstr ""
+msgstr "Découvrir"
 
 #: templates/home.html:82 templates/home.html:94 templates/home.html:152
 #: templates/includes/header.html:111 templates/includes/header.html:156
 msgid "Community"
-msgstr ""
+msgstr "Communauté"
 
 #: templates/home.html:83 templates/home.html:95 templates/home.html:145
 #: templates/home.html:392 templates/includes/footer.html:67
 #: templates/includes/header.html:117 templates/includes/header.html:162
 msgid "Magazine"
-msgstr ""
+msgstr "Magazine"
 
 #: templates/home.html:84 templates/home.html:96
 #: templates/includes/footer.html:68 templates/includes/header.html:123
 #: templates/includes/header.html:168
 msgid "Services"
-msgstr ""
+msgstr "Services"
 
 #: templates/home.html:85 templates/home.html:97
 #: templates/includes/footer.html:69 templates/includes/header.html:129
 #: templates/includes/header.html:174
 msgid "Personalities"
-msgstr ""
+msgstr "Personnalités"
 
 #: templates/home.html:110
 msgid ""
 "All women are <span class=\"text-gold-custom\">Lionesses</span><br> They are "
 "truly queens"
 msgstr ""
+"Toutes les femmes sont <span class=\"text-gold-custom\">des Lionnes</"
+"span><br> Elles sont vraiment des Reines."
 
 #: templates/home.html:117
 msgid "is much more than a magazine."
-msgstr ""
+msgstr "n'est pas seulement un magazine."
 
 #: templates/home.html:119
 msgid ""
 "It is an international community that spotlights influential and high-impact "
 "women from every continent."
 msgstr ""
+"C’est une communauté internationale, qui met en lumière les femmes "
+"influentes et exponentielles issues de tous les continents."
 
 #: templates/home.html:121
 msgid ""
 "We champion women who are resourceful, creative, and committed, sharing "
 "inspiring stories, authentic journeys, and meaningful content."
 msgstr ""
+"Nous valorisons des femmes ingénieuses, créatives et engagées, à travers des "
+"récits inspirants, des parcours authentiques et des contenus porteurs de "
+"sens."
 
 #: templates/home.html:123
 msgid ""
@@ -462,364 +477,341 @@ msgid ""
 "celebrates women, their ambitions, and their impact in a rapidly changing "
 "world."
 msgstr ""
+"Rejoindre LIONESS, Le Magazine des Reines c’est appartenir à un club qui "
+"célèbre les femmes, leurs ambitions et leur impact dans un monde en pleine "
+"mutation."
 
 #: templates/home.html:125
 msgid "See the magazines"
-msgstr ""
+msgstr "Voir les magazines"
 
 #: templates/home.html:139
 msgid "A space to inspire, connect, and impact"
-msgstr ""
+msgstr "Un espace pour inspirer, connecter et impacter"
 
 #: templates/home.html:146
 msgid ""
 "Discover unique content on business, lifestyle, well-being, and much more."
 msgstr ""
+"Découvrez un contenu unique sur le business, le lifestyle, le bien-être et "
+"bien plus encore."
 
 #: templates/home.html:153
 msgid ""
 "Join a community of ambitious and committed women from around the world."
 msgstr ""
+"Rejoignez une communauté de femmes ambitieuses et engagées du monde entier."
 
 #: templates/home.html:159
 msgid "Business"
-msgstr ""
+msgstr "Business"
 
 #: templates/home.html:160
 msgid ""
 "Let's celebrate women entrepreneurs and their initiatives that are "
 "transforming our societies."
 msgstr ""
+"Célébrons les femmes entrepreneures et leurs initiatives qui transforment "
+"nos sociétés."
 
 #: templates/home.html:166
 msgid "Let's talk about it!"
-msgstr ""
+msgstr "Et si on en parlait ?"
 
 #: templates/home.html:167
 msgid ""
 "A bridge between Africa and its diaspora to share, learn, and collaborate."
 msgstr ""
+"Un pont entre l'Afrique et sa diaspora pour partager, apprendre et "
+"collaborer."
 
 #: templates/home.html:181
 msgid "Join a community of women with exponential impact."
-msgstr ""
+msgstr "Rejoignez une communauté de femmes exponentielles."
 
 #: templates/home.html:182
 msgid ""
 "Networking, experience sharing, influence, and lobbying with influential "
 "figures from around the world."
 msgstr ""
+"Mises en relations, partage d'expériences, influence, lobbying auprès des "
+"personnalités influentes du monde entier."
 
 #: templates/home.html:271
 msgid "Our services"
-msgstr ""
+msgstr "Nos services"
 
 #: templates/home.html:276
 msgid "Featured"
-msgstr ""
+msgstr "Mise en avant"
 
 #: templates/home.html:277
 msgid ""
 "Influential figures from diverse backgrounds fill the pages of our media "
 "outlet."
 msgstr ""
+"Des personnalités influentes aux profils divers variés inondent les pages de "
+"notre média."
 
 #: templates/home.html:283
 msgid "Interviews & Profiles"
-msgstr ""
+msgstr "Interviews & portraits"
 
 #: templates/home.html:284
 msgid "Authentic stories to inspire and motivate our readers."
-msgstr ""
+msgstr "Des histoires authentiques pour inspirer et motiver nos lecteurs."
 
 #: templates/home.html:290
 msgid "Accompaniement"
-msgstr ""
+msgstr "Accompagnement"
 
 #: templates/home.html:291
 msgid ""
 "If you become a member, you will have access to resources, advice, and tools "
 "to boost your business."
 msgstr ""
+"En devenant membre, vous aurez accès à des ressources, des conseils et des "
+"outils pour booster votre activité."
 
 #: templates/home.html:297
 msgid "Media and Content"
-msgstr ""
+msgstr "Média & Contenu"
 
 #: templates/home.html:298
 msgid ""
 "By becoming a member, you will gain access to podcasts, videos, and articles "
 "to help you achieve and sustain success."
 msgstr ""
+"En devenant membre, vous aurez accès à des podcasts, des vidéos et des "
+"articles pour entrer et demeurer dans votre succès."
 
 #: templates/home.html:334
 msgid "is a publication of Layilab."
-msgstr ""
+msgstr "est une publication de Layilab."
 
 #: templates/home.html:393
 msgid "Service"
-msgstr ""
+msgstr "Service"
 
 #: templates/home.html:394
 msgid "The Most Impactful Personalities"
-msgstr ""
+msgstr "Les Personnalités les Plus Impactantes"
 
 #: templates/home.html:398
 msgid "Stay tuned"
-msgstr ""
+msgstr "Restez à l'écoute"
 
 #: templates/home.html:399
 msgid ""
 "Become a member of the community that celebrates women worldwide. Together, "
 "we are breaking down patriarchal stereotypes."
 msgstr ""
+"Devenez membre de la communauté qui célèbre les femmes à travers le monde. "
+"Ensemble, nous brisons les stéréotypes patriarcaux."
 
 #: templates/home.html:400
 msgid "We are moving forward in open collaboration with men."
-msgstr ""
+msgstr "Nous avançons en étroite collaboration avec les hommes."
 
 #: templates/includes/header.html:24
+#, fuzzy
+#| msgid "Access to Calaméo<br>Digital Magazine"
 msgid "Access to Calaméo"
-msgstr ""
+msgstr "Accès au Magazine Numérique Calaméo"
 
 #: templates/includes/header.html:25
+#, fuzzy
+#| msgid "Magazine"
 msgid "Digital Magazine"
-msgstr ""
+msgstr "Magazine"
 
 #: templates/legals_notices/cookie_policy.html:6
 #: templates/legals_notices/cookie_policy.html:16
 msgid "Cookie Policy"
-msgstr ""
+msgstr "Politique relative aux cookies"
 
 #: templates/legals_notices/cookie_policy.html:19
+#, fuzzy
+#| msgid ""
+#| "This Cookie Policy explains how LIONESS – Le Magazine des Reines\n"
+#| "uses cookies and similar technologies when you visit our website."
 msgid ""
 "This Cookie Policy explains how LIONESS – Le Magazine des Reines\n"
 "                    uses cookies and similar technologies when you visit our "
 "website."
 msgstr ""
+"Cette politique relative aux cookies explique comment LIONESS – Le Magazine "
+"des Reines\n"
+"utilise des cookies et des technologies similaires lorsque vous visitez "
+"notre site web."
 
 #: templates/legals_notices/cookie_policy.html:23
 msgid "What Are Cookies?"
-msgstr ""
+msgstr "What Are Cookies?"
 
 #: templates/legals_notices/cookie_policy.html:26
+#, fuzzy
+#| msgid ""
+#| "Cookies are small text files stored on your device when you visit a "
+#| "website. They help websites function properly, improve user experience, "
+#| "and provide information to website owners."
 msgid ""
 "Cookies are small text files stored on your device when you visit\n"
 "                    a website. They help websites function properly, improve "
 "user\n"
 "                    experience, and provide information to website owners."
 msgstr ""
+"Les cookies sont de petits fichiers texte stockés sur votre appareil lorsque "
+"vous visitez un site web. Ils permettent aux sites web de fonctionner "
+"correctement, d'améliorer l'expérience utilisateur et de fournir des "
+"informations aux propriétaires de sites."
 
 #: templates/legals_notices/cookie_policy.html:31
 msgid "Types of Cookies We Use"
-msgstr ""
+msgstr "Types de cookies que nous utilisons"
 
 #: templates/legals_notices/cookie_policy.html:33
 msgid "1. Essential Cookies"
-msgstr ""
+msgstr "1. Essential Cookies"
 
 #: templates/legals_notices/cookie_policy.html:36
+#, fuzzy
+#| msgid ""
+#| "These cookies are necessary for the website to function properly.They "
+#| "enable core features such as user authentication, security, and session "
+#| "management."
 msgid ""
 "These cookies are necessary for the website to function properly.\n"
 "                    They enable core features such as user authentication, "
 "security,\n"
 "                    and session management."
 msgstr ""
+"Ces cookies sont nécessaires au bon fonctionnement du site web. Ils "
+"permettent d'assurer des fonctionnalités essentielles telles que "
+"l'authentification des utilisateurs, la sécurité et la gestion des sessions."
 
 #: templates/legals_notices/cookie_policy.html:42
 msgid "Without these cookies, certain services may not be available."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:45
-msgid "2. Performance and Analytics Cookies"
-msgstr ""
+"Sans ces cookies, certains services pourraient ne pas être disponibles."
 
 #: templates/legals_notices/cookie_policy.html:48
+#, fuzzy
+#| msgid ""
+#| "These cookies help us understand how visitors interact with the website "
+#| "by collecting anonymous information about page visits, traffic sources, "
+#| "and user behavior."
 msgid ""
 "These cookies help us understand how visitors interact with the\n"
 "                    website by collecting anonymous information about page "
 "visits,\n"
 "                    traffic sources, and user behavior."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:54
-msgid "This information helps us improve our website and services."
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:57
-msgid "3. Functional Cookies"
-msgstr ""
+"Ces cookies nous aident à comprendre comment les visiteurs interagissent "
+"avec le site web en collectant des informations anonymes sur les visites de "
+"pages, les sources de trafic et le comportement des utilisateurs."
 
 #: templates/legals_notices/cookie_policy.html:60
+#, fuzzy
+#| msgid ""
+#| "These cookies allow the website to remember your preferences, such as "
+#| "language settings and display preferences, to provide a more personalized "
+#| "experience."
 msgid ""
 "These cookies allow the website to remember your preferences,\n"
 "                    such as language settings and display preferences, to "
 "provide\n"
 "                    a more personalized experience."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:65
-msgid "4. Third-Party Cookies"
-msgstr ""
+"These cookies allow the website to remember your preferences, such as "
+"language settings and display preferences, to provide a more personalized "
+"experience."
 
 #: templates/legals_notices/cookie_policy.html:68
+#, fuzzy
+#| msgid ""
+#| "Some content or services available on our website may be provided by "
+#| "third parties. These providers may place cookies on your device to "
+#| "support their services."
 msgid ""
 "Some content or services available on our website may be provided\n"
 "                    by third parties. These providers may place cookies on "
 "your device\n"
 "                    to support their services."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:73
-msgid "How We Use Cookies"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:76
-msgid "We use cookies to:"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:80
-msgid "Maintain website security"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:81
-msgid "Keep users logged into their accounts"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:82
-msgid "Remember user preferences"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:83
-msgid "Improve website performance"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:84
-msgid "Analyze website traffic and usage"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:85
-msgid "user experience"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:88
-msgid "Managing Cookies"
-msgstr ""
+"Certains contenus ou services disponibles sur notre site web peuvent être "
+"fournis par des tiers. Ces prestataires peuvent placer des cookies sur votre "
+"appareil pour assurer le fonctionnement de leurs services."
 
 #: templates/legals_notices/cookie_policy.html:91
+#, fuzzy
+#| msgid ""
+#| "You can manage or disable cookies through your browser settings. Most "
+#| "browsers allow you to:"
 msgid ""
 "You can manage or disable cookies through your browser settings.\n"
 "                    Most browsers allow you to:"
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:96
-msgid "View stored cookies"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:97
-msgid "Delete cookies"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:98
-msgid "Block all cookies"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:99
-msgid "Block specific cookies"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:100
-msgid "Receive notifications before cookies are stored"
-msgstr ""
+"Vous pouvez gérer ou désactiver les cookies via les paramètres de votre "
+"navigateur. La plupart des navigateurs vous permettent de :"
 
 #: templates/legals_notices/cookie_policy.html:104
+#, fuzzy
+#| msgid ""
+#| "Please note that disabling certain cookies may affect the functionality "
+#| "of the website."
 msgid ""
 "Please note that disabling certain cookies may affect the\n"
 "                    functionality of the website."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:108
-msgid "Cookie Retention"
-msgstr ""
+"Veuillez noter que la désactivation de certains cookies peut affecter le "
+"fonctionnement du site web."
 
 #: templates/legals_notices/cookie_policy.html:111
+#, fuzzy
+#| msgid ""
+#| "Cookies may remain on your device for different periods of time. Some "
+#| "cookies are deleted when you close your browser, while others remain "
+#| "until they expire or are manually deleted."
 msgid ""
 "Cookies may remain on your device for different periods of time.\n"
 "                    Some cookies are deleted when you close your browser, "
 "while\n"
 "                    others remain until they expire or are manually deleted."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:116
-msgid "Changes to This Policy"
-msgstr ""
+"Les cookies peuvent rester sur votre appareil pendant des durées variables. "
+"Certains cookies sont supprimés lorsque vous fermez votre navigateur, tandis "
+"que d'autres subsistent jusqu'à leur expiration ou leur suppression manuelle."
 
 #: templates/legals_notices/cookie_policy.html:119
+#, fuzzy
+#| msgid ""
+#| "LIONESS reserves the right to update this Cookie Policy at any time. Any "
+#| "modifications will be posted on this page.."
 msgid ""
 "LIONESS reserves the right to update this Cookie Policy at any\n"
-"                    time. Any modifications will be posted on this page."
+"                    time. Any modifications will be posted on this page.."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:123
-msgid "Contact Us"
-msgstr ""
+"LIONESS se réserve le droit de mettre à jour cette politique relative aux "
+"cookies à tout moment. Toute modification sera publiée sur cette page."
 
 #: templates/legals_notices/cookie_policy.html:126
+#, fuzzy
+#| msgid ""
+#| "If you have any questions regarding this Cookie Policy, please contact us:"
 msgid ""
 "If you have any questions regarding this Cookie Policy, please\n"
 "                    contact us:."
 msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:132
-#: templates/legals_notices/legal_notice.html:30
-msgid "Phone:"
-msgstr ""
-
-#: templates/legals_notices/cookie_policy.html:136
-msgid "updated: June 2026"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:18
-msgid "Website Publisher"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:22
-msgid "Published by"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:26
-msgid "Contact Information"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:33
-msgid "Publication Director"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:36
-msgid "Editorial Team"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:39
-msgid "Hosting Provider"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:42
-msgid "[Hosting Provider Name]"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:43
-msgid "[Hosting Provider Address]"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:44
-msgid "[Hosting Provider Website]"
-msgstr ""
-
-#: templates/legals_notices/legal_notice.html:47
-msgid "Intellectual Property"
-msgstr ""
+"Si vous avez des questions concernant cette politique relative aux cookies, "
+"veuillez nous contacter :"
 
 #: templates/legals_notices/legal_notice.html:50
+#, fuzzy
+#| msgid ""
+#| "All content available on this website, including texts, articles, images, "
+#| "photographs, illustrations, graphics, logos, videos, rademarks, and other "
+#| "materials, is protected by applicable intellectual property laws."
 msgid ""
 "All content available on this website, including texts, articles,\n"
 "                images, photographs, illustrations, graphics, logos, "
@@ -827,435 +819,345 @@ msgid ""
 "                trademarks, and other materials, is protected by applicable\n"
 "                intellectual property laws."
 msgstr ""
+"Tous les contenus disponibles sur ce site web, y compris les textes, "
+"articles, images, photographies, illustrations, éléments graphiques, logos, "
+"vidéos, marques et autres éléments, sont protégés par les lois applicables "
+"en matière de propriété intellectuelle."
 
 #: templates/legals_notices/legal_notice.html:57
+#, fuzzy
+#| msgid ""
+#| "Unless otherwise stated, all rights are reserved by LIONESS or heir "
+#| "respective owners."
 msgid ""
 "Unless otherwise stated, all rights are reserved by LIONESS or\n"
 "                their respective owners."
 msgstr ""
+"Sauf indication contraire, tous les droits sont réservés par LIONESS ou "
+"leurs propriétaires respectifs."
 
 #: templates/legals_notices/legal_notice.html:62
+#, fuzzy
+#| msgid ""
+#| "Any reproduction, distribution, modification, publication, transmission, "
+#| "or commercial exploitation of the content without prior written "
+#| "authorization is strictly prohibited."
 msgid ""
 "Any reproduction, distribution, modification, publication,\n"
 "                transmission, or commercial exploitation of the content "
 "without\n"
 "                prior written authorization is strictly prohibited."
 msgstr ""
-
-#: templates/legals_notices/legal_notice.html:67
-msgid "Limitation of Liability"
-msgstr ""
+"Toute reproduction, distribution, modification, publication, transmission ou "
+"exploitation commerciale du contenu sans autorisation écrite préalable est "
+"strictement interdite."
 
 #: templates/legals_notices/legal_notice.html:70
+#, fuzzy
+#| msgid ""
+#| "The information published on this website is provided for general "
+#| "information purposes only."
 msgid ""
 "The information published on this website is provided for general\n"
 "                information purposes only."
 msgstr ""
+"Les informations publiées sur ce site web sont fournies à titre "
+"d'information générale uniquement."
 
 #: templates/legals_notices/legal_notice.html:75
+#, fuzzy
+#| msgid ""
+#| "Although every effort is made to ensure the accuracy of the information "
+#| "presented, LIONESS does not guarantee that all information is complete, "
+#| "accurate, or up to date."
 msgid ""
 "Although every effort is made to ensure the accuracy of the\n"
 "                information presented, LIONESS does not guarantee that all\n"
 "                information is complete, accurate, or up to date."
 msgstr ""
+"Bien que tous les efforts soient déployés pour garantir l'exactitude des "
+"informations présentées, LIONESS ne garantit pas que toutes les informations "
+"soient complètes, exactes ou à jour."
 
 #: templates/legals_notices/legal_notice.html:81
+#, fuzzy
+#| msgid ""
+#| "LIONESS shall not be held liable for any direct or indirect damages "
+#| "resulting from access to or use of this website."
 msgid ""
 "LIONESS shall not be held liable for any direct or indirect damages\n"
 "                resulting from access to or use of this website."
 msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:22
-msgid "Introduction"
-msgstr ""
+"LIONESS ne saurait être tenue responsable de tout dommage direct ou indirect "
+"résultant de l'accès à ce site web ou de son utilisation."
 
 #: templates/legals_notices/privacy_policy.html:25
+#, fuzzy
+#| msgid ""
+#| "Le Magazine des Reines is committed to protecting your privacy and "
+#| "ensuring the security of your personal data."
 msgid ""
 "Le Magazine des Reines is committed to protecting your\n"
 "                    privacy and ensuring the security of your personal data."
 msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:29
-msgid "Information We Collect"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:31
-msgid "We may collect the following information:"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:39
-msgid "Login Credentials"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:42
-msgid "How We Use Your Information"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:45
-msgid "Create and manage user accounts"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:46
-msgid "Provide membership services"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:47
-msgid "Communicate with members"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:48
-msgid "Improve website functionality"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:49
-msgid "Ensure platform security"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:52
-msgid "Data Retention"
-msgstr ""
+"Le Magazine des Reines s'engage à protéger votre vie privée et à garantir la "
+"sécurité de vos données personnelles."
 
 #: templates/legals_notices/privacy_policy.html:55
+#, fuzzy
+#| msgid ""
+#| "Personal information is retained only for as long as necessary to fulfill "
+#| "the purposes described in this policy and comply with applicable legal "
+#| "obligations."
 msgid ""
 "Personal information is retained only for as long as necessary\n"
 "                        to fulfill the purposes described in this policy and "
 "comply with\n"
 "                        applicable legal obligations."
 msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:60
-msgid "Data Sharing"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:63
-msgid "LIONESS does not sell, rent, or trade personal information."
-msgstr ""
+"Les informations personnelles sont conservées uniquement pendant la durée "
+"nécessaire pour atteindre les finalités décrites dans la présente politique "
+"et pour se conformer aux obligations légales applicables."
 
 #: templates/legals_notices/privacy_policy.html:67
+#, fuzzy
+#| msgid ""
+#| "Information may be shared only with trusted service providers required "
+#| "for hosting, maintenance, security, or legal compliance."
 msgid ""
 "Information may be shared only with trusted service providers\n"
 "                        required for hosting, maintenance, security, or "
 "legal compliance."
 msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:71
-msgid "Your Rights"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:74
-msgid "Under applicable privacy laws, including GDPR, you have the right to:"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:78
-msgid "Access your personal data"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:79
-msgid "Correct inaccurate information"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:80
-msgid "Request deletion of your data"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:81
-msgid "Restrict processing"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:82
-msgid "Object to processing"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:83
-msgid "Request data portability"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:84
-msgid "Withdraw consent"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:87
-msgid "Contact"
-msgstr ""
-
-#: templates/legals_notices/privacy_policy.html:90
-msgid "For privacy-related requests, please contact:"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:26
-msgid "Please read these terms carefully before using the LIONESS website."
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:36
-msgid "1. Acceptance of Terms"
-msgstr ""
+"Les informations ne peuvent être partagées qu'avec des prestataires de "
+"services de confiance intervenant pour l'hébergement, la maintenance, la "
+"sécurité ou la conformité juridique."
 
 #: templates/legals_notices/terms_of_use.html:39
+#, fuzzy
+#| msgid ""
+#| "By accessing or using the LIONESS website, you agree to comply with these "
+#| "Terms of Use."
 msgid ""
 "By accessing or using the LIONESS website, you agree to comply\n"
 "                    with these Terms of Use."
 msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:45
-msgid "2. Website Purpose"
-msgstr ""
+"En accédant au site web LIONESS ou en l'utilisant, vous acceptez de vous "
+"conformer aux présentes Conditions d'utilisation."
 
 #: templates/legals_notices/terms_of_use.html:48
+#, fuzzy
+#| msgid ""
+#| "LIONESS provides editorial content, community resources, networking "
+#| "opportunities, and services dedicated to empowering women."
 msgid ""
 "LIONESS provides editorial content, community resources,\n"
 "                    networking opportunities, and services dedicated to "
 "empowering women."
 msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:54
-msgid "3. User Accounts"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:56
-msgid "Users agree to:"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:59
-msgid "Provide accurate information"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:60
-msgid "Maintain account confidentiality"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:61
-msgid "Protect account credentials"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:62
-msgid "Notify us of unauthorized account use"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:67
-msgid "4. Acceptable Use"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:69
-msgid "Users shall not:"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:72
-msgid "Violate applicable laws"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:73
-msgid "Upload malicious content"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:74
-msgid "Impersonate another person"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:75
-msgid "Distribute spam"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:76
-msgid "Attempt unauthorized access to systems"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:81
-msgid "5. Intellectual Property"
-msgstr ""
+"LIONESS propose des contenus éditoriaux, des ressources communautaires, des "
+"opportunités de réseautage et des services visant à favoriser "
+"l'autonomisation des femmes."
 
 #: templates/legals_notices/terms_of_use.html:84
+#, fuzzy
+#| msgid ""
+#| "All content published on the website remains the property of LIONESS or "
+#| "its licensors and may not be reproduced without prior written "
+#| "authorization."
 msgid ""
 "All content published on the website remains the property of\n"
 "                    LIONESS or its licensors and may not be reproduced "
 "without\n"
 "                    prior written authorization."
 msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:91
-msgid "6. Limitation of Liability"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:94
-msgid "The website is provided on an 'as available' basis."
-msgstr ""
+"Tout contenu publié sur le site web demeure la propriété de LIONESS ou de "
+"ses concédants de licence et ne peut être reproduit sans autorisation écrite "
+"préalable."
 
 #: templates/legals_notices/terms_of_use.html:98
+#, fuzzy
+#| msgid ""
+#| "LIONESS does not guarantee uninterrupted access and shall not be liable "
+#| "for damages arising from website use."
 msgid ""
 "LIONESS does not guarantee uninterrupted access and shall not be\n"
 "                    liable for damages arising from website use."
 msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:104
-msgid "7. External Links"
-msgstr ""
+"LIONESS ne garantit pas un accès ininterrompu et ne saurait être tenue "
+"responsable des dommages découlant de l'utilisation du site web."
 
 #: templates/legals_notices/terms_of_use.html:107
+#, fuzzy
+#| msgid ""
+#| "The website may contain links to third-party websites. LIONESS is not "
+#| "responsible for their content or privacy practices."
 msgid ""
 "The website may contain links to third-party websites.\n"
 "                    LIONESS is not responsible for their content or privacy "
 "practices."
 msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:113
-msgid "8. Governing Law"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:116
-msgid "These Terms of Use are governed by the laws of France."
-msgstr ""
+"Le site web peut contenir des liens vers des sites web tiers. LIONESS n'est "
+"pas responsable de leur contenu ni de leurs pratiques en matière de "
+"confidentialité."
 
 #: templates/legals_notices/terms_of_use.html:120
+#, fuzzy
+#| msgid ""
+#| "Any dispute shall be subject to the jurisdiction of the competent French "
+#| "courts."
 msgid ""
 "Any dispute shall be subject to the jurisdiction of the competent\n"
 "                    French courts."
 msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:126
-msgid "9. Contact"
-msgstr ""
-
-#: templates/legals_notices/terms_of_use.html:129
-msgid "lioness.lemagdesreines@gmail.com"
-msgstr ""
+"Tout litige relèvera de la compétence des tribunaux français compétents."
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/forms.py:6
 msgid "Search files"
-msgstr ""
+msgstr "Rechercher un article..."
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:5
 msgid "Select an image to embed"
-msgstr ""
+msgstr "Sélectionnez une image à intégrer"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:27
 msgid "Browse for the image you want, then click 'Embed Image' to continue..."
 msgstr ""
+"Recherchez l'image de votre choix, puis cliquez sur « Intégrer l'image » "
+"pour continuer..."
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:29
 msgid ""
 "No images found. Upload images using the 'Image Button' dialog's 'Upload' "
 "tab."
 msgstr ""
+"Aucune image trouvée. Téléchargez des images en utilisant l'onglet "
+"« Télécharger » de la boîte de dialogue du bouton « Image »."
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:50
 msgid "Images in: "
-msgstr ""
+msgstr "Images dans :"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:62
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:80
 msgid "Embed Image"
-msgstr ""
+msgstr "Intégrer l'image"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:146
 msgid "Play Slideshow"
-msgstr ""
+msgstr "Lancer le diaporama"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:147
 msgid "Pause Slideshow"
-msgstr ""
+msgstr "Suspendre le diaporama"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:148
 msgid "&lsaquo; Previous Photo"
-msgstr ""
+msgstr "&lsaquo; Photo précédente"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:149
 msgid "Next Photo &rsaquo;"
-msgstr ""
+msgstr "Photo suivante &rsaquo;"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:150
 msgid "Next &rsaquo;"
-msgstr ""
+msgstr "Suivant &rsaquo;"
 
 #: venv/lib/python3.8/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:151
 msgid "&lsaquo; Prev"
-msgstr ""
+msgstr "&lsaquo; Préc."
 
 #: venv/lib/python3.8/site-packages/cloudinary/forms.py:55
 #: venv/lib/python3.8/site-packages/cloudinary/forms.py:124
 msgid "No file selected!"
-msgstr ""
+msgstr "Actions sur le compte"
 
 #: venv/lib/python3.8/site-packages/django/contrib/messages/apps.py:15
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #: venv/lib/python3.8/site-packages/django/contrib/sitemaps/apps.py:8
 msgid "Site Maps"
-msgstr ""
+msgstr "Plans du site"
 
 #: venv/lib/python3.8/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
-msgstr ""
+msgstr "Fichiers statiques"
 
 #: venv/lib/python3.8/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
-msgstr ""
+msgstr "Syndication"
 
 #. Translators: String used to replace omitted page numbers in elided page
 #. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
 #: venv/lib/python3.8/site-packages/django/core/paginator.py:30
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #: venv/lib/python3.8/site-packages/django/core/paginator.py:50
 msgid "That page number is not an integer"
-msgstr ""
+msgstr "Ce numéro de page n'est pas un nombre entier."
 
 #: venv/lib/python3.8/site-packages/django/core/paginator.py:52
 msgid "That page number is less than 1"
-msgstr ""
+msgstr "Ce numéro de page est inférieur à 1"
 
 #: venv/lib/python3.8/site-packages/django/core/paginator.py:54
 msgid "That page contains no results"
-msgstr ""
+msgstr "Cette page ne contient aucun résultat."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:22
 msgid "Enter a valid value."
-msgstr ""
+msgstr "Saisissez une valeur valide."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:104
 #: venv/lib/python3.8/site-packages/django/forms/fields.py:751
 msgid "Enter a valid URL."
-msgstr ""
+msgstr "Saisissez une URL valide."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:165
 msgid "Enter a valid integer."
-msgstr ""
+msgstr "Saisissez un nombre entier valide."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:176
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Saisissez une adresse e-mail valide."
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: venv/lib/python3.8/site-packages/django/core/validators.py:259
 msgid ""
 "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
 msgstr ""
+"Saisissez un « slug » valide composé de lettres, de chiffres, de traits de "
+"soulignement ou de traits d’union."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:267
 msgid ""
 "Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
 "hyphens."
 msgstr ""
+"Saisissez un « slug » valide composé de lettres Unicode, de chiffres, de "
+"traits de soulignement ou de traits d’union."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:281
 #: venv/lib/python3.8/site-packages/django/core/validators.py:289
 #: venv/lib/python3.8/site-packages/django/core/validators.py:318
 msgid "Enter a valid IPv4 address."
-msgstr ""
+msgstr "Saisissez une adresse IPv4 valide."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:298
 #: venv/lib/python3.8/site-packages/django/core/validators.py:319
 msgid "Enter a valid IPv6 address."
-msgstr ""
+msgstr "Saisissez une adresse IPv6 valide."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:310
 #: venv/lib/python3.8/site-packages/django/core/validators.py:317
 msgid "Enter a valid IPv4 or IPv6 address."
-msgstr ""
+msgstr "Saisissez une adresse IPv4 ou IPv6 valide."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:353
 msgid "Enter only digits separated by commas."
-msgstr ""
+msgstr "Enter only digits separated by commas."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:359
 #, python-format
@@ -1266,16 +1168,18 @@ msgstr ""
 #, python-format
 msgid "Ensure this value is less than or equal to %(limit_value)s."
 msgstr ""
+"Assurez-vous que cette valeur est inférieure ou égale à %(limit_value)s."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:403
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
 msgstr ""
+"Assurez-vous que cette valeur est supérieure ou égale à %(limit_value)s."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:412
 #, python-format
 msgid "Ensure this value is a multiple of step size %(limit_value)s."
-msgstr ""
+msgstr "Assurez-vous que cette valeur est un multiple du pas %(limit_value)s."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:422
 #, python-format
@@ -1286,7 +1190,11 @@ msgid_plural ""
 "Ensure this value has at least %(limit_value)d characters (it has "
 "%(show_value)d)."
 msgstr[0] ""
+"Assurez-vous que cette valeur comporte au moins %(limit_value)d caractère "
+"(elle en compte %(show_value)d)."
 msgstr[1] ""
+"Assurez-vous que cette valeur comporte au moins %(limit_value)d caractères "
+"(elle en compte %(show_value)d)."
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:440
 #, python-format
@@ -1337,40 +1245,44 @@ msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/core/validators.py:607
 msgid "Null characters are not allowed."
-msgstr ""
+msgstr "Les caractères nuls ne sont pas autorisés."
 
 #: venv/lib/python3.8/site-packages/django/db/models/base.py:1423
 #: venv/lib/python3.8/site-packages/django/forms/models.py:893
 msgid "and"
-msgstr ""
+msgstr "et"
 
 #: venv/lib/python3.8/site-packages/django/db/models/base.py:1425
-#, python-format
+#, fuzzy, python-format
+#| msgid "%(model_name)s with this %(field_labels)s already exists."
 msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr ""
+msgstr "Un compte associé à cette adresse e-mail existe déjà."
 
 #: venv/lib/python3.8/site-packages/django/db/models/constraints.py:17
 #, python-format
 msgid "Constraint “%(name)s” is violated."
-msgstr ""
+msgstr "La contrainte « %(name)s » est violée."
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:128
 #, python-format
 msgid "Value %(value)r is not a valid choice."
-msgstr ""
+msgstr "La valeur %(value)r n'est pas un choix valide."
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:129
+#, fuzzy
+#| msgid "his field cannot be null."
 msgid "This field cannot be null."
-msgstr ""
+msgstr "Ce champ ne peut pas être nul."
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:130
 msgid "This field cannot be blank."
-msgstr ""
+msgstr "Ce champ ne peut pas être vide."
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:131
-#, python-format
+#, fuzzy, python-format
+#| msgid "%(model_name)s with this %(field_label)s already exists."
 msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr ""
+msgstr "Un compte associé à cette adresse e-mail existe déjà."
 
 #. Translators: The 'lookup_type' is one of 'date', 'year' or
 #. 'month'. Eg: "Title must be unique for pub_date year"
@@ -1379,16 +1291,17 @@ msgstr ""
 msgid ""
 "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
+"%(field_label)s doit être unique pour %(date_field_label)s %(lookup_type)s."
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:173
 #, python-format
 msgid "Field of type: %(field_type)s"
-msgstr ""
+msgstr "Champ de type : %(field_type)s"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1094
 #, python-format
 msgid "“%(value)s” value must be either True or False."
-msgstr ""
+msgstr "La valeur « %(value)s » doit être True ou False."
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1095
 #, python-format
@@ -1456,7 +1369,7 @@ msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1628
 msgid "Decimal number"
-msgstr ""
+msgstr "Nombre décimale"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1789
 #, python-format
@@ -1467,11 +1380,11 @@ msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1793
 msgid "Duration"
-msgstr ""
+msgstr "Durée"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1870
 msgid "File path"
-msgstr ""
+msgstr "Chemin d'accès au fichier"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1948
 #, python-format
@@ -1500,12 +1413,14 @@ msgid "Small integer"
 msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2113
+#, fuzzy
+#| msgid "IP address"
 msgid "IPv4 address"
-msgstr ""
+msgstr "Adresse IP"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2144
 msgid "IP address"
-msgstr ""
+msgstr "Adresse IP"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2237
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2238
@@ -1575,11 +1490,11 @@ msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/files.py:232
 msgid "File"
-msgstr ""
+msgstr "Fichier"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/files.py:393
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 #: venv/lib/python3.8/site-packages/django/db/models/fields/json.py:26
 msgid "A JSON object"
@@ -1743,11 +1658,11 @@ msgstr[1] ""
 #: venv/lib/python3.8/site-packages/django/forms/formsets.py:484
 #: venv/lib/python3.8/site-packages/django/forms/formsets.py:491
 msgid "Order"
-msgstr ""
+msgstr "Commande"
 
 #: venv/lib/python3.8/site-packages/django/forms/formsets.py:499
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: venv/lib/python3.8/site-packages/django/forms/models.py:886
 #, python-format
@@ -1800,7 +1715,7 @@ msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/forms/widgets.py:465
 msgid "Change"
-msgstr ""
+msgstr "Changer la photo"
 
 #: venv/lib/python3.8/site-packages/django/forms/widgets.py:794
 msgid "Unknown"
@@ -1808,16 +1723,16 @@ msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/forms/widgets.py:795
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 #: venv/lib/python3.8/site-packages/django/forms/widgets.py:796
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #. Translators: Please do not add spaces around commas.
 #: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:874
 msgid "yes,no,maybe"
-msgstr ""
+msgstr "«Oui, non, peut-être"
 
 #: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:904
 #: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:921
@@ -1878,107 +1793,107 @@ msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:7
 msgid "Monday"
-msgstr ""
+msgstr "Lundi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:8
 msgid "Tuesday"
-msgstr ""
+msgstr "Mardi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:9
 msgid "Wednesday"
-msgstr ""
+msgstr "Mercredi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:10
 msgid "Thursday"
-msgstr ""
+msgstr "Jeudi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:11
 msgid "Friday"
-msgstr ""
+msgstr "Vendredi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:12
 msgid "Saturday"
-msgstr ""
+msgstr "Samedi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:13
 msgid "Sunday"
-msgstr ""
+msgstr "Dimanche"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:16
 msgid "Mon"
-msgstr ""
+msgstr "Lundi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:17
 msgid "Tue"
-msgstr ""
+msgstr "Mardi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:18
 msgid "Wed"
-msgstr ""
+msgstr "Mercredi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:19
 msgid "Thu"
-msgstr ""
+msgstr "Jeudi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:20
 msgid "Fri"
-msgstr ""
+msgstr "Vendredi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:21
 msgid "Sat"
-msgstr ""
+msgstr "Samedi"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:22
 msgid "Sun"
-msgstr ""
+msgstr "Dimanche"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:25
 msgid "January"
-msgstr ""
+msgstr "Janvier"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:26
 msgid "February"
-msgstr ""
+msgstr "Février"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:27
 msgid "March"
-msgstr ""
+msgstr "Mars"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:28
 msgid "April"
-msgstr ""
+msgstr "Avril"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:29
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:30
 msgid "June"
-msgstr ""
+msgstr "Juin"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:31
 msgid "July"
-msgstr ""
+msgstr "Juillet"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:32
 msgid "August"
-msgstr ""
+msgstr "Août"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:33
 msgid "September"
-msgstr ""
+msgstr "Septembre"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:34
 msgid "October"
-msgstr ""
+msgstr "Octobre"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:35
 msgid "November"
-msgstr ""
+msgstr "Noevembre"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:36
 msgid "December"
-msgstr ""
+msgstr "Décembre"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:39
 msgid "jan"
@@ -2129,24 +2044,32 @@ msgid "August"
 msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:75
+#, fuzzy
+#| msgid "September"
 msgctxt "alt. month"
 msgid "September"
-msgstr ""
+msgstr "Septembre"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:76
+#, fuzzy
+#| msgid "October"
 msgctxt "alt. month"
 msgid "October"
-msgstr ""
+msgstr "Octobre"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:77
+#, fuzzy
+#| msgid "November"
 msgctxt "alt. month"
 msgid "November"
-msgstr ""
+msgstr "Noevembre"
 
 #: venv/lib/python3.8/site-packages/django/utils/dates.py:78
+#, fuzzy
+#| msgid "December"
 msgctxt "alt. month"
 msgid "December"
-msgstr ""
+msgstr "Décembre"
 
 #: venv/lib/python3.8/site-packages/django/utils/ipv6.py:20
 msgid "This is not a valid IPv6 address."
@@ -2248,6 +2171,10 @@ msgid ""
 "submitting forms. This cookie is required for security reasons, to ensure "
 "that your browser is not being hijacked by third parties."
 msgstr ""
+"Vous voyez ce message car ce site nécessite un cookie CSRF lors de la "
+"soumission de formulaires. Ce cookie est requis pour des raisons de "
+"sécurité, afin de garantir que votre navigateur n'est pas détourné par des "
+"tiers."
 
 #: venv/lib/python3.8/site-packages/django/views/csrf.py:142
 msgid ""
@@ -2366,12 +2293,16 @@ msgid "Tutorial: A Polling App"
 msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:239
+#, fuzzy
+#| msgid "Fields marked with an"
 msgid "Get started with Django"
-msgstr ""
+msgstr "Les champs marqués d'un "
 
 #: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:247
+#, fuzzy
+#| msgid "Community"
 msgid "Django Community"
-msgstr ""
+msgstr "Communauté"
 
 #: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:248
 msgid "Connect, get help, or contribute"

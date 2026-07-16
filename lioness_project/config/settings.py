@@ -9,6 +9,9 @@ from django.utils.translation import gettext_lazy as _
 # ======================================================
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
 # ======================================================
 # SECURITY
 # ======================================================
@@ -35,7 +38,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "cloudinary",
     "cloudinary_storage",
-    "ckeditor",
     "django_ckeditor_5",
     "core",
     "accounts",
@@ -162,6 +164,12 @@ TEMPLATES = [
 # ======================================================
 # LOGGING
 # ======================================================
+"""sumary_line
+
+Keyword arguments:
+argument -- description
+Return: return_description
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -180,6 +188,22 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': False,
+        },
+    },
+}
+"""
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'WARNING',  # Ne montre que les erreurs et avertissements
         },
     },
 }

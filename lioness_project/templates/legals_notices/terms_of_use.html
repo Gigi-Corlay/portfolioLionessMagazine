@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Terms of Use | LIONESS{% endblock %}
+{% block title %}
+{% trans "Terms of Use" %} | LIONESS
+{% endblock %}
 
 
 {% block content %}
@@ -16,11 +19,11 @@
             <div class="text-center mb-5">
 
                 <h1 class="terms-title">
-                    Terms of Use
+                    {% trans "Terms of Use" %}
                 </h1>
 
                 <p class="terms-intro">
-                    Please read these terms carefully before using the LIONESS website.
+                    {% trans "Please read these terms carefully before using the LIONESS website." %}
                 </p>
 
             </div>
@@ -30,100 +33,100 @@
             <div class="terms-content">
 
 
-                <h2>1. Acceptance of Terms</h2>
+                <h2>{% trans "1. Acceptance of Terms" %}</h2>
 
                 <p>
-                    By accessing or using the LIONESS website, you agree to comply
-                    with these Terms of Use.
+                    {% blocktrans %}By accessing or using the LIONESS website, you agree to comply
+                    with these Terms of Use.{% endblocktrans %}
                 </p>
 
 
 
-                <h2>2. Website Purpose</h2>
+                <h2>{% trans "2. Website Purpose" %}</h2>
 
                 <p>
-                    LIONESS provides editorial content, community resources,
-                    networking opportunities, and services dedicated to empowering women.
+                    {% blocktrans %}LIONESS provides editorial content, community resources,
+                    networking opportunities, and services dedicated to empowering women.{% endblocktrans %}
                 </p>
 
 
 
-                <h2>3. User Accounts</h2>
+                <h2>{% trans "3. User Accounts" %}</h2>
 
-                <p>Users agree to:</p>
+                <p>{% trans "Users agree to:" %}</p>
 
                 <ul>
-                    <li>Provide accurate information</li>
-                    <li>Maintain account confidentiality</li>
-                    <li>Protect account credentials</li>
-                    <li>Notify us of unauthorized account use</li>
+                    <li>{% trans "Provide accurate information" %}</li>
+                    <li>{% trans "Maintain account confidentiality" %}</li>
+                    <li>{% trans "Protect account credentials" %}</li>
+                    <li>{% trans "Notify us of unauthorized account use" %}</li>
                 </ul>
 
 
 
-                <h2>4. Acceptable Use</h2>
+                <h2>{% trans "4. Acceptable Use" %}</h2>
 
-                <p>Users shall not:</p>
+                <p>{% trans "Users shall not:" %}</p>
 
                 <ul>
-                    <li>Violate applicable laws</li>
-                    <li>Upload malicious content</li>
-                    <li>Impersonate another person</li>
-                    <li>Distribute spam</li>
-                    <li>Attempt unauthorized access to systems</li>
+                    <li>{% trans "Violate applicable laws" %}</li>
+                    <li>{% trans "Upload malicious content" %}</li>
+                    <li>{% trans "Impersonate another person" %}</li>
+                    <li>{% trans "Distribute spam" %}</li>
+                    <li>{% trans "Attempt unauthorized access to systems" %}</li>
                 </ul>
 
 
 
-                <h2>5. Intellectual Property</h2>
+                <h2>{% trans "5. Intellectual Property" %}</h2>
 
                 <p>
-                    All content published on the website remains the property of
+                    {% blocktrans %}All content published on the website remains the property of
                     LIONESS or its licensors and may not be reproduced without
-                    prior written authorization.
+                    prior written authorization.{% endblocktrans %}
                 </p>
 
 
 
-                <h2>6. Limitation of Liability</h2>
+                <h2>{% trans "6. Limitation of Liability" %}</h2>
 
                 <p>
-                    The website is provided on an "as available" basis.
-                </p>
-
-                <p>
-                    LIONESS does not guarantee uninterrupted access and shall not be
-                    liable for damages arising from website use.
-                </p>
-
-
-
-                <h2>7. External Links</h2>
-
-                <p>
-                    The website may contain links to third-party websites.
-                    LIONESS is not responsible for their content or privacy practices.
-                </p>
-
-
-
-                <h2>8. Governing Law</h2>
-
-                <p>
-                    These Terms of Use are governed by the laws of France.
+                    {% trans "The website is provided on an 'as available' basis." %}
                 </p>
 
                 <p>
-                    Any dispute shall be subject to the jurisdiction of the competent
-                    French courts.
+                    {% blocktrans %}LIONESS does not guarantee uninterrupted access and shall not be
+                    liable for damages arising from website use.{% endblocktrans %}
                 </p>
 
 
 
-                <h2>9. Contact</h2>
+                <h2>{% trans "7. External Links" %}</h2>
+
+                <p>
+                    {% blocktrans %}The website may contain links to third-party websites.
+                    LIONESS is not responsible for their content or privacy practices.{% endblocktrans %}
+                </p>
+
+
+
+                <h2>{% trans "8. Governing Law" %}</h2>
+
+                <p>
+                    {% trans "These Terms of Use are governed by the laws of France." %}
+                </p>
+
+                <p>
+                    {% blocktrans %}Any dispute shall be subject to the jurisdiction of the competent
+                    French courts.{% endblocktrans %}
+                </p>
+
+
+
+                <h2>{% trans "9. Contact" %}</h2>
 
                 <p class="contact-mail">
-                    lioness.lemagdesreines@gmail.com
+                    {% trans "lioness.lemagdesreines@gmail.com" %}
                 </p>
 
 

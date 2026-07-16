@@ -1,82 +1,85 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Legal Notice | LIONESS{% endblock %}
+{% block title %}
+{% trans "Legal Notice" %} | LIONESS
+{% endblock %}
 
 {% block content %}
 
-<section class="erms-page py-5">
+<section class="terms-page py-5">
 
     <div class="container">
 
         <div class="terms-card">
-            <h1 class="mb-4 text-center terms-title">Legal Notice</h1>
+            <h1 class="mb-4 text-center terms-title">{% trans "Legal Notice" %}</h1>
 
-            <h2>Website Publisher</h2>
+            <h2>{% trans "Website Publisher" %}</h2>
 
                 <p>
                     <strong>LIONESS – Le Magazine des Reines</strong><br>
-                    Published by Leyilab<br>
+                    {% trans "Published by" %} Leyilab<br>
                     Caen, France
                 </p>
 
-            <h2>Contact Information</h2>
+            <h2>{% trans "Contact Information" %}</h2>
 
                 <p>
                     Email: lioness.lemagdesreines@gmail.com<br>
-                    Phone: +33 7 53 92 93 84
+                    {% trans "Phone:" %} +33 7 53 92 93 84
                 </p>
 
-            <h2>Publication Director</h2>
+            <h2>{% trans "Publication Director" %}</h2>
 
             <p>
-                LIONESS Editorial Team
+                LIONESS  {% trans "Editorial Team" %}
             </p>
 
-        <h2>Hosting Provider</h2>
+        <h2>{% trans "Hosting Provider" %}</h2>
 
             <p>
-                [Hosting Provider Name]<br>
-                [Hosting Provider Address]<br>
-                [Hosting Provider Website]
+                {% trans "[Hosting Provider Name]" %}<br>
+                {% trans "[Hosting Provider Address]" %}<br>
+                {% trans "[Hosting Provider Website]" %}
             </p>
 
-        <h2>Intellectual Property</h2>
+        <h2>{% trans "Intellectual Property" %}</h2>
 
             <p>
-                All content available on this website, including texts, articles,
+                {% blocktrans %}All content available on this website, including texts, articles,
                 images, photographs, illustrations, graphics, logos, videos,
                 trademarks, and other materials, is protected by applicable
-                intellectual property laws.
+                intellectual property laws.{% endblocktrans %}
             </p>
 
             <p>
-                Unless otherwise stated, all rights are reserved by LIONESS or
-                their respective owners.
+                {% blocktrans %}Unless otherwise stated, all rights are reserved by LIONESS or
+                their respective owners.{% endblocktrans %}
             </p>
 
             <p>
-                Any reproduction, distribution, modification, publication,
+                {% blocktrans %}Any reproduction, distribution, modification, publication,
                 transmission, or commercial exploitation of the content without
-                prior written authorization is strictly prohibited.
+                prior written authorization is strictly prohibited.{% endblocktrans %}
             </p>
 
-        <h2>Limitation of Liability</h2>
+        <h2>{% trans "Limitation of Liability" %}</h2>
 
             <p>
-                The information published on this website is provided for general
-                information purposes only.
+                {% blocktrans %}The information published on this website is provided for general
+                information purposes only.{% endblocktrans %}
             </p>
 
             <p>
-                Although every effort is made to ensure the accuracy of the
+                {% blocktrans %}Although every effort is made to ensure the accuracy of the
                 information presented, LIONESS does not guarantee that all
-                information is complete, accurate, or up to date.
+                information is complete, accurate, or up to date.{% endblocktrans %}
             </p>
 
             <p>
-                LIONESS shall not be held liable for any direct or indirect damages
-                resulting from access to or use of this website.
+                {% blocktrans %}LIONESS shall not be held liable for any direct or indirect damages
+                resulting from access to or use of this website.{% endblocktrans %}
             </p>
         </div>
     </div>

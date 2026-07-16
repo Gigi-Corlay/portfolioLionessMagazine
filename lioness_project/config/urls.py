@@ -19,7 +19,7 @@ urlpatterns = [
     # Administration
     path("admin/", admin.site.urls),
     path('ckeditor5/image_upload/', custom_upload_file),
-    path('ckeditor5/', include('django_ckeditor_5.urls')), 
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
     # Applications
     path("", include("core.urls")),
     path("", include("blog_magazine.urls")),

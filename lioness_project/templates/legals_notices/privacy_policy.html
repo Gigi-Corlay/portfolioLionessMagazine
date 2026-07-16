@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-Privacy Policy | LIONESS
+{% trans "Privacy Policy" %} | LIONESS
 {% endblock %}
-
-
 
 {% block content %}
 
@@ -17,78 +16,78 @@ Privacy Policy | LIONESS
         <div class="terms-card">
 
             <h1 class="terms-title text-center">
-                Privacy Policy
+                {% trans "Privacy Policy" %}
             </h1>
 
-            <h2>Introduction</h2>
+            <h2>{% trans "Introduction" %}</h2>
 
                 <p>
-                    LIONESS – Le Magazine des Reines is committed to protecting your
-                    privacy and ensuring the security of your personal data.
+                    LIONESS – {% blocktrans %}Le Magazine des Reines is committed to protecting your
+                    privacy and ensuring the security of your personal data.{% endblocktrans %}
                 </p>
 
-            <h2>Information We Collect</h2>
+            <h2>{% trans "Information We Collect" %}</h2>
 
-                <p>We may collect the following information:</p>
-
-                    <ul>
-                        <li>First Name</li>
-                        <li>Last Name</li>
-                        <li>Email Address</li>
-                        <li>Country</li>
-                        <li>Occupation</li>
-                        <li>Login Credentials</li>
-                    </ul>
-
-                <h2>How We Use Your Information</h2>
+                <p>{% trans "We may collect the following information:" %}</p>
 
                     <ul>
-                        <li>Create and manage user accounts</li>
-                        <li>Provide membership services</li>
-                        <li>Communicate with members</li>
-                        <li>Improve website functionality</li>
-                        <li>Ensure platform security</li>
+                        <li>{% trans "First Name" %}</li>
+                        <li>{% trans "Last Name" %}</li>
+                        <li>{% trans "Email Address" %}</li>
+                        <li>{% trans "Country" %}</li>
+                        <li>{% trans "Occupation" %}</li>
+                        <li>{% trans "Login Credentials" %}</li>
                     </ul>
 
-                <h2>Data Retention</h2>
+                <h2>{% trans "How We Use Your Information" %}</h2>
+
+                    <ul>
+                        <li>{% trans "Create and manage user accounts" %}</li>
+                        <li>{% trans "Provide membership services" %}</li>
+                        <li>{% trans "Communicate with members" %}</li>
+                        <li>{% trans "Improve website functionality" %}</li>
+                        <li>{% trans "Ensure platform security" %}</li>
+                    </ul>
+
+                <h2>{% trans "Data Retention" %}</h2>
 
                     <p>
-                        Personal information is retained only for as long as necessary
+                        {% blocktrans %}Personal information is retained only for as long as necessary
                         to fulfill the purposes described in this policy and comply with
-                        applicable legal obligations.
+                        applicable legal obligations.{% endblocktrans %}
                     </p>
 
-                <h2>Data Sharing</h2>
+                <h2>{% trans "Data Sharing" %}</h2>
 
                     <p>
-                        LIONESS does not sell, rent, or trade personal information.
+                        {% trans "LIONESS does not sell, rent, or trade personal information." %}
                     </p>
 
                     <p>
-                        Information may be shared only with trusted service providers
-                        required for hosting, maintenance, security, or legal compliance.
+                        {% blocktrans %}Information may be shared only with trusted service providers
+                        required for hosting, maintenance, security, or legal compliance.{% endblocktrans %}
                     </p>
 
-                <h2>Your Rights</h2>
+                <h2>{% trans "Your Rights" %}</h2>
 
                     <p>
-                        Under applicable privacy laws, including GDPR, you have the right to:
+                        {% trans "Under applicable privacy laws, including GDPR, you have the right to:" %}
                     </p>
 
                     <ul>
-                        <li>Access your personal data</li>
-                        <li>Correct inaccurate information</li>
-                        <li>Request deletion of your data</li>
-                        <li>Restrict processing</li>
-                        <li>Object to processing</li>
-                        <li>Request data portability</li>
-                        <li>Withdraw consent</li>
+                        <li>{% trans "Access your personal data" %}</li>
+                        <li>{% trans "Correct inaccurate information" %}</li>
+                        <li>{% trans "Request deletion of your data" %}</li>
+                        <li>{% trans "Restrict processing" %}</li>
+                        <li>{% trans "Object to processing" %}</li>
+                        <li>{% trans "Request data portability" %}</li>
+                        <li>{% trans "Withdraw consent" %}</li>
                     </ul>
 
-                <h2>Contact</h2>
+                <h2>{% trans "Contact" %}</h2>
 
                 <p>
-                    For privacy-related requests, please contact:
+                    {% trans "For privacy-related requests, please contact:" %}
                 </p>
 
                 <p>
