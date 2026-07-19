@@ -79,63 +79,41 @@ flowchart TD
 ## Database Design & ERD
 ```mermaid
 erDiagram
-
-    SUPER_USER {
-        int id PK
-        string username
-        string email
-        string password
-        string role
-        boolean is_active
-        datetime created_at
-    }
-
+    USER ||--o{ PROFILE : has
+    USER ||--o{ NOTIFICATION : receives
+    
     USER {
         int id PK
         string username
         string email
         string password
-        boolean is_member
+        string first_name
+        string last_name
         boolean is_active
-        datetime created_at
+        datetime date_joined
     }
 
     PROFILE {
         int id PK
         int user_id FK
-        string first_name
-        string last_name
-        string profile_image
-        string biography
-        string phone
         string country
-        datetime updated_at
-    }
-
-    RUBRIC {
-        int id PK
-        string name
-        string description
-        int display_order
-    }
-
-    ARTICLE {
-        int id PK
-        int author_id FK
-        int rubric_id FK
-        string title
-        text content
-        string image
-        string language
-        string status
-        datetime published_at
+        string occupation
+        string profile_picture_url
+        text bio
         datetime created_at
         datetime updated_at
     }
 
-    USER ||--|| PROFILE : has
-    SUPER_USER ||--o{ ARTICLE : creates
-    RUBRIC ||--o{ ARTICLE : classifies
+    ARTICLE {
+        int id PK
+        string title
+        string author
+        text content
+        string image_url
+        string category
+        boolean published
+        datetime created_at
+    }
 ```
     ----
 
