@@ -17,6 +17,10 @@ services:
       - db
     ports:
       - "127.0.0.1:8000:8000"
+    volumes:
+      # Les images envoyées depuis l'administration restent sur le VPS,
+      # même lorsqu'un nouveau conteneur est construit.
+      - ./media:/app/media
 
 volumes:
   postgres_data:
